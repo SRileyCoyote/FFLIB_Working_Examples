@@ -1,0 +1,94 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef1"
+            },
+            "Attendee_Name__c": "Dean Winchester",
+            "Attendee_Email__c": "dean@myexample.com",
+            "Event__c": "@Event__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef2"
+            },
+            "Attendee_Name__c": "Sam Winchester",
+            "Attendee_Email__c": "sam@myexample.com",
+            "Event__c": "@Event__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef3"
+            },
+            "Attendee_Name__c": "Lorelai Gilmore",
+            "Attendee_Email__c": "lorelai@myexample.com",
+            "Event__c": "@Event__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef4"
+            },
+            "Attendee_Name__c": "Rory Gilmore",
+            "Attendee_Email__c": "rory@myexample.com",
+            "Event__c": "@Event__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef5"
+            },
+            "Attendee_Name__c": "Amy Santiago",
+            "Attendee_Email__c": "amy@myexample.com",
+            "Event__c": "@Event__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef6"
+            },
+            "Attendee_Name__c": "Jake Peralta",
+            "Attendee_Email__c": "jake@myexample.com",
+            "Event__c": "@Event__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef7"
+            },
+            "Attendee_Name__c": "Bart Simpson",
+            "Attendee_Email__c": "bart@myexample.com",
+            "Event__c": "@Event__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef8"
+            },
+            "Attendee_Name__c": "Homer Simpson",
+            "Attendee_Email__c": "homer@myexample.com",
+            "Event__c": "@Event__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef9"
+            },
+            "Attendee_Name__c": "Ron Swanson",
+            "Attendee_Email__c": "ron@myexample.com",
+            "Event__c": "@Event__cRef1"
+        },
+        {
+            "attributes": {
+                "type": "Event_Attendee__c",
+                "referenceId": "Event_Attendee__cRef10"
+            },
+            "Attendee_Name__c": "Ted Lasso",
+            "Attendee_Email__c": "ted@myexample.com",
+            "Event__c": "@Event__cRef1"
+        }
+    ]
+}

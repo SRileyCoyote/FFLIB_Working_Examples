@@ -1,0 +1,13 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Event__c",
+                "referenceId": "Event__cRef1"
+            },
+            "Name": "My Event",
+            "Start_Date__c": "2025-11-01",
+            "End_Date__c": "2025-12-01"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+[
+    {
+        "sobject": "Event__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "Event__c.json"
+        ]
+    },
+    {
+        "sobject": "Board_Games__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "Board_Games__c.json"
+        ]
+    },
+    {
+        "sobject": "Event_Attendee__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "Event_Attendee__c.json"
+        ]
+    },
+    {
+        "sobject": "Event_Board_Games__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "Event_Board_Games__c.json"
+        ]
+    }
+]
