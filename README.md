@@ -36,13 +36,15 @@ We will use Custom Metadata Types to control certain aspects of the DOMAIN and S
 1. Download Repository to Local Machine with VS Code
 1. Connect VS Code to DevHub Enabled Org
 1. Create Scratch Org from DevHub 
- `sf org create scratch --definition-file config/project-scratch-def.json --alias [MyScratchOrg] --set-default --target-dev-hub [DevHub]`
-1. Deploy all Metadata to Scratch Org
-1. Populate Data Using Plan
- `sf data import tree -p ./data/Import-plan.json`
+- `sf org create scratch --definition-file config/project-scratch-def.json --alias [MyScratchOrg] --set-default --target-dev-hub [DevHub]`
+4. Deploy all Metadata to Scratch Org
+5. Populate Data Using Plan
+- `sf data import tree -p ./data/Import-plan.json`
 
 ## Example Use Cases
 1. When Board Game Rating is Marked as Favorite, Uncheck Favorite on all other Board Game Reviews for that Attendee
+1. Check Out Board Game: Create Check Out Record.
+1. Check In Board Game: Get Board Game Record For Game, Set Check In Time to Current Time
 
 ## TODO Notes:
 
