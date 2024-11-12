@@ -6,12 +6,12 @@ public without sharing class BoardGameRatingsService implements IBoardGameRating
 
     //Initialize Service Class
     public BoardGameRatingsService(){
-        //Initialize Selector from Application Layer
-        bgRatingSelector = (BoardGameRatingSelector) Application.Selector.newInstance(Board_Game_Rating__c.sObjectType);
+        //Initialize Selectors
+        bgRatingSelector = (BoardGameRatingSelector) BoardGameRatingSelector.newInstance();
         
         //Get All Service Config Records without SOQL Call, Filter By Domain
         for(Services_Config__mdt config : Services_Config__mdt.getAll().values()){
-            if(config.Domain_Config__c == 'BoardGameRatingDomain'){
+            if(config.Domain_Config__r.DeveloperName == 'BoardGameRatingDomain'){
                 serviceConfigMap.put(config.DeveloperName, config);
             }
         }
@@ -36,8 +36,8 @@ public without sharing class BoardGameRatingsService implements IBoardGameRating
 
                 //If Fav Rating was Found
                 if(favRating != null){
-                    //Get All Ratings From Running User, Excluding Favorite Record
-                    for(Board_Game_Rating__c thisRating : bgRatingSelector.selectFavoriteRatingByUserIdExcludingRecordID(UserInfo.getUserId(), favRating.Id)){
+                    //Get All Favorite Ratings From Running User, Excluding This Favorite Record
+                    for(Board_Game_Rating__c thisRating : bgRatingSelector.selectFavoriteRatingByUserIdExcludingRecordID(new Set<Id>{favRating.Event_Attendee__c}, new Set<Id>{favRating.Id})){
                         thisRating.is_Favorite__c = false; //Set Each Rating As False
                         uow.registerDirty(thisRating); //Register Rating to be Updated
                     }

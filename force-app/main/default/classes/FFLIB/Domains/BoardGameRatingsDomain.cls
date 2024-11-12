@@ -1,9 +1,14 @@
 public with sharing class BoardGameRatingsDomain extends fflib_SObjectDomain {
     
-    @TestVisible Domain_Config__mdt domainConfig;
+    @TestVisible
+    private Domain_Config__mdt domainConfig;
 
     public static BoardGameRatingsDomain newInstance(List<Board_Game_Rating__c> sObjectList){
-        
+        return new BoardGameRatingsDomain(sObjectList);
+    }
+
+    public BoardGameRatingsDomain(List<Board_Game_Rating__c> sObjectList)
+    {
         super(sObjectList);
 
         //Get Custom Metadata Type for Domain
@@ -32,7 +37,7 @@ public with sharing class BoardGameRatingsDomain extends fflib_SObjectDomain {
             fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsDomain.class).disableAfterUpdate(); 
         }
 
-        try{
+        // try{
             //Initialize Unit of Work and Service Classes from Application Layer
             fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
             IBoardGameRatingsService service = (IBoardGameRatingsService) Application.Service.newInstance(IBoardGameRatingsService.class);
@@ -42,19 +47,19 @@ public with sharing class BoardGameRatingsDomain extends fflib_SObjectDomain {
 
             //Commit Records
             uow.commitWork();
-        }
-        catch (Exception ex) 
-        {
-            //Bypass Error Handling, If Enabled
-            if(domainConfig.Bypass_Error_Handling__c && !System.Test.isRunningTest())
-            {
-                System.debug('An Error Occured: ' + ex.getMessage());
-            }
-            else 
-            {
-                throw new BoardGameRatingsException('An Error Occured in the Board Game Ratings Domain: ' + ex.getMessage());
-            }
-        }
+        // }
+        // catch (Exception ex) 
+        // {
+        //     //Bypass Error Handling, If Enabled
+        //     if(domainConfig.Bypass_Error_Handling__c && !System.Test.isRunningTest())
+        //     {
+        //         System.debug('An Error Occured: ' + ex.getMessage());
+        //     }
+        //     else 
+        //     {
+        //         throw new BoardGameRatingsException('An Error Occured in the Board Game Ratings Domain: ' + ex.getMessage());
+        //     }
+        // }
     }
 
     public class BoardGameRatingsException extends Exception {}
