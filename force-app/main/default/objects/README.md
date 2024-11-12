@@ -2,7 +2,7 @@
 
 For this example, I put together a small Application in Salesforce based on what I know best: Board Game Conventions.
 
-![Data Schema](Schema.png)
+![Data Schema](/images/Schema.png)
 
 - **Event** is a Board Game Convention with a __Start__ and __End Date__.
 - **Event Attendee** is a Person Attending the Event with a __Name__ and __Email__.
