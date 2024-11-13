@@ -9,6 +9,8 @@ For this example, I put together a small Application in Salesforce based on what
 1. Check Out Board Game: Create Check Out Record. (TODO)
 1. Check In Board Game: Get Board Game Record For Game, Set Check In Time to Current Time. (TODO)
 
+
+
 Already Included in the Metadata are the following Repos:
 - [FFLIB Repo](https://github.com/apex-enterprise-patterns/fflib-apex-common)
 - [FFLIB Mocks Repo](https://github.com/apex-enterprise-patterns/fflib-apex-mocks) 
@@ -17,20 +19,24 @@ Already Included in the Metadata are the following Repos:
 ## Setup
 
 1. Download Repository to Local Machine with VS Code (or similiar IDE)
-   1. Ensure latest Salesforce CLI is installed for `SF` Commands 
+   1. Ensure ([latest Salesforce CLI is installed](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)) for `SF` Commands
 1. Connect IDE to DevHub Enabled Org
 1. Create Scratch Org from DevHub 
 ```
-sf org create scratch --definition-file config/project-scratch-def.json --alias [MyScratchOrg] --set-default --target-dev-hub [DevHub]
+sf org create scratch -f config/project-scratch-def.json -a [MyScratchOrg] -d -v [DevHub]
 ```
 4. Deploy all Metadata to Scratch Org
 ```
-TODO: SF Command to Deploy all metadata  
+sf project deploy start -d force-app -o [MyScratchOrg] -c
 ```
 5. Populate Data Using Plan
 ```
 sf data import tree -p ./data/Import-plan.json
 ```
+## More Information
+
+[SOBjects and Custom Metadata Types](/force-app/main/default/objects/README.md)
+
 
 ## To Be Moved to their own READMEs
 ### Custom Objects
