@@ -9,8 +9,6 @@ For this example, I put together a small Application in Salesforce based on what
 1. Check Out Board Game: Create Check Out Record. (TODO)
 1. Check In Board Game: Get Board Game Record For Game, Set Check In Time to Current Time. (TODO)
 
-
-
 Already Included in the Metadata are the following Repos:
 - [FFLIB Repo](https://github.com/apex-enterprise-patterns/fflib-apex-common)
 - [FFLIB Mocks Repo](https://github.com/apex-enterprise-patterns/fflib-apex-mocks) 
@@ -35,32 +33,12 @@ sf data import tree -p ./data/Import-plan.json
 ```
 ## More Information
 
-[SOBjects and Custom Metadata Types](/force-app/main/default/objects/README.md)
-
-
-## To Be Moved to their own READMEs
-### Custom Objects
-
-![Data Schema](/images/Schema.png)
-
-- **Event** is a Board Game Convention with a __Start__ and __End Date__.
-- **Event Attendee** is a Person Attending the Event with a __Name__ and __Email__.
-- **Board Game** is a Board Game with various attributes.
-- **Event Board Game** is a concat table for **Board Game** and **Event**
-- **Board Game Rating** is a list of reviews of **Board Games** by **Event Attendees**
-- **Board Game Checkout Log** is a log of when a **Board Game** is checked out by an **Event Attendee** at an **Event**
-
-### Custom Metadata Types
-
-We will use Custom Metadata Types to control certain aspects of the DOMAIN and SERVICE Layer
-
-- **Domain Config**: This Custom MDT allows us to toggle if we want to Bypass Error Handling, Bypass Triggers, and/or Prevent Recursion on an Object's Trigger.
-- **Services Config**: This Custom MDT allows us to toggle if a Method on the Service Class is to be enabled or not. Has a MetaData Relaionship to the Domain Config Record.
-
-
-
-## Example Use Cases
-
+[SObjects and Custom Metadata Types](/force-app/main/default/objects)
+[FFLIB](/force-app/main/default/classes/FFLIB)
+- [Application Layer](/force-app/main/default/classes/FFLIB/Application)
+- [Domain Layer](/force-app/main/default/classes/FFLIB/Domains)
+- [Selector Layer](/force-app/main/default/classes/FFLIB/Selectors)
+- [Service Layer](/force-app/main/default/classes/FFLIB/Services)
 
 ## TODO Notes:
 
@@ -84,7 +62,7 @@ Add Descriptions to Objects and Fields
 Links to Scratch Org Instructions
 Links to Other ReadMe Files in Top ReadMe
 
-How do I want to do this:
+TODO:
 - Encorporate ZDF (Somehow?)
 
 Examples I want to see:
@@ -100,8 +78,4 @@ Examples I want to see:
      - Verify Individual Record
      - Verify List of Records
 -Parent Classes
-
-Use Cases To Add:
-- Check out Game 
-- Check in Game 
 

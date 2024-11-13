@@ -1,6 +1,6 @@
 # Data Structure
 
-For this example, I put together a small Application in Salesforce based on what I know best: Board Game Conventions.
+## Custom Objects
 
 ![Data Schema](/images/Schema.png)
 
@@ -10,3 +10,16 @@ For this example, I put together a small Application in Salesforce based on what
 - **Event Board Game** is a concat table for **Board Game** and **Event**
 - **Board Game Rating** is a list of reviews of **Board Games** by **Event Attendees**
 - **Board Game Checkout Log** is a log of when a **Board Game** is checked out by an **Event Attendee** at an **Event**
+
+## Custom Metadata Types
+
+We will use Custom Metadata Types to control certain aspects of the DOMAIN and SERVICE Layer
+
+- **Domain Config**: This Custom MDT allows us to toggle the following settings on the SObject's Trigger:
+     - Bypass Error Handling
+     - Bypass Triggers 
+     - Prevent Recursion
+- **Services Config**: This Custom MDT has a MetaData Relaionship to the **Domain Config** Record and allows us to toggle the following settings for a Method on the Service Class:
+     - Enable/Disable Service Method.
+
+
