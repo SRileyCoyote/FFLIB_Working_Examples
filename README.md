@@ -17,7 +17,7 @@ Already Included in the Metadata are the following Repos:
 ## Setup
 
 1. Download Repository to Local Machine with VS Code (or similiar IDE)
-   1. Ensure ([latest Salesforce CLI is installed](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)) for `SF` Commands
+   1. Ensure [latest Salesforce CLI is installed](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) for `SF` Commands
 1. Connect IDE to DevHub Enabled Org
 1. Create Scratch Org from DevHub 
 ```
