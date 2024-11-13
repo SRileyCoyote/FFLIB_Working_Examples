@@ -1,18 +1,38 @@
 # FFLIB Working Examples
 
-This Repo Shows working examples of the FFLIB architechure design patterns using design patterns I have picked up over the years.
+## Overview
 
-Includes the following Repos
+This Repo Shows working examples of the FFLIB architechure design patterns using design patterns and best practices I have picked up over the years. This is an open source repo intended for my own personal use and to share with those that need it.
+
+For this example, I put together a small Application in Salesforce based on what I know best: Board Game Conventions. In this example, we will be using the following Use Cases:
+1. When Board Game Rating is Marked as Favorite, Uncheck Favorite on all other Board Game Reviews for that Attendee
+1. Check Out Board Game: Create Check Out Record. (TODO)
+1. Check In Board Game: Get Board Game Record For Game, Set Check In Time to Current Time. (TODO)
+
+Already Included in the Metadata are the following Repos:
 - [FFLIB Repo](https://github.com/apex-enterprise-patterns/fflib-apex-common)
 - [FFLIB Mocks Repo](https://github.com/apex-enterprise-patterns/fflib-apex-mocks) 
 - [SObjectFabricator Repo](https://github.com/mattaddy/SObjectFabricator)
 
-This is an open source repo intended for my own personal use and to share with those that need it.
+## Setup
 
-## Schema
+1. Download Repository to Local Machine with VS Code (or similiar IDE)
+   1. Ensure latest Salesforce CLI is installed for `SF` Commands 
+1. Connect IDE to DevHub Enabled Org
+1. Create Scratch Org from DevHub 
+```
+sf org create scratch --definition-file config/project-scratch-def.json --alias [MyScratchOrg] --set-default --target-dev-hub [DevHub]
+```
+4. Deploy all Metadata to Scratch Org
+```
+TODO: SF Command to Deploy all metadata  
+```
+5. Populate Data Using Plan
+```
+sf data import tree -p ./data/Import-plan.json
+```
 
-For this example, I put together a small Application in Salesforce based on what I know best: Board Game Conventions.
-
+## To Be Moved to their own READMEs
 ### Custom Objects
 
 ![Data Schema](/images/Schema.png)
@@ -31,22 +51,32 @@ We will use Custom Metadata Types to control certain aspects of the DOMAIN and S
 - **Domain Config**: This Custom MDT allows us to toggle if we want to Bypass Error Handling, Bypass Triggers, and/or Prevent Recursion on an Object's Trigger.
 - **Services Config**: This Custom MDT allows us to toggle if a Method on the Service Class is to be enabled or not. Has a MetaData Relaionship to the Domain Config Record.
 
-## Setup
 
-1. Download Repository to Local Machine with VS Code
-1. Connect VS Code to DevHub Enabled Org
-1. Create Scratch Org from DevHub 
-- `sf org create scratch --definition-file config/project-scratch-def.json --alias [MyScratchOrg] --set-default --target-dev-hub [DevHub]`
-4. Deploy all Metadata to Scratch Org
-5. Populate Data Using Plan
-- `sf data import tree -p ./data/Import-plan.json`
 
 ## Example Use Cases
-1. When Board Game Rating is Marked as Favorite, Uncheck Favorite on all other Board Game Reviews for that Attendee
-1. Check Out Board Game: Create Check Out Record.
-1. Check In Board Game: Get Board Game Record For Game, Set Check In Time to Current Time
+
 
 ## TODO Notes:
+
+TODO:
+ReadMe Files on the following Folders:
+- FFLIB
+- APPLICATION
+- DOMAINS
+   - TRIGGER TESTS
+- SELECTORS
+- SERVICES
+- TEST UTIL
+- FFLIB BASE CLASSES
+   - APEX MOCKS
+   - FFLIB_COMMON
+   - SOBJECT_FABRICATOR
+- CUSTOM METADATA
+- OBJECTS (Update to Include MDT Descriptions)
+- IMAGES
+Add Descriptions to Objects and Fields
+Links to Scratch Org Instructions
+Links to Other ReadMe Files in Top ReadMe
 
 How do I want to do this:
 - Encorporate ZDF (Somehow?)
@@ -56,13 +86,14 @@ Examples I want to see:
 - Service
 - Selectors
 - Test Class
- - Example of SObjectFabricator
- - Example of non-SObjectFabricator Record
- - Mock Domain
- - Mock Selector
- - Mock UOW
-  - Verify Individual Record
-  - Verify List of Records
+   - Example of SObjectFabricator
+   - Example of non-SObjectFabricator Record
+   - Mock Domain
+   - Mock Selector
+   - Mock UOW
+     - Verify Individual Record
+     - Verify List of Records
+-Parent Classes
 
 Use Cases To Add:
 - Check out Game 
