@@ -34,48 +34,11 @@ sf data import tree -p ./data/Import-plan.json
 ## More Information
 
 [SObjects and Custom Metadata Types](/force-app/main/default/objects)
+
 [FFLIB](/force-app/main/default/classes/FFLIB)
 - [Application Layer](/force-app/main/default/classes/FFLIB/Application)
 - [Domain Layer](/force-app/main/default/classes/FFLIB/Domains)
 - [Selector Layer](/force-app/main/default/classes/FFLIB/Selectors)
 - [Service Layer](/force-app/main/default/classes/FFLIB/Services)
 
-## TODO Notes:
-
-TODO:
-ReadMe Files on the following Folders:
-- FFLIB
-- APPLICATION
-- DOMAINS
-   - TRIGGER TESTS
-- SELECTORS
-- SERVICES
-- TEST UTIL
-- FFLIB BASE CLASSES
-   - APEX MOCKS
-   - FFLIB_COMMON
-   - SOBJECT_FABRICATOR
-- CUSTOM METADATA
-- OBJECTS (Update to Include MDT Descriptions)
-- IMAGES
-Add Descriptions to Objects and Fields
-Links to Scratch Org Instructions
-Links to Other ReadMe Files in Top ReadMe
-
-TODO:
-- Encorporate ZDF (Somehow?)
-
-Examples I want to see:
-- Domain
-- Service
-- Selectors
-- Test Class
-   - Example of SObjectFabricator
-   - Example of non-SObjectFabricator Record
-   - Mock Domain
-   - Mock Selector
-   - Mock UOW
-     - Verify Individual Record
-     - Verify List of Records
--Parent Classes
 
