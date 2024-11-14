@@ -33,7 +33,7 @@ private class BoardGameRatingSelectorTest {
 
     //Additional Test Methods for Selector Methods
     @isTest
-    public static void givenBGRFavoriteRecord_WhenSelectFavoriteRatingByUserIdExcludingRecordIDisCalled_ThenReturnResults() {
+    public static void givenBGRFavoriteRecord_WhenSelectFavoriteRatingByAttendeeIdExcludingRecordIDisCalled_ThenReturnResults() {
         
         //Create Test Data (Use Test Util Class where possible)
         Board_Game_Rating__c testRecord = TestUtil.createBoardGameRating();
@@ -42,7 +42,7 @@ private class BoardGameRatingSelectorTest {
 
         //Perform Test
         Test.startTest();
-        List<Board_Game_Rating__c> results = BoardGameRatingSelector.newInstance().selectFavoriteRatingByUserIdExcludingRecordID(new Set<Id>{testRecord.Event_Attendee__c}, 
+        List<Board_Game_Rating__c> results = BoardGameRatingSelector.newInstance().selectFavoriteRatingByAttendeeIdExcludingRecordID(new Set<Id>{testRecord.Event_Attendee__c}, 
                                                                                                                                     //Generate ID that is NOT the TestRecord ID
                                                                                                                                     new Set<Id>{fflib_IDGenerator.generate(Board_Game_Rating__c.SObjectType)});
         Test.stopTest();

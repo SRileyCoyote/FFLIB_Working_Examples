@@ -37,7 +37,10 @@ public with sharing class BoardGameRatingsDomain extends fflib_SObjectDomain imp
     }
 
     public override void onAfterUpdate(Map<Id,SObject> existingRecords){
-        
+        //Initialize Unit of Work and Service Classes from Application Layer
+        fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
+        BoardGameRatingsService service = (BoardGameRatingsService) Application.Service.newInstance(IBoardGameRatingsService.class);
+
         //Prevent Recursion on After Update, If enabled
         if(domainConfig.Prevent_Recursion__c)
         {
@@ -45,15 +48,13 @@ public with sharing class BoardGameRatingsDomain extends fflib_SObjectDomain imp
             fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsDomain.class).disableAfterUpdate(); 
         }
 
-        try{
-            //Initialize Unit of Work and Service Classes from Application Layer
-            fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
-            IBoardGameRatingsService service = (IBoardGameRatingsService) Application.Service.newInstance(IBoardGameRatingsService.class);
-
+        try{         
             //Do Work
-            service.setNewFavorite(uow, existingRecords.values());
 
-            //Commit Records
+            //super.Records gets all of the Records from the trigger from the Domain
+            service.setNewFavorite(uow, super.Records, existingRecords); 
+
+            //Perform DML on all Registered Records
             uow.commitWork();
         }
         catch (Exception ex) 
@@ -65,11 +66,11 @@ public with sharing class BoardGameRatingsDomain extends fflib_SObjectDomain imp
             }
             else 
             {
-                throw new BoardGameRatingsException('An Error Occured in the Board Game Ratings Domain: ' + ex.getMessage());
+                throw new BRGDomainException('An Error Occured in the Board Game Ratings Domain: ' + ex.getMessage());
             }
         }
     }
 
-    public class BoardGameRatingsException extends Exception {}
+    public class BRGDomainException extends Exception {}
 
 }

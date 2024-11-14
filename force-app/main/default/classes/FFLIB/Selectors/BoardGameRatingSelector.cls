@@ -32,7 +32,7 @@ public without sharing class BoardGameRatingSelector extends fflib_SObjectSelect
     //Names of Selector Methods Should describe all of the Conditions for the Query
     //Return Value should always be a List of the Selector's Object
     //Input Parameters should always be Sets of the value type for bulkificationa and resuability
-    public List<Board_Game_Rating__c> selectFavoriteRatingByUserIdExcludingRecordID(Set<Id> attendeeIds, Set<Id> excludeRecordIds){
+    public List<Board_Game_Rating__c> selectFavoriteRatingByAttendeeIdExcludingRecordID(Set<Id> attendeeIds, Set<Id> excludeRecordIds){
 
         // Query Factory Options (Optional):
         // AssertCRUD: False By Default, Determines if CRUD Permissions are Enforced.

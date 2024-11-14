@@ -32,9 +32,12 @@ public class BoardGameRatingsDomainTest {
 
             mocks.startStubbing();
             if(throwErrors){
-                ((IBoardGameRatingsService) mocks.doThrowWhen(new BoardGameRatingsDomain.BoardGameRatingsException('Thrown Exception'),
-                                                mockBGRService)).setNewFavorite((fflib_SObjectUnitOfWork) fflib_Match.anyObject(), (List<SObject>) fflib_Match.anyObject());
-                // mocks.doThrowWhen(new DmlException('Thrown Exception'), mockBGRService);
+                ((IBoardGameRatingsService) mocks.doThrowWhen(new BoardGameRatingsDomain.BRGDomainException('Thrown Exception'),
+                                                mockBGRService)).setNewFavorite(
+                                                                    (fflib_SObjectUnitOfWork) fflib_Match.anyObject(), 
+                                                                    (List<SObject>) fflib_Match.anyObject(),
+                                                                    (Map<Id,SObject>) fflib_Match.anyObject()
+                                                                );
             }
             mocks.stopStubbing();
 
@@ -46,7 +49,19 @@ public class BoardGameRatingsDomainTest {
         }
     } 
 
+    // Begin Tests
     // Tests should follow a Use Case Test Plan
+
+    // Test Plan
+    // Call Domain with Current Config 
+    // Call AfterUpdate Method with 1 BGR Record
+    // Call AfterUpdate Method with Multiple BGR Records
+    // Call AfterUpdate Method with No BGR Records
+    // Call AfterUpdate Method with Custom Config where Recursion Disabled
+    // Call Domain with Custom Config where Trigger Disabled 
+    // Call AfterUpdate and Throw Error with Custom Config where Bypass Triggers Disabled
+    // Call AfterUpdate and Throw Error with Custom Config where Bypass Triggers Enabled
+
     @IsTest
     public static void givenBGRRecord_WhenOnAfterUpdateIsCalled_ThenNoErrors(){
 
@@ -65,7 +80,7 @@ public class BoardGameRatingsDomainTest {
             mock.bgrDomain.onAfterUpdate(existingRecords);
         Test.stopTest();
 
-        //Validate Method finished
+        //Validate Method finished and Service Not Called
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1)).commitWork();
     }
 
