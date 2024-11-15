@@ -1,0 +1,23 @@
+# SELECTOR LAYER
+
+## Overview
+### Class
+1. Create Selector Layer Class and Interface
+1. Add Selector to [Application](/force-app/main/default/classes/FFLIB/Application)
+1. Add Required Methods from Interface
+1. Add Methods for Needed SOQL Calls
+    1. Each Method should return a List of the SObject
+    1. Each Method should accept Sets of parameter values for better reusability
+    1. Each Method's name should reflect the ___Where___ Condition of the SOQL call
+    1. Methods should NOT contain any logic
+### Test Class
+1. Create and Insert Setup Data using Test Utility Class [^1]
+1. Create Test Methods for Selector Method
+1. Use Asserts or Mocks.Verify Methods to Validate Results
+
+[^1]: This should be the only time you will need to manipulate and insert test data
+
+## Trailhead and Resources
+
+- [Apex Enterprise Patterns - Separation of Concerns](http://wiki.developerforce.com/page/Apex_Enterprise_Patterns_-_Separation_of_Concerns)
+- [Apex Enterprise Patterns - Selector Layer](https://github.com/financialforcedev/df12-apex-enterprise-patterns#data-mapper-selector)
