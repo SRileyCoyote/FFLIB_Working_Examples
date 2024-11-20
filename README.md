@@ -13,16 +13,20 @@ Already Included in the Metadata are the following Repos:
 
 1. Download Repository to Local Machine with VS Code (or similiar IDE)
    1. Ensure [latest Salesforce CLI is installed](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) for `SF` Commands
-1. Connect IDE to DevHub Enabled Org
+1. Connect IDE to DevHub Enabled Org (Org Alias: DevHub)
 1. Create Scratch Org from DevHub 
 ```
-sf org create scratch -f config/project-scratch-def.json -a [MyScratchOrg] -d -v [DevHub]
+sf org create scratch -f config/project-scratch-def.json -a MyScratchOrg -d -v DevHub
 ```
 4. Deploy all Metadata to Scratch Org
 ```
-sf project deploy start -d force-app -o [MyScratchOrg] -c
+sf project deploy start -d force-app -o MyScratchOrg -c
 ```
-5. Populate Data Using Plan
+5. Assign Permission Set to User
+```
+sf org assign permset -n BoardGamePS -o MyScratchOrg
+```
+6. Populate Data Using Plan
 ```
 sf data import tree -p ./data/Import-plan.json
 ```
