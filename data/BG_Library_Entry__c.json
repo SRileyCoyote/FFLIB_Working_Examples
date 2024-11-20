@@ -2,8 +2,8 @@
     "records": [
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef1"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef1"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -11,8 +11,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef2"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef2"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -20,8 +20,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef3"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef3"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -29,8 +29,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef4"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef4"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -38,8 +38,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef5"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef5"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -47,8 +47,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef6"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef6"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -56,8 +56,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef7"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef7"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -65,8 +65,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef8"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef8"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -74,8 +74,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef9"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef9"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -83,8 +83,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef10"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef10"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -92,8 +92,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef11"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef11"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -101,8 +101,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef12"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef12"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -110,8 +110,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef13"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef13"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -119,8 +119,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef14"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef14"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -128,8 +128,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef15"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef15"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -137,8 +137,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef16"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef16"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -146,8 +146,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef17"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef17"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -155,8 +155,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef18"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef18"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -164,8 +164,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef19"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef19"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -173,8 +173,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef20"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef20"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -182,8 +182,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef21"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef21"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -191,8 +191,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef22"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef22"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -200,8 +200,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef23"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef23"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -209,8 +209,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef24"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef24"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -218,8 +218,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef25"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef25"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -227,8 +227,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef26"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef26"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -236,8 +236,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef27"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef27"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -245,8 +245,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef28"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef28"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -254,8 +254,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef29"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef29"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -263,8 +263,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef30"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef30"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -272,8 +272,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef31"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef31"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -281,8 +281,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef32"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef32"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -290,8 +290,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef33"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef33"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -299,8 +299,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef34"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef34"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -308,8 +308,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef35"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef35"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -317,8 +317,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef36"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef36"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -326,8 +326,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef37"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef37"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -335,8 +335,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef38"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef38"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -344,8 +344,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef39"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef39"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -353,8 +353,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef40"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef40"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -362,8 +362,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef41"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef41"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -371,8 +371,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef42"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef42"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -380,8 +380,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef43"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef43"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -389,8 +389,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef44"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef44"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -398,8 +398,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef45"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef45"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -407,8 +407,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef46"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef46"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -416,8 +416,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef47"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef47"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -425,8 +425,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef48"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef48"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -434,8 +434,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef49"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef49"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -443,8 +443,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef50"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef50"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -452,8 +452,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef51"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef51"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -461,8 +461,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef52"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef52"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -470,8 +470,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef53"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef53"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -479,8 +479,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef54"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef54"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -488,8 +488,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef55"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef55"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -497,8 +497,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef56"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef56"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -506,8 +506,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef57"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef57"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -515,8 +515,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef58"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef58"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -524,8 +524,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef59"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef59"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -533,8 +533,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef60"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef60"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -542,8 +542,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef61"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef61"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -551,8 +551,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef62"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef62"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -560,8 +560,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef63"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef63"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -569,8 +569,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef64"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef64"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -578,8 +578,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef65"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef65"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -587,8 +587,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef66"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef66"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -596,8 +596,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef67"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef67"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -605,8 +605,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef68"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef68"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -614,8 +614,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef69"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef69"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -623,8 +623,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef70"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef70"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -632,8 +632,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef71"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef71"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -641,8 +641,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef72"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef72"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -650,8 +650,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef73"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef73"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -659,8 +659,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef74"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef74"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -668,8 +668,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef75"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef75"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -677,8 +677,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef76"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef76"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -686,8 +686,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef77"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef77"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -695,8 +695,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef78"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef78"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -704,8 +704,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef79"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef79"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -713,8 +713,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef80"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef80"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -722,8 +722,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef81"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef81"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -731,8 +731,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef82"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef82"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -740,8 +740,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef83"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef83"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -749,8 +749,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef84"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef84"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -758,8 +758,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef85"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef85"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -767,8 +767,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef86"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef86"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -776,8 +776,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef87"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef87"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -785,8 +785,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef88"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef88"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -794,8 +794,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef89"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef89"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -803,8 +803,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef90"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef90"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -812,8 +812,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef91"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef91"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -821,8 +821,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef92"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef92"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -830,8 +830,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef93"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef93"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -839,8 +839,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef94"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef94"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -848,8 +848,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef95"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef95"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -857,8 +857,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef96"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef96"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -866,8 +866,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef97"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef97"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -875,8 +875,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef98"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef98"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -884,8 +884,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef99"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef99"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -893,8 +893,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef100"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef100"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -902,8 +902,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef101"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef101"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -911,8 +911,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef102"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef102"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -920,8 +920,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef103"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef103"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -929,8 +929,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef104"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef104"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -938,8 +938,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef105"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef105"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -947,8 +947,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef106"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef106"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -956,8 +956,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef107"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef107"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -965,8 +965,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef108"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef108"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -974,8 +974,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef109"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef109"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -983,8 +983,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef110"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef110"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -992,8 +992,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef111"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef111"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1001,8 +1001,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef112"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef112"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1010,8 +1010,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef113"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef113"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1019,8 +1019,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef114"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef114"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1028,8 +1028,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef115"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef115"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1037,8 +1037,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef116"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef116"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1046,8 +1046,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef117"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef117"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1055,8 +1055,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef118"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef118"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1064,8 +1064,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef119"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef119"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1073,8 +1073,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef120"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef120"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1082,8 +1082,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef121"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef121"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1091,8 +1091,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef122"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef122"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1100,8 +1100,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef123"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef123"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1109,8 +1109,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef124"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef124"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1118,8 +1118,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef125"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef125"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1127,8 +1127,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef126"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef126"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1136,8 +1136,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef127"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef127"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1145,8 +1145,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef128"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef128"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1154,8 +1154,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef129"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef129"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1163,8 +1163,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef130"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef130"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1172,8 +1172,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef131"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef131"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1181,8 +1181,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef132"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef132"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1190,8 +1190,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef133"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef133"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1199,8 +1199,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef134"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef134"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1208,8 +1208,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef135"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef135"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1217,8 +1217,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef136"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef136"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1226,8 +1226,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef137"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef137"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1235,8 +1235,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef138"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef138"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1244,8 +1244,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef139"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef139"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1253,8 +1253,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef140"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef140"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1262,8 +1262,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef141"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef141"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1271,8 +1271,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef142"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef142"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1280,8 +1280,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef143"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef143"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1289,8 +1289,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef144"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef144"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1298,8 +1298,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef145"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef145"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1307,8 +1307,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef146"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef146"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1316,8 +1316,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef147"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef147"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1325,8 +1325,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef148"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef148"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1334,8 +1334,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef149"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef149"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1343,8 +1343,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef150"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef150"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1352,8 +1352,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef151"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef151"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1361,8 +1361,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef152"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef152"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1370,8 +1370,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef153"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef153"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1379,8 +1379,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef154"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef154"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1388,8 +1388,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef155"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef155"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1397,8 +1397,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef156"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef156"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1406,8 +1406,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef157"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef157"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1415,8 +1415,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef158"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef158"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1424,8 +1424,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef159"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef159"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1433,8 +1433,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef160"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef160"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1442,8 +1442,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef161"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef161"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1451,8 +1451,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef162"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef162"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1460,8 +1460,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef163"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef163"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1469,8 +1469,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef164"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef164"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1478,8 +1478,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef165"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef165"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1487,8 +1487,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef166"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef166"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1496,8 +1496,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef167"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef167"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1505,8 +1505,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef168"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef168"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1514,8 +1514,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef169"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef169"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1523,8 +1523,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef170"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef170"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1532,8 +1532,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef171"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef171"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1541,8 +1541,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef172"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef172"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1550,8 +1550,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef173"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef173"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1559,8 +1559,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef174"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef174"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1568,8 +1568,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef175"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef175"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1577,8 +1577,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef176"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef176"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1586,8 +1586,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef177"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef177"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1595,8 +1595,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef178"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef178"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1604,8 +1604,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef179"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef179"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1613,8 +1613,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef180"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef180"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1622,8 +1622,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef181"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef181"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1631,8 +1631,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef182"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef182"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1640,8 +1640,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef183"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef183"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1649,8 +1649,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef184"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef184"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1658,8 +1658,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef185"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef185"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1667,8 +1667,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef186"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef186"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1676,8 +1676,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef187"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef187"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1685,8 +1685,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef188"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef188"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1694,8 +1694,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef189"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef189"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1703,8 +1703,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef190"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef190"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1712,8 +1712,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef191"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef191"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1721,8 +1721,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef192"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef192"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1730,8 +1730,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef193"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef193"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1739,8 +1739,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef194"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef194"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1748,8 +1748,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef195"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef195"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1757,8 +1757,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef196"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef196"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1766,8 +1766,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef197"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef197"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1775,8 +1775,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef198"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef198"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1784,8 +1784,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef199"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef199"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1793,8 +1793,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef200"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef200"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1802,8 +1802,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef201"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef201"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1811,8 +1811,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef202"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef202"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1820,8 +1820,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef203"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef203"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1829,8 +1829,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef204"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef204"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1838,8 +1838,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef205"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef205"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1847,8 +1847,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef206"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef206"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1856,8 +1856,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef207"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef207"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1865,8 +1865,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef208"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef208"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1874,8 +1874,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef209"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef209"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1883,8 +1883,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef210"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef210"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1892,8 +1892,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef211"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef211"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1901,8 +1901,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef212"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef212"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1910,8 +1910,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef213"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef213"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1919,8 +1919,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef214"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef214"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1928,8 +1928,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef215"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef215"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1937,8 +1937,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef216"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef216"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1946,8 +1946,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef217"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef217"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1955,8 +1955,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef218"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef218"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1964,8 +1964,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef219"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef219"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1973,8 +1973,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef220"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef220"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1982,8 +1982,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef221"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef221"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -1991,8 +1991,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef222"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef222"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2000,8 +2000,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef223"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef223"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2009,8 +2009,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef224"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef224"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2018,8 +2018,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef225"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef225"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2027,8 +2027,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef226"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef226"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2036,8 +2036,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef227"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef227"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2045,8 +2045,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef228"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef228"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2054,8 +2054,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef229"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef229"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2063,8 +2063,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef230"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef230"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2072,8 +2072,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef231"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef231"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2081,8 +2081,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef232"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef232"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2090,8 +2090,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef233"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef233"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2099,8 +2099,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef234"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef234"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2108,8 +2108,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef235"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef235"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2117,8 +2117,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef236"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef236"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2126,8 +2126,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef237"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef237"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,
@@ -2135,8 +2135,8 @@
         },
         {
             "attributes": {
-                "type": "Event_Board_Games__c",
-                "referenceId": "Event_Board_Games__cRef238"
+                "type": "BG_Library_Entry__c",
+                "referenceId": "BG_Library_Entry__cRef238"
             },
             "Event__c": "@Event__cRef1",
             "Num_of_Copies__c": 1,

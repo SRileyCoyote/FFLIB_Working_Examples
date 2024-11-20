@@ -24,11 +24,11 @@
         ]
     },
     {
-        "sobject": "Event_Board_Games__c",
+        "sobject": "BG_Library_Entry__c",
         "saveRefs": false,
         "resolveRefs": true,
         "files": [
-            "Event_Board_Games__c.json"
+            "BG_Library_Entry__c.json"
         ]
     }
 ]
