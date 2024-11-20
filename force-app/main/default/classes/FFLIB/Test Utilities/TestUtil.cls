@@ -18,12 +18,12 @@ public class TestUtil {
         return record;
     }
 
-    public static Event_Board_Games__c createEventBoardGame(){
+    public static BG_Library_Entry__c createEventBoardGame(){
         Board_Games__c bg = createBoardGame();
         insert bg;
         Event__c e = createEvent();
         insert e;
-        Event_Board_Games__c record = new Event_Board_Games__c();
+        BG_Library_Entry__c record = new BG_Library_Entry__c();
         record.Board_Game__c = bg.Id;
         record.Event__c = e.id;
         return record;
