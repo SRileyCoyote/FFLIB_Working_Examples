@@ -3,7 +3,7 @@
     <fullName>Publisher__c</fullName>
     <description>Publisher of Board Game provided by BoardGameGeek</description>
     <externalId>false</externalId>
-    <inlineHelpText>Publisher of Board Game provided by BoardGameGeek</inlineHelpText>    
+    <inlineHelpText>Publisher of Board Game provided by BoardGameGeek</inlineHelpText>
     <label>Publisher</label>
     <length>255</length>
     <required>false</required>

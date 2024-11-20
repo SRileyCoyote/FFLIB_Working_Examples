@@ -156,10 +156,9 @@
     <externalSharingModel>Private</externalSharingModel>
     <label>Board Game</label>
     <nameField>
-        <displayFormat>BG-{0000}</displayFormat>
         <label>Board Game</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <type>AutoNumber</type>
+        <type>Text</type>
     </nameField>
     <pluralLabel>Board Games</pluralLabel>
     <searchLayouts>

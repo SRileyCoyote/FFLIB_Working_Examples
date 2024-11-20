@@ -3,7 +3,7 @@
     <fullName>Playing_Time__c</fullName>
     <description>Estimated Playing Time for Board Game provided by BoardGameGeek</description>
     <externalId>false</externalId>
-    <inlineHelpText>Estimated Playing Time for Board Game provided by BoardGameGeek</inlineHelpText>    
+    <inlineHelpText>Estimated Playing Time for Board Game provided by BoardGameGeek</inlineHelpText>
     <label>Playing Time</label>
     <precision>18</precision>
     <required>false</required>
