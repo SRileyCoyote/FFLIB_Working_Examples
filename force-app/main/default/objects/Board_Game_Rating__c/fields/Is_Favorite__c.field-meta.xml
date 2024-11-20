@@ -2,7 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Is_Favorite__c</fullName>
     <defaultValue>false</defaultValue>
+    <description>Flag to Mark this game as Favorite for Event Attendee. Attendees can only have one Favorite</description>
     <externalId>false</externalId>
+    <inlineHelpText>Check to mark this Board Game as your favorite. (Limit 1)</inlineHelpText>
     <label>Is Favorite</label>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

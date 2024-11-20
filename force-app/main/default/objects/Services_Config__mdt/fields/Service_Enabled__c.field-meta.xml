@@ -2,8 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Service_Enabled__c</fullName>
     <defaultValue>true</defaultValue>
+    <description>If Disabled, this Method in the Service Class will not run</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>If Disabled, this Method in the Service Class will not run</inlineHelpText>
     <label>Service Enabled</label>
     <type>Checkbox</type>
 </CustomField>

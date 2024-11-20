@@ -4,6 +4,7 @@
     <defaultValue>5</defaultValue>
     <description>Rating for Game on Scale of 1 to 5</description>
     <externalId>false</externalId>
+    <inlineHelpText>Rating for Game on Scale of 1 to 5</inlineHelpText>
     <label>Rating</label>
     <precision>1</precision>
     <required>true</required>

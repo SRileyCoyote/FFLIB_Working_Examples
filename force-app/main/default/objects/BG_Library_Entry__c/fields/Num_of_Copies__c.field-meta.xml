@@ -2,7 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Num_of_Copies__c</fullName>
     <defaultValue>1</defaultValue>
+    <description>Total Number of Copies that can be checked out from the Event</description>
     <externalId>false</externalId>
+    <inlineHelpText>Total Number of Copies that can be checked out from the Event</inlineHelpText>
     <label># of Copies</label>
     <precision>18</precision>
     <required>false</required>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Avg_Weight__c</fullName>
+    <description>Average Complexity provided by BoardGameGeek. On a Scale of 1 to 5, where 5 is the most Complex</description>
     <externalId>false</externalId>
+    <inlineHelpText>Average Complexity provided by BoardGameGeek. On a Scale of 1 to 5, where 5 is the most Complex</inlineHelpText>
     <label>Avg. Weight</label>
     <precision>18</precision>
     <required>false</required>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Event__c</fullName>
+    <fullName>BG_Library_Entry__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
-    <label>Event</label>
-    <referenceTo>Event__c</referenceTo>
+    <label>Library Entry</label>
+    <referenceTo>BG_Library_Entry__c</referenceTo>
     <relationshipLabel>Board Game Checkout Logs</relationshipLabel>
     <relationshipName>Board_Game_Checkout_Logs</relationshipName>
     <required>true</required>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Min_Age__c</fullName>
+    <description>Recommended Minimum Age of Players for Board Game provided by BoardGameGeek</description>
     <externalId>false</externalId>
+    <inlineHelpText>Recommended Minimum Age of Players for Board Game provided by BoardGameGeek</inlineHelpText>    
     <label>Min Age</label>
     <precision>18</precision>
     <required>false</required>

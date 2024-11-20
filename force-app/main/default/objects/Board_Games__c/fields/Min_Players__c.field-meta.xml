@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Min_Players__c</fullName>
+    <description>Minimum Players for Board Game provided by BoardGameGeek</description>
     <externalId>false</externalId>
+    <inlineHelpText>Minimum Players for Board Game provided by BoardGameGeek</inlineHelpText>    
     <label>Min Players</label>
     <precision>18</precision>
     <required>false</required>

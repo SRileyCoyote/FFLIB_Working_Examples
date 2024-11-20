@@ -2,7 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>BGG_ID__c</fullName>
     <caseSensitive>false</caseSensitive>
-    <externalId>false</externalId>
+    <description>This is the Unique ID given by BoardGameGeek for this Board Game. Used for matching Board Game Records when importing from BGG</description>
+    <externalId>true</externalId>
+    <inlineHelpText>This is the Unique ID given by BoardGameGeek for this Board Game. Used for matching Board Game Records when importing from BGG</inlineHelpText>
     <label>BGG ID</label>
     <length>255</length>
     <required>false</required>

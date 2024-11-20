@@ -2,9 +2,11 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Checked_Out_By__c</fullName>
     <deleteConstraint>Restrict</deleteConstraint>
+    <description>Event Attendee Board Game was Checked Out By</description>
     <externalId>false</externalId>
+    <inlineHelpText>Event Attendee Board Game was Checked Out By</inlineHelpText>
     <label>Checked Out By</label>
-    <referenceTo>Contact</referenceTo>
+    <referenceTo>Event_Attendee__c</referenceTo>
     <relationshipLabel>Board Game Checkout Logs</relationshipLabel>
     <relationshipName>Board_Game_Checkout_Logs</relationshipName>
     <required>true</required>

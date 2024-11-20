@@ -2,8 +2,10 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Class_Name__c</fullName>
     <caseSensitive>false</caseSensitive>
+    <description>Name of the Domain Class for the SObject</description>
     <externalId>false</externalId>
     <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>Name of the Domain Class for the SObject</inlineHelpText>
     <label>Class Name</label>
     <length>255</length>
     <required>true</required>

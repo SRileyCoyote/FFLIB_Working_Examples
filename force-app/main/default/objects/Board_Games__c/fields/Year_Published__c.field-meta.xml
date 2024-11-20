@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Year_Published__c</fullName>
+    <description>Year Board Game was published provided By BoardGameGeek</description>
     <externalId>false</externalId>
+    <inlineHelpText>Year Board Game was published provided By BoardGameGeek</inlineHelpText>
     <label>Year Published</label>
     <length>255</length>
     <required>false</required>

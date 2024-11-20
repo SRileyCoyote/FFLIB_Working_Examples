@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Mechanics__c</fullName>
+    <description>List of Board Game Mechanics for Board Game provided By BoardGameGeek</description>
     <externalId>false</externalId>
+    <inlineHelpText>List of Board Game Mechanics for Board Game provided By BoardGameGeek</inlineHelpText>
     <label>Mechanics</label>
     <length>131072</length>
     <trackFeedHistory>false</trackFeedHistory>
