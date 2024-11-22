@@ -44,7 +44,7 @@ private class BoardGameRatingsServiceTest {
             
             mockConfig = new Services_Config__mdt(
                                         Domain_Config__r = new Domain_Config__mdt(
-                                            DeveloperName = 'BoardGameRatingsDomain'),
+                                            DeveloperName = 'BoardGameRatings'),
                                         Service_Enabled__c = true
                                     );
             

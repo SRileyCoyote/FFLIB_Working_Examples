@@ -18,7 +18,7 @@ public without sharing class BoardGameRatingsService implements IBoardGameRating
         
         //Get All Service Config Records without SOQL Call, Filter By Domain
         for(Services_Config__mdt config : configList){
-            if(config.Domain_Config__r.DeveloperName == 'BoardGameRatingsDomain'){
+            if(config.Domain_Config__r.DeveloperName == 'BoardGameRatings'){
                 serviceConfigMap.put(config.DeveloperName, config);
             }
         }
