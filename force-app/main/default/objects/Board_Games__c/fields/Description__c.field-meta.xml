@@ -8,6 +8,6 @@
     <length>131072</length>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>
-    <type>LongTextArea</type>
+    <type>Html</type>
     <visibleLines>10</visibleLines>
 </CustomField>
