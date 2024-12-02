@@ -3,9 +3,9 @@
     <fullName>Total_Check_Out_Time__c</fullName>
     <description>Total Time the Board Game Was Checked Out</description>
     <externalId>false</externalId>
-    <inlineHelpText>Total Time the Board Game Was Checked Out</inlineHelpText>
     <formula>IF(ISNULL(Check_Out_Time__c  ),   TIMEVALUE(Check_In_Time__c ) -  TIMENOW(),   TIMEVALUE(Check_In_Time__c )- TIMEVALUE(Check_Out_Time__c  ))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Total Time the Board Game Was Checked Out</inlineHelpText>
     <label>Total Check Out Time</label>
     <precision>18</precision>
     <required>false</required>

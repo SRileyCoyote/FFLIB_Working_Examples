@@ -31,7 +31,9 @@ public class Application {
         new Map<SObjectType, Type>{
             // Map SObjectType to Selector Class
             //Additional SObject Selectors Go Here
-            Board_Game_Rating__c.SObjectType => BoardGameRatingSelector.class
+            Board_Game_Rating__c.SObjectType => BoardGameRatingSelector.class,
+            Event__c.SObjectType => EventSelector.class,
+            Board_Games__c.SObjectType => BoardGameSelector.class
         }
     );
 
@@ -57,7 +59,9 @@ public class Application {
     public static final fflib_Application.UnitOfWorkFactory UnitOfWork = new fflib_Application.UnitOfWorkFactory(
         new List<SObjectType>{
             //Additional SObjectTypes for Unit Of Work Go Here with Parent Objects Above Child
-            Board_Game_Rating__c.SObjectType
+            Board_Game_Rating__c.SObjectType,
+            Board_Games__c.SObjectType,
+            BG_Library_Entry__c.SObjectType
         }
     );
 }

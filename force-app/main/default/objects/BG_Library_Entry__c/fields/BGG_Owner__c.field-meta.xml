@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BGG_Owner__c</fullName>
+    <description>Name of BoardGameGeek Collection or Owner of GeekList</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Name of BoardGameGeek Collection or Owner of GeekList</inlineHelpText>
+    <label>BGG Owner</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

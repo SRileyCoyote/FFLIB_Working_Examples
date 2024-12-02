@@ -8,27 +8,11 @@
         ]
     },
     {
-        "sobject": "Board_Games__c",
-        "saveRefs": true,
-        "resolveRefs": false,
-        "files": [
-            "Board_Games__c.json"
-        ]
-    },
-    {
         "sobject": "Event_Attendee__c",
         "saveRefs": false,
         "resolveRefs": true,
         "files": [
             "Event_Attendee__c.json"
-        ]
-    },
-    {
-        "sobject": "BG_Library_Entry__c",
-        "saveRefs": false,
-        "resolveRefs": true,
-        "files": [
-            "BG_Library_Entry__c.json"
         ]
     }
 ]
