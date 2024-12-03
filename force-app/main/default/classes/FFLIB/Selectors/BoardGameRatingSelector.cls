@@ -1,3 +1,17 @@
+/**
+* ─────────────────────────────────────────────────────────────────────────────────────────────────┐
+* Selector for the Board Game Rating Object
+*
+* Selectors are reusable classes that perform all of the SOQL calls for an application.
+* ──────────────────────────────────────────────────────────────────────────────────────────────────
+* @author         Sean Riley
+* @modifiedBy     Sean Riley
+* @version        1.0
+* @created        2024-11-30
+* @modified       2024-11-30
+* @systemLayer    Selector
+* ──────────────────────────────────────────────────────────────────────────────────────────────────
+*/
 @SuppressWarnings('PMD.SOQLInjection') //PMD Incorrectly identifies Queries made in Selectors to have possible SOQL Injection. This Suppresses that Warning
 //Without Sharing is needed in order to always return all values of a query
 public without sharing class BoardGameRatingSelector extends fflib_SObjectSelector implements IBoardGameRatingSelector  {
@@ -34,13 +48,7 @@ public without sharing class BoardGameRatingSelector extends fflib_SObjectSelect
     //Input Parameters should always be Sets of the value type for bulkificationa and resuability
     public List<Board_Game_Rating__c> selectFavoriteRatingByAttendeeIdExcludingRecordID(Set<Id> attendeeIds, Set<Id> excludeRecordIds){
 
-        // Query Factory Options (Optional):
-        // AssertCRUD: False By Default, Determines if CRUD Permissions are Enforced.
-        // enforceFLS: False By Default, Determines if Field Level Secrity is Enforced.
-        // includeSelectorFields: True By Default, Query Uses Fields from getSObjectFieldList Method. Disable to limit to only own selected fields
-
         fflib_QueryFactory query = newQueryFactory();
-        query.selectField('Board_Game__r.Name'); //selectField is Only way to include fields from Parent Objects
         query.setCondition('Event_Attendee__c = :attendeeIds '
                             + ' AND ID != :excludeRecordIds '
                             + ' AND is_Favorite__c = true');

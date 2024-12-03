@@ -1,3 +1,21 @@
+/**
+* ─────────────────────────────────────────────────────────────────────────────────────────────────┐
+* Test Class just for the Board Game Rating Service Class
+*
+* A Test Plan is required to cover all possible scenarios for the inputs or variations to 
+* variables that might occur. Up to and Including: Positive, Negative, and Bulk Testing.
+* If done correctly, minimal manual testing should be needed in the Application. 
+*
+* Makes use of the MockSetup Test Pattern to stub out the Selectors used in the Controller.
+* ──────────────────────────────────────────────────────────────────────────────────────────────────
+* @author         Sean Riley
+* @modifiedBy     Sean Riley
+* @version        1.0
+* @created        2024-11-30
+* @modified       2024-11-30
+* @systemLayer    Test
+* ──────────────────────────────────────────────────────────────────────────────────────────────────
+*/
 @isTest
 private class BoardGameRatingsServiceTest {
 
@@ -40,7 +58,7 @@ private class BoardGameRatingsServiceTest {
             //Initialize Class Variables and mocked classes
             mocks = new fflib_ApexMocks();
             uowMock = (fflib_SobjectUnitOfWork) mocks.mock(fflib_SObjectUnitOfWork.class);
-            BoardGameRatingSelector mockBGRSelector = (BoardGameRatingSelector) mocks.mock(BoardGameRatingSelector.class);
+            IBoardGameRatingSelector mockBGRSelector = (IBoardGameRatingSelector) mocks.mock(BoardGameRatingSelector.class);
             
             mockConfig = new Services_Config__mdt(
                                         Domain_Config__r = new Domain_Config__mdt(
@@ -91,7 +109,7 @@ private class BoardGameRatingsServiceTest {
         BoardGameRatingsService service = new BoardGameRatingsService();
         Test.stopTest(); 
 
-        // Validate that serviceConfigMap not only contains values for the BoardGameRatingsDomain
+        // Validate that serviceConfigMap not only contains values for the BoardGameRatingsService
         // But also contains a config record for each of the methods of the Service 
         Assert.areNotEqual(0, service.serviceConfigMap.size(), 'No Service Configs Found for BoardGameRatingsDomain');
         Assert.isTrue(service.serviceConfigMap.containsKey('setNewFavorite'), 'Service Config for setNewFavorite Method Not Found');

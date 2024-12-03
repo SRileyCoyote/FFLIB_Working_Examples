@@ -60,6 +60,14 @@ public with sharing class BoardGameRatingsTriggerHandler extends fflib_SObjectDo
         }
     }
 
+    public class Constructor implements fflib_SObjectDomain.IConstructable
+	{
+		public fflib_SObjectDomain construct(List<SObject> sObjectList)
+		{
+			return new BoardGameRatingsTriggerHandler(sObjectList);
+		}
+	}
+
     public class BRGDomainException extends Exception {}
 
 }
