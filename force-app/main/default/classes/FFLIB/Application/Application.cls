@@ -17,7 +17,9 @@ public class Application {
         new Map<Type, Type>{
             //Mapped By Interface as Key
             //Addtional SObject Service Classes Go Here 
-            IBoardGameRatingsService.class => BoardGameRatingsService.class
+            IBoardGameRatingsService.class => BoardGameRatingsService.class,
+            IBoardGamesService.class => BoardGamesService.class,
+            IBGGCalloutService.class => BGGCalloutService.class
         }
     );
 

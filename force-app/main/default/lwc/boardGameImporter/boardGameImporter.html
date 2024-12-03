@@ -1,0 +1,23 @@
+<template>
+    <!-- Collect Inputs -->
+    <lightning-card title="BGG Import">
+        <div class="slds-p-horizontal_medium">
+            
+            <!-- Combobox for Event Selection -->
+            <lightning-combobox label="Select Event" value={selectedEventId} options={events} onchange={handleEventChange} required></lightning-combobox>
+
+            <!-- Picklist to select Import Type -->
+            <lightning-combobox label="Import From:" value={importType} options={importOptions} onchange={handleImportTypeChange}></lightning-combobox>
+
+            <!-- Input for Collection Name or GeekList Number -->
+            <lightning-input label={nameOrIdLabel} value={nameOrId} placeholder={nameOrIdPlaceholder} onchange={handleNameOrIdChange} required></lightning-input>
+
+            <!-- Toggle for Create or Update -->
+            <lightning-input type="toggle" label="Update Existing Records?" checked={isUpdate} onchange={handleIsUpdateChange}></lightning-input>
+
+            <!-- Submit Button -->
+            <lightning-button label="Submit" onclick={handleSubmit} class="slds-m-top_medium"></lightning-button>
+        </div>
+    </lightning-card>
+    <!-- Display Results (TODO) --> 
+</template>
