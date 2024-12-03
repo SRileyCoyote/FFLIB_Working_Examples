@@ -1,6 +1,7 @@
 # DOMAIN LAYER
 
-//TODO: Rework this and the Main Read me to Seperate out DOMAIN from TRIGGER HANDLER
+(TODO) DOMAIN and TRIGGER HANDLER Layers have been more seperated out to allow Domains to be Mocked from the Application.  
+    This updated Style needs to be more accurately represented in this example and documentation on how to use it needs to be updated.
 
 ## Overview
 ### Class

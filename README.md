@@ -37,7 +37,7 @@ For this example, I put together a small Application in Salesforce based on what
 
 ### Mark as Favorite
 
-As an Event Attendee, when I add a Board Game Rating that is Marked as Favorite, I would like all of my other Board Game Ratings marked as Favorite to be Unchecked.
+As an Event Attendee, when I add a Board Game Rating that is Marked as Favorite, I would like all of the other Board Game Ratings marked as Favorite for that Attendee to be Unchecked.
 If Multiple Board Game Ratings are added for Attendee where Favorite is Checked, Display Error to Attendee.
 
 This Use Case shows examples for the following:
@@ -47,7 +47,7 @@ This Use Case shows examples for the following:
     - Serivce Methods
 - FFLIB
     - Application Layer
-    - Domain Layer
+    - Trigger Handler and Domain Layer
     - Service Layer
     - Selector Layer
     - Unit Of Work Layer
@@ -57,7 +57,9 @@ This Use Case shows examples for the following:
 
 ### Import Board Game List from BoardGameGeek API
 
-As an Event Owner, I would like to import my Collection or GeekList from BoardGameGeek and add new entries to the application.
+As an Event Owner, I would like a form to import my Collection or GeekList from BoardGameGeek and add new those new Board Games into the application. 
+Any Board Games not already in the application I would like marked as 🆕 and for those games to automatically be added to the Board Game Library for the Event I selected. 
+Upon follow up imports, I would like the option to update the existing Board Games information from BoardGameGeek and for the Board Game to no longer be marked as 🆕.
 
 This Use Case shows examples for the following:
 - LWC
@@ -69,7 +71,7 @@ This Use Case shows examples for the following:
 - REST API Callouts
      - HTTP Callout Setup
      - Parsing XML Results
-- Inner Classes
+- Wrapper Classes
 - FFLIB
      - Application Layor
      - Service Layor
@@ -83,13 +85,13 @@ This Use Case shows examples for the following:
 
 **To use Importer:** 
 - Open Board Games App, 
-- Click Board Game Importer. 
+- Click Board Game Importer Tab. 
 - Select Default Event (My Event)
 - Enter Collection Name or GeekList ID:
      - Collection Name Example: __AZ933K__[^1]
      - GeekList ID Example:     __347463__
 
-[^1]: The first time a Collection is requested from BoardGameGeek, it will queued resulting in an error. If this happens just re-click submit and try again. 
+[^1]: The first time a Collection is requested from BoardGameGeek after a long period of time, it will queued resulting in an error. If this happens just re-click submit and try again. 
 
 ### Check Out Board Game (TODO)
 
