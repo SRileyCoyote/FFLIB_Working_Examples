@@ -40,9 +40,56 @@ For this example, I put together a small Application in Salesforce based on what
 As an Event Attendee, when I add a Board Game Rating that is Marked as Favorite, I would like all of my other Board Game Ratings marked as Favorite to be Unchecked.
 If Multiple Board Game Ratings are added for Attendee where Favorite is Checked, Display Error to Attendee.
 
-### Import Board Game List from BoardGameGeek (TODO)
+This Use Case shows examples for the following:
+- Trigger using SObjectDomain as TriggerHandler
+- Using Custom Metadata Types to Configure:
+    - Trigger Handler
+    - Serivce Methods
+- FFLIB
+    - Application Layer
+    - Domain Layer
+    - Service Layer
+    - Selector Layer
+    - Unit Of Work Layer
+- Mock Setup Class
+- Mocking and Stubbing FFLIB
+- Use Case Unit Testing
+
+### Import Board Game List from BoardGameGeek API
 
 As an Event Owner, I would like to import my Collection or GeekList from BoardGameGeek and add new entries to the application.
+
+This Use Case shows examples for the following:
+- LWC
+     - Imports Apex Controller
+     - Toast Messaging
+     - Wire Connection
+     - Promise Connection
+     - Populate Combobox from Records
+- REST API Callouts
+     - HTTP Callout Setup
+     - Parsing XML Results
+- Inner Classes
+- FFLIB
+     - Application Layor
+     - Service Layor
+     - Selector Layor
+     - Unit Of Work Layer
+- Mocking and Stubbing FFLIB
+     - [Mocks.Very() Examples](/force-app/main/default/classes/FFLIB/Services/README.md#mocksverify-example-quick-reference)
+- Use Case Unit Testing
+- Mock Http Callouts
+     - Using Static Resources for XML Results
+
+**To use Importer:** 
+- Open Board Games App, 
+- Click Board Game Importer. 
+- Select Default Event (My Event)
+- Enter Collection Name or GeekList ID:
+     - Collection Name Example: __AZ933K__[^1]
+     - GeekList ID Example:     __347463__
+
+[^1]: The first time a Collection is requested from BoardGameGeek, it will queued resulting in an error. If this happens just re-click submit and try again. 
 
 ### Check Out Board Game (TODO)
 

@@ -1,5 +1,7 @@
 # DOMAIN LAYER
 
+//TODO: Rework this and the Main Read me to Seperate out DOMAIN from TRIGGER HANDLER
+
 ## Overview
 ### Class
 1. Create Domain Layer Class and Interface
