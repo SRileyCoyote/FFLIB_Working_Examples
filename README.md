@@ -108,10 +108,10 @@ As an Event Attendee, I would like to click a botton and automatically Check In 
 
 [SObjects and Custom Metadata Types](/force-app/main/default/objects)
 
-[FFLIB](/force-app/main/default/classes/FFLIB) - [Official Definition](https://fflib.dev/docs)
-- [Application Layer](/force-app/main/default/classes/FFLIB/Application)
-- [Domain Layer](/force-app/main/default/classes/FFLIB/Domains)  - [Official Definition](https://fflib.dev/docs/domain-layer/overview)
-- [Selector Layer](/force-app/main/default/classes/FFLIB/Selectors) - [Official Definition](https://fflib.dev/docs/selector-layer/overview)
-- [Service Layer](/force-app/main/default/classes/FFLIB/Services) - [Official Definition](https://fflib.dev/docs/service-layer/overview)
+[FFLIB Examples](/force-app/main/default/classes/FFLIB) - [Official Definitions](https://fflib.dev/docs)
+- [Application Layer Example](/force-app/main/default/classes/FFLIB/Application)
+- [Domain Layer Example](/force-app/main/default/classes/FFLIB/Domains)  - [Official Definition](https://fflib.dev/docs/domain-layer/overview)
+- [Selector Layer Example](/force-app/main/default/classes/FFLIB/Selectors) - [Official Definition](https://fflib.dev/docs/selector-layer/overview)
+- [Service Layer Example](/force-app/main/default/classes/FFLIB/Services) - [Official Definition](https://fflib.dev/docs/service-layer/overview)
 
 
