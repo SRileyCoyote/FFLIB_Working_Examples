@@ -77,5 +77,6 @@ Verify that UOW Method ran for a Specific Record WITH Relationship
 ```
 ## Trailhead and Resources
 
+- [Official FFLIB Service Layer Overview Definition](https://fflib.dev/docs/service-layer/overview)
 - [Apex Enterprise Patterns - Separation of Concerns](http://wiki.developerforce.com/page/Apex_Enterprise_Patterns_-_Separation_of_Concerns)
 - [Apex Enterprise Patterns - Service Layer](http://wiki.developerforce.com/page/Apex_Enterprise_Patterns_-_Service_Layer)

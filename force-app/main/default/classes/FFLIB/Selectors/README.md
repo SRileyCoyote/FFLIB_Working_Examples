@@ -34,5 +34,6 @@ fflib_QueryFactory query = newQueryFactory(false[^2], false[^3], true[^4]);
 
 ## Trailhead and Resources
 
+- [Official FFLIB Selector Layer Overview Definition](https://fflib.dev/docs/selector-layer/overview)
 - [Apex Enterprise Patterns - Separation of Concerns](http://wiki.developerforce.com/page/Apex_Enterprise_Patterns_-_Separation_of_Concerns)
 - [Apex Enterprise Patterns - Selector Layer](https://github.com/financialforcedev/df12-apex-enterprise-patterns#data-mapper-selector)

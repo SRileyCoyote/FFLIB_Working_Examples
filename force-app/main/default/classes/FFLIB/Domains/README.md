@@ -31,5 +31,6 @@
 
 ## Trailhead and Resources
 
+- [Official FFLIB Domain Layer Overview Definition](https://fflib.dev/docs/domain-layer/overview)
 - [Apex Enterprise Patterns - Separation of Concerns](http://wiki.developerforce.com/page/Apex_Enterprise_Patterns_-_Separation_of_Concerns)
 - [Apex Enterprise Patterns - Domain Layer](http://wiki.developerforce.com/page/Apex_Enterprise_Patterns_-_Domain_Layer)
