@@ -9,7 +9,7 @@
             "Start_Date__c": "2025-11-01",
             "End_Date__c": "2025-12-01",
             "Description__c": "This is My Test Event",
-            "Event_Image_URL__c": "https://cf.geekdo-static.com/images/logos/navbar-logo-bgg-b2.svg"
+            "Event_Image_URL__c": "/resource/My_Event_Logo"
         }
     ]
 }

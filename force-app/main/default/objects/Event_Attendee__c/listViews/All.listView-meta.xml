@@ -4,6 +4,7 @@
     <columns>NAME</columns>
     <columns>Attendee_Name__c</columns>
     <columns>Attendee_Email__c</columns>
+    <columns>Event_Logo__c</columns>
     <columns>Event__c</columns>
     <filterScope>Mine</filterScope>
     <label>All</label>
