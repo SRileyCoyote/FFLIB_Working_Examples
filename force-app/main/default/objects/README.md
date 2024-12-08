@@ -2,15 +2,15 @@
 
 ## Custom Objects
 
-![Data Schema](/images/Schema.png)
-
 - **Event** is a Board Game Convention with a __Start__ and __End Date__.
 - **Event Attendee** is a Person Attending the Event with a __Name__ and __Email__.
-- **Board Game** is a Board Game with various attributes.
-- **Event Board Game** is a concat table for **Board Game** and **Event**
+- **Board Game** is a Board Game with various attributes such as __Rating__, __Complexity__, and __Description__.
+- **Board Game Library Entry** is a concat table for **Board Game** and **Event**
 - **Board Game Rating** is a list of reviews of **Board Games** by **Event Attendees**
 - **Board Game Checkout Log** is a log of when a **Board Game** is checked out by an **Event Attendee** at an **Event**
-
+---
+![Data Schema](/images/Schema.png)
+---
 ## Custom Metadata Types
 
 We will use Custom Metadata Types to control certain aspects of the DOMAIN and SERVICE Layer

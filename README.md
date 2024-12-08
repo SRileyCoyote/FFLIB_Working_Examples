@@ -45,6 +45,10 @@ This Use Case shows examples for the following:
 - Using Custom Metadata Types to Configure:
     - Trigger Handler
     - Serivce Methods
+- Implementing Interfaces
+- Extending Parent Class
+     - Overriding Abstract and Virtual Methods
+     - Using Protected Access Modifier
 - FFLIB
     - Application Layer
     - Trigger Handler and Domain Layer
@@ -73,6 +77,8 @@ This Use Case shows examples for the following:
      - HTTP Callout Setup
      - Parsing XML Results
 - Wrapper Classes
+- Implementing Interfaces
+- Extending Parent Classes
 - FFLIB
      - Application Layor
      - Implementation Layer (APEX Controller)
@@ -94,7 +100,7 @@ This Use Case shows examples for the following:
      - Collection Name Example: __AZ933K__[^1]
      - GeekList ID Example:     __347463__
 
-[^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will queued resulting in an error. If this happens just re-click submit and try again. 
+[^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will be queued resulting in an error. If this happens just re-click submit and try again. 
 
 ### 3. Check Out Board Game (TODO)
 
@@ -113,5 +119,9 @@ As an Event Attendee, I would like to click a botton and automatically Check In 
 - [Domain Layer Example](/force-app/main/default/classes/FFLIB/Domains)  - [Official Definition](https://fflib.dev/docs/domain-layer/overview)
 - [Selector Layer Example](/force-app/main/default/classes/FFLIB/Selectors) - [Official Definition](https://fflib.dev/docs/selector-layer/overview)
 - [Service Layer Example](/force-app/main/default/classes/FFLIB/Services) - [Official Definition](https://fflib.dev/docs/service-layer/overview)
+
+- [Official FFLIB Sample Code GitHub Repo](https://github.com/apex-enterprise-patterns/fflib-apex-common-samplecode)
+
+[Deployment Order and Dependancy Troubleshooting](/force-app/main/default/classes/FFLIB/README.md#deployment-order)
 
 
