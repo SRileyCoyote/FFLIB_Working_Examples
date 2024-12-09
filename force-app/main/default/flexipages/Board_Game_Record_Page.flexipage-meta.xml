@@ -65,6 +65,12 @@
                 <identifier>RecordNameField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.BGG_Link__c</fieldItem>
+                <identifier>RecordBGG_Link__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-fa756ca4-c70d-492a-aa92-1b305627fb80</name>
         <type>Facet</type>
     </flexiPageRegions>
