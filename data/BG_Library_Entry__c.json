@@ -1,0 +1,36 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "BG_Library_Entry__c",
+                "referenceId": "Chess_2024"
+            },
+            "BGG_Owner__c": "Public",
+            "Board_Game__c": "@Chess",
+            "Comments__c": "King has a chip in it",
+            "Event__c": "@2024",
+            "Num_of_Copies__c": 1
+        },
+        {
+            "attributes": {
+                "type": "BG_Library_Entry__c",
+                "referenceId": "CATAN_2024"
+            },
+            "BGG_Owner__c": "Public",
+            "Board_Game__c": "@CATAN",
+            "Comments__c": "The Robber is Missing, Replaced with meeple",
+            "Event__c": "@2024",
+            "Num_of_Copies__c": 1
+        },
+        {
+            "attributes": {
+                "type": "BG_Library_Entry__c",
+                "referenceId": "Chess_2025"
+            },
+            "BGG_Owner__c": "Public",
+            "Board_Game__c": "@Chess",
+            "Event__c": "@2025",
+            "Num_of_Copies__c": 1
+        }
+    ]
+}

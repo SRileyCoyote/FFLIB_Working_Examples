@@ -1,0 +1,26 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Board_Game_Rating__c",
+                "referenceId": "Dean_Chess_Rating"
+            },
+            "Board_Game__c": "@Chess",
+            "Event_Attendee__c": "@Dean",
+            "Is_Favorite__c": false,
+            "Rating__c": 2,
+            "Review__c": "Classic but boring. Needs more Monsters"
+        },
+        {
+            "attributes": {
+                "type": "Board_Game_Rating__c",
+                "referenceId": "Rory_Chess_Rating"
+            },
+            "Board_Game__c": "@Chess",
+            "Event_Attendee__c": "@Rory",
+            "Is_Favorite__c": true,
+            "Rating__c": 5,
+            "Review__c": "Classic Strategy Game. I win everytime"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Board_Games__c",
+                "referenceId": "Chess"
+            },
+            "Name": "Chess",
+            "Avg_Rating__c": 7.21732,
+            "Avg_Weight__c": 3.6551,
+            "BGG_ID__c": "171",
+            "Categories__c": "Abstract Strategy",
+            "Description__c": "Chess is a two-player, abstract strategy board game that represents medieval warfare on an 8x8 board with alternating light and dark squares. Opposing pieces, traditionally designated White and Black, are initially lined up on either side. Each type of piece has a unique form of movement and capturing occurs when a piece, via its movement, occupies the square of an opposing piece. Players take turns moving one of their pieces in an attempt to capture, attack, defend, or develop their positions. Chess games can end in checkmate (when the king cannot escape from the opponent&#39;s pieces), resignation (when one player recognizes he cannot win the game and ends it), or one of several types of draws.Chess is one of the most popular games in the world, played by millions of people worldwide at home, in clubs, online, by correspondence, and in tournaments. Between two highly skilled players, chess can be a beautiful thing to watch, and a game can provide great entertainment even for novices. There is also a large literature of books and periodicals about chess, typically featuring games and commentary by chess masters. The game has its origins in the Indian game Chaturanga, and became Shatranj when introduced to the Persians. The current form of the game emerged in the second half of the 15th century when the Persians brought Shatranj to Southern Europe. The tradition of organized competitive chess began in the 16th century. The first official World Chess Champion, Wilhelm Steinitz, claimed his title in 1886. Chess is also a recognized sport of the International Olympic Committee.",
+            "Image_URL__c": "https://cf.geekdo-images.com/0-DjGBOko6RV8zg5ejhYIg__original/img/0pn_QgMuWaIJb2Q7aZNfORse0_o=/0x0/filters:format(jpeg)/pic260745.jpg",
+            "Is_New__c": false,
+            "Max_Players__c": 2,
+            "Mechanics__c": "Grid Movement, Once-Per-Game Abilities, Pattern Movement, Square Grid, Static Capture, Sudden Death Ending",
+            "Min_Age__c": 6,
+            "Min_Players__c": 2,
+            "Playing_Time__c": 0,
+            "Publisher__c": "(Public Domain)",
+            "Thumbnail_URL__c": "https://cf.geekdo-images.com/0-DjGBOko6RV8zg5ejhYIg__thumb/img/kjtoinSrkYV0HZleXMxkJzZwS8k=/fit-in/200x150/filters:strip_icc()/pic260745.jpg",
+            "Year_Published__c": "1475"
+        },
+        {
+            "attributes": {
+                "type": "Board_Games__c",
+                "referenceId": "CATAN"
+            },
+            "Name": "CATAN",
+            "Avg_Rating__c": 7.09634,
+            "Avg_Weight__c": 2.2888,
+            "BGG_ID__c": "13",
+            "Categories__c": "Economic, Negotiation",
+            "Description__c": "In CATAN (formerly The Settlers of Catan), players try to be the dominant force on the island of Catan by building settlements, cities and roads. On each turn dice are rolled to determine which resources the island produces. Players build structures by &#39;spending&#39; resources (sheep, wheat, wood, brick and ore) which are represented by the relevant resource cards; each land type, with the exception of the unproductive desert, produces a specific resource: hills produce brick, forests produce wood, mountains produce ore, fields produce wheat, and pastures produce sheep.Set-up includes randomly placing large hexagonal tiles (each depicting one of the five resource-producing terrain types--or the desert) in a honeycomb shape and surrounding them with water tiles, some of which contain ports of exchange. A number disk, the value of which will correspond to the roll of two 6-sided dice, are placed on each terrain tile. Each player is given two settlements (think: houses) and roads (sticks) which are placed on intersections and borders of the terrain tiles. Players collect a hand of resource cards based on which terrain tiles their last-placed settlement is adjacent to. A robber pawn is placed on the desert tile.A turn consists of rolling the dice, collecting resource cards based on this dice roll and the position of settlements (or upgraded cities—think: hotels), turning in resource cards (if possible and desired) for improvements, trading cards at a port, possibly playing a development card, or trading resource cards with other players. If the dice roll is a 7, the active player moves the robber to a new terrain tile and steals a resource card from another player who has a settlement adjacent to that tile.Points are accumulated by building settlements and cities, having the longest road or the largest army (from some of the development cards), and gathering certain development cards that simply award victory points. When a player has gathered 10 points (some of which may be held in secret), s/he announces this and claims the win.",
+            "Image_URL__c": "https://cf.geekdo-images.com/W3Bsga_uLP9kO91gZ7H8yw__original/img/xV7oisd3RQ8R-k18cdWAYthHXsA=/0x0/filters:format(jpeg)/pic2419375.jpg",
+            "Is_New__c": false,
+            "Max_Players__c": 4,
+            "Mechanics__c": "Chaining, Dice Rolling, Hexagon Grid, Income, Modular Board, Negotiation, Network and Route Building, Race, Random Production, Trading, Variable Set-up",
+            "Min_Age__c": 10,
+            "Min_Players__c": 3,
+            "Playing_Time__c": 120,
+            "Publisher__c": "KOSMOS",
+            "Thumbnail_URL__c": "https://cf.geekdo-images.com/W3Bsga_uLP9kO91gZ7H8yw__thumb/img/8a9HeqFydO7Uun_le9bXWPnidcA=/fit-in/200x150/filters:strip_icc()/pic2419375.jpg",
+            "Year_Published__c": "1995"
+        }
+    ]
+}

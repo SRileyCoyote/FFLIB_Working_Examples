@@ -3,13 +3,24 @@
         {
             "attributes": {
                 "type": "Event__c",
-                "referenceId": "Event__cRef1"
+                "referenceId": "2025"
             },
-            "Name": "My Event",
+            "Name": "My 2025 Event",
             "Start_Date__c": "2025-11-01",
             "End_Date__c": "2025-12-01",
-            "Description__c": "This is My Test Event",
+            "Description__c": "This is My 2025 Test Event",
             "Event_Image_URL__c": "/resource/My_Event_Logo"
+        },
+        {
+            "attributes": {
+                "type": "Event__c",
+                "referenceId": "2024"
+            },
+            "Name": "My 2024 Event",
+            "Start_Date__c": "2024-11-01",
+            "End_Date__c": "2024-12-01",
+            "Description__c": "This is My 2024 Test Event",
+            "Event_Image_URL__c": "/resource/My_2nd_Event_Logo"
         }
     ]
 }

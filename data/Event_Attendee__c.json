@@ -3,92 +3,92 @@
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef1"
+                "referenceId": "Dean"
             },
             "Attendee_Name__c": "Dean Winchester",
             "Attendee_Email__c": "dean@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2024"
         },
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef2"
+                "referenceId": "Sam"
             },
             "Attendee_Name__c": "Sam Winchester",
             "Attendee_Email__c": "sam@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2025"
         },
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef3"
+                "referenceId": "Lorelai"
             },
             "Attendee_Name__c": "Lorelai Gilmore",
             "Attendee_Email__c": "lorelai@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2024"
         },
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef4"
+                "referenceId": "Rory"
             },
             "Attendee_Name__c": "Rory Gilmore",
             "Attendee_Email__c": "rory@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2025"
         },
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef5"
+                "referenceId": "Amy"
             },
             "Attendee_Name__c": "Amy Santiago",
             "Attendee_Email__c": "amy@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2024"
         },
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef6"
+                "referenceId": "Jake"
             },
             "Attendee_Name__c": "Jake Peralta",
             "Attendee_Email__c": "jake@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2025"
         },
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef7"
+                "referenceId": "Bart"
             },
             "Attendee_Name__c": "Bart Simpson",
             "Attendee_Email__c": "bart@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2024"
         },
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef8"
+                "referenceId": "Homer"
             },
             "Attendee_Name__c": "Homer Simpson",
             "Attendee_Email__c": "homer@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2025"
         },
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef9"
+                "referenceId": "Ron"
             },
             "Attendee_Name__c": "Ron Swanson",
             "Attendee_Email__c": "ron@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2024"
         },
         {
             "attributes": {
                 "type": "Event_Attendee__c",
-                "referenceId": "Event_Attendee__cRef10"
+                "referenceId": "Ted"
             },
             "Attendee_Name__c": "Ted Lasso",
             "Attendee_Email__c": "ted@myexample.com",
-            "Event__c": "@Event__cRef1"
+            "Event__c": "@2025"
         }
     ]
 }

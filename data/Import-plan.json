@@ -9,10 +9,43 @@
     },
     {
         "sobject": "Event_Attendee__c",
-        "saveRefs": false,
+        "saveRefs": true,
         "resolveRefs": true,
         "files": [
             "Event_Attendee__c.json"
         ]
+    },
+    {
+        "sobject": "Board_Games__c",
+        "saveRefs": true,
+        "resolveRefs": false,
+        "files": [
+            "Board_Games__c.json"
+        ]
+    },
+    {
+        "sobject": "BG_Library_Entry__c",
+        "saveRefs": true,
+        "resolveRefs": true,
+        "files": [
+            "BG_Library_Entry__c.json"
+        ]
+    },
+    {
+        "sobject": "Board_Game_Rating__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "Board_Game_Rating__c.json"
+        ]
+    },
+    {
+        "sobject": "BG_Checkout_Log__c",
+        "saveRefs": false,
+        "resolveRefs": true,
+        "files": [
+            "BG_Checkout_Log__c.json"
+        ]
     }
+
 ]
