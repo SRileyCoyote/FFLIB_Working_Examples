@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Favorited__c</fullName>
+    <description>Rollup Summary of the Total Number of Attendees that Favorited this Game</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Total Number of Attendees that Favorited this Game</inlineHelpText>
+    <label>Total Favorited</label>
+    <summaryFilterItems>
+        <field>Board_Game_Rating__c.Is_Favorite__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Board_Game_Rating__c.Board_Game__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

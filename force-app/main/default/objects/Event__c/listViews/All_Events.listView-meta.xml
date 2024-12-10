@@ -6,6 +6,7 @@
     <columns>Start_Date__c</columns>
     <columns>End_Date__c</columns>
     <columns>Description__c</columns>
+    <columns>Total_Games__c</columns>
     <filterScope>Mine</filterScope>
     <label>All Events</label>
 </ListView>

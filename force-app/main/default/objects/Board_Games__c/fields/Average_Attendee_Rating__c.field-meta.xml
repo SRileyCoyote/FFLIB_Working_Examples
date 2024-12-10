@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Average_Attendee_Rating__c</fullName>
+    <description>Average Rating of Board Game By Attendees</description>
+    <externalId>false</externalId>
+    <formula>Total_Attendee_Rating_Value__c / Total_Board_Game_Ratings__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Average Rating of Board Game By Attendees</inlineHelpText>
+    <label>Average Attendee Rating</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

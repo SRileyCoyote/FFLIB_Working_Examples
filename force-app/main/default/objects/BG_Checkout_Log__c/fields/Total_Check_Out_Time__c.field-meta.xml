@@ -3,13 +3,16 @@
     <fullName>Total_Check_Out_Time__c</fullName>
     <description>Total Time the Board Game Was Checked Out</description>
     <externalId>false</externalId>
-    <formula>IF(ISNULL(Check_Out_Time__c  ),   TIMEVALUE(Check_In_Time__c ) -  TIMENOW(),   TIMEVALUE(Check_In_Time__c )- TIMEVALUE(Check_Out_Time__c  ))</formula>
+    <formula>IF(ISNULL(Check_In_Time__c),   
+       TIMEVALUE(NOW()) - TIMEVALUE(Check_Out_Time__c),
+       TIMEVALUE(Check_In_Time__c) - TIMEVALUE(Check_Out_Time__c) 
+)/60/1000</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Total Time the Board Game Was Checked Out</inlineHelpText>
     <label>Total Check Out Time</label>
     <precision>18</precision>
     <required>false</required>
-    <scale>2</scale>
+    <scale>0</scale>
     <trackTrending>false</trackTrending>
     <type>Number</type>
     <unique>false</unique>
