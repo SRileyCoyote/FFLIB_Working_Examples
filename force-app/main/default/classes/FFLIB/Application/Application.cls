@@ -35,7 +35,8 @@ public class Application {
             //Additional SObject Selectors Go Here
             Board_Game_Rating__c.SObjectType => BoardGameRatingSelector.class,
             Event__c.SObjectType => EventSelector.class,
-            Board_Games__c.SObjectType => BoardGameSelector.class
+            Board_Games__c.SObjectType => BoardGameSelector.class,
+            BG_Library_Entry__c.SObjectType => BGLibraryEntrySelector.class
         }
     );
 
