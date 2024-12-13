@@ -3,7 +3,9 @@
 public class TestUtil {
 
     //A Test Util Class should be used for Data Setup across all tests so that 
-    //if and when new required fields or validation rules are added, only this class should need to be updated 
+    //  if and when new required fields or validation rules are added, only this class should need to be updated.
+    //  Insert of the returned record should be done in the test itself so that any adjustments to the record needed
+    //  can be done before insert 
 
     public static Board_Game_Rating__c createBoardGameRating(){
         Board_Games__c bg = createBoardGame();
@@ -18,7 +20,7 @@ public class TestUtil {
         return record;
     }
 
-    public static BG_Library_Entry__c createEventBoardGame(){
+    public static BG_Library_Entry__c createBoardGameLibraryEntry(){
         Board_Games__c bg = createBoardGame();
         insert bg;
         Event__c e = createEvent();
