@@ -27,7 +27,7 @@ private class BoardGameSelectorTest {
 
     @isTest
     //Standard Test Method for Select By ID Method
-    public static void givenBGRFavoriteRecord_WhenSelectByIDisCalled_ThenReturnCorrectRecord() {
+    public static void givenBoardGameId_WhenSelectByIDisCalled_ThenReturnCorrectRecord() {
         
         //Create Test Data (Use Test Util Class where possible)
         Board_Games__c testRecord = TestUtil.createBoardGame();
