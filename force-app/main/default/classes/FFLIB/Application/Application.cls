@@ -7,8 +7,9 @@
  */
 public class Application {
     /** Configure and create the ServiceFactory for this Application 
-     * Service Layer: This layer handles all of the business logic for a method call from the Domain, usually passing in a 
-     *  UnitOfWork object as a parameter so that all DML transactions are handled once the trigger completes.  
+     * Service Layer: This layer handles all of the business logic for a method, usually passing in a 
+     *  UnitOfWork object as a parameter so that all DML transactions are handled once the action completes 
+     *  usually in the TriggerHandler or Implementation Layer.  
      *  The benefit is that the method can be unit tested without actually performing any DML and instead inspecting the 
      *  UnitOfWork object to see if it contains the expected records that were inserted, updated or deleted.
      * Recommended Naming Convention for the Service Class is [SObjectName]sService so it is clear it is the Service Class for that SObject
