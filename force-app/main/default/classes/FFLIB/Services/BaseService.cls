@@ -13,7 +13,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-11-30
+* @modified       2024-12-21
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -22,10 +22,13 @@ public abstract class BaseService {
     @TestVisible 
     protected Map<String, Services_Config__mdt> serviceConfigMap = new Map<String, Services_Config__mdt>(); 
 
+    //Base Constructor, Gets Service Config MDT in Application
     public BaseService(String domainName){
         this(Services_Config__mdt.getAll().values(), domainName);
     }
 
+    //Protected (Visible to only This and Child Classes) Overloaded Constructor 
+    //Used to override the Service Config MDT in Application with MDT provided by test class
     protected BaseService(List<Services_Config__mdt> configList, String domainName) {
         // Get All Service Config Records without SOQL Call, Filter By Domain
         for(Services_Config__mdt config : configList){
@@ -33,12 +36,13 @@ public abstract class BaseService {
                 serviceConfigMap.put(config.DeveloperName, config);
             }
         }
+        //Call initialize method overriden by Child Class
         initialize();
     }
 
     @TestVisible
     protected Boolean serviceEnabled(string serviceName){
-        //If Service Config for Method Found AND Service Method is Enabled
+        //If Service Config for Method Found AND Service Method is Enabled, Return True
         return (serviceConfigMap.containsKey(serviceName) && serviceConfigMap.get(serviceName).Service_Enabled__c);
     }
 

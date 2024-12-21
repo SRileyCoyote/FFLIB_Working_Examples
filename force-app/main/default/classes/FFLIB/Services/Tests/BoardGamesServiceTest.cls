@@ -6,6 +6,10 @@
 * variables that might occur. Up to and Including: Positive, Negative, and Bulk Testing.
 * If done correctly, minimal manual testing should be needed in the Application. 
 *
+* This Test Class has 15 Test Methods which might seem like a LOT but once the first test method is
+* written, it can then be copied over to the next one and only slight variation needs to be made
+* for the next test class based on the inputs changed and the different results. 
+*
 * Makes use of the MockSetup Test Pattern to stub out the Selectors 
 * and BGG API Callout Service used in the Service.
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
@@ -13,7 +17,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-11-30
+* @modified       2024-12-21
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -31,6 +35,7 @@ private class BoardGamesServiceTest {
      */
     enum MockParams {
         RETURNED_BOARD_GAMES,
+        RETURNED_BG_LIBRARY_ENTRIES,
         RETURNED_ID_CALLOUT_RESULT,
         RETURNED_DETAILS_CALLOUT_RESULT
     }
@@ -39,6 +44,7 @@ private class BoardGamesServiceTest {
         get {
             return new Map<MockParams, Type>{
                 MockParams.RETURNED_BOARD_GAMES => List<Board_Games__c>.class,
+                MockParams.RETURNED_BG_LIBRARY_ENTRIES => List<BG_Library_Entry__c>.class,
                 MockParams.RETURNED_ID_CALLOUT_RESULT => BGGCalloutService.CalloutResult.class,                
                 MockParams.RETURNED_DETAILS_CALLOUT_RESULT => BGGCalloutService.CalloutResult.class
             };
@@ -64,6 +70,7 @@ private class BoardGamesServiceTest {
             mocks = new fflib_ApexMocks();
             uowMock = (fflib_SobjectUnitOfWork) mocks.mock(fflib_SObjectUnitOfWork.class);
             IBoardGameSelector mockBoardGameSelector = (IBoardGameSelector) mocks.mock(BoardGameSelector.class);
+            IBGLibraryEntrySelector mockBGLEntrySelector = (IBGLibraryEntrySelector) mocks.mock(BGLibraryEntrySelector.class);
             IBGGCalloutService mockCalloutService = (IBGGCalloutService) mocks.mock(BGGCalloutService.class);
             
             mockConfig = new Services_Config__mdt(
@@ -73,6 +80,7 @@ private class BoardGamesServiceTest {
                                     );
             
             mocks.startStubbing();
+                        
             //Stubbing the BGR Selector
             //IMPORTANT: Stubbing the SObjectType is REQUIRED or the mocking of the Selector WILL Fail
             mocks.when(mockBoardGameSelector.SObjectType()).thenReturn(Board_Games__c.SObjectType);
@@ -83,11 +91,18 @@ private class BoardGamesServiceTest {
                                             (Set<String>) fflib_Match.anyObject()
                                         ))
                 // The Mocked Selector will BYPASS calling of the actual method and instead just return
-                // the Value in the Params Map that was passed in for the Enum Key RETURNED_BOARD_GAME_RATINGS
-                // If no value was provided, a newInstance of the Object (List<Board_Game_Rating__c>) was created
+                // the Value in the Params Map that was passed in for the Enum Key RETURNED_BOARD_GAMES
+                // If no value was provided, a newInstance of the Object (List<Board_Games__c>) was created
                 // and we will return that here instead
                 .thenReturn((List<Board_Games__c>) params.get(MockParams.RETURNED_BOARD_GAMES));
             //Any Methods of the Selector that are NOT Stubbed will return a NULL value if called
+
+            //Stubbing the Board Game Library Entry Selector
+            mocks.when(mockBGLEntrySelector.SObjectType()).thenReturn(BG_Library_Entry__c.SObjectType);
+            mocks.when(mockBGLEntrySelector.selectByEventIDs(
+                                            (Set<ID>) fflib_Match.anyObject()
+                                        ))
+                .thenReturn((List<BG_Library_Entry__c>) params.get(MockParams.RETURNED_BG_LIBRARY_ENTRIES));
 
             //Stubbing the BGGCalloutService
             mocks.when(mockCalloutService.getIDsFromBoardGameGeek(
@@ -102,10 +117,11 @@ private class BoardGamesServiceTest {
                 .thenReturn((BGGCalloutService.CalloutResult) params.get(MockParams.RETURNED_DETAILS_CALLOUT_RESULT));
             mocks.stopStubbing();
 
-            // Set the Selector Mock and UOW Mock created as the classes to be used 
-            // when the Selector and UOW Classes are initialized from the Application Layer instead of the normal classes
+            // Set the Selector Mock, Service Mock, and UOW Mock created as the classes to be used 
+            // when the Selector, Service, and UOW Classes are initialized from the Application Layer instead of the normal classes
             Application.UnitOfWork.setMock(uowMock);
             Application.Selector.setMock(mockBoardGameSelector);
+            Application.Selector.setMock(mockBGLEntrySelector);
             Application.Service.setMock(IBGGCalloutService.class, mockCalloutService);
         }
     }
@@ -129,7 +145,7 @@ private class BoardGamesServiceTest {
 
         // Validate that serviceConfigMap not only contains values for the BoardGamesService
         // But also contains a config record for each of the methods of the Service 
-        Assert.areNotEqual(0, service.serviceConfigMap.size(), 'No Service Configs Found for BoardGameRatingsDomain');
+        Assert.areNotEqual(0, service.serviceConfigMap.size(), 'No Service Configs Found for BoardGames Domain');
         Assert.isTrue(service.serviceConfigMap.containsKey('getBoardGameDetailsFromBGG'), 'Service Config for getBoardGameDetailsFromBGG Method Not Found');
     }
 
@@ -142,10 +158,14 @@ private class BoardGamesServiceTest {
     // Get Board Game Details with Failed Result From Getting IDs
     // Get Board Game Details with No Existing Board Games
     // Get Board Game Details with Unprocessed IDs Returned
-    // Get Board Game Details with One New Matching Board Game and Update Exisiting
-    // Get Board Game Details with One New Matching Board Game and NOT Update Exisiting
-    // Get Board Game Details with One NOT New Matching Board Game and Update Exisiting
-    // Get Board Game Details with One NOT New Matching Board Game and NOT Update Exisiting
+    // Get Board Game Details with One New Matching Board Game, No Library Entry, and Update Exisiting
+    // Get Board Game Details with One New Matching Board Game, No Library Entry, and NOT Update Exisiting
+    // Get Board Game Details with One Matching Board Game NOT marked New, No Library Entry, and Update Exisiting
+    // Get Board Game Details with One Matching Board Game NOT marked New, No Library Entry, and NOT Update Exisiting
+    // Get Board Game Details with One New Matching Board Game, One Library Entry, and Update Exisiting
+    // Get Board Game Details with One New Matching Board Game, One Library Entry, and NOT Update Exisiting
+    // Get Board Game Details with One Matching Board Game NOT marked New, One Library Entry, and Update Exisiting
+    // Get Board Game Details with One Matching Board Game NOT marked New, One Library Entry, and NOT Update Exisiting
 
     // Get Board Game Details with Custom Config where Service Disabled
     @IsTest
@@ -374,6 +394,7 @@ private class BoardGamesServiceTest {
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
         BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
+        wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'My Name';
         calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
@@ -409,6 +430,10 @@ private class BoardGamesServiceTest {
                                         result, 
                                         'Result Message does not match Expected: '+result);
 
+        //Verify that UOW Register Dirty did NOT Run, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+            .registerDirty(fflib_Match.anySObject());
+            
         //Verify that UOW Register New method Ran Twice, 
         //Once for the Board Game and Once For the Library Entry
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
@@ -426,6 +451,7 @@ private class BoardGamesServiceTest {
                             new Map<Schema.SObjectField, Object>{
                                 //And that the Values inserted match expected
                                 BG_Library_Entry__c.BGG_Owner__c => wrapper.ownerName,
+                                BG_Library_Entry__c.Comments__c => wrapper.comment,
                                 BG_Library_Entry__c.Event__c => eventId
                             }
                         ),
@@ -498,6 +524,10 @@ private class BoardGamesServiceTest {
                                         result, 
                                         'Result Message does not match Expected: '+result);
 
+        //Verify that UOW Register Dirty Did Not Run,
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+            .registerDirty(fflib_Match.anySObject());
+            
         //Verify that UOW Register New method Still Ran Twice, 
         //Once for the Board Game and Once For the Library Entry
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
@@ -531,9 +561,9 @@ private class BoardGamesServiceTest {
             );
     }
 
-    // Get Board Game Details with One New Matching Board Game and Update Exisiting
+    // Get Board Game Details with One New Matching Board Game, No Library Entry, and Update Exisiting
     @IsTest
-    public static void givenExistingBGFoundMarkedNewAndUpdateTrue_WhenGetBGDetailsCalled_ThenRecordUpdated(){
+    public static void givenExistingBGFoundMarkedNewAndUpdateTrueAndNoLibEntry_WhenGetBGDetailsCalled_ThenRecordUpdatedAndLibEntryCreated(){
 
         //Setup Test Data and Mocking
         Board_Games__c testBoardGame = new Board_Games__c(
@@ -545,6 +575,8 @@ private class BoardGamesServiceTest {
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
         BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
+        wrapper.comment = 'This is My Comment';
+        wrapper.ownerName = 'OwnerName';
         calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
@@ -579,7 +611,7 @@ private class BoardGamesServiceTest {
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
-
+            
         //Verify that UOW Register Dirty method Runs Once, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
             //Change fflib_Match.sObjectWith to sObject*S*With
@@ -596,11 +628,25 @@ private class BoardGamesServiceTest {
                     }
                 }
             ));
+        
+        //Verify that UOW Register New method Runs Once, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+        .registerNew(fflib_Match.sObjectWith(
+            //Validate Record in Register New is the same as the Library Entry for the Board Game
+            //With comments from the Wrapper 
+            new Map<SObjectField,Object> {
+                //And that the Values updated match expected
+                BG_Library_Entry__c.Board_Game__c => testBoardGame.Id,
+                BG_Library_Entry__c.Event__c => eventId,
+                BG_Library_Entry__c.Comments__c => wrapper.comment,
+                BG_Library_Entry__c.BGG_Owner__c => wrapper.ownerName
+            }
+        ));
     }
 
-    // Get Board Game Details with One New Matching Board Game and NOT Update Exisiting
+    // Get Board Game Details with One New Matching Board Game, No Library Entry, and NOT Update Exisiting
     @IsTest
-    public static void givenExistingBGFoundMarkedNewAndUpdateFalse_WhenGetBGDetailsCalled_ThenRecordUpdated(){
+    public static void givenExistingBGFoundMarkedNewAndUpdateFalseAndNoLibEntry_WhenGetBGDetailsCalled_ThenRecordUpdatedAndLibEntryCreated(){
 
         //Setup Test Data and Mocking
         Board_Games__c testBoardGame = new Board_Games__c(
@@ -612,6 +658,8 @@ private class BoardGamesServiceTest {
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
         BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
+        wrapper.comment = 'This is My Comment';
+        wrapper.ownerName = 'OwnerName';
         calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
@@ -648,22 +696,44 @@ private class BoardGamesServiceTest {
                                         result, 
                                         'Result Message does not match Expected: '+result);
 
+        //Verify that UOW Register New and Register Dirty Ran the correct Number of Times, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            .registerNew(fflib_Match.anySObject());
+
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            .registerDirty(fflib_Match.anySObject());
+            
         //Verify that UOW Register Dirty method Runs Once, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
-            //Change fflib_Match.sObjectWith to sObject*S*With
             .registerDirty(fflib_Match.sObjectWith(
-                //Validate Record in Register Dirty is the same as the Board Game in the calloutResult 
+                //Validate Record in Register Dirty is the same as the Board Game 
                 new Map<SObjectField,Object> {
                     //And that the Values updated match expected
                     Board_Games__c.Id => testBoardGame.Id,
                     Board_Games__c.Is_New__c => false
                 }
             ));
+
+        //Verify that UOW Register New method Runs Once, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+        .registerNew(fflib_Match.sObjectWith(
+            //Validate Record in Register New is the same as the Library Entry for the Board Game
+            //With comments from the Wrapper 
+            new Map<SObjectField,Object> {
+                //And that the Values updated match expected
+                //While BGL Entry SHOULD Exist for the Board Game, if it DOESNT
+                //Comments and Owner should be null
+                BG_Library_Entry__c.Board_Game__c => testBoardGame.Id,
+                BG_Library_Entry__c.Event__c => eventId,
+                BG_Library_Entry__c.Comments__c => null,
+                BG_Library_Entry__c.BGG_Owner__c => null
+            }
+        ));
     }
 
-    // Get Board Game Details with One NOT New Matching Board Game and Update Exisiting
+    // Get Board Game Details with One Matching Board Game Not Marked New, No Library Entry, and Update Exisiting
     @IsTest
-    public static void givenExistingBGFoundNotMarkedNewAndUpdateTrue_WhenGetBGDetailsCalled_ThenRecordUpdated(){
+    public static void givenExistingBGFoundNotMarkedNewAndUpdateTrueAndNoLibEntry_WhenGetBGDetailsCalled_ThenRecordUpdatedAndLibEntryCreated(){
 
         //Setup Test Data and Mocking
         Board_Games__c testBoardGame = new Board_Games__c(
@@ -675,6 +745,8 @@ private class BoardGamesServiceTest {
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
         BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
+        wrapper.comment = 'This is My Comment';
+        wrapper.ownerName = 'OwnerName';
         calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
@@ -709,7 +781,7 @@ private class BoardGamesServiceTest {
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
-
+          
         //Verify that UOW Register Dirty method Runs Once, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
             //Change fflib_Match.sObjectWith to sObject*S*With
@@ -726,11 +798,25 @@ private class BoardGamesServiceTest {
                     }
                 }
             ));
+            
+            //Verify that UOW Register New method Runs Once, 
+            ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            .registerNew(fflib_Match.sObjectWith(
+                //Validate Record in Register New is the same as the Library Entry for the Board Game
+                //With comments from the Wrapper 
+                new Map<SObjectField,Object> {
+                    //And that the Values updated match expected
+                    BG_Library_Entry__c.Board_Game__c => testBoardGame.Id,
+                    BG_Library_Entry__c.Event__c => eventId,
+                    BG_Library_Entry__c.Comments__c => wrapper.comment,
+                    BG_Library_Entry__c.BGG_Owner__c => wrapper.ownerName
+                }
+            ));
     }
 
-    // Get Board Game Details with One NOT New Matching Board Game and NOT Update Exisiting
+    // Get Board Game Details with One Matching Board Game Not Marked New, No Library Entry, and NOT Update Exisiting
     @IsTest
-    public static void givenExistingBGFoundNotMarkedNewAndUpdateFalse_WhenGetBGDetailsCalled_ThenNoUpdate(){
+    public static void givenExistingBGFoundNotMarkedNewAndUpdateFalseAndNoLibEntry_WhenGetBGDetailsCalled_ThenNoUpdateAndLibEntryCreated(){
 
         //Setup Test Data and Mocking
         Board_Games__c testBoardGame = new Board_Games__c(
@@ -742,6 +828,8 @@ private class BoardGamesServiceTest {
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
         BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
+        wrapper.comment = 'This is My Comment';
+        wrapper.ownerName = 'OwnerName';
         calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
@@ -778,12 +866,395 @@ private class BoardGamesServiceTest {
                                         result, 
                                         'Result Message does not match Expected: '+result);
 
-        //Verify that UOW Register New and Register Dirty did NOT run, 
+        ///Verify that UOW Register Dirty Did NOT Run, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
-            .registerNew(fflib_Match.anySObject());
-
-        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
-            .registerDirty(fflib_Match.anySObject());
+        .registerDirty(fflib_Match.anySObject());
+        
+        //Verify that UOW Register New method Ran for the Library Entry, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+        .registerNew(fflib_Match.sObjectWith(
+            //Validate Record in Register New is the same as the Library Entry for the Board Game
+            //With comments from the Wrapper 
+            new Map<SObjectField,Object> {
+                //And that the Values updated match expected
+                BG_Library_Entry__c.Board_Game__c => testBoardGame.Id,
+                BG_Library_Entry__c.Event__c => eventId,
+                BG_Library_Entry__c.Comments__c => null,
+                BG_Library_Entry__c.BGG_Owner__c => null
+            }
+        ));
     }
 
+    // Get Board Game Details with One New Matching Board Game, One Library Entry, and Update Exisiting
+    @IsTest
+    public static void givenExistingBGFoundMarkedNewAndUpdateTrueAndLibEntry_WhenGetBGDetailsCalled_ThenRecordUpdatedAndLibEntryUpdated(){
+
+        //Setup Test Data and Mocking
+        Board_Games__c testBoardGame = new Board_Games__c(
+                                                ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                                BGG_ID__c = '1234',
+                                                Name = 'My Board Game',
+                                                Is_New__c = true
+                                            );
+        ID eventId = fflib_IDGenerator.generate(Event__c.SObjectType);
+        BG_Library_Entry__c testLibraryEntry = new BG_Library_Entry__c(
+                                                ID = fflib_IDGenerator.generate(BG_Library_Entry__c.SObjectType),
+                                                Board_Game__c = testBoardGame.Id,
+                                                //Because we are not actually performing an insert
+                                                //This is how we mock a Parent Relationship to the Board Game
+                                                Board_Game__r = new Board_Games__c(
+                                                    ID = testBoardGame.Id,
+                                                    BGG_ID__c = testBoardGame.BGG_ID__c
+                                                ),
+                                                Comments__c = 'My Old Comment',
+                                                BGG_Owner__c = 'OG Owner',
+                                                Event__c = eventId
+                                            );
+        BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
+        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        wrapper.boardGame = testBoardGame;
+        wrapper.comment = 'This is My Comment';
+        wrapper.ownerName = 'OwnerName';
+        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+            testBoardGame.BGG_ID__c => wrapper
+        };
+
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => calloutResult,
+            MockParams.RETURNED_BOARD_GAMES => new List<Board_Games__c>{testBoardGame},
+            MockParams.RETURNED_BG_LIBRARY_ENTRIES => new List<BG_Library_Entry__c>{testLibraryEntry}
+        };
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'getBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
+                                        eventId, 
+                                        'CollectionName',
+                                        false,
+                                        true); //Update Exisiting
+        Test.stopTest();
+
+        //Validate Data
+        //Verify Result Message
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
+                                                                        0, // # of New
+                                                                        1  // # of Updated
+                                                                    }), 
+                                        result, 
+                                        'Result Message does not match Expected: '+result);
+
+        //Verify that UOW Register New and Register Dirty Ran the correct Number of Times, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+            .registerNew(fflib_Match.anySObject());
+        
+        //Verify that UOW Register Dirty method Runs Once for the Board Game, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            //Change fflib_Match.sObjectWith to sObject*S*With
+            .registerDirty(fflib_Match.sObjectsWith(
+                //Added this line since registerDirty applies to a List 
+                new List<Map<SObjectField,Object>> {
+                    //Validate Record in Register Dirty is the same as the Board Game in the calloutResult 
+                    new Map<SObjectField,Object> {
+                        //And that the Values updated match expected
+                        Board_Games__c.Id => testBoardGame.Id,
+                        Board_Games__c.BGG_ID__c => testBoardGame.BGG_ID__c,
+                        Board_Games__c.Name => testBoardGame.Name,
+                        Board_Games__c.Is_New__c => false
+                    }
+                }
+            ));
+        
+        //Verify that UOW Register Dirty method Runs Once for BGL Entry, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+        .registerDirty(fflib_Match.sObjectWith(
+            //Validate Record in Register Dirty is the same as the Library Entry for the Board Game
+            //With comments from the Wrapper 
+            new Map<SObjectField,Object> {
+                //And that the Values updated match expected
+                BG_Library_Entry__c.Board_Game__c => testBoardGame.Id,
+                BG_Library_Entry__c.Event__c => eventId,
+                BG_Library_Entry__c.Comments__c => wrapper.comment,
+                BG_Library_Entry__c.BGG_Owner__c => wrapper.ownerName
+            }
+        ));
+    }
+    
+    // Get Board Game Details with One New Matching Board Game, One Library Entry, and NOT Update Exisiting
+    @IsTest
+    public static void givenExistingBGFoundMarkedNewAndUpdateFalseAndLibEntry_WhenGetBGDetailsCalled_ThenOnlyBGRecordUpdated(){
+
+        //Setup Test Data and Mocking
+        Board_Games__c testBoardGame = new Board_Games__c(
+                                                ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                                BGG_ID__c = '1234',
+                                                Name = 'My Board Game',
+                                                Is_New__c = true
+                                            );
+        ID eventId = fflib_IDGenerator.generate(Event__c.SObjectType);
+        BG_Library_Entry__c testLibraryEntry = new BG_Library_Entry__c(
+                                                ID = fflib_IDGenerator.generate(BG_Library_Entry__c.SObjectType),
+                                                Board_Game__c = testBoardGame.Id,
+                                                //Because we are not actually performing an insert
+                                                //This is how we mock a Parent Relationship to the Board Game
+                                                Board_Game__r = new Board_Games__c(
+                                                    ID = testBoardGame.Id,
+                                                    BGG_ID__c = testBoardGame.BGG_ID__c
+                                                ),
+                                                Comments__c = 'My Old Comment',
+                                                BGG_Owner__c = 'OG Owner',
+                                                Event__c = eventId
+                                            );
+        BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
+        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        wrapper.boardGame = testBoardGame;
+        wrapper.comment = 'This is My Comment';
+        wrapper.ownerName = 'OwnerName';
+        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+            testBoardGame.BGG_ID__c => wrapper
+        };
+
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_ID_CALLOUT_RESULT => calloutResult,
+            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => calloutResult,
+            MockParams.RETURNED_BOARD_GAMES => new List<Board_Games__c>{testBoardGame},
+            MockParams.RETURNED_BG_LIBRARY_ENTRIES => new List<BG_Library_Entry__c>{testLibraryEntry}
+        };
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'getBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
+                                        eventId, 
+                                        'CollectionName',
+                                        false,
+                                        false); //Update Exisiting
+        Test.stopTest();
+
+        //Validate Data
+        //Verify Result Message
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
+                                                                        0, // # of New
+                                                                        0  // # of Updated
+                                                                    }), 
+                                        result, 
+                                        'Result Message does not match Expected: '+result);
+
+        //Verify that UOW Register New and Register Dirty Ran the correct Number of Times, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+            .registerNew(fflib_Match.anySObject());
+            
+        //Verify that UOW Register Dirty method Runs Once for Board Game
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            .registerDirty(fflib_Match.sObjectWith(
+                //Validate Record in Register Dirty is the same as the Board Game 
+                new Map<SObjectField,Object> {
+                    //And that the Values updated match expected
+                    Board_Games__c.Id => testBoardGame.Id,
+                    Board_Games__c.Is_New__c => false
+                }
+            ));
+
+        //Verify that UOW Register Dirty method did NOT Run for BGL Entry, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+        .registerDirty(fflib_Match.sObjectWith(
+            //Validate Record in Register Dirty is the same as the Library Entry for the Board Game
+            //With comments from the Wrapper 
+            new Map<SObjectField,Object> {
+                //And that the Values updated match expected
+                BG_Library_Entry__c.Board_Game__c => testBoardGame.Id,
+                BG_Library_Entry__c.Event__c => eventId,
+                BG_Library_Entry__c.Comments__c => wrapper.comment,
+                BG_Library_Entry__c.BGG_Owner__c => wrapper.ownerName
+            }
+        ));
+    }
+
+    // Get Board Game Details with One Matching Board Game Not Marked New, One Library Entry, and Update Exisiting
+    @IsTest
+    public static void givenExistingBGFoundNotMarkedNewAndUpdateTrueAndLibEntry_WhenGetBGDetailsCalled_ThenRecordUpdatedAndLibEntryUpdated(){
+
+        //Setup Test Data and Mocking
+        Board_Games__c testBoardGame = new Board_Games__c(
+                                                ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                                BGG_ID__c = '1234',
+                                                Name = 'My Board Game',
+                                                Is_New__c = false
+                                            );
+        ID eventId = fflib_IDGenerator.generate(Event__c.SObjectType);
+        BG_Library_Entry__c testLibraryEntry = new BG_Library_Entry__c(
+                                                ID = fflib_IDGenerator.generate(BG_Library_Entry__c.SObjectType),
+                                                Board_Game__c = testBoardGame.Id,
+                                                //Because we are not actually performing an insert
+                                                //This is how we mock a Parent Relationship to the Board Game
+                                                Board_Game__r = new Board_Games__c(
+                                                    ID = testBoardGame.Id,
+                                                    BGG_ID__c = testBoardGame.BGG_ID__c
+                                                ),
+                                                Comments__c = 'My Old Comment',
+                                                BGG_Owner__c = 'OG Owner',
+                                                Event__c = eventId
+                                            );
+        BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
+        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        wrapper.boardGame = testBoardGame;
+        wrapper.comment = 'This is My Comment';
+        wrapper.ownerName = 'OwnerName';
+        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+            testBoardGame.BGG_ID__c => wrapper
+        };
+
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => calloutResult,
+            MockParams.RETURNED_BOARD_GAMES => new List<Board_Games__c>{testBoardGame},
+            MockParams.RETURNED_BG_LIBRARY_ENTRIES => new List<BG_Library_Entry__c>{testLibraryEntry}
+        };
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'getBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
+                                        eventId, 
+                                        'CollectionName',
+                                        false,
+                                        true); //Update Exisiting
+        Test.stopTest();
+
+        //Validate Data
+        //Verify Result Message
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
+                                                                        0, // # of New
+                                                                        1  // # of Updated
+                                                                    }), 
+                                        result, 
+                                        'Result Message does not match Expected: '+result);
+        
+        //Verify that UOW Register New method did NOT Run
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+            .registerNew(fflib_Match.anySObject());         
+
+        //Verify that UOW Register Dirty method Runs Once, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            //Change fflib_Match.sObjectWith to sObject*S*With
+            .registerDirty(fflib_Match.sObjectsWith(
+                //Added this line since registerDirty applies to a List 
+                new List<Map<SObjectField,Object>> {
+                    //Validate Record in Register Dirty is the same as the Board Game in the calloutResult 
+                    new Map<SObjectField,Object> {
+                        //And that the Values updated match expected
+                        Board_Games__c.Id => testBoardGame.Id,
+                        Board_Games__c.BGG_ID__c => testBoardGame.BGG_ID__c,
+                        Board_Games__c.Name => testBoardGame.Name,
+                        Board_Games__c.Is_New__c => false
+                    }
+                }
+            ));
+            
+        //Verify that UOW Register New method Runs Once, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            .registerDirty(fflib_Match.sObjectWith(
+                //Validate Record in Register Dirty is the same as the Library Entry for the Board Game
+                //With comments from the Wrapper 
+                new Map<SObjectField,Object> {
+                    //And that the Values updated match expected
+                    BG_Library_Entry__c.Board_Game__c => testBoardGame.Id,
+                    BG_Library_Entry__c.Event__c => eventId,
+                    BG_Library_Entry__c.Comments__c => wrapper.comment,
+                    BG_Library_Entry__c.BGG_Owner__c => wrapper.ownerName
+                }
+            ));
+    }
+    
+    // Get Board Game Details with One Matching Board Game Not Marked New, One Library Entry, and NOT Update Exisiting
+    @IsTest
+    public static void givenExistingBGFoundNotMarkedNewAndUpdateFalseAndLibEntry_WhenGetBGDetailsCalled_ThenNoUpdate(){
+
+        //Setup Test Data and Mocking
+        Board_Games__c testBoardGame = new Board_Games__c(
+                                                ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                                BGG_ID__c = '1234',
+                                                Name = 'My Board Game',
+                                                Is_New__c = false
+                                            );
+        ID eventId = fflib_IDGenerator.generate(Event__c.SObjectType);
+        BG_Library_Entry__c testLibraryEntry = new BG_Library_Entry__c(
+                                                ID = fflib_IDGenerator.generate(BG_Library_Entry__c.SObjectType),
+                                                Board_Game__c = testBoardGame.Id,
+                                                //Because we are not actually performing an insert
+                                                //This is how we mock a Parent Relationship to the Board Game
+                                                Board_Game__r = new Board_Games__c(
+                                                    ID = testBoardGame.Id,
+                                                    BGG_ID__c = testBoardGame.BGG_ID__c
+                                                ),
+                                                Comments__c = 'My Old Comment',
+                                                BGG_Owner__c = 'OG Owner',
+                                                Event__c = eventId
+                                            );
+        BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
+        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        wrapper.boardGame = testBoardGame;
+        wrapper.comment = 'This is My Comment';
+        wrapper.ownerName = 'OwnerName';
+        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+            testBoardGame.BGG_ID__c => wrapper
+        };
+
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_ID_CALLOUT_RESULT => calloutResult,
+            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => calloutResult,
+            MockParams.RETURNED_BOARD_GAMES => new List<Board_Games__c>{testBoardGame},
+            MockParams.RETURNED_BG_LIBRARY_ENTRIES => new List<BG_Library_Entry__c>{testLibraryEntry}
+        };
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'getBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
+                                        eventId, 
+                                        'CollectionName',
+                                        false,
+                                        false); //Update Exisiting
+        Test.stopTest();
+
+        //Validate Data
+        //Verify Result Message
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
+                                                                        0, // # of New
+                                                                        0  // # of Updated
+                                                                    }), 
+                                        result, 
+                                        'Result Message does not match Expected: '+result);
+
+        ///Verify that UOW Register Dirty Did NOT Run, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+        .registerDirty(fflib_Match.anySObject());
+        
+        //Verify that UOW Register New Did NOT Run, 
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+        .registerNew(fflib_Match.anySObject());
+    }
 }

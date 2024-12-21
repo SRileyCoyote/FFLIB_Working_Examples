@@ -1,47 +1,70 @@
-//Needs to Implement and Extend the fflib_SObjectDomain and fflib_ISObjectDomain respecively in order to mock the Domain
-//IBoardGameRatingsDomain extends fflib_ISObjectDomain but can add other methods onto it if needed
-public with sharing class BoardGameRatingsTriggerHandler extends fflib_SObjectDomain implements fflib_ISObjectDomain{
+/**
+* ─────────────────────────────────────────────────────────────────────────────────────────────────┐
+* Handler for all Board Games Ratings Trigger.
+*
+* TriggerHandlers handle all of the trigger based logic like if the trigger should fire or not.
+* They will then call the Domain for the object to handle Object based logic like filter records in
+* trigger to only those that are applicable as well as call the Serice for the object to perform
+* the actual logic for the method or action against the records.
+* 
+* TriggerHandlers need to either implement the fflib_ISObjectDomain interface or use their own 
+* Interface that extends the fflib_ISObjectDomain interface as well as extend the 
+* fflib_SObjectDomain class which is needed by the line in the trigger itself which then knows 
+* which trigger methods to fire. The Base Trigger Handler is already doing that for us here.
+*
+* The Abstract Base Trigger Handler Class we are extending here will hold all of the Base
+* Logic and methods used across all triggers like determining if the trigger should fire at all 
+* based on Settings from the MDT Record for this Object. 
+* ──────────────────────────────────────────────────────────────────────────────────────────────────
+* @author         Sean Riley
+* @modifiedBy     Sean Riley
+* @version        1.0
+* @created        2024-11-30
+* @modified       2024-12-21
+* @systemLayer    Trigger Handler
+* ──────────────────────────────────────────────────────────────────────────────────────────────────
+*/
+public with sharing class BoardGameRatingsTriggerHandler extends BaseTriggerHandler {
     
-    @TestVisible
-    private Domain_Config__mdt domainConfig;
+    //Variables and Objects Used throughout the Trigger Handler
+    private BoardGameRatingsService service;
 
-    //Actual Constructor for the Domain
+    //Set Final Strings for Error Messages
+    //Use Final Strings so that exact text can be used in the Test Class without worrying about text changes
+    @TestVisible private final String ERR_MESSAGE = 'An Error Occured {0} in the Board Game Ratings Trigger Handler: {1}';
+
+    //Actual Constructor for the Trigger Handler
     public BoardGameRatingsTriggerHandler(List<Board_Game_Rating__c> sObjectList){
         //Get Custom Metadata Type for Domain
-        this(Domain_Config__mdt.getInstance('BoardGameRatings'), sObjectList);
+        super('BoardGameRatings', BoardGameRatingsTriggerHandler.class, sObjectList); //Calls the Constructor from the Parent Class
     }
 
     @TestVisible
     //Constructor Used For Testing and Setting Own Config File
     private BoardGameRatingsTriggerHandler(Domain_Config__mdt config, List<Board_Game_Rating__c> sObjectList)
     {
-        super(sObjectList);
-        domainConfig = config;
-
-        //Disable Triggers, if enabled 
-        If(domainConfig.Bypass_Trigger__c){
-            system.debug('Disabling Trigger...');
-            fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsDomain.class).disableAll();
-        }
+        super(config, BoardGameRatingsTriggerHandler.class, sObjectList); // Calls the protected constructor of BaseTriggerHandler with custom config record for Testing
     }
 
-    public override void onAfterUpdate(Map<Id,SObject> existingRecords){
-        //Initialize Unit of Work and Service Classes from Application Layer
-        fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
-        BoardGameRatingsService service = (BoardGameRatingsService) Application.Service.newInstance(IBoardGameRatingsService.class);
+    //Abstract methods Must be overriden by Child Classes.
+    //The Child Initialize method will be what is used in the constructor  
+    protected override void initialize(){
+        service = (BoardGameRatingsService) Application.Service.newInstance(IBoardGameRatingsService.class);
+    }
 
-        //Prevent Recursion on After Update, If enabled
-        if(domainConfig.Prevent_Recursion__c)
+    public override void onAfterInsert(){
+        //Initialize Unit of Work from Application Layer
+        fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
+        
+        if(this.domainConfig.Prevent_Recursion__c)
         {
             system.debug('Disabling Trigger For Recursion ...');
-            fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsDomain.class).disableAfterUpdate(); 
+            fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).disableAfterInsert(); 
         }
 
         try{         
             //Do Work
-
-            //super.Records gets all of the Records from the trigger from the Domain
-            service.setNewFavorite(uow, super.Records, existingRecords); 
+            service.setNewFavorite(uow, super.getRecords());
 
             //Perform DML on all Registered Records
             uow.commitWork();
@@ -49,13 +72,45 @@ public with sharing class BoardGameRatingsTriggerHandler extends fflib_SObjectDo
         catch (Exception ex) 
         {
             //Bypass Error Handling, If Enabled
-            if(domainConfig.Bypass_Error_Handling__c)
+            if(this.domainConfig.Bypass_Error_Handling__c)
             {
-                System.debug('An Error Occured: ' + ex.getMessage());
+                System.debug('An Error Occured After Insert: ' + ex.getMessage());
             }
             else 
             {
-                throw new BRGDomainException('An Error Occured in the Board Game Ratings Domain: ' + ex.getMessage());
+                throw new BRGTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'After Insert', ex.getMessage()}));
+            }
+        }
+    }
+
+    public override void onAfterUpdate(Map<Id,SObject> existingRecords){
+        //Initialize Unit of Work from Application Layer
+        fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
+        
+        //Prevent Recursion on After Update, If enabled
+        if(this.domainConfig.Prevent_Recursion__c)
+        {
+            system.debug('Disabling Trigger For Recursion ...');
+            fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).disableAfterUpdate(); 
+        }
+
+        try{         
+            //Do Work
+            service.setNewFavorite(uow, super.getRecords(), existingRecords);
+
+            //Perform DML on all Registered Records
+            uow.commitWork();
+        }
+        catch (Exception ex) 
+        {
+            //Bypass Error Handling, If Enabled
+            if(this.domainConfig.Bypass_Error_Handling__c)
+            {
+                System.debug('An Error Occured After Update: ' + ex.getMessage());
+            }
+            else 
+            {
+                throw new BRGTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'After Update', ex.getMessage()}));
             }
         }
     }
@@ -68,6 +123,6 @@ public with sharing class BoardGameRatingsTriggerHandler extends fflib_SObjectDo
 		}
 	}
 
-    public class BRGDomainException extends Exception {}
+    public class BRGTriggerHandlerException extends Exception {}
 
 }

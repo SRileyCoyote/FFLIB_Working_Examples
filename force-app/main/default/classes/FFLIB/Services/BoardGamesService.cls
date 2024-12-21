@@ -13,7 +13,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-11-30
+* @modified       2024-12-21
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -22,6 +22,7 @@ public without sharing class BoardGamesService extends BaseService implements IB
     //Set Variables used throughout Service    
     private BGGCalloutService bggHttpService;
     private BoardGameSelector bgSelector;
+    private BGLibraryEntrySelector bgleSelector;
 
     //Set Final Strings for Return Messages
     //Use Final Strings so that exact text can be used in the Test Class without worrying about text changes
@@ -31,24 +32,25 @@ public without sharing class BoardGamesService extends BaseService implements IB
     @TestVisible private final String EVENT_ID_INVALID_MSG = 'Invalid Event ID';
     @TestVisible private final String COLLECTION_OR_ID_INVALID_MSG = 'Invalid Collection or Geek ID';
 
-
     //Initialize Service Class
     public BoardGamesService(){
-        super('BoardGames');
+        super('BoardGames'); //Calls the Constructor from the Parent Class
     }
 
     @TestVisible
     //Private Constructor for Testing to provide own Service Config
     private BoardGamesService(List<Services_Config__mdt> configList){      
-        super(configList, 'BoardGames');
+        super(configList, 'BoardGames'); // Calls the protected constructor of BaseService with custom config list for Testing
     }
 
-    //Abstract Method from Parent that Must be implemented
+    //Abstract Method from Parent that Must be Overridden
     //Method called in Parent Constructor
     protected override void initialize(){
-        //Initialize Serivces and Selectors
+        //Initialize Serivces and Selectors through Application Layer 
+        //so they can be Mocked and Stubbed from the Test Class
         bggHttpService = (BGGCalloutService) Application.Service.newInstance(IBGGCalloutService.class);
         bgSelector = (BoardGameSelector) Application.Selector.newInstance(Board_Games__c.SObjectType);
+        bgleSelector = (BGLibraryEntrySelector) Application.Selector.newInstance(BG_Library_Entry__c.sObjectType);
     }
 
     public String getBoardGameDetailsFromBGG(fflib_SObjectUnitOfWork uow,
@@ -57,7 +59,8 @@ public without sharing class BoardGamesService extends BaseService implements IB
                                             Boolean isGeekList, 
                                             Boolean updateExisiting){
 
-            if(!this.serviceEnabled('getBoardGameDetailsFromBGG')){
+            //If Service NOT enabled, Throw Error
+            if(!this.serviceEnabled('getBoardGameDetailsFromBGG')){ //Check if this Service Method is Enabled from Parent
                 throw new BGServiceException(SERVICE_NOT_ENABLED_MSG);
             }
 
@@ -110,25 +113,54 @@ public without sharing class BoardGamesService extends BaseService implements IB
             //Creating Seperate List for Updates to count number of updates
             List<Board_Games__c> bgToUpdate = new List<Board_Games__c>();
 
+            //Get All Related Library Entries for Event
+            Map<String, BG_Library_Entry__c> bglEntries = new Map<String, BG_Library_Entry__c>();
+            //Load Map with all Related Board Game Library Entires for Event
+            For(BG_Library_Entry__c entry : bgleSelector.selectByEventIDs(new Set<Id>{eventId})){
+                bglEntries.put(entry.Board_Game__r.BGG_ID__c, entry);
+            } 
+
             For(Board_Games__c thisBG : existingBoardGames){
-                //If Match Found in wrapper Map AND Update Exisitng Records
+                //If Match Found in wrapper Map AND Update Exisitng Records                    
+                BGGCalloutService.BoardGameWrapper wrapper = result.wrapperMap.get(thisBG.BGG_ID__c);
                 if(updateExisiting){
-                    //Get Matching Record from Wrapper
-                    Board_Games__c bg = result.wrapperMap.get(thisBG.BGG_ID__c).boardGame;
+                    //Get Matching Board Game Record from Wrapper
+                    Board_Games__c bg = wrapper.boardGame;
                     bg.Id = thisBG.Id; //Set ID to Existing BG ID
                     bg.Is_New__c = false; //Uncheck the Is New Flag
                     bgToUpdate.add(bg); //Add to Update List
+
+                    //Get Matching Library Entry Record and Update Comments and Owner Name
+                    if(bglEntries.containsKey(thisBG.BGG_ID__c)){
+                        BG_Library_Entry__c bge = bglEntries.get(thisBG.BGG_ID__c);
+                        bge.Comments__c = wrapper.comment;
+                        bge.BGG_Owner__c = wrapper.ownerName;
+                        uow.registerDirty(bge); //Register Board Game Library Entry for Update 
+                    }
                 } 
                 //If NOT Update Exisiting,
-                //Check is IS NEW is Checked, and set it to false if it is
-                else if (thisBG.Is_New__c) {
-                    thisBG.Is_New__c = false;
-                    uow.registerDirty(thisBG); //Update without list, dont need to track this number of updates
+                else {                
+                    //Check if IS NEW is Checked, and set it to false if it is
+                    if (thisBG.Is_New__c) {
+                        thisBG.Is_New__c = false;
+                        uow.registerDirty(thisBG); //Register Update without list, dont need to track this number of updates
+                    }
                 }
-                result.wrapperMap.remove(thisBG.BGG_ID__c); //Remove Record From Wrapper
-            }                
-            uow.registerDirty(bgToUpdate);
+                
+                //If Matching Library Entry NOT found for Record, Add New Library Entry for Event
+                if(!bglEntries.containsKey(thisBG.BGG_ID__c)){
+                    BG_Library_Entry__c bge = new BG_Library_Entry__c();
+                    bge.Event__c = eventId;
+                    bge.Comments__c = wrapper?.comment;
+                    bge.BGG_Owner__c = wrapper?.ownerName;
+                    bge.Board_Game__c = thisBG.Id;
+                    uow.registerNew(bge);
+                }
 
+                result.wrapperMap.remove(thisBG.BGG_ID__c); //Remove Updated Record From Wrapper
+            }   
+            
+            uow.registerDirty(bgToUpdate); //Register Games for Update  
 
             //Any Remaining Board Games in Wrapper Map are new Board Games
             For(BGGCalloutService.BoardGameWrapper wrapper : result.wrapperMap.values()){
@@ -138,7 +170,8 @@ public without sharing class BoardGamesService extends BaseService implements IB
                 bge.Event__c = eventId;
                 bge.Comments__c = wrapper.comment;
                 bge.BGG_Owner__c = wrapper.ownerName;
-                uow.registerNew(bge, BG_Library_Entry__c.Board_Game__c, wrapper.boardGame);
+                //Register new Board Game Library Entry with Relationship to new Board Game
+                uow.registerNew(bge, BG_Library_Entry__c.Board_Game__c, wrapper.boardGame); 
             }
 
             //Using String Format to use Final Strings with Alterations based on result numbers

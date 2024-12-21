@@ -12,7 +12,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-11-30
+* @modified       2024-12-21
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -59,7 +59,8 @@ private class BoardGameRatingsServiceTest {
             mocks = new fflib_ApexMocks();
             uowMock = (fflib_SobjectUnitOfWork) mocks.mock(fflib_SObjectUnitOfWork.class);
             IBoardGameRatingSelector mockBGRSelector = (IBoardGameRatingSelector) mocks.mock(BoardGameRatingSelector.class);
-            
+            IBoardGameRatingsDomain mockBGRDomain = (IBoardGameRatingsDomain) mocks.mock(BoardGameRatingsDomain.class);
+
             mockConfig = new Services_Config__mdt(
                                         Domain_Config__r = new Domain_Config__mdt(
                                             DeveloperName = 'BoardGameRatings'),
@@ -70,7 +71,7 @@ private class BoardGameRatingsServiceTest {
             //Stubbing the BGR Selector
             //IMPORTANT: Stubbing the SObjectType is REQUIRED or the mocking of the Selector WILL Fail
             mocks.when(mockBGRSelector.SObjectType()).thenReturn(Board_Game_Rating__c.SObjectType);
-            //Stub out each Selector Method that the Service calls using calls
+            //Stub out each Selector Method that the Service calls
             mocks.when(mockBGRSelector.selectFavoriteRatingByAttendeeIdExcludingRecordID(
                                             //Using fflib_Match here tells the mock to replace this method
                                             //Regardless of what values are given to the method  
@@ -83,12 +84,21 @@ private class BoardGameRatingsServiceTest {
                 // and we will return that here instead
                 .thenReturn((List<Board_Game_Rating__c>) params.get(MockParams.RETURNED_BOARD_GAME_RATINGS));
             //Any Methods of the Selector that are NOT Stubbed will return a NULL value if called
+
+            //Stubbing the BGR Domain
+            // Stub out each Domain Method that the Domain calls
+            // mocks.when(mockBGRDomain.getSObjectType())
+            //     .thenReturn(Board_Game_Rating__c.SObjectType);
+            mocks.when(mockBGRDomain.getChanged(fflib_Match.anyString()))
+                .thenReturn((List<Board_Game_Rating__c>) params.get(MockParams.RETURNED_BOARD_GAME_RATINGS));
+
             mocks.stopStubbing();
 
             // Set the Selector Mock and UOW Mock created as the classes to be used 
             // when the Selector and UOW Classes are initialized from the Application Layer instead of the normal classes
             Application.UnitOfWork.setMock(uowMock);
             Application.Selector.setMock(mockBGRSelector);
+            Application.Domain.setMock(mockBGRDomain);
         }
     }
 
@@ -151,24 +161,19 @@ private class BoardGameRatingsServiceTest {
             // Test Records CAN be created the same way using just new Board_Game_Rating__c() and get the same result
             // However since read-only or calcuated fields like formula fields or rollups cannot be set using that method
             // sObject_Fabricator can be used to mock those values without performing the DML
-        Board_Game_Rating__c testNewRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
+        Board_Game_Rating__c testRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
                                     .setField(Board_Game_Rating__c.is_Favorite__c, true)
                                     .setField(Board_Game_Rating__c.Event_Attendee__c, 
                                                 fflib_IDGenerator.generate(Event_Attendee__c.SObjectType))
                                     .setField(Board_Game_Rating__c.Id,
                                                 fflib_IDGenerator.generate(Board_Game_Rating__c.SObjectType))
                                     .toSObject();
-        // For the Existing Record we only need to see the Is_Favorite__c value was false
-        Board_Game_Rating__c testOldRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
-                                    .setField(Board_Game_Rating__c.is_Favorite__c, false)
-                                    .toSObject();
 
         //Run Test
         Test.startTest();
         BoardGameRatingsService service = new BoardGameRatingsService(new List<Services_Config__mdt>{mock.mockConfig});
         service.setNewFavorite(mock.uowMock, 
-                                new List<Board_Game_Rating__c>{testNewRecord}, 
-                                new Map<Id,SObject>{testNewRecord.Id => testOldRecord});
+                                new List<Board_Game_Rating__c>{testRecord});
         Test.stopTest();
 
         //Validate Data
@@ -193,25 +198,21 @@ private class BoardGameRatingsServiceTest {
         mock.mockConfig.DeveloperName = 'setNewFavorite';
 
         // Setup Test Data 
-            //(Once Test Data is setup in a method, it is Copied Over from Previous Method 
+            // (Once Test Data is setup in a method, it can be Copied Over from Previous Method 
             // with minor tweaks made based on the Tested Use Case)
-        Board_Game_Rating__c testNewRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
+        Board_Game_Rating__c testRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
                                     .setField(Board_Game_Rating__c.is_Favorite__c, true)
                                     .setField(Board_Game_Rating__c.Event_Attendee__c, 
                                                 fflib_IDGenerator.generate(Event_Attendee__c.SObjectType))
                                     .setField(Board_Game_Rating__c.Id,
                                                 fflib_IDGenerator.generate(Board_Game_Rating__c.SObjectType))
                                     .toSObject();
-        Board_Game_Rating__c testOldRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
-                                    .setField(Board_Game_Rating__c.is_Favorite__c, false)
-                                    .toSObject();
 
         //Run Test
         Test.startTest();
         BoardGameRatingsService service = new BoardGameRatingsService(new List<Services_Config__mdt>{mock.mockConfig});
         service.setNewFavorite(mock.uowMock, 
-                                new List<Board_Game_Rating__c>{testNewRecord}, 
-                                new Map<Id,SObject>{testNewRecord.Id => testOldRecord});
+                                new List<Board_Game_Rating__c>{testRecord});
         Test.stopTest();
 
         //Validate Data
@@ -244,23 +245,19 @@ private class BoardGameRatingsServiceTest {
         // Setup Test Data
             // (Once Test Data is setup in a method, it is Copied Over from Previous Method 
             // with minor tweaks made based on the Tested Use Case)
-        Board_Game_Rating__c testNewRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
+        Board_Game_Rating__c testRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
                                     .setField(Board_Game_Rating__c.is_Favorite__c, true)
                                     .setField(Board_Game_Rating__c.Event_Attendee__c, 
                                                 fflib_IDGenerator.generate(Event_Attendee__c.SObjectType))
                                     .setField(Board_Game_Rating__c.Id,
                                                 fflib_IDGenerator.generate(Board_Game_Rating__c.SObjectType))
                                     .toSObject();
-        Board_Game_Rating__c testOldRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
-                                    .setField(Board_Game_Rating__c.is_Favorite__c, false)
-                                    .toSObject();
 
         //Run Test
         Test.startTest();
         BoardGameRatingsService service = new BoardGameRatingsService(new List<Services_Config__mdt>{mock.mockConfig});
         service.setNewFavorite(mock.uowMock, 
-                                new List<Board_Game_Rating__c>{testNewRecord}, 
-                                new Map<Id,SObject>{testNewRecord.Id => testOldRecord});
+                                new List<Board_Game_Rating__c>{testRecord});
         Test.stopTest();
 
         //Validate Data
@@ -297,26 +294,11 @@ private class BoardGameRatingsServiceTest {
         //Customize Service Config Record
         mock.mockConfig.DeveloperName = 'setNewFavorite';
 
-        // Setup Test Data
-            // (Once Test Data is setup in a method, it is Copied Over from Previous Method 
-            // with minor tweaks made based on the Tested Use Case)
-        Board_Game_Rating__c testNewRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
-                                    .setField(Board_Game_Rating__c.is_Favorite__c, false)
-                                    .setField(Board_Game_Rating__c.Event_Attendee__c, 
-                                                fflib_IDGenerator.generate(Event_Attendee__c.SObjectType))
-                                    .setField(Board_Game_Rating__c.Id,
-                                                fflib_IDGenerator.generate(Board_Game_Rating__c.SObjectType))
-                                    .toSObject();
-        Board_Game_Rating__c testOldRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
-                                    .setField(Board_Game_Rating__c.is_Favorite__c, false)
-                                    .toSObject();
-
         //Run Test
         Test.startTest();
         BoardGameRatingsService service = new BoardGameRatingsService(new List<Services_Config__mdt>{mock.mockConfig});
         service.setNewFavorite(mock.uowMock, 
-                                new List<Board_Game_Rating__c>{testNewRecord}, 
-                                new Map<Id,SObject>{testNewRecord.Id => testOldRecord});
+                                new List<Board_Game_Rating__c>());
         Test.stopTest();
 
         //Validate Data
@@ -353,23 +335,19 @@ private class BoardGameRatingsServiceTest {
         // Setup Test Data
             // (Once Test Data is setup in a method, it is Copied Over from Previous Method 
             // with minor tweaks made based on the Tested Use Case)
-        Board_Game_Rating__c testNewRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
+        Board_Game_Rating__c testRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
                                     .setField(Board_Game_Rating__c.is_Favorite__c, true)
                                     .setField(Board_Game_Rating__c.Event_Attendee__c, 
                                                 fflib_IDGenerator.generate(Event_Attendee__c.SObjectType))
                                     .setField(Board_Game_Rating__c.Id,
                                                 fflib_IDGenerator.generate(Board_Game_Rating__c.SObjectType))
                                     .toSObject();
-        Board_Game_Rating__c testOldRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
-                                    .setField(Board_Game_Rating__c.is_Favorite__c, false)
-                                    .toSObject();
 
         //Run Test
         Test.startTest();
         BoardGameRatingsService service = new BoardGameRatingsService(new List<Services_Config__mdt>{mock.mockConfig});
         service.setNewFavorite(mock.uowMock, 
-                                new List<Board_Game_Rating__c>{testNewRecord}, 
-                                new Map<Id,SObject>{testNewRecord.Id => testOldRecord});
+                                new List<Board_Game_Rating__c>{testRecord});
         Test.stopTest();
 
         //Validate Data
@@ -418,32 +396,26 @@ private class BoardGameRatingsServiceTest {
         // Setup Test Data
             // (Once Test Data is setup in a method, it is Copied Over from Previous Method 
             // with minor tweaks made based on the Tested Use Case)
-        Board_Game_Rating__c testNewFavRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
+        Board_Game_Rating__c testFavRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
                                     .setField(Board_Game_Rating__c.is_Favorite__c, true)
                                     .setField(Board_Game_Rating__c.Event_Attendee__c, 
                                                 fflib_IDGenerator.generate(Event_Attendee__c.SObjectType))
                                     .setField(Board_Game_Rating__c.Id,
                                                 fflib_IDGenerator.generate(Board_Game_Rating__c.SObjectType))
                                     .toSObject();
-        Board_Game_Rating__c testNewNonFavRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
+        Board_Game_Rating__c testNonFavRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
                                     .setField(Board_Game_Rating__c.is_Favorite__c, false)
                                     .setField(Board_Game_Rating__c.Event_Attendee__c, 
                                                 fflib_IDGenerator.generate(Event_Attendee__c.SObjectType))
                                     .setField(Board_Game_Rating__c.Id,
                                                 fflib_IDGenerator.generate(Board_Game_Rating__c.SObjectType))
                                     .toSObject();
-        Board_Game_Rating__c testOldRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
-                                    .setField(Board_Game_Rating__c.is_Favorite__c, false)
-                                    .toSObject();
 
         //Run Test
         Test.startTest();
         BoardGameRatingsService service = new BoardGameRatingsService(new List<Services_Config__mdt>{mock.mockConfig});
         service.setNewFavorite(mock.uowMock, 
-                                new List<Board_Game_Rating__c>{testNewFavRecord, testNewNonFavRecord}, 
-                                new Map<Id,SObject>{testNewFavRecord.Id => testOldRecord,
-                                                    testNewNonFavRecord.Id => testOldRecord 
-                                                });
+                                new List<Board_Game_Rating__c>{testFavRecord, testNonFavRecord});
         Test.stopTest();
 
         //Validate Data
@@ -497,9 +469,6 @@ private class BoardGameRatingsServiceTest {
                                     .setField(Board_Game_Rating__c.Id,
                                                 fflib_IDGenerator.generate(Board_Game_Rating__c.SObjectType))
                                     .toSObject();
-        Board_Game_Rating__c testOldRecord = (Board_Game_Rating__c) new sfab_FabricatedSObject(Board_Game_Rating__c.class)
-                                    .setField(Board_Game_Rating__c.is_Favorite__c, false)
-                                    .toSObject();
 
         //Run Test
         Test.startTest();
@@ -507,10 +476,7 @@ private class BoardGameRatingsServiceTest {
         try {
             BoardGameRatingsService service = new BoardGameRatingsService(new List<Services_Config__mdt>{mock.mockConfig});
             service.setNewFavorite(mock.uowMock, 
-                                new List<Board_Game_Rating__c>{testNewFavRecord, testNew2ndFavRecord}, 
-                                new Map<Id,SObject>{testNewFavRecord.Id => testOldRecord,
-                                                    testNew2ndFavRecord.Id => testOldRecord 
-                                                });
+                                new List<Board_Game_Rating__c>{testNewFavRecord, testNew2ndFavRecord});
             Assert.isTrue(false, 'Error Not Caught');
         } catch (Exception ex) {
             errMsg = ex.getMessage();
