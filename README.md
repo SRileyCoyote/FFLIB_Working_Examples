@@ -16,7 +16,7 @@ Already Included in the Metadata are the following Repos:
 1. Connect IDE to DevHub Enabled Org (Org Alias: DevHub)
 1. Create Scratch Org from DevHub 
 ```
-sf org create scratch -f config/project-scratch-def.json -a MyScratchOrg -d -v DevHub
+sf org create scratch -f config/project-scratch-def.json -a MyScratchOrg -d -v DevHub -y 30
 ```
 4. Deploy all Metadata to Scratch Org
 ```
@@ -46,12 +46,13 @@ This Use Case shows examples for the following:
     - Trigger Handler
     - Serivce Methods
 - Implementing Interfaces
-- Extending Parent Class
+- Extending Base Parent Class
      - Overriding Abstract and Virtual Methods
      - Using Protected Access Modifier
 - FFLIB
     - Application Layer
-    - Trigger Handler and Domain Layer
+    - Trigger Handler 
+    - Domain Layer
     - Service Layer
     - Selector Layer
     - Unit Of Work Layer
@@ -64,7 +65,7 @@ This Use Case shows examples for the following:
 
 As an Event Owner, I would like a form to import my Collection or GeekList from BoardGameGeek and add new those new Board Games into the application. 
 Any Board Games not already in the application I would like marked as 🆕 and for those games to automatically be added to the Board Game Library for the Event I selected. 
-Upon follow up imports, I would like the option to update the existing Board Games information from BoardGameGeek and for the Board Game to no longer be marked as 🆕.
+Upon follow up imports, I would like the option to update the existing Board Games information __as well as the Board Game Library Entry (TODO)__ from BoardGameGeek and for the Board Game to no longer be marked as 🆕.
 
 This Use Case shows examples for the following:
 - LWC
@@ -78,7 +79,9 @@ This Use Case shows examples for the following:
      - Parsing XML Results
 - Wrapper Classes
 - Implementing Interfaces
-- Extending Parent Classes
+- Extending Base Parent Classes
+     - Overriding Abstract and Virtual Methods
+     - Using Protected Access Modifier
 - FFLIB
      - Application Layor
      - Implementation Layer (APEX Controller)
@@ -102,13 +105,28 @@ This Use Case shows examples for the following:
 
 [^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will be queued resulting in an error. If this happens just re-click submit and try again. 
 
-### 3. Check Out Board Game (TODO)
+### 3. Home Board Game Dashboard (TODO)
+
+As an Event Owner, I would like to see a Dashboard showing: 
+- Total number of Board Games for the Event 
+- How many Board Games have been Checked Out
+- How many Board Games are Currently Checked Out
+     - How long they have been checked out for
+     - If they have been checked out for longer than the average Duration for the Game
+- Favorited Board Games
+- Top 5 User Rated Board Games
+
+### 4. Check Out Board Game (TODO)
 
 As an Event Attendee, I would like to click a button and automatically Check Out a Board Game from the Board Game Library.
 
-### 4. Check In Board Game (TODO)
+### 5. Check In Board Game (TODO)
 
 As an Event Attendee, I would like to click a botton and automatically Check In the Board Game I have Checked Out
+
+### 6. Update Individual Board Game Information from BoardGameGeek (TODO)
+
+As an Event Owner, I would like to be able to click on a button on the Board Game Record to update just that individual board game's information from BoardGameGeek
 
 ## More Information
 
