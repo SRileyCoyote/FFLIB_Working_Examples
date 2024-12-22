@@ -36,7 +36,7 @@ public class BaseDomainTest {
         Board_Games__c record = new Board_Games__c();
 
         //Initialize Domain with Test Data
-        BaseDomain domain = new BaseDomain(new List<SObject>{record});
+        BaseDomain domain = new BaseDomain(new List<SObject>{record}, Board_Games__c.SObjectType);
 
         Test.startTest();
         Boolean result = domain.isChanged('Name', record);
@@ -54,7 +54,7 @@ public class BaseDomainTest {
         Board_Games__c record = new Board_Games__c(Id = fflib_IDGenerator.generate(Board_Games__c.SObjectType));
 
         //Initialize Domain with Test Data
-        BaseDomain domain = new BaseDomain(new List<SObject>{record});
+        BaseDomain domain = new BaseDomain(new List<SObject>{record}, Board_Games__c.SObjectType);
         domain.setExistingRecords(new Map<ID, SObject>{record.Id => record});
 
         Test.startTest();
@@ -76,7 +76,7 @@ public class BaseDomainTest {
         Board_Games__c oldRecord = new Board_Games__c();
 
         //Initialize Domain with Test Data
-        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord});
+        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord}, Board_Games__c.SObjectType);
         domain.setExistingRecords(new Map<ID, SObject>{newRecord.Id => oldRecord});
 
         Test.startTest();
@@ -99,7 +99,7 @@ public class BaseDomainTest {
                             Name = 'Old Value');
 
         //Initialize Domain with Test Data
-        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord});
+        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord}, Board_Games__c.SObjectType);
         domain.setExistingRecords(new Map<ID, SObject>{newRecord.Id => oldRecord});
 
         Test.startTest();
@@ -120,7 +120,7 @@ public class BaseDomainTest {
                             Name = 'New Value');
 
         //Initialize Domain with Test Data
-        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord});
+        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord}, Board_Games__c.SObjectType);
 
         Test.startTest();
         Boolean result = domain.isChanged('Name', newRecord);
@@ -142,7 +142,7 @@ public class BaseDomainTest {
                             Name = 'Value');
 
         //Initialize Domain with Test Data
-        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord});
+        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord}, Board_Games__c.SObjectType);
         domain.setExistingRecords(new Map<ID, SObject>{newRecord.Id => oldRecord});
 
         Test.startTest();
@@ -165,7 +165,7 @@ public class BaseDomainTest {
                             Name = 'Old Value');
 
         //Initialize Domain with Test Data
-        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord});
+        BaseDomain domain = new BaseDomain(new List<SObject>{newRecord}, Board_Games__c.SObjectType);
         domain.setExistingRecords(new Map<ID, SObject>{newRecord.Id => oldRecord});
 
         Test.startTest();

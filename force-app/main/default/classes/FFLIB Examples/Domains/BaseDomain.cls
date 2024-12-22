@@ -22,8 +22,8 @@ public virtual class BaseDomain extends fflib_SObjects implements IBaseDomain {
     
     private Map<Id,SObject> existingRecords;
 
-    public BaseDomain(List<SObject> records) {
-        super(records, records[0].getSObjectType());
+    public BaseDomain(List<SObject> records, Schema.SObjectType sObjectType) {
+        super(records, sObjectType);
     }
 
     public void setExistingRecords(Map<ID, SObject> existingRecords){

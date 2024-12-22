@@ -27,7 +27,7 @@ public class BoardGameRatingsDomain extends BaseDomain implements IBoardGameRati
     }
 
     public BoardGameRatingsDomain(List<Board_Game_Rating__c> sObjectList) {
-        super(sObjectList);
+        super(sObjectList, Board_Game_Rating__c.SObjectType);
     }
 
     public List<Board_Game_Rating__c> getBoardGameRatings()
