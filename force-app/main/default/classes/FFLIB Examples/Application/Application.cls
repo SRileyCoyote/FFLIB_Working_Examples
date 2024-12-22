@@ -42,7 +42,7 @@ public class Application {
     );
 
     /** Configure and create the DomainFactory for this Application
-    *  Domain Layer: This layer handles all of the trigger actions for the Object such as before and after insert update and delete methods
+    *  Domain Layer: This layer handles all of the record specific actions for the SObject such as validation and filtering methods
     *  Recommended Naming Convention for the Domain Class in [SOBjectName]sDomain so it is clear it is the Domain Class for that SObject  
     */
     public static final fflib_Application.DomainFactory Domain = new fflib_Application.DomainFactory(
