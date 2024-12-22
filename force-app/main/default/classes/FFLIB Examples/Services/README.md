@@ -3,14 +3,15 @@
 ## Overview
 ### Class
 1. Create Service Layer Class and Interface
-1. Add Service to [Application](/force-app/main/default/classes/FFLIB/Application)
+1. Add Service to [Application](/force-app/main/default/classes/FFLIB%20Examples/Application)
 1. Add Logic to Enable/Disable Features using [Custom Metadata Type](/force-app/main/default/objects)
 1. Add Methods for Individual Features
-    1. Pass in [UnitOfWork]() from [Domain](/force-app/main/default/classes/FFLIB/Domains)
-    1. Call [Selectors](/force-app/main/default/classes/FFLIB/Selectors) for any SOQL Calls Needed 
+    1. Pass in [UnitOfWork]() from [Implementation Layer]() (i.e. [Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers) or an APEX Controller)
+    1. Call [Selectors](/force-app/main/default/classes/FFLIB%20Examples/Selectors) for any SOQL Calls Needed 
+    1. Call [Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains) for any record filtering or processing
     1. Register All DMLs needed into passed in [UnitOfWork]() Object
 ### Test Class
-1. Add Mocking & Stubbing for any [Selectors](/force-app/main/default/classes/FFLIB/Selectors) Used
+1. Add Mocking & Stubbing for any [Selectors](/force-app/main/default/classes/FFLIB%20Examples/Selectors) or [Domains](/force-app/main/default/classes/FFLIB%20Examples/Domains) Used
 1. Add Mocking & Stubbing for [UnitOfWork]()
 1. Create Test Methods for Every Possible Scenario for Feature NOT Just Code Coverage
     1. Happy Path

@@ -5,9 +5,9 @@
 This Repo Shows working examples of the FFLIB architechure design patterns using design patterns and best practices I have picked up over the years. This is an open source repo intended for my own personal use and to share with those that need it.
 
 Already Included in the Metadata are the following Repos:
-- [FFLIB Repo](/force-app/main/default/classes/FFLIB%20Base%20Classes/FFLIB_COMMON)
-- [FFLIB Mocks Repo](/force-app/main/default/classes/FFLIB%20Base%20Classes/APEX_MOCKS) 
-- [SObjectFabricator Repo](/force-app/main/default/classes/FFLIB%20Base%20Classes/SOBJECT_FABRICATOR)
+- [FFLIB Repo](/force-app/main/default/classes/FFLIB%20Common%20Classes/FFLIB_COMMON)
+- [FFLIB Mocks Repo](/force-app/main/default/classes/FFLIB%20Common%20Classes/APEX_MOCKS) 
+- [SObjectFabricator Repo](/force-app/main/default/classes/FFLIB%20Common%20Classes/SOBJECT_FABRICATOR)
 
 ## Setup
 
@@ -65,7 +65,7 @@ This Use Case shows examples for the following:
 
 As an Event Owner, I would like a form to import my Collection or GeekList from BoardGameGeek and add new those new Board Games into the application. 
 Any Board Games not already in the application I would like marked as 🆕 and for those games to automatically be added to the Board Game Library for the Event I selected. 
-Upon follow up imports, I would like the option to update the existing Board Games information __as well as the Board Game Library Entry (TODO)__ from BoardGameGeek and for the Board Game to no longer be marked as 🆕.
+Upon follow up imports, I would like the option to update the existing Board Games information as well as the Board Game Library Entry from BoardGameGeek and for the Board Game to no longer be marked as 🆕.
 
 This Use Case shows examples for the following:
 - LWC
@@ -90,7 +90,7 @@ This Use Case shows examples for the following:
      - Unit Of Work Layer
 - Testing
      - Mocking and Stubbing FFLIB
-          - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB/Services/README.md#mocksverify-example-quick-reference)
+          - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
      - Mock Http Callouts
           - Using Static Resources for XML Results
@@ -132,14 +132,14 @@ As an Event Owner, I would like to be able to click on a button on the Board Gam
 
 [SObjects and Custom Metadata Types](/force-app/main/default/objects)
 
-[FFLIB Examples](/force-app/main/default/classes/FFLIB) - [Official Definitions](https://fflib.dev/docs)
-- [Application Layer Example](/force-app/main/default/classes/FFLIB/Application)
-- [Domain Layer Example](/force-app/main/default/classes/FFLIB/Domains)  - [Official Definition](https://fflib.dev/docs/domain-layer/overview)
-- [Selector Layer Example](/force-app/main/default/classes/FFLIB/Selectors) - [Official Definition](https://fflib.dev/docs/selector-layer/overview)
-- [Service Layer Example](/force-app/main/default/classes/FFLIB/Services) - [Official Definition](https://fflib.dev/docs/service-layer/overview)
+[FFLIB Examples](/force-app/main/default/classes/FFLIB%20Examples) - [Official Definitions](https://fflib.dev/docs)
+- [Application Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Application)
+- [Domain Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Domains)  - [Official Definition](https://fflib.dev/docs/domain-layer/overview)
+- [Selector Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Selectors) - [Official Definition](https://fflib.dev/docs/selector-layer/overview)
+- [Service Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Services) - [Official Definition](https://fflib.dev/docs/service-layer/overview)
 
 - [Official FFLIB Sample Code GitHub Repo](https://github.com/apex-enterprise-patterns/fflib-apex-common-samplecode)
 
-[Deployment Order and Dependancy Troubleshooting](/force-app/main/default/classes/FFLIB/README.md#deployment-order)
+[Deployment Order and Dependancy Troubleshooting](/force-app/main/default/classes/FFLIB%20Examples/README.md#deployment-order)
 
 

@@ -3,7 +3,7 @@
 ## Overview
 ### Class
 1. Create Selector Layer Class and Interface
-1. Add Selector to [Application](/force-app/main/default/classes/FFLIB/Application)
+1. Add Selector to [Application](/force-app/main/default/classes/FFLIB%20Examples/Application)
 1. Add Required Methods from Interface
 1. Add Methods for Needed SOQL Calls
     1. Each Method should return a List of the SObject
