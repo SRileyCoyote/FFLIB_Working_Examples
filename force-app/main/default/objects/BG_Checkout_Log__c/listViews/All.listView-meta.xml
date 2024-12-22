@@ -2,6 +2,7 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>All</fullName>
     <columns>NAME</columns>
+    <columns>Event_Name__c</columns>
     <columns>Attendee_Name__c</columns>
     <columns>Board_Game_Name__c</columns>
     <columns>Check_Out_Time__c</columns>

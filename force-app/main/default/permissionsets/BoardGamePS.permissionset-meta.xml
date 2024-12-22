@@ -38,6 +38,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>BG_Checkout_Log__c.Event_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>BG_Checkout_Log__c.Total_Check_Out_Time__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -79,6 +84,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Board_Game_Rating__c.Review__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Board_Games__c.Average_Attendee_Rating__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -178,7 +188,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Board_Games__c.Total_Board_Games__c</field>
+        <field>Board_Games__c.Total_Attendee_Rating_Value__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Board_Games__c.Total_Board_Game_Ratings__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Board_Games__c.Total_Favorited__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -204,6 +224,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Event__c.Event_Image__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Event__c.Total_Games__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>

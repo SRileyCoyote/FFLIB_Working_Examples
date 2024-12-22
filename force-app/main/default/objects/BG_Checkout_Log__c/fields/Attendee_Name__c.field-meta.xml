@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Attendee_Name__c</fullName>
     <externalId>false</externalId>
-    <formula>Checked_Out_By__r.Attendee_Name__c</formula>
+    <formula>HYPERLINK(&apos;/&apos;+ Checked_Out_By__r.Id, Checked_Out_By__r.Attendee_Name__c)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Attendee Name</label>
     <required>false</required>

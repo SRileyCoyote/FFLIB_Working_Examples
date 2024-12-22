@@ -156,7 +156,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Board Game Rating</label>
     <nameField>
-        <displayFormat>Rating-{0000}</displayFormat>
+        <displayFormat>BGR-{000}</displayFormat>
         <label>Board Game Rating ID</label>
         <type>AutoNumber</type>
     </nameField>

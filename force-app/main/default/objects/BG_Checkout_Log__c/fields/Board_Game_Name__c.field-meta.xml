@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Board_Game_Name__c</fullName>
     <externalId>false</externalId>
-    <formula>BG_Library_Entry__r.Board_Game__r.Name</formula>
+    <formula>HYPERLINK(&apos;/&apos;+ BG_Library_Entry__r.Board_Game__r.Id, BG_Library_Entry__r.Board_Game__r.Name)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Board Game Name</label>
     <required>false</required>
