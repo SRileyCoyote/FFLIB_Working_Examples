@@ -1,6 +1,17 @@
 # SELECTOR LAYER
 
 ## Overview
+
+The Selector Layer is where any and all SOQL calls for the Application should be housed. Any class that requires the use of a SOQL call should use the respective SObject Selector instead. 
+
+__Calls__ to the Selector Methods should be treated as SOQL Calls meaning they should never be inside loops.
+
+__Parameters__ for Selector Methods should always be Sets or Lists for bulkification and possible resuability later.
+
+Selector Methods should __Return__ Lists of the SObject Type not just an individual SObject for bulkification and possible resuability later.
+
+The Benefit is that this Layer can then be Mocked and Stubbed out from the whatever Test Class is calling the Selector to return relevant results without having to actually perform any DML inserts or updates with the Test Data bypassing any unneeded data manipulation required by Validation Rules as well as unexpected results from Triggers on the SObject that might change the data on the Test Record. Unit test data can then focus on just the logic in the mthod without having to worry about an Data Manipulation or Validation Rules that might be applied now or in the future.
+
 ### Class
 1. Create Selector Layer Class and Interface
 1. Add Selector to [Application](/force-app/main/default/classes/FFLIB%20Examples/Application)

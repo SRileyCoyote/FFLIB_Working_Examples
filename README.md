@@ -2,14 +2,19 @@
 
 ## Overview
 
-This Repo Shows working examples of the FFLIB architechure design patterns using design patterns and best practices I have picked up over the years. This is an open source repo intended for my own personal use and to share with those that need it.
+This Repo Shows working examples of the FFLIB architechure design patterns using design patterns and best practices I have picked up over the years. This is an open source repo intended for my own personal use and to share with those that need it. 
 
-Already Included in the Metadata are the following Repos:
-- [FFLIB Repo](/force-app/main/default/classes/FFLIB%20Common%20Classes/FFLIB_COMMON)
-- [FFLIB Mocks Repo](/force-app/main/default/classes/FFLIB%20Common%20Classes/APEX_MOCKS) 
-- [SObjectFabricator Repo](/force-app/main/default/classes/FFLIB%20Common%20Classes/SOBJECT_FABRICATOR)
+Below you will find:
+- [Setup Instructions](/README.md#scratch-org-setup-instructions) on how to create a Scratch Org and populate it with all of the metadata included for the org as well as some Example Test Data so that you can see how the examples work in a live environment.
+- [Use Cases](/README.md#example-use-cases) for all of the code provided in this Repository as well as a brief overview of the coding method examples are included in that Use Case.
+- [Links for More Information](/README.md#links-for-more-information) about the Application Schema as well as each of the different FFLIB Layers, both official definitions as well as notes about my own understanding of how each Layer is works with each other.
 
-## Setup
+Already Included in the Metadata are copies of the following Repos:
+- [FFLIB Common](/force-app/main/default/classes/FFLIB%20Common%20Classes/FFLIB_COMMON)
+- [FFLIB Mocks](/force-app/main/default/classes/FFLIB%20Common%20Classes/APEX_MOCKS) 
+- [SObjectFabricator](/force-app/main/default/classes/FFLIB%20Common%20Classes/SOBJECT_FABRICATOR)
+
+## Scratch Org Setup Instructions
 
 1. Download Repository to Local Machine with VS Code (or similiar IDE)
    1. Ensure [latest Salesforce CLI is installed](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) for `SF` Commands
@@ -33,9 +38,18 @@ sf data import tree -p ./data/Import-plan.json
 
 ## Example Use Cases
 
-For this example, I put together a small Application in Salesforce based on what I know best: Board Game Conventions. In this example, we will be using the following Use Cases:
+For this example, I put together an Application in Salesforce based on what I know best: Board Games and Board Game Conventions.
 
-### 1. Mark as Favorite
+[Apex Classes](/force-app/main/default/classes/FFLIB%20Examples) are all sorted and organized in seperate folders based on the their respective layers. 
+
+In this example, we will be using the following Use Cases:
+1. [Mark Board Game as Favorite](/README.md#1-mark-as-board-game-as-favorite)
+1. [Import Board Game List from BoardGameGeek API](/README.md#2-import-board-game-list-from-boardgamegeek-api)
+1. [Update Individual Board Game Information from BoardGameGeek API](/README.md#3-update-individual-board-game-information-from-boardgamegeek-api)
+1. [Check Out/In Board Game (WIP)](/README.md#4-check-outin-board-game-wip)
+1. [Home Board Game Dashboard (WIP)](/README.md#6-home-board-game-dashboard-wip)
+
+### 1. Mark as Board Game as Favorite
 
 As an Event Attendee, when I add a Board Game Rating that is Marked as Favorite, I would like all of the other Board Game Ratings marked as Favorite for that Attendee to be Unchecked.
 If Multiple Board Game Ratings are added for Attendee where Favorite is Checked, Display Error to Attendee.
@@ -60,6 +74,8 @@ This Use Case shows examples for the following:
      - MockSetup Class
      - Mocking and Stubbing FFLIB
      - Use Case Unit Testing
+
+[Back to Top](/README.md#example-use-cases)
 
 ### 2. Import Board Game List from BoardGameGeek API
 
@@ -105,7 +121,9 @@ This Use Case shows examples for the following:
 
 [^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will be queued resulting in an error. If this happens just re-click submit and try again. 
 
-### 3. Update Individual Board Game Information from BoardGameGeek
+[Back to Top](/README.md#example-use-cases)
+
+### 3. Update Individual Board Game Information from BoardGameGeek API
 
 As an Event Owner, I would like to be able to click on a button to update individual board game's information from BoardGameGeek. I would like to be able to do this from the Board Game Record as well as the Board Game Library Entry Record, the latter of which would also update the Comments for the Entry. I would also like to be able to do this from the List View for each of these Objects and be able to Select Multiple Records to be Updated at once.
 
@@ -140,15 +158,15 @@ This Use Case shows examples for the following:
           - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
 
-### 4. Check Out Board Game (TODO)
+[Back to Top](/README.md#example-use-cases)
 
-As an Event Attendee, I would like to click a button and automatically Check Out a Board Game from the Board Game Library.
+### 4. Check Out/In Board Game (WIP)
 
-### 5. Check In Board Game (TODO)
+As an Event Attendee, I would like to click a button and automatically Check Out a Board Game from the Board Game Library. I would like this option to only be available if there is a copy of the Board Game Available to Check Out. I would also like to be able to view the Board Games that are checked out and click a button from the Check Out Log Record or List View that will check that Board Game back in.  
 
-As an Event Attendee, I would like to click a botton and automatically Check In the Board Game I have Checked Out
+[Back to Top](/README.md#example-use-cases)
 
-### 6. Home Board Game Dashboard (TODO)
+### 6. Home Board Game Dashboard (WIP)
 
 As an Event Owner, I would like to see a Dashboard showing: 
 - Total number of Board Games for the Event 
@@ -159,7 +177,9 @@ As an Event Owner, I would like to see a Dashboard showing:
 - Favorited Board Games
 - Top 5 User Rated Board Games
 
-## More Information
+[Back to Top](/README.md#example-use-cases)
+
+## Links for More Information 
 
 [SObjects and Custom Metadata Types](/force-app/main/default/objects)
 

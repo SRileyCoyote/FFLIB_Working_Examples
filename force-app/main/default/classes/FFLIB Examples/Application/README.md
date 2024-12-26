@@ -1,6 +1,10 @@
 # APPLICATION LAYER
 
 ## Overview
+The Application Layer is a single Apex Class that houses the factories to create Selectors, Services, Domains, and SObjects that will be used with the Unit of Work Layer. 
+
+Each time a New Instance of one of the other classes are called, we call it using the Factory from the Application Layer so that during Testing we can Stub out those classes and replace the values returned with our own values so that the unit test for that individual class can focus just on the logic contained within that specific class.
+
 ### Class
 1. Create Application Layer Class
 1. Add Map of SObjects to their [Selectors](/force-app/main/default/classes/FFLIB%20Examples/Selectors)

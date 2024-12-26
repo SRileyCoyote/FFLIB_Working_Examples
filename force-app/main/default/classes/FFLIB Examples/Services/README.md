@@ -1,12 +1,19 @@
 # SERVICE LAYER
 
 ## Overview
+
+The Service Layer is the Meat and Potatoes of the Apex Method. This is where any and all logic should be performed for an SObject. A Service Class Method might call a [Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains) to filter records passed in from the [Implementation Layer](), A [Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors) to make a SOQL call to retrieve related records, or even other Services to perform actions or logic not related to its SObject.
+
+Each Service Method that performs any DML should accept a [Unit of Work]() Object as a parameter from the [Implementation Layer]() and the [Implementation Layer]() should commit the records after the call to all the Service methods. Because no actual DML is being performed yet, __RegisterNew__ or __RegisterDirty__ Methods from the [Unit of Work]() CAN be done inside of a Loop without any issue of hitting Governor Limits. 
+
+The Benefit is that this Layer can then Mocked and Stub out those other Services, [Domains](/force-app/main/default/classes/FFLIB%20Examples/Domains), Selectors, and the UnitOfWork. In doing so, Test data can be created and limited to just the fields and values required by the logic of the Service Unit Test and not have to worry about any additional validation rules for required fields of the record as no SOQL calls or DML will actually be performed in the Unit Tests.
+
 ### Class
 1. Create Service Layer Class and Interface
 1. Add Service to [Application](/force-app/main/default/classes/FFLIB%20Examples/Application)
 1. Add Logic to Enable/Disable Features using [Custom Metadata Type](/force-app/main/default/objects)
 1. Add Methods for Individual Features
-    1. Pass in [UnitOfWork]() from [Implementation Layer]() (i.e. [Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers) or an APEX Controller)
+    1. Pass in [UnitOfWork]() from [Implementation Layer]() (i.e. [Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers) or an [Apex Controller](/force-app/main/default/classes/FFLIB%20Examples/Controllers))
     1. Call [Selectors](/force-app/main/default/classes/FFLIB%20Examples/Selectors) for any SOQL Calls Needed 
     1. Call [Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains) for any record filtering or processing
     1. Register All DMLs needed into passed in [UnitOfWork]() Object
@@ -18,17 +25,17 @@
     1. Negative Paths
     1. Alternative Paths
     1. Bulkified Records
-1. Use Asserts or Mocks.Verify Methods to Validate Results
+1. Use Asserts or Mocks.Verify() Methods to Validate Results
 
 ### Mocks.Verify Example Quick Reference:
 
-Verify that UOW Method ran X number of times
+Verify that UOW Register Dirty Method was called
 
 ```
-((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, X))
+((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
     .registerDirty(fflib_Match.anySObject());
 ```
-Verify that UOW Method ran for a Single Specific Record
+Verify that UOW Method ran for a Single Specific Record and matches expected values being updated
 
 ```
  ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
@@ -39,7 +46,7 @@ Verify that UOW Method ran for a Single Specific Record
                 }
             ));
 ```
-Verify that UOW Method ran for a LIST of Specific Records
+Verify that UOW Method ran for a LIST of Specific Records and matches expected values being updated
 
 ```
  ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
