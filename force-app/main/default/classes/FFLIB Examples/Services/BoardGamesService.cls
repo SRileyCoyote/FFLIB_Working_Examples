@@ -13,7 +13,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-21
+* @modified       2024-12-26
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -27,10 +27,13 @@ public without sharing class BoardGamesService extends BaseService implements IB
     //Set Final Strings for Return Messages
     //Use Final Strings so that exact text can be used in the Test Class without worrying about text changes
     @TestVisible private final String SERVICE_NOT_ENABLED_MSG = 'This Service is Not Enabled. Please Contact a System Administrator to Enable';
-    @TestVisible private final String SUCCESS_MSG = '{0} New Games Added. {1} Games Updated.';
-    @TestVisible private final String UNPROCESSED_FOUND_MSG = '{0} of {1} Board Games Found and Processed. {2} New Games Added. {3} Games Updated.';
+    @TestVisible private final String SUCCESS_MSG = '{0} New Games Added. {1} Games Updated. {2}';
+    @TestVisible private final String UNPROCESSED_FOUND_MSG = '{0} of {1} Board Games Unprocessed.';
     @TestVisible private final String EVENT_ID_INVALID_MSG = 'Invalid Event ID';
     @TestVisible private final String COLLECTION_OR_ID_INVALID_MSG = 'Invalid Collection or Geek ID';
+    @TestVisible private final String NO_RECORD_IDS_PROVIDED_MSG = 'No Record IDs or BGG IDs Found';
+    @TestVisible private final String UPDATE_RECORD_SUCCESS_MSG = 'Board Game {0} has been Refreshed. {1}';
+    @TestVisible private final String NO_RECORDS_UPDATED_ERR_MSG = 'BGG Game ID Not Found in BoardGameGeek. Please Check the BGG ID and Try Again';
 
     //Initialize Service Class
     public BoardGamesService(){
@@ -175,14 +178,78 @@ public without sharing class BoardGamesService extends BaseService implements IB
             }
 
             //Using String Format to use Final Strings with Alterations based on result numbers
+            String unprocessedMsg ='';
             if(result.unprocessedIDs.size() > 0){
-                Integer totalProcessed = bggIDs.size() - result.unprocessedIDs.size();
-                return String.format(UNPROCESSED_FOUND_MSG, 
-                                        new Integer[]{totalProcessed, bggIDs.size(), result.wrapperMap.size(), bgToUpdate.size()} );
-            }else{
-                return String.format(SUCCESS_MSG, 
-                                        new Integer[]{result.wrapperMap.size(), bgToUpdate.size()} );
+                unprocessedMsg = String.format(UNPROCESSED_FOUND_MSG, 
+                                        new Integer[]{
+                                            result.unprocessedIDs.size(), 
+                                            bggIDs.size()
+                                        } );
             }
+            
+            return String.format(SUCCESS_MSG, 
+                                    new String[]{
+                                        result.wrapperMap.size().toString(), 
+                                        bgToUpdate.size().toString(),
+                                        unprocessedMsg
+                                    } );
+    }
+
+    public String updateBoardGameDetailsFromBGG(fflib_SObjectUnitOfWork uow, Map<ID, String> recordIdToBGGIdMap){
+        //If Service NOT enabled, Throw Error
+        if(!this.serviceEnabled('updateBoardGameDetailsFromBGG')){ //Check if this Service Method is Enabled from Parent
+            throw new BGServiceException(SERVICE_NOT_ENABLED_MSG);
+        }
+
+        //Validate Inputs
+        if(recordIdToBGGIdMap == null || recordIdToBGGIdMap.size() == 0){
+            throw new BGServiceException(NO_RECORD_IDS_PROVIDED_MSG);
+        }
+
+        //Call HttpService to Get Details 
+        BGGCalloutService.CalloutResult result = bggHttpService.getBoardGameDetailFromBGGIds(recordIdToBGGIdMap);
+        
+        //If Result Message exists from an error
+        // And NOT from unprocessed IDs
+        // Return Result message back to User as Error
+        if(result.resultMessage != null && result.unprocessedIDs.size() == 0){
+            throw new BGServiceException(result.resultMessage);
+        }
+
+        //Otherwise, Update Board Game Records in Map
+        List<String> updatedGameNames = new List<String>();
+        For(BGGCalloutService.BoardGameWrapper wrapper : result.wrapperMap.values()){
+            //IF BGG ID is Not included in  Unprocessed IDs, 
+            // AND Board Game Name on Board Game is NOT NULL 
+            // Update Board Game
+            if(!result.unprocessedIDs.contains(wrapper.boardGame.BGG_ID__c)
+                && wrapper.boardGame.Name != null){
+                wrapper.boardGame.Is_New__c = false;
+                updatedGameNames.add(wrapper.boardGame.Name);
+                uow.registerDirty(wrapper.boardGame);
+            }
+        }
+
+        //If List of Update Board Game Names is Empty, 
+        // Then No Board Games were Returned for the IDs Given
+        // So Throw Error
+        if(updatedGameNames.isEmpty()){
+            throw new BGServiceException(NO_RECORDS_UPDATED_ERR_MSG);
+        }
+
+        String unprocessedMsg ='';
+        if(result.unprocessedIDs.size() > 0){
+            unprocessedMsg = String.format(UNPROCESSED_FOUND_MSG, 
+                                                        new Integer[]{
+                                                            result.unprocessedIDs.size(), 
+                                                            result.wrapperMap.size()
+                                                        } );
+        }
+
+        return String.format(UPDATE_RECORD_SUCCESS_MSG, new List<String>{
+                                                            String.join(updatedGameNames, ', '),  //CSV List of Names of Games Updated
+                                                            unprocessedMsg //Result of Unprocessed Games
+                                                        });
     }
 
     public class BGServiceException extends Exception {}

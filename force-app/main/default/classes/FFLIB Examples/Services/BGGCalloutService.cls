@@ -10,7 +10,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-11-30
+* @modified       2024-12-26
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -85,6 +85,26 @@ public class BGGCalloutService implements IBGGCalloutService {
         return rtv;
     }
 
+    public CalloutResult getBoardGameDetailFromBGGIds(Map<Id, String> recordIdToBGGIdMap){
+        
+        //Initialize new CalloutResult to Return with new Wrapper Map
+        CalloutResult result = new CalloutResult();
+        result.wrapperMap = new Map<String, BoardGameWrapper>();
+
+        //For Each RecordId and BGG ID key/value pair
+        for(ID recordId : recordIdToBGGIdMap.keySet()){
+            BoardGameWrapper wrapper = new BoardGameWrapper(); //Initialize New Wrapper
+            wrapper.boardGame = new Board_Games__c(     //Add Values to Board Game in Wrapper
+                                                        ID = recordId, 
+                                                        BGG_ID__c = recordIdToBGGIdMap.get(recordId)
+                                                    );
+            //Put Wrapper into Result Wrapper Map
+            result.wrapperMap.put(wrapper.boardGame.BGG_ID__c, wrapper);
+        }
+        //Make Callout and Get Board Game Details and return the result
+        return getBoardGameDetailsFromBGG(result);
+    }
+
     public CalloutResult getBoardGameDetailsFromBGG(CalloutResult result){
 
         if(result.wrapperMap.size() > 0){ //If no BGG Ids provided, do nothing
@@ -92,7 +112,7 @@ public class BGGCalloutService implements IBGGCalloutService {
             String endpoint = 'https://boardgamegeek.com/xmlapi2/thing?stats=1&id=';
 
             //BGG Thing API has a limit of 20 Games per Callout
-            //Break Set into batches of 20
+            //Break Set into batches of 19
             List<Set<String>> bggIdBatches = createBatches(result.wrapperMap.keySet(), 19);
             List<Dom.XmlNode> results = new List<Dom.XmlNode>();
             try{
@@ -113,7 +133,7 @@ public class BGGCalloutService implements IBGGCalloutService {
                                                         new Integer[]{totalProcessed, result.wrapperMap.size()});
                 }
             } catch (Exception ex){
-                throw new HttpServiceException(ERROR_DETAILS_MSG +ex.getMessage());
+                throw new HttpServiceException(ERROR_DETAILS_MSG + ex.getMessage());
             }
 
             //For all results returned, parse XML into Board Game Data

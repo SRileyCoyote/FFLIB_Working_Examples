@@ -6,7 +6,7 @@
 * variables that might occur. Up to and Including: Positive, Negative, and Bulk Testing.
 * If done correctly, minimal manual testing should be needed in the Application. 
 *
-* This Test Class has 15 Test Methods which might seem like a LOT but once the first test method is
+* This Test Class has dozens of Test Methods which might seem like a LOT but once the first test method is
 * written, it can then be copied over to the next one and only slight variation needs to be made
 * for the next test class based on the inputs changed and the different results. 
 *
@@ -17,7 +17,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-21
+* @modified       2024-12-23
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -115,6 +115,10 @@ private class BoardGamesServiceTest {
                                         ))
                 //Using Seperate Return Value for the Second Callout 
                 .thenReturn((BGGCalloutService.CalloutResult) params.get(MockParams.RETURNED_DETAILS_CALLOUT_RESULT));
+            mocks.when(mockCalloutService.getBoardGameDetailFromBGGIds(
+                                            (Map<Id, String>) fflib_Match.anyObject()
+                                        ))
+                .thenReturn((BGGCalloutService.CalloutResult) params.get(MockParams.RETURNED_DETAILS_CALLOUT_RESULT));
             mocks.stopStubbing();
 
             // Set the Selector Mock, Service Mock, and UOW Mock created as the classes to be used 
@@ -147,6 +151,7 @@ private class BoardGamesServiceTest {
         // But also contains a config record for each of the methods of the Service 
         Assert.areNotEqual(0, service.serviceConfigMap.size(), 'No Service Configs Found for BoardGames Domain');
         Assert.isTrue(service.serviceConfigMap.containsKey('getBoardGameDetailsFromBGG'), 'Service Config for getBoardGameDetailsFromBGG Method Not Found');
+        Assert.isTrue(service.serviceConfigMap.containsKey('updateBoardGameDetailsFromBGG'), 'Service Config for updateBoardGameDetailsFromBGG Method Not Found');
     }
 
     ////////////////////////////// getBoardGameDetailsFromBGG Tests ////////////////////////////////////////
@@ -167,6 +172,7 @@ private class BoardGamesServiceTest {
     // Get Board Game Details with One Matching Board Game NOT marked New, One Library Entry, and Update Exisiting
     // Get Board Game Details with One Matching Board Game NOT marked New, One Library Entry, and NOT Update Exisiting
 
+    //Start Testing
     // Get Board Game Details with Custom Config where Service Disabled
     @IsTest
     public static void givenServiceConfigWithServiceDisabled_WhenGetBGDetailsCalled_ThenErrorThrown(){
@@ -423,9 +429,10 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
-                                                                        1, // # of New
-                                                                        0  // # of Updated
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                                        '1', // # of New
+                                                                        '0', // # of Updated
+                                                                        '' // Unprocessed Message
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
@@ -515,13 +522,16 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.UNPROCESSED_FOUND_MSG, new Integer[]{
-                                                                        1, // Total Processed
-                                                                        2, // Total Found
-                                                                        1, // # of New
-                                                                        0  // # of Updated
-                                                                    }), 
-                                        result, 
+        String unprocessedMsg = String.format(service.UNPROCESSED_FOUND_MSG, new Integer[]{
+                                                                                1, // Total Unprocessed
+                                                                                2  // Total Found
+                                                                            });
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                    '1', // # of New
+                                                    '0', // # of Updated
+                                                    unprocessedMsg // Unprocessed Message
+                                                }), 
+                                        result,  
                                         'Result Message does not match Expected: '+result);
 
         //Verify that UOW Register Dirty Did Not Run,
@@ -605,9 +615,10 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
-                                                                        0, // # of New
-                                                                        1  // # of Updated
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                                        '0', // # of New
+                                                                        '1', // # of Updated
+                                                                        '' // Unprocessed Message
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
@@ -689,9 +700,10 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
-                                                                        0, // # of New
-                                                                        0  // # of Updated
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                                        '0', // # of New
+                                                                        '0', // # of Updated
+                                                                        '' // Unprocessed Message
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
@@ -775,9 +787,10 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
-                                                                        0, // # of New
-                                                                        1  // # of Updated
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                                        '0', // # of New
+                                                                        '1', // # of Updated
+                                                                        '' // Unprocessed Message
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
@@ -859,9 +872,10 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
-                                                                        0, // # of New
-                                                                        0  // # of Updated
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                                        '0', // # of New
+                                                                        '0', // # of Updated
+                                                                        '' // Unprocessed Message
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
@@ -943,9 +957,10 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
-                                                                        0, // # of New
-                                                                        1  // # of Updated
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                                        '0', // # of New
+                                                                        '1', // # of Updated
+                                                                        '' // Unprocessed Message
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
@@ -1045,9 +1060,10 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
-                                                                        0, // # of New
-                                                                        0  // # of Updated
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                                        '0', // # of New
+                                                                        '0', // # of Updated
+                                                                        '' // Unprocessed Message
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
@@ -1140,9 +1156,10 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
-                                                                        0, // # of New
-                                                                        1  // # of Updated
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                                        '0', // # of New
+                                                                        '1', // # of Updated
+                                                                        '' // Unprocessed Message
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
@@ -1242,9 +1259,10 @@ private class BoardGamesServiceTest {
 
         //Validate Data
         //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new Integer[]{
-                                                                        0, // # of New
-                                                                        0  // # of Updated
+        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
+                                                                        '0', // # of New
+                                                                        '0', // # of Updated
+                                                                        '' // Unprocessed Message
                                                                     }), 
                                         result, 
                                         'Result Message does not match Expected: '+result);
@@ -1256,5 +1274,397 @@ private class BoardGamesServiceTest {
         //Verify that UOW Register New Did NOT Run, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
         .registerNew(fflib_Match.anySObject());
+    }
+
+    ////////////////////////////// updateBoardGameDetailsFromBGG Tests ////////////////////////////////////////
+    //Test Plan
+    // Update Board Game Details with Custom Config where Service Disabled
+    // Update Board Game Details with Empty or Null ID/String Map
+    // Update Board Game Details with Failed Result Message from HTTP Service
+    // Update Board Game Details with Unprocessed IDs
+    // Update Board Game Details with No Results returned from HTTP Service
+    // Update Board Game Details with Results Returned
+    // Update Board Game Details with Multiple Results Returned
+    
+    //Start Testing
+    // Update Board Game Details with Custom Config where Service Disabled
+    @IsTest
+    public static void givenServiceConfigWithServiceDisabled_WhenUpdateBGDetailsCalled_ThenErrorThrown(){
+        //Setup Test Data and Mocking
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>();
+
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'updateBoardGameDetailsFromBGG';
+        mock.mockConfig.Service_Enabled__c = false;
+
+        //Run Test
+        Test.startTest();
+        String errMessage = 'No Error Found';
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        try{
+            service.updateBoardGameDetailsFromBGG(mock.uowMock, 
+                                            new Map<Id,String>{
+                                                fflib_IDGenerator.generate(Board_Games__c.SObjectType) => '12345'
+                                            });
+            Assert.isTrue(false, 'Error Not Thrown');
+        } catch (Exception ex){
+            errMessage = ex.getMessage();
+        }
+        Test.stopTest();
+
+        //Validate Data
+        Assert.areEqual(service.SERVICE_NOT_ENABLED_MSG, errMessage, 'Error Message Does Not Match: '+ errMessage);
+    }
+
+    // Update Board Game Details with Empty or Null ID/String Map
+    @IsTest
+    public static void givenNoIDs_WhenUpdateBGDetailsCalled_ThenErrorThrown(){
+
+        //Setup Test Data and Mocking
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{};
+
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'updateBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        String errMessage = 'No Error Found';
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        try{
+            service.updateBoardGameDetailsFromBGG(mock.uowMock, null);
+            Assert.isTrue(false, 'Error Not Thrown');
+        } catch (Exception ex){
+            errMessage = ex.getMessage();
+        }
+        Test.stopTest();
+
+        //Validate Data
+        Assert.areEqual(service.NO_RECORD_IDS_PROVIDED_MSG, errMessage, 'Error Message Does Not Match: '+ errMessage);
+    }
+
+    // Update Board Game Details with Failed Result Message from HTTP Service
+    @IsTest
+    public static void givenNoBGGDetailsReturned_WhenUpdateBGDetailsCalled_ThenErrorThrown(){
+
+        //Setup Test Data and Mocking
+        BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
+        calloutResult.resultMessage = 'No New Games Found';
+
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => calloutResult
+        };
+
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'updateBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        String errMessage = 'No Error Found';
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        try{
+            service.updateBoardGameDetailsFromBGG(mock.uowMock, 
+                                            new Map<Id,String>{
+                                                fflib_IDGenerator.generate(Board_Games__c.SObjectType) => '12345'
+                                            });
+            Assert.isTrue(false, 'Error Not Thrown');
+        } catch (Exception ex){
+            errMessage = ex.getMessage();
+        }
+        Test.stopTest();
+
+        //Validate Data
+        Assert.areEqual('No New Games Found', errMessage, 'Error Message Does Not Match: '+ errMessage);
+    }
+
+    // Update Board Game Details with Unprocessed IDs
+    @IsTest
+    public static void givenUnprocessedIds_WhenUpdateBGDetailsCalled_ThenCorrectMessageReturned(){
+
+        //Setup Test Data and Mocking
+        BGGCalloutService.CalloutResult detailCalloutResult = new BGGCalloutService.CalloutResult();
+        BGGCalloutService.BoardGameWrapper processedWrapper = new BGGCalloutService.BoardGameWrapper();
+        processedWrapper.boardGame = new Board_Games__c(
+                                        ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                        BGG_ID__c = '12345',
+                                        Name = 'My Board Game',
+                                        Is_New__c = true
+                                    );
+    
+        BGGCalloutService.BoardGameWrapper unprocessedWrapper = new BGGCalloutService.BoardGameWrapper();
+        unprocessedWrapper.boardGame = new Board_Games__c(
+                                        ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                        BGG_ID__c = '56789',
+                                        Name = 'My Unprocessed Board Game',
+                                        Is_New__c = true
+                                    );
+
+        detailCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+            '12345' => processedWrapper,
+            '56789' => unprocessedWrapper
+        };
+        detailCalloutResult.unprocessedIDs = new Set<String>{'56789'};
+
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => detailCalloutResult
+        };
+
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'updateBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        String result = service.updateBoardGameDetailsFromBGG(mock.uowMock, 
+                                            new Map<Id,String>{
+                                                fflib_IDGenerator.generate(Board_Games__c.SObjectType) => '12345'
+                                            });
+        Test.stopTest();
+
+        //Validate Data
+        //Verify Result Message
+        String unprocessedMsg = String.format(service.UNPROCESSED_FOUND_MSG, new Integer[]{
+                                                                                1, // Total Unprocessed
+                                                                                2  // Total Found
+                                                                            });
+        Assert.areEqual(String.format(service.UPDATE_RECORD_SUCCESS_MSG, new String[]{
+                                                                                processedWrapper.boardGame.Name, //List of Board Game Names
+                                                                                unprocessedMsg // Unprocessed Message
+                                                                            }), 
+                                        result,  
+                                        'Result Message does not match Expected: '+result);
+
+        //Verify that UOW Register New Did Not Run,
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+            .registerNew(fflib_Match.anySObject());
+            
+        //Verify that UOW Register Dirty method Ran Once for the Board Game
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            .registerDirty(fflib_Match.sobjectWith(
+                //Validate Record in Register dirty is the same as the Board Game in the detailCalloutResult 
+                new Map<Schema.SObjectField, Object>{
+                    //And that the Values inserted match expected
+                    Board_Games__c.ID => processedWrapper.boardGame.Id,
+                    Board_Games__c.BGG_ID__c => processedWrapper.boardGame.BGG_ID__c,
+                    Board_Games__c.Name => processedWrapper.boardGame.Name,
+                    Board_Games__c.Is_New__c => false
+                }
+            ));
+
+        //Verify that UOW Register Dirty method DID NOT Run for the Unprocessed Board Game
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+            .registerDirty(fflib_Match.sobjectWith(
+                //Validate Record in Register Dirty is NOT the same as the Unprocessed 
+                // Board Game in the detailCalloutResult 
+                new Map<Schema.SObjectField, Object>{
+                    Board_Games__c.ID => unprocessedWrapper.boardGame.Id,
+                    Board_Games__c.BGG_ID__c => unprocessedWrapper.boardGame.BGG_ID__c,
+                    Board_Games__c.Name => unprocessedWrapper.boardGame.Name,
+                    Board_Games__c.Is_New__c => false
+                }
+            ));
+    }
+
+    // Update Board Game Details with No Results returned from HTTP Service
+    @IsTest
+    public static void givenNoUpdatedBGGDetailsReturned_WhenUpdateBGDetailsCalled_ThenErrorThrown(){
+
+        //Setup Test Data and Mocking
+        BGGCalloutService.CalloutResult detailCalloutResult = new BGGCalloutService.CalloutResult();   
+        detailCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>();
+
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => detailCalloutResult
+        };
+
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'updateBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        String errMessage = 'No Error Found';
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        try{
+            service.updateBoardGameDetailsFromBGG(mock.uowMock, 
+                                            new Map<Id,String>{
+                                                fflib_IDGenerator.generate(Board_Games__c.SObjectType) => '12345'
+                                            });
+            Assert.isTrue(false, 'Error Not Thrown');
+        } catch (Exception ex){
+            errMessage = ex.getMessage();
+        }
+        Test.stopTest();
+
+        //Validate Data
+        Assert.areEqual(service.NO_RECORDS_UPDATED_ERR_MSG, errMessage, 'Error Message Does Not Match: '+ errMessage);
+
+        //Verify that UOW Register Dirty Did Not Run,
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
+            .registerDirty(fflib_Match.anySObject());
+    }
+
+    // Update Board Game Details with Results Returned
+    @IsTest
+    public static void givenUpdatedBGGDetailsReturned_WhenUpdateBGDetailsCalled_ThenBoardGameUpdated(){
+
+        //Setup Test Data and Mocking
+        BGGCalloutService.CalloutResult detailCalloutResult = new BGGCalloutService.CalloutResult();
+        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        wrapper.boardGame = new Board_Games__c(
+                                        ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                        BGG_ID__c = '12345',
+                                        Name = 'My Board Game',
+                                        Is_New__c = true
+                                    );
+    
+        detailCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+            '12345' => wrapper
+        };
+
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => detailCalloutResult
+        };
+
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'updateBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        String result = service.updateBoardGameDetailsFromBGG(mock.uowMock, 
+                                            new Map<Id,String>{
+                                                fflib_IDGenerator.generate(Board_Games__c.SObjectType) => '12345'
+                                            });
+        Test.stopTest();
+
+        //Validate Data
+        //Verify Result Message
+        Assert.areEqual(String.format(service.UPDATE_RECORD_SUCCESS_MSG, new String[]{
+                                                                                wrapper.boardGame.Name, //List of Board Game Names
+                                                                                '' // Unprocessed Message
+                                                                            }), 
+                                        result,  
+                                        'Result Message does not match Expected: '+result);
+
+        //Verify that UOW Register Dirty method Ran Once for the Board Game
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            .registerDirty(fflib_Match.sobjectWith(
+                //Validate Record in Register dirty is the same as the Board Game in the detailCalloutResult 
+                new Map<Schema.SObjectField, Object>{
+                    //And that the Values inserted match expected
+                    Board_Games__c.ID => wrapper.boardGame.Id,
+                    Board_Games__c.BGG_ID__c => wrapper.boardGame.BGG_ID__c,
+                    Board_Games__c.Name => wrapper.boardGame.Name,
+                    Board_Games__c.Is_New__c => false
+                }
+            ));
+    }
+
+    // Update Board Game Details with Multiple Results Returned
+    @IsTest
+    public static void givenMultipleUpdatedBGGDetailsReturned_WhenUpdateBGDetailsCalled_ThenMultipleBoardGamesUpdated(){
+
+        //Setup Test Data and Mocking
+        BGGCalloutService.CalloutResult detailCalloutResult = new BGGCalloutService.CalloutResult();
+        BGGCalloutService.BoardGameWrapper wrapper1 = new BGGCalloutService.BoardGameWrapper();
+        wrapper1.boardGame = new Board_Games__c(
+                                        ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                        BGG_ID__c = '12345',
+                                        Name = 'My First Board Game',
+                                        Is_New__c = true
+                                    );
+        BGGCalloutService.BoardGameWrapper wrapper2 = new BGGCalloutService.BoardGameWrapper();
+        wrapper2.boardGame = new Board_Games__c(
+                                        ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                        BGG_ID__c = '67890',
+                                        Name = 'My Second Board Game',
+                                        Is_New__c = true
+                                    );
+                        
+    
+        detailCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+            '12345' => wrapper1,
+            '67890' => wrapper2
+        };
+
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => detailCalloutResult
+        };
+
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'updateBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        String result = service.updateBoardGameDetailsFromBGG(mock.uowMock, 
+                                            new Map<Id,String>{
+                                                fflib_IDGenerator.generate(Board_Games__c.SObjectType) => '12345'
+                                            });
+        Test.stopTest();
+
+        //Validate Data
+        //Verify Result Message
+        List<String> names = new List<String>{wrapper1.boardGame.Name, wrapper2.boardGame.Name};
+        Assert.areEqual(String.format(service.UPDATE_RECORD_SUCCESS_MSG, new String[]{
+                                                                                String.join(names, ', '), //List of Board Game Names
+                                                                                '' // Unprocessed Message
+                                                                            }), 
+                                        result,  
+                                        'Result Message does not match Expected: '+result);
+
+        //Verify that UOW Register Dirty method Ran for the First Board Game
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+            .registerDirty(fflib_Match.sobjectWith(
+                //Validate Record in Register dirty is the same as the Board Game in the detailCalloutResult 
+                new Map<Schema.SObjectField, Object>{
+                    //And that the Values inserted match expected
+                    Board_Games__c.ID => wrapper1.boardGame.Id,
+                    Board_Games__c.BGG_ID__c => wrapper1.boardGame.BGG_ID__c,
+                    Board_Games__c.Name => wrapper1.boardGame.Name,
+                    Board_Games__c.Is_New__c => false
+                }
+            ));
+        
+        //Verify that UOW Register Dirty method Ran for the Second Board Game
+        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+        .registerDirty(fflib_Match.sobjectWith(
+            //Validate Record in Register dirty is the same as the Board Game in the detailCalloutResult 
+            new Map<Schema.SObjectField, Object>{
+                //And that the Values inserted match expected
+                Board_Games__c.ID => wrapper2.boardGame.Id,
+                Board_Games__c.BGG_ID__c => wrapper2.boardGame.BGG_ID__c,
+                Board_Games__c.Name => wrapper2.boardGame.Name,
+                Board_Games__c.Is_New__c => false
+            }
+        ));
+
     }
 }

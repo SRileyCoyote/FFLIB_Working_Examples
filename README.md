@@ -89,7 +89,7 @@ This Use Case shows examples for the following:
      - Selector Layor
      - Unit Of Work Layer
 - Testing
-     - Mocking and Stubbing FFLIB
+     - Mocking and Stubbing FFLIB Classes
           - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
      - Mock Http Callouts
@@ -105,7 +105,50 @@ This Use Case shows examples for the following:
 
 [^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will be queued resulting in an error. If this happens just re-click submit and try again. 
 
-### 3. Home Board Game Dashboard (TODO)
+### 3. Update Individual Board Game Information from BoardGameGeek
+
+As an Event Owner, I would like to be able to click on a button to update individual board game's information from BoardGameGeek. I would like to be able to do this from the Board Game Record as well as the Board Game Library Entry Record, the latter of which would also update the Comments for the Entry. I would also like to be able to do this from the List View for each of these Objects and be able to Select Multiple Records to be Updated at once.
+
+#### (TODO):
+```
+1. Add Headless Action to BG Library Entry
+     - Update Comment on BG Library Entry as well
+2. Add Headless Action to Board Game List View
+3. Add Headless Action to BG Library Entry List View
+```
+
+This Use Case shows examples for the following:
+- LWC
+     - Headless LWC
+     - Import Apex Controller
+     - Toast Messaging
+     - Wire Connection to Standard getRecord
+     - Promise Connection to Apex Controller
+- Expanding on Exisiting Code Base
+     - Adding to BGGCalloutService
+          - Reusing/Modifying Existing Methods
+     - Adding to BoardGameService
+     - Adding to Interfaces
+     - Adding to Test Classes
+- FFLIB
+     - Application Layor
+     - Implementation Layer (APEX Controller)
+     - Service Layor
+     - Unit Of Work Layer
+- Testing
+     - Mocking and Stubbing FFLIB Classes
+          - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
+     - Use Case Unit Testing
+
+### 4. Check Out Board Game (TODO)
+
+As an Event Attendee, I would like to click a button and automatically Check Out a Board Game from the Board Game Library.
+
+### 5. Check In Board Game (TODO)
+
+As an Event Attendee, I would like to click a botton and automatically Check In the Board Game I have Checked Out
+
+### 6. Home Board Game Dashboard (TODO)
 
 As an Event Owner, I would like to see a Dashboard showing: 
 - Total number of Board Games for the Event 
@@ -116,24 +159,13 @@ As an Event Owner, I would like to see a Dashboard showing:
 - Favorited Board Games
 - Top 5 User Rated Board Games
 
-### 4. Check Out Board Game (TODO)
-
-As an Event Attendee, I would like to click a button and automatically Check Out a Board Game from the Board Game Library.
-
-### 5. Check In Board Game (TODO)
-
-As an Event Attendee, I would like to click a botton and automatically Check In the Board Game I have Checked Out
-
-### 6. Update Individual Board Game Information from BoardGameGeek (TODO)
-
-As an Event Owner, I would like to be able to click on a button on the Board Game Record to update just that individual board game's information from BoardGameGeek
-
 ## More Information
 
 [SObjects and Custom Metadata Types](/force-app/main/default/objects)
 
 [FFLIB Examples](/force-app/main/default/classes/FFLIB%20Examples) - [Official Definitions](https://fflib.dev/docs)
 - [Application Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Application)
+- [Trigger Handler Example](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers)
 - [Domain Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Domains)  - [Official Definition](https://fflib.dev/docs/domain-layer/overview)
 - [Selector Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Selectors) - [Official Definition](https://fflib.dev/docs/selector-layer/overview)
 - [Service Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Services) - [Official Definition](https://fflib.dev/docs/service-layer/overview)

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <description>Update From BGG</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Update From BGG</masterLabel>
+    <targets>
+        <target>lightning__RecordAction</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordAction">
+            <actionType>Action</actionType> <!-- Headless Action - WARNING: Can NOT be changed After Deployed!-->
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
