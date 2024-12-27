@@ -5,9 +5,9 @@
 This Repo Shows working examples of the FFLIB architechure design patterns using design patterns and best practices I have picked up over the years. This is an open source repo intended for my own personal use and to share with those that need it. 
 
 Below you will find:
-- [Setup Instructions](/README.md#scratch-org-setup-instructions) on how to create a Scratch Org and populate it with all of the metadata included for the org as well as some Example Test Data so that you can see how the examples work in a live environment.
-- [Use Cases](/README.md#example-use-cases) for all of the code provided in this Repository as well as a brief overview of the coding method examples are included in that Use Case.
-- [Links for More Information](/README.md#links-for-more-information) about the Application Schema as well as each of the different FFLIB Layers, both official definitions as well as notes about my own understanding of how each Layer is works with each other.
+- [Setup Instructions](#scratch-org-setup-instructions) on how to create a Scratch Org and populate it with all of the metadata included for the org as well as some Example Test Data so that you can see how the examples work in a live environment.
+- [Use Cases](#example-use-cases) for all of the code provided in this Repository as well as a brief overview of the coding method examples are included in that Use Case.
+- [Links for More Information](#links-for-more-information) about the Application Schema as well as each of the different FFLIB Layers, both official definitions as well as notes about my own understanding of how each Layer is works with each other.
 
 Already Included in the Metadata are copies of the following Repos:
 - [FFLIB Common](/force-app/main/default/classes/FFLIB%20Common%20Classes/FFLIB_COMMON)
