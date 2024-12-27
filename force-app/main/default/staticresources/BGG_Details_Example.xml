@@ -1,2213 +1,652 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	This Example XML was pulled from BoardGameGeek using the API
+	Not all values are currently used in example application
+	Leaving the excess information in just in case it is needed to test against later
+-->
 <items termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
-<item type="boardgame" id="207830">
-         <thumbnail>https://cf.geekdo-images.com/bFZKvxPJ23dzGwgpOg-mIA__thumb/img/DcrVgGjSLsCZqXvEE_s0a1JSdn4=/fit-in/200x150/filters:strip_icc()/pic3213622.png</thumbnail>
-      <image>https://cf.geekdo-images.com/bFZKvxPJ23dzGwgpOg-mIA__original/img/Pi321k82TYCMy0v6GqKZ3LHvBYM=/0x0/filters:format(png)/pic3213622.png</image>
-                                     				
-				<name type="primary" sortindex="1" value="5-Minute Dungeon" />
-			
-						                               				
-				<name type="alternate" sortindex="1" value="5分钟地牢" />
-			    				
-				<name type="alternate" sortindex="1" value="5분 던전" />
-			
-						               													<description>5-&amp;shy;Minute Dungeon is a chaotic, co-&amp;shy;operative, real-&amp;shy;time card game in which players have only five minutes to escape the randomized dungeon. Communication and teamwork are critical to survival because there's no time to form a carefully considered plan &amp;mdash; and no predicting what dangers lie ahead.&amp;#10;&amp;#10;In more detail, players assume the role of one of ten heroes, each with special cards and abilities. Once the five-minute timer starts, the race is on to defeat all the monsters inside the dungeon. In order to defeat a monster, players must match symbols from their hand with ones on the monster's card. At the end of each dungeon is a powerful dungeon boss &amp;mdash; and after the first boss is defeated, the campaign continues to the second boss. Each boss, and each randomized dungeon, gets harder until players reach the fifth and final boss.&amp;#10;&amp;#10;</description>
-										      	               				<yearpublished value="2017" />
-						               				<minplayers value="2" />
-						               				<maxplayers value="5" />
-						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="177">
-			
-		<results numplayers="1">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="2" />
-					<result value="Not Recommended" numvotes="128" />
-				</results>					
-			
-		<results numplayers="2">		
-					<result value="Best" numvotes="13" />
-					<result value="Recommended" numvotes="68" />
-					<result value="Not Recommended" numvotes="58" />
-				</results>					
-			
-		<results numplayers="3">		
-					<result value="Best" numvotes="32" />
-					<result value="Recommended" numvotes="105" />
-					<result value="Not Recommended" numvotes="11" />
-				</results>					
-			
-		<results numplayers="4">		
-					<result value="Best" numvotes="109" />
-					<result value="Recommended" numvotes="47" />
-					<result value="Not Recommended" numvotes="3" />
-				</results>					
-			
-		<results numplayers="5">		
-					<result value="Best" numvotes="85" />
-					<result value="Recommended" numvotes="48" />
-					<result value="Not Recommended" numvotes="10" />
-				</results>					
-			
-		<results numplayers="5+">		
-					<result value="Best" numvotes="3" />
-					<result value="Recommended" numvotes="7" />
-					<result value="Not Recommended" numvotes="70" />
-				</results>					
-	</poll>
-<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
-  <result name="bestwith" value="Best with 4–5 players" />
-  <result name="recommmendedwith" value="Recommended with 2–5 players" />
-</poll-summary> 			               				<playingtime value="30" />
-						               				<minplaytime value="5" />
-						               				<maxplaytime value="30" />
-						               				<minage value="8" />
-						      			<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="46">
+	<item type="boardgame" id="207830">
+		<thumbnail>https://cf.geekdo-images.com/bFZKvxPJ23dzGwgpOg-mIA__thumb/img/DcrVgGjSLsCZqXvEE_s0a1JSdn4=/fit-in/200x150/filters:strip_icc()/pic3213622.png</thumbnail>
+		<image>https://cf.geekdo-images.com/bFZKvxPJ23dzGwgpOg-mIA__original/img/Pi321k82TYCMy0v6GqKZ3LHvBYM=/0x0/filters:format(png)/pic3213622.png</image>									
+		<name type="primary" sortindex="1" value="5-Minute Dungeon" />
+		<name type="alternate" sortindex="1" value="5分钟地牢" />
+		<name type="alternate" sortindex="1" value="5분 던전" />
+		<description>5-&amp;shy;Minute Dungeon is a chaotic, co-&amp;shy;operative, real-&amp;shy;time card game in which players have only five minutes to escape the randomized dungeon. Communication and teamwork are critical to survival because there's no time to form a carefully considered plan &amp;mdash; and no predicting what dangers lie ahead.&amp;#10;&amp;#10;In more detail, players assume the role of one of ten heroes, each with special cards and abilities. Once the five-minute timer starts, the race is on to defeat all the monsters inside the dungeon. In order to defeat a monster, players must match symbols from their hand with ones on the monster's card. At the end of each dungeon is a powerful dungeon boss &amp;mdash; and after the first boss is defeated, the campaign continues to the second boss. Each boss, and each randomized dungeon, gets harder until players reach the fifth and final boss.&amp;#10;&amp;#10;</description>
+		<yearpublished value="2017" />
+		<minplayers value="2" />
+		<maxplayers value="5" />
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="177">
+			<results numplayers="1">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="2" />
+				<result value="Not Recommended" numvotes="128" />
+			</results>					
+			<results numplayers="2">		
+				<result value="Best" numvotes="13" />
+				<result value="Recommended" numvotes="68" />
+				<result value="Not Recommended" numvotes="58" />
+			</results>					
+			<results numplayers="3">		
+				<result value="Best" numvotes="32" />
+				<result value="Recommended" numvotes="105" />
+				<result value="Not Recommended" numvotes="11" />
+			</results>					
+			<results numplayers="4">		
+				<result value="Best" numvotes="109" />
+				<result value="Recommended" numvotes="47" />
+				<result value="Not Recommended" numvotes="3" />
+			</results>					
+			<results numplayers="5">		
+				<result value="Best" numvotes="85" />
+				<result value="Recommended" numvotes="48" />
+				<result value="Not Recommended" numvotes="10" />
+			</results>					
+			<results numplayers="5+">		
+				<result value="Best" numvotes="3" />
+				<result value="Recommended" numvotes="7" />
+				<result value="Not Recommended" numvotes="70" />
+			</results>					
+		</poll>
+		<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
+		<result name="bestwith" value="Best with 4–5 players" />
+		<result name="recommmendedwith" value="Recommended with 2–5 players" />
+		</poll-summary> 			               				<playingtime value="30" />
+														<minplaytime value="5" />
+		<maxplaytime value="30" />
+		<minage value="8" />
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="46">
 			<results>		
-					<result value="2" numvotes="0" />
-					<result value="3" numvotes="0" />
-					<result value="4" numvotes="1" />
-					<result value="5" numvotes="2" />
-					<result value="6" numvotes="23" />
-					<result value="8" numvotes="18" />
-					<result value="10" numvotes="2" />
-					<result value="12" numvotes="0" />
-					<result value="14" numvotes="0" />
-					<result value="16" numvotes="0" />
-					<result value="18" numvotes="0" />
-					<result value="21 and up" numvotes="0" />
-				</results>					
-	</poll> 			      			<poll name="language_dependence" title="Language Dependence" totalvotes="13">
-			
-		<results>		
-					<result level="1" value="No necessary in-game text" numvotes="0" />
-					<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="9" />
-					<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="4" />
-					<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="0" />
-					<result level="5" value="Unplayable in another language" numvotes="0" />
-				</results>					
-	</poll> 			      			 			      				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1002" value="Card Game" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1010" value="Fantasy" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1046" value="Fighting" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1120" value="Print &amp; Play" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1037" value="Real-time" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2023" value="Cooperative Game" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2882" value="Elapsed Real Time Ending" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2040" value="Hand Management" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2962" value="Move Through Deck" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2831" value="Real-Time" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2015" value="Variable Player Powers" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="67583" value="Containers: Unique Shape" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="66333" value="Series: 5-Minute (Connor Reid)" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="424135" value="5-Minute Dungeon: Baby Barbarian" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="253170" value="5-Minute Dungeon: Curses! Foiled Again!" />
-		
-									
-			
-
-			      			
-
-			      			
-
-			      			
-
-			      			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamecompilation" id="332312" value="5-Minute Dungeon: Big Box" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameimplementation" id="253618" value="5-Minute Marvel" />
-		
-									
-			
-
-			      			
-
-			      	      	      				
-		 			
-
-			
-		
-					<link type="boardgamedesigner" id="85851" value="Connor Reid" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameartist" id="94578" value="Alex Diochon" />
-		
-									
-			
-
-			      	      				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="2429" value="Wiggles 3D" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="1001" value="(Web published)" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="917" value="DV Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="15605" value="Galápagos Jogos" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="8291" value="Korea Boardgames" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="37" value="KOSMOS" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="1905" value="Spin Master Ltd." />
-		
-									
-			
-
-			
-	
-
-	
-
-	
-	
-	
-   		<statistics page="1">
-								<ratings >
-			<usersrated value="10294" />
-			<average value="6.92164" />
-			<bayesaverage value="6.59708" />
-
-			<ranks>
-															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="1044" bayesaverage="6.59708" />
-																				<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="348" bayesaverage="6.61407" />
-												</ranks>
-
-			<stddev value="1.35861" />
-			<median value="0" />
-			<owned value="20111" />
-			<trading value="326" />
-			<wanting value="161" />
-			<wishing value="2175" />
-			<numcomments value="2037" />
-			<numweights value="264" />
-			<averageweight value="1.1212" />
-			</ratings>
-								</statistics>
-     
-	
-          
-</item>
-<item type="boardgame" id="176286">
-         <thumbnail>https://cf.geekdo-images.com/7pt-jQqIttgiO8PYNSFzRw__thumb/img/JWqFQkGTdaAW9L2yEaQxnaggevk=/fit-in/200x150/filters:strip_icc()/pic2718946.jpg</thumbnail>
-      <image>https://cf.geekdo-images.com/7pt-jQqIttgiO8PYNSFzRw__original/img/KvL_yHRvTKhL6m3UtnbUg2BKT_8=/0x0/filters:format(jpeg)/pic2718946.jpg</image>
-                                     				
-				<name type="primary" sortindex="1" value="A.D.A.P.T." />
-			
-						                           
-						               													<description>Choose your starting guppy, then use an all-new experience point-based drafting system to buy upgraded bodies and all manner of new parts for your guppy. Quickly adapt it to become the most powerful master fish in the sea with any combination of aquatic bodies and parts you can mash up, battling the other master fish to the death along the way for there can be only one master fish in this ocean.&amp;#10;&amp;#10;A.D.A.P.T. is a card game for 2-3 players that usually plays in 20-30 minutes, comes with three full sets of polyhedral dice (3d4s, 3d6s, 3d8s, 6d10s, 3d12s, &amp;amp; 3d20s), and proudly bears a very unique theme. Lightweight, light hearted, and entirely unique &amp;mdash; we're certain you've never played anything like it before.&amp;#10;&amp;#10;Will your Dolphin, with the armored scales of an Arampaima, the mouth of a giant Sea Bass, the bioelectricity of an Eel, and the tail of a Thresher Shark prove victorious by ramming other fish with its lethal Swordfish horn? Will your Sailfish, with a Clownfish Tail, poisonous Lionfish pectoral fins, and Anglerfish Light Node, followed by a school of fish he commands, be the last Master Fish alive? Or will your Great White Shark, with the spiked skin of a Puffer Fish, over-sized brain, and regenerating heart be the last fish swimming by leaping from the water with its Flying Fish wings for a diving sneak attack? The possibilities are endless!&amp;#10;&amp;#10;With Octo, Fantasy, Reptile, Guppy, and Mech expansions also available, there's no reason that your Giant Squid with the wings of a Pegasus and claws of a dragon can't claim victory through use of torpedoes from inside its tortoise shell. Each time you upgrade your fish's body or add new parts, it becomes more powerful, lives longer, and gains new special abilities!&amp;#10;&amp;#10;Life under the sea just got much more interesting!&amp;#10;&amp;#10;</description>
-										      	               				<yearpublished value="2016" />
-						               				<minplayers value="2" />
-						               				<maxplayers value="3" />
-						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="5">
-			
-		<results numplayers="1">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="0" />
-					<result value="Not Recommended" numvotes="4" />
-				</results>					
-			
-		<results numplayers="2">		
-					<result value="Best" numvotes="1" />
-					<result value="Recommended" numvotes="4" />
-					<result value="Not Recommended" numvotes="0" />
-				</results>					
-			
-		<results numplayers="3">		
-					<result value="Best" numvotes="2" />
-					<result value="Recommended" numvotes="2" />
-					<result value="Not Recommended" numvotes="1" />
-				</results>					
-			
-		<results numplayers="3+">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="2" />
-					<result value="Not Recommended" numvotes="2" />
-				</results>					
-	</poll>
-<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
-  <result name="bestwith" value="Best with 2–3 players" />
-  <result name="recommmendedwith" value="Recommended with 2–3 players" />
-</poll-summary> 			               				<playingtime value="40" />
-						               				<minplaytime value="15" />
-						               				<maxplaytime value="40" />
-						               				<minage value="7" />
-						      			<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="3">
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="1" />
+				<result value="5" numvotes="2" />
+				<result value="6" numvotes="23" />
+				<result value="8" numvotes="18" />
+				<result value="10" numvotes="2" />
+				<result value="12" numvotes="0" />
+				<result value="14" numvotes="0" />
+				<result value="16" numvotes="0" />
+				<result value="18" numvotes="0" />
+				<result value="21 and up" numvotes="0" />
+			</results>					
+		</poll> 			      			
+		<poll name="language_dependence" title="Language Dependence" totalvotes="13">
 			<results>		
-					<result value="2" numvotes="0" />
-					<result value="3" numvotes="0" />
-					<result value="4" numvotes="0" />
-					<result value="5" numvotes="0" />
-					<result value="6" numvotes="1" />
-					<result value="8" numvotes="2" />
-					<result value="10" numvotes="0" />
-					<result value="12" numvotes="0" />
-					<result value="14" numvotes="0" />
-					<result value="16" numvotes="0" />
-					<result value="18" numvotes="0" />
-					<result value="21 and up" numvotes="0" />
-				</results>					
-	</poll> 			      			<poll name="language_dependence" title="Language Dependence" totalvotes="2">
-			
-		<results>		
-					<result level="1" value="No necessary in-game text" numvotes="0" />
-					<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="2" />
-					<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="0" />
-					<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="0" />
-					<result level="5" value="Unplayable in another language" numvotes="0" />
-				</results>					
-	</poll> 			      			 			      				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1002" value="Card Game" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1017" value="Dice" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1021" value="Economic" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1010" value="Fantasy" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1008" value="Nautical" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2664" value="Deck, Bag, and Pool Building" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2072" value="Dice Rolling" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2040" value="Hand Management" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2041" value="Open Drafting" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2015" value="Variable Player Powers" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="7975" value="Animals: Fish / Fishes" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="70948" value="Digital Implementations: Tabletopia" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="16886" value="Theme: Evolution" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="204774" value="A.D.A.P.T.: 5-in-1 Expansion Pack" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="204761" value="A.D.A.P.T.: Black Bio-Mech Expansion Pack" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="204758" value="A.D.A.P.T.: Blue Fantasy Creature Expansion Pack" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="204757" value="A.D.A.P.T.: Green Reptile &amp; Amphibian Expansion Pack" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="204756" value="A.D.A.P.T.: Red Cephalopod Expansion Pack" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="204760" value="A.D.A.P.T.: Yellow Guppy Expansion Pack" />
-		
-									
-			
-
-			      			
-
-			      			
-
-			      			
-
-			      			
-
-			      			
-
-			      			
-
-			      			
-
-			      	      	      				
-		 			
-
-			
-		
-					<link type="boardgamedesigner" id="69504" value="John Wrot!" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameartist" id="36272" value="Adelson Tavares" />
-		
-									
-			
-
-			      	      				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="25566" value="Gate Keeper Games" />
-		
-									
-			
-
-			
-	
-
-	
-
-	
-	
-	
-   		<statistics page="1">
-								<ratings >
-			<usersrated value="134" />
-			<average value="5.61931" />
-			<bayesaverage value="5.49723" />
-
-			<ranks>
-															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="23591" bayesaverage="5.49723" />
-												</ranks>
-
-			<stddev value="2.18377" />
-			<median value="0" />
-			<owned value="380" />
-			<trading value="27" />
-			<wanting value="4" />
-			<wishing value="38" />
-			<numcomments value="61" />
-			<numweights value="8" />
-			<averageweight value="2.75" />
+				<result level="1" value="No necessary in-game text" numvotes="0" />
+				<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="9" />
+				<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="4" />
+				<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="0" />
+				<result level="5" value="Unplayable in another language" numvotes="0" />
+			</results>					
+		</poll> 			
+		<link type="boardgamecategory" id="1002" value="Card Game" />
+		<link type="boardgamecategory" id="1010" value="Fantasy" />
+		<link type="boardgamecategory" id="1046" value="Fighting" />
+		<link type="boardgamecategory" id="1120" value="Print &amp; Play" />
+		<link type="boardgamecategory" id="1037" value="Real-time" />
+		<link type="boardgamemechanic" id="2023" value="Cooperative Game" />
+		<link type="boardgamemechanic" id="2882" value="Elapsed Real Time Ending" />
+		<link type="boardgamemechanic" id="2040" value="Hand Management" />
+		<link type="boardgamemechanic" id="2962" value="Move Through Deck" />
+		<link type="boardgamemechanic" id="2831" value="Real-Time" />
+		<link type="boardgamemechanic" id="2015" value="Variable Player Powers" />
+		<link type="boardgamefamily" id="67583" value="Containers: Unique Shape" />
+		<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
+		<link type="boardgamefamily" id="66333" value="Series: 5-Minute (Connor Reid)" />
+		<link type="boardgameexpansion" id="424135" value="5-Minute Dungeon: Baby Barbarian" />
+		<link type="boardgameexpansion" id="253170" value="5-Minute Dungeon: Curses! Foiled Again!" />
+		<link type="boardgamecompilation" id="332312" value="5-Minute Dungeon: Big Box" />
+		<link type="boardgameimplementation" id="253618" value="5-Minute Marvel" />
+		<link type="boardgamedesigner" id="85851" value="Connor Reid" />
+		<link type="boardgameartist" id="94578" value="Alex Diochon" />
+		<link type="boardgamepublisher" id="2429" value="Wiggles 3D" />
+		<link type="boardgamepublisher" id="1001" value="(Web published)" />
+		<link type="boardgamepublisher" id="917" value="DV Games" />
+		<link type="boardgamepublisher" id="15605" value="Galápagos Jogos" />
+		<link type="boardgamepublisher" id="8291" value="Korea Boardgames" />
+		<link type="boardgamepublisher" id="37" value="KOSMOS" />
+		<link type="boardgamepublisher" id="1905" value="Spin Master Ltd." />
+		<statistics page="1">
+			<ratings >
+				<usersrated value="10294" />
+				<average value="6.92164" />
+				<bayesaverage value="6.59708" />
+				<ranks>
+					<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="1044" bayesaverage="6.59708" />
+					<rank type="family" id="5499" name="familygames" friendlyname="Family Game Rank" value="348" bayesaverage="6.61407" />
+				</ranks>
+				<stddev value="1.35861" />
+				<median value="0" />
+				<owned value="20111" />
+				<trading value="326" />
+				<wanting value="161" />
+				<wishing value="2175" />
+				<numcomments value="2037" />
+				<numweights value="264" />
+				<averageweight value="1.1212" />
 			</ratings>
-								</statistics>
-     
-	
-          
-</item>
-<item type="boardgame" id="172818">
-         <thumbnail>https://cf.geekdo-images.com/U0wpvRmBe65e4vwGf0Jbpg__thumb/img/jHLwKKWiJ-lHoaNIj0TrKAGm7QM=/fit-in/200x150/filters:strip_icc()/pic2398773.jpg</thumbnail>
-      <image>https://cf.geekdo-images.com/U0wpvRmBe65e4vwGf0Jbpg__original/img/gIlpowYQ7XzumYO0jZyVldxosBA=/0x0/filters:format(jpeg)/pic2398773.jpg</image>
-                                     				
-				<name type="primary" sortindex="1" value="Above and Below" />
-			
-						                               				
-				<name type="alternate" sortindex="1" value="Above and Below: Les royaumes du dessous" />
-			    				
-				<name type="alternate" sortindex="1" value="Arriba y abajo" />
-			    				
-				<name type="alternate" sortindex="1" value="Górą i Dołem" />
-			    				
-				<name type="alternate" sortindex="1" value="Oben und Unten" />
-			    				
-				<name type="alternate" sortindex="1" value="Выше и Ниже" />
-			    				
-				<name type="alternate" sortindex="1" value="アバブ&amp;ビロウ" />
-			    				
-				<name type="alternate" sortindex="1" value="綠洲&amp;洞天" />
-			
-						               													<description>Your last village was ransacked by barbarians. You barely had time to pick up the baby and your favorite fishing pole before they started the burning and pillaging. You wandered over a cruel desert, braved frozen peaks, and even paddled a log across a rough sea, kicking at the sharks whenever they got too close, the baby strapped tightly to your back.&amp;#10;&amp;#10;Then you found it! The perfect place to make your new home. But as soon as you had the first hut built, you discovered a vast network of caverns underground, brimming with shiny treasures, rare resources, and untold adventure. How could you limit your new village to the surface? You immediately start organizing expeditions and building houses underground as well as on the surface.&amp;#10;&amp;#10;With any luck, you'll build a village even stronger than your last-- strong enough, even, to turn away the barbarians the next time they come knocking.&amp;#10;&amp;#10;Above and Below is a mashup of town-building and storytelling where you and up to three friends compete to build the best village above and below ground. In the game, you send your villagers to perform jobs like exploring the cave, harvesting resources, and constructing houses. Each villager has unique skills and abilities, and you must decide how to best use them. You have your own personal village board, and you slide the villagers on this board to various areas to indicate that they've been given jobs to do. Will you send Hanna along on the expedition to the cave? Or should she instead spend her time teaching important skills to one of the young villagers?&amp;#10;&amp;#10;A great cavern lies below the surface, ready for you to explore-- this is where the storytelling comes in. When you send a group of villagers to explore the depths, one of your friends reads what happens to you from a book of paragraphs. You'll be given a choice of how to react, and a lot will depend on which villagers you brought on the expedition, and who you're willing to sacrifice to succeed. The book of paragraphs is packed with encounters of amazing adventure, randomly chosen each time you visit the cavern.&amp;#10;&amp;#10;At the end of the game, the player with the most well-developed village wins!&amp;#10;&amp;#10;The Kickstarter version of the game included the following items which are not found in the Retail version:&amp;#10;&amp;#10;     Villager Tool tokens&amp;#10;     Lost Villagers&amp;#10;     Swamp Villagers&amp;#10;     Exclusive Stretch goals:&amp;#10;     Creature Villagers&amp;#10;     Quest Tokens&amp;#10;     Underforest Tokens and PDF story book&amp;#10;     Desert Labyrinth tokens and PDF story book &amp;#10;     Wooden Goods&amp;#10;&amp;#10;&amp;#10;This collection of items can be found in Above and Below: Expanded Edition Exclusives&amp;#10;&amp;#10;</description>
-										      	               				<yearpublished value="2015" />
-						               				<minplayers value="2" />
-						               				<maxplayers value="4" />
-						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="189">
-			
-		<results numplayers="1">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="5" />
-					<result value="Not Recommended" numvotes="110" />
-				</results>					
-			
-		<results numplayers="2">		
-					<result value="Best" numvotes="37" />
-					<result value="Recommended" numvotes="117" />
-					<result value="Not Recommended" numvotes="7" />
-				</results>					
-			
-		<results numplayers="3">		
-					<result value="Best" numvotes="108" />
-					<result value="Recommended" numvotes="48" />
-					<result value="Not Recommended" numvotes="0" />
-				</results>					
-			
-		<results numplayers="4">		
-					<result value="Best" numvotes="38" />
-					<result value="Recommended" numvotes="101" />
-					<result value="Not Recommended" numvotes="8" />
-				</results>					
-			
-		<results numplayers="4+">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="0" />
-					<result value="Not Recommended" numvotes="93" />
-				</results>					
-	</poll>
-<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
-  <result name="bestwith" value="Best with 3 players" />
-  <result name="recommmendedwith" value="Recommended with 2–4 players" />
-</poll-summary> 			               				<playingtime value="90" />
-						               				<minplaytime value="90" />
-						               				<maxplaytime value="90" />
-						               				<minage value="13" />
-						      			<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="49">
+		</statistics>
+	</item>
+	<item type="boardgame" id="176286">
+		<thumbnail>https://cf.geekdo-images.com/7pt-jQqIttgiO8PYNSFzRw__thumb/img/JWqFQkGTdaAW9L2yEaQxnaggevk=/fit-in/200x150/filters:strip_icc()/pic2718946.jpg</thumbnail>
+		<image>https://cf.geekdo-images.com/7pt-jQqIttgiO8PYNSFzRw__original/img/KvL_yHRvTKhL6m3UtnbUg2BKT_8=/0x0/filters:format(jpeg)/pic2718946.jpg</image>										
+		<name type="primary" sortindex="1" value="A.D.A.P.T." />
+		<description>Choose your starting guppy, then use an all-new experience point-based drafting system to buy upgraded bodies and all manner of new parts for your guppy. Quickly adapt it to become the most powerful master fish in the sea with any combination of aquatic bodies and parts you can mash up, battling the other master fish to the death along the way for there can be only one master fish in this ocean.&amp;#10;&amp;#10;A.D.A.P.T. is a card game for 2-3 players that usually plays in 20-30 minutes, comes with three full sets of polyhedral dice (3d4s, 3d6s, 3d8s, 6d10s, 3d12s, &amp;amp; 3d20s), and proudly bears a very unique theme. Lightweight, light hearted, and entirely unique &amp;mdash; we're certain you've never played anything like it before.&amp;#10;&amp;#10;Will your Dolphin, with the armored scales of an Arampaima, the mouth of a giant Sea Bass, the bioelectricity of an Eel, and the tail of a Thresher Shark prove victorious by ramming other fish with its lethal Swordfish horn? Will your Sailfish, with a Clownfish Tail, poisonous Lionfish pectoral fins, and Anglerfish Light Node, followed by a school of fish he commands, be the last Master Fish alive? Or will your Great White Shark, with the spiked skin of a Puffer Fish, over-sized brain, and regenerating heart be the last fish swimming by leaping from the water with its Flying Fish wings for a diving sneak attack? The possibilities are endless!&amp;#10;&amp;#10;With Octo, Fantasy, Reptile, Guppy, and Mech expansions also available, there's no reason that your Giant Squid with the wings of a Pegasus and claws of a dragon can't claim victory through use of torpedoes from inside its tortoise shell. Each time you upgrade your fish's body or add new parts, it becomes more powerful, lives longer, and gains new special abilities!&amp;#10;&amp;#10;Life under the sea just got much more interesting!&amp;#10;&amp;#10;</description>
+		<yearpublished value="2016" />
+		<minplayers value="2" />
+		<maxplayers value="3" />
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="5">
+			<results numplayers="1">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="0" />
+				<result value="Not Recommended" numvotes="4" />
+			</results>					
+			<results numplayers="2">		
+				<result value="Best" numvotes="1" />
+				<result value="Recommended" numvotes="4" />
+				<result value="Not Recommended" numvotes="0" />
+			</results>					
+			<results numplayers="3">		
+				<result value="Best" numvotes="2" />
+				<result value="Recommended" numvotes="2" />
+				<result value="Not Recommended" numvotes="1" />
+			</results>					
+			<results numplayers="3+">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="2" />
+				<result value="Not Recommended" numvotes="2" />
+			</results>					
+		</poll>
+		<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
+			<result name="bestwith" value="Best with 2–3 players" />
+			<result name="recommmendedwith" value="Recommended with 2–3 players" />
+		</poll-summary> 			               				
+		<playingtime value="40" />
+		<minplaytime value="15" />
+		<maxplaytime value="40" />
+		<minage value="7" />
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="3">
 			<results>		
-					<result value="2" numvotes="0" />
-					<result value="3" numvotes="0" />
-					<result value="4" numvotes="0" />
-					<result value="5" numvotes="1" />
-					<result value="6" numvotes="1" />
-					<result value="8" numvotes="10" />
-					<result value="10" numvotes="27" />
-					<result value="12" numvotes="8" />
-					<result value="14" numvotes="2" />
-					<result value="16" numvotes="0" />
-					<result value="18" numvotes="0" />
-					<result value="21 and up" numvotes="0" />
-				</results>					
-	</poll> 			      			<poll name="language_dependence" title="Language Dependence" totalvotes="34">
-			
-		<results>		
-					<result level="1" value="No necessary in-game text" numvotes="1" />
-					<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="0" />
-					<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="2" />
-					<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="20" />
-					<result level="5" value="Unplayable in another language" numvotes="11" />
-				</results>					
-	</poll> 			      			 			      				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1022" value="Adventure" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1029" value="City Building" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1021" value="Economic" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1020" value="Exploration" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1010" value="Fantasy" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1013" value="Farming" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1026" value="Negotiation" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2001" value="Action Points" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2072" value="Dice Rolling" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2851" value="Narrative Choice / Paragraph" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2004" value="Set Collection" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2027" value="Storytelling" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2008" value="Trading" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2828" value="Turn Order: Progressive" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="44818" value="Game: Above and Below" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="27646" value="Mechanism: Tableau Building" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="75241" value="Misc: Forteller Audio Narration" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="39414" value="Setting: World of Arzium" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="229085" value="Above and Below: Desert Labyrinth and Underforest Encounter Book" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="175452" value="Above and Below: Expanded Edition Exclusives" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="211171" value="Above and Below: G@mebox Building Promo Card" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="213992" value="Above and Below: Groves" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="258589" value="Above and Below: Megaland Bonus Cards" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="275731" value="Above and Below: Mystic&#039;s Hut Promo Card" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="208201" value="Above and Below: Watch It Played Building Promo Card" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="401690" value="Arzium Archive Promo Box" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="303375" value="Near and Far: Bounty Hunter Character Tiles" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="264355" value="Near and Far: Dice Tower Character Tiles" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="234361" value="Near And Far: Rodney &amp; Pep Watch It Played Character Tiles" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="244304" value="Near and Far: Secret Cabal Character Tiles" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="274721" value="The Red Raven Fan Box #1" />
-		
-									
-			
-
-			      			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="273683" value="Above and Below: Complete Upgrade Set" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="266243" value="Above and Below: Folded Space Insert" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="282857" value="Above and Below: GeekUp Bit Set" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="271936" value="Above and Below: Insert Here Insert" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="273691" value="Above and Below: Resource Upgrade Set &quot;A&quot;" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="273694" value="Above and Below: Resource Upgrade Set &quot;B&quot;" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="430301" value="Above and Below: Treasure Chest" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="273687" value="Above and Below: Wooden Coin Set" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameintegration" id="423553" value="Above and Below: Haunted" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameintegration" id="185589" value="Islebound" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameintegration" id="195421" value="Near and Far" />
-		
-									
-			
-
-			      			
-
-			      			
-
-			      			
-
-			      			
-
-			      	      	      				
-		 			
-
-			
-		
-					<link type="boardgamedesigner" id="11854" value="Ryan Laukat" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameartist" id="11854" value="Ryan Laukat" />
-		
-									
-			
-
-			      	      				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="18617" value="Red Raven Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="3475" value="Arclight Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="9074" value="Bard Centrum Gier" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="11043" value="Conclave Editora" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="2366" value="Devir" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="917" value="DV Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="34801" value="Lavka Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="33626" value="Lucky Duck Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="23756" value="MYBG Co., Ltd." />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="34963" value="Mysterious Island Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="24844" value="Schwerkraft-Verlag" />
-		
-									
-			
-
-			
-	
-
-	
-
-	
-	
-	
-   		<statistics page="1">
-								<ratings >
-			<usersrated value="16379" />
-			<average value="7.35976" />
-			<bayesaverage value="7.09606" />
-
-			<ranks>
-															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="376" bayesaverage="7.09606" />
-																				<rank type="family" id="5496" name="thematic" friendlyname="Thematic Rank" value="117" bayesaverage="7.12628" />
-												</ranks>
-
-			<stddev value="1.27354" />
-			<median value="0" />
-			<owned value="25956" />
-			<trading value="550" />
-			<wanting value="582" />
-			<wishing value="5382" />
-			<numcomments value="3186" />
-			<numweights value="439" />
-			<averageweight value="2.5216" />
-			</ratings>
-								</statistics>
-     
-	
-          
-</item>
-<item type="boardgame" id="233266">
-         <thumbnail>https://cf.geekdo-images.com/Q1ft00yLGVebuHRrLSPqMg__thumb/img/PyJp_8GhlKgjZn8CR5YyiEqbd8c=/fit-in/200x150/filters:strip_icc()/pic3811018.jpg</thumbnail>
-      <image>https://cf.geekdo-images.com/Q1ft00yLGVebuHRrLSPqMg__original/img/TgzHt1JpDJ6qbgyTL1tgAKtQVVI=/0x0/filters:format(jpeg)/pic3811018.jpg</image>
-                                     				
-				<name type="primary" sortindex="1" value="Agents of Mayhem: Pride of Babylon" />
-			
-						                           
-						               													<description>Based on the Volition Deep Silver video game, Agents of Mayhem: Pride of Babylon is a competitive 32mm scale miniatures game that pits the evil LEGION (the League of Evil Gentlemen Intent on Obliterating Nations) against the more heroic, but potentially just as chaotic and destructive MAYHEM (Multinational Agency for Hunting Evil Masterminds).&amp;#10;&amp;#10;The game is played out on a map featuring multistory, modular buildings that can be destroyed and altered as the battle rages on. Miniatures combat itself is asymmetric, as the LEGION player runs an entire army of diverse and fearsome robots, dark matter powers, giant golems, and doomsday devices, while the MAYHEM player gets to build a team of three elite specialized agents, and give them unique upgrades to build on their individual strengths and shared synergies.&amp;#10;&amp;#10;The game features a procedural campaign, which has the MAYHEM player keeping their agents' progress and upgrades through a series of missions, while the LEGION player deploys more fearsome and dangerous squads of troopers. Choices made, victories and defeats, and buildings and blocks damaged and destroyed in combat will affect later missions and ensure that every campaign plays out differently.&amp;#10;&amp;#10;</description>
-										      	               				<yearpublished value="2019" />
-						               				<minplayers value="2" />
-						               				<maxplayers value="4" />
-						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="3">
-			
-		<results numplayers="1">		
-					<result value="Best" numvotes="1" />
-					<result value="Recommended" numvotes="2" />
-					<result value="Not Recommended" numvotes="0" />
-				</results>					
-			
-		<results numplayers="2">		
-					<result value="Best" numvotes="2" />
-					<result value="Recommended" numvotes="0" />
-					<result value="Not Recommended" numvotes="0" />
-				</results>					
-			
-		<results numplayers="3">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="1" />
-					<result value="Not Recommended" numvotes="1" />
-				</results>					
-			
-		<results numplayers="4">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="1" />
-					<result value="Not Recommended" numvotes="1" />
-				</results>					
-			
-		<results numplayers="4+">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="1" />
-					<result value="Not Recommended" numvotes="1" />
-				</results>					
-	</poll>
-<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
-  <result name="bestwith" value="Best with 2 players" />
-  <result name="recommmendedwith" value="Recommended with 1–2 players" />
-</poll-summary> 			               				<playingtime value="120" />
-						               				<minplaytime value="60" />
-						               				<maxplaytime value="120" />
-						               				<minage value="13" />
-						      			<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="2">
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="0" />
+				<result value="5" numvotes="0" />
+				<result value="6" numvotes="1" />
+				<result value="8" numvotes="2" />
+				<result value="10" numvotes="0" />
+				<result value="12" numvotes="0" />
+				<result value="14" numvotes="0" />
+				<result value="16" numvotes="0" />
+				<result value="18" numvotes="0" />
+				<result value="21 and up" numvotes="0" />
+			</results>					
+		</poll> 			      			
+		<poll name="language_dependence" title="Language Dependence" totalvotes="2">
 			<results>		
-					<result value="2" numvotes="0" />
-					<result value="3" numvotes="0" />
-					<result value="4" numvotes="0" />
-					<result value="5" numvotes="0" />
-					<result value="6" numvotes="0" />
-					<result value="8" numvotes="0" />
-					<result value="10" numvotes="0" />
-					<result value="12" numvotes="0" />
-					<result value="14" numvotes="1" />
-					<result value="16" numvotes="0" />
-					<result value="18" numvotes="1" />
-					<result value="21 and up" numvotes="0" />
-				</results>					
-	</poll> 			      			<poll name="language_dependence" title="Language Dependence" totalvotes="2">
-			
-		<results>		
-					<result level="6" value="No necessary in-game text" numvotes="0" />
-					<result level="7" value="Some necessary text - easily memorized or small crib sheet" numvotes="0" />
-					<result level="8" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="1" />
-					<result level="9" value="Extensive use of text - massive conversion needed to be playable" numvotes="1" />
-					<result level="10" value="Unplayable in another language" numvotes="0" />
-				</results>					
-	</poll> 			      			 			      				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1046" value="Fighting" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1079" value="Humor" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1047" value="Miniatures" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1069" value="Modern Warfare" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1016" value="Science Fiction" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1101" value="Video Game Theme" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1019" value="Wargame" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2001" value="Action Points" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2023" value="Cooperative Game" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2676" value="Grid Movement" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2011" value="Modular Board" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2019" value="Team-Based Game" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2015" value="Variable Player Powers" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="48877" value="Components: Game Trayz Inside" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="25158" value="Components: Miniatures" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="24281" value="Mechanism: Campaign Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="65851" value="Players: Games with expansions that add solo play" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="257855" value="Agents of Mayhem: Bombshells Team" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="257866" value="Agents of Mayhem: Civil Overwatch Patrol" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="257853" value="Agents of Mayhem: Firing Squad" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="257862" value="Agents of Mayhem: Get Gaunt" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="289947" value="Agents of Mayhem: Gremlin Tech Deck 1" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="257858" value="Agents of Mayhem: Hammersmith" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="257864" value="Agents of Mayhem: Johnny Gat is Back" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="257868" value="Agents of Mayhem: Solo &amp; Co-op Expansion" />
-		
-									
-			
-
-			      			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="257870" value="Agents of Mayhem: Giant Building Tiles Pack" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="279778" value="Agents of Mayhem: Pride of Babylon – Extra Set of Dice" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="279780" value="Agents of Mayhem: Pride of Babylon – Family Friendly Pack" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="257872" value="Agents of Mayhem: Terrain Upgrade Pack" />
-		
-									
-			
-
-			      			
-
-			      			
-
-			      			
-
-			      			
-
-			      			
-
-			      	      	      				
-		 			
-
-			
-		
-					<link type="boardgamedesigner" id="66050" value="Gunter Eickert" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameartist" id="38447" value="Jarek Nocoń" />
-		
-									
-			
-
-			      	      				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="7747" value="Academy Games, Inc." />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="43119" value="Apollo Games" />
-		
-									
-			
-
-			
-	
-
-	
-
-	
-	
-	
-   		<statistics page="1">
-								<ratings >
-			<usersrated value="117" />
-			<average value="7.14256" />
-			<bayesaverage value="5.56842" />
-
-			<ranks>
-															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="10587" bayesaverage="5.56842" />
-																				<rank type="family" id="4664" name="wargames" friendlyname="War Game Rank" value="2040" bayesaverage="5.81478" />
-											<rank type="family" id="5496" name="thematic" friendlyname="Thematic Rank" value="1241" bayesaverage="5.64573" />
-												</ranks>
-
-			<stddev value="2.20355" />
-			<median value="0" />
-			<owned value="529" />
-			<trading value="38" />
-			<wanting value="16" />
-			<wishing value="102" />
-			<numcomments value="78" />
-			<numweights value="10" />
-			<averageweight value="3" />
+				<result level="1" value="No necessary in-game text" numvotes="0" />
+				<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="2" />
+				<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="0" />
+				<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="0" />
+				<result level="5" value="Unplayable in another language" numvotes="0" />
+			</results>					
+		</poll> 			      			 			      				
+		<link type="boardgamecategory" id="1002" value="Card Game" />
+		<link type="boardgamecategory" id="1017" value="Dice" />
+		<link type="boardgamecategory" id="1021" value="Economic" />
+		<link type="boardgamecategory" id="1010" value="Fantasy" />
+		<link type="boardgamecategory" id="1008" value="Nautical" />
+		<link type="boardgamemechanic" id="2664" value="Deck, Bag, and Pool Building" />
+		<link type="boardgamemechanic" id="2072" value="Dice Rolling" />
+		<link type="boardgamemechanic" id="2040" value="Hand Management" />
+		<link type="boardgamemechanic" id="2041" value="Open Drafting" />
+		<link type="boardgamemechanic" id="2015" value="Variable Player Powers" />
+		<link type="boardgamefamily" id="7975" value="Animals: Fish / Fishes" />
+		<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
+		<link type="boardgamefamily" id="70948" value="Digital Implementations: Tabletopia" />
+		<link type="boardgamefamily" id="16886" value="Theme: Evolution" />
+		<link type="boardgameexpansion" id="204774" value="A.D.A.P.T.: 5-in-1 Expansion Pack" />
+		<link type="boardgameexpansion" id="204761" value="A.D.A.P.T.: Black Bio-Mech Expansion Pack" />
+		<link type="boardgameexpansion" id="204758" value="A.D.A.P.T.: Blue Fantasy Creature Expansion Pack" />
+		<link type="boardgameexpansion" id="204757" value="A.D.A.P.T.: Green Reptile &amp; Amphibian Expansion Pack" />
+		<link type="boardgameexpansion" id="204756" value="A.D.A.P.T.: Red Cephalopod Expansion Pack" />
+		<link type="boardgameexpansion" id="204760" value="A.D.A.P.T.: Yellow Guppy Expansion Pack" />
+		<link type="boardgamedesigner" id="69504" value="John Wrot!" />
+		<link type="boardgameartist" id="36272" value="Adelson Tavares" />
+		<link type="boardgamepublisher" id="25566" value="Gate Keeper Games" />
+		<statistics page="1">
+			<ratings >
+				<usersrated value="134" />
+				<average value="5.61931" />
+				<bayesaverage value="5.49723" />
+				<ranks>
+					<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="23591" bayesaverage="5.49723" />
+				</ranks>
+				<stddev value="2.18377" />
+				<median value="0" />
+				<owned value="380" />
+				<trading value="27" />
+				<wanting value="4" />
+				<wishing value="38" />
+				<numcomments value="61" />
+				<numweights value="8" />
+				<averageweight value="2.75" />
 			</ratings>
-								</statistics>
-     
-	
-          
-</item>
-<item type="boardgame" id="314088">
-         <thumbnail>https://cf.geekdo-images.com/KcE2t-zmo-p-POO8fPTUmA__thumb/img/Atmy64jQdwgenpROZdR35HLdM5A=/fit-in/200x150/filters:strip_icc()/pic5674430.png</thumbnail>
-      <image>https://cf.geekdo-images.com/KcE2t-zmo-p-POO8fPTUmA__original/img/C6HMgkML2-KMopI_T4ZfbvvgIJM=/0x0/filters:format(png)/pic5674430.png</image>
-                                     				
-				<name type="primary" sortindex="1" value="Agropolis" />
-			
-						                               				
-				<name type="alternate" sortindex="1" value="Agrópolis" />
-			    				
-				<name type="alternate" sortindex="1" value="Ranczer" />
-			    				
-				<name type="alternate" sortindex="1" value="Velkostatek" />
-			    				
-				<name type="alternate" sortindex="1" value="Агрополіс" />
-			
-						               													<description>From clucking chickens to rumbling tractors, the sounds of a bustling farm are everywhere. It's up to your team of planners to turn this little farm into a flourishing ranching community!&amp;#10;&amp;#10;&amp;#10;Having developed dream cities in Sprawlopolis, it's now time to set your sights on the rolling countryside, where farm, ranches, and roads intermingle master plan, as ever, seems just out of reach.&amp;#10;&amp;#10;Agropolis is a stand-alone expansion to Sprawlopolis, bringing the same card-laying, variable-scoring gameplay into a new setting: city blocks give way to orchards, wheat fields, livestock pens, and vineyards. As before, players draw three goal cards and then attempt to place cards one at a time to create a rural tableau that best satisfies those goals. New gameplay features help offset overly-powerful scoring combos and layer additional attributes onto certain types of terrain, providing even greater depth of gameplay without sacrificing the original's signature elegance.&amp;#10;&amp;#10;Agropolis can be played entirely on its own, but it can also combined with Sprawlopolis using special rules and goal cards provided in the Combopolis mini-expansion.&amp;#10;&amp;#10;</description>
-										      	               				<yearpublished value="2021" />
-						               				<minplayers value="1" />
-						               				<maxplayers value="4" />
-						      			<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="59">
-			
-		<results numplayers="1">		
-					<result value="Best" numvotes="52" />
-					<result value="Recommended" numvotes="7" />
-					<result value="Not Recommended" numvotes="0" />
-				</results>					
-			
-		<results numplayers="2">		
-					<result value="Best" numvotes="7" />
-					<result value="Recommended" numvotes="26" />
-					<result value="Not Recommended" numvotes="7" />
-				</results>					
-			
-		<results numplayers="3">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="8" />
-					<result value="Not Recommended" numvotes="24" />
-				</results>					
-			
-		<results numplayers="4">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="3" />
-					<result value="Not Recommended" numvotes="29" />
-				</results>					
-			
-		<results numplayers="4+">		
-					<result value="Best" numvotes="0" />
-					<result value="Recommended" numvotes="0" />
-					<result value="Not Recommended" numvotes="31" />
-				</results>					
-	</poll>
-<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
-  <result name="bestwith" value="Best with 1 players" />
-  <result name="recommmendedwith" value="Recommended with 1–2 players" />
-</poll-summary> 			               				<playingtime value="20" />
-						               				<minplaytime value="15" />
-						               				<maxplaytime value="20" />
-						               				<minage value="8" />
-						      			<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="12">
+		</statistics>
+	</item>
+	<item type="boardgame" id="172818">
+		<thumbnail>https://cf.geekdo-images.com/U0wpvRmBe65e4vwGf0Jbpg__thumb/img/jHLwKKWiJ-lHoaNIj0TrKAGm7QM=/fit-in/200x150/filters:strip_icc()/pic2398773.jpg</thumbnail>
+		<image>https://cf.geekdo-images.com/U0wpvRmBe65e4vwGf0Jbpg__original/img/gIlpowYQ7XzumYO0jZyVldxosBA=/0x0/filters:format(jpeg)/pic2398773.jpg</image>
+		<name type="primary" sortindex="1" value="Above and Below" />
+		<name type="alternate" sortindex="1" value="Above and Below: Les royaumes du dessous" />
+		<name type="alternate" sortindex="1" value="Arriba y abajo" />
+		<name type="alternate" sortindex="1" value="Górą i Dołem" />
+		<name type="alternate" sortindex="1" value="Oben und Unten" />
+		<name type="alternate" sortindex="1" value="Выше и Ниже" />
+		<name type="alternate" sortindex="1" value="アバブ&amp;ビロウ" />
+		<name type="alternate" sortindex="1" value="綠洲&amp;洞天" />
+		<description>Your last village was ransacked by barbarians. You barely had time to pick up the baby and your favorite fishing pole before they started the burning and pillaging. You wandered over a cruel desert, braved frozen peaks, and even paddled a log across a rough sea, kicking at the sharks whenever they got too close, the baby strapped tightly to your back.&amp;#10;&amp;#10;Then you found it! The perfect place to make your new home. But as soon as you had the first hut built, you discovered a vast network of caverns underground, brimming with shiny treasures, rare resources, and untold adventure. How could you limit your new village to the surface? You immediately start organizing expeditions and building houses underground as well as on the surface.&amp;#10;&amp;#10;With any luck, you'll build a village even stronger than your last-- strong enough, even, to turn away the barbarians the next time they come knocking.&amp;#10;&amp;#10;Above and Below is a mashup of town-building and storytelling where you and up to three friends compete to build the best village above and below ground. In the game, you send your villagers to perform jobs like exploring the cave, harvesting resources, and constructing houses. Each villager has unique skills and abilities, and you must decide how to best use them. You have your own personal village board, and you slide the villagers on this board to various areas to indicate that they've been given jobs to do. Will you send Hanna along on the expedition to the cave? Or should she instead spend her time teaching important skills to one of the young villagers?&amp;#10;&amp;#10;A great cavern lies below the surface, ready for you to explore-- this is where the storytelling comes in. When you send a group of villagers to explore the depths, one of your friends reads what happens to you from a book of paragraphs. You'll be given a choice of how to react, and a lot will depend on which villagers you brought on the expedition, and who you're willing to sacrifice to succeed. The book of paragraphs is packed with encounters of amazing adventure, randomly chosen each time you visit the cavern.&amp;#10;&amp;#10;At the end of the game, the player with the most well-developed village wins!&amp;#10;&amp;#10;The Kickstarter version of the game included the following items which are not found in the Retail version:&amp;#10;&amp;#10;     Villager Tool tokens&amp;#10;     Lost Villagers&amp;#10;     Swamp Villagers&amp;#10;     Exclusive Stretch goals:&amp;#10;     Creature Villagers&amp;#10;     Quest Tokens&amp;#10;     Underforest Tokens and PDF story book&amp;#10;     Desert Labyrinth tokens and PDF story book &amp;#10;     Wooden Goods&amp;#10;&amp;#10;&amp;#10;This collection of items can be found in Above and Below: Expanded Edition Exclusives&amp;#10;&amp;#10;</description>
+		<yearpublished value="2015" />
+		<minplayers value="2" />
+		<maxplayers value="4" />
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="189">
+			<results numplayers="1">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="5" />
+				<result value="Not Recommended" numvotes="110" />
+			</results>					
+			<results numplayers="2">		
+				<result value="Best" numvotes="37" />
+				<result value="Recommended" numvotes="117" />
+				<result value="Not Recommended" numvotes="7" />
+			</results>					
+			<results numplayers="3">		
+				<result value="Best" numvotes="108" />
+				<result value="Recommended" numvotes="48" />
+				<result value="Not Recommended" numvotes="0" />
+			</results>					
+			<results numplayers="4">		
+				<result value="Best" numvotes="38" />
+				<result value="Recommended" numvotes="101" />
+				<result value="Not Recommended" numvotes="8" />
+			</results>					
+			<results numplayers="4+">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="0" />
+				<result value="Not Recommended" numvotes="93" />
+			</results>					
+		</poll>
+		<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
+			<result name="bestwith" value="Best with 3 players" />
+			<result name="recommmendedwith" value="Recommended with 2–4 players" />
+		</poll-summary> 			               				<playingtime value="90" />
+		<minplaytime value="90" />
+		<maxplaytime value="90" />
+		<minage value="13" />
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="49">
 			<results>		
-					<result value="2" numvotes="0" />
-					<result value="3" numvotes="0" />
-					<result value="4" numvotes="0" />
-					<result value="5" numvotes="0" />
-					<result value="6" numvotes="1" />
-					<result value="8" numvotes="5" />
-					<result value="10" numvotes="6" />
-					<result value="12" numvotes="0" />
-					<result value="14" numvotes="0" />
-					<result value="16" numvotes="0" />
-					<result value="18" numvotes="0" />
-					<result value="21 and up" numvotes="0" />
-				</results>					
-	</poll> 			      			<poll name="language_dependence" title="Language Dependence" totalvotes="3">
-			
-		<results>		
-					<result level="1" value="No necessary in-game text" numvotes="0" />
-					<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="2" />
-					<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="1" />
-					<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="0" />
-					<result level="5" value="Unplayable in another language" numvotes="0" />
-				</results>					
-	</poll> 			      			 			      				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1002" value="Card Game" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1029" value="City Building" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1013" value="Farming" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1120" value="Print &amp; Play" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamecategory" id="1086" value="Territory Building" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2984" value="Closed Drafting" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2023" value="Cooperative Game" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="3001" value="Layering" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2819" value="Solo / Solitaire Game" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamemechanic" id="2002" value="Tile Placement" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="7530" value="Animals: Cattle / Cows" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="65191" value="Components: Multi-Use Cards" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="97062" value="Containers: Wallets" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="107226" value="Game: Agropolis" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="65208" value="Mechanism: Partially overlapping cards" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="5666" value="Players: Games with Solitaire Rules" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="73760" value="Series: Master Print Mini (Quined)" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="103330" value="Series: Micro Game (Matagot)" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="58142" value="Series: Sprawlopolis" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamefamily" id="27795" value="Series: Wallet Games (Button Shy)" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="408849" value="Agropolis: Expansion Collection" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="431965" value="Agropolis: Harvest" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="321696" value="Agropolis: Invasion" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="321697" value="Agropolis: Points of Interest" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="354898" value="Agropolis: Seasons" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="407979" value="Agropolis/Combopolis: Micro Extension" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="320282" value="Combopolis" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="371017" value="Combopolis III" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="371025" value="Combopolis: Expansion Collection" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameexpansion" id="371019" value="Ultimopolis" />
-		
-									
-			
-
-			      			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameaccessory" id="397256" value="Button Shy Game Haul Bag" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameintegration" id="352606" value="Naturopolis" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameintegration" id="251658" value="Sprawlopolis" />
-		
-									
-			
-
-			      			
-
-			      			
-
-			      			
-
-			      			
-
-			      	      	      				
-		 			
-
-			
-		
-					<link type="boardgamedesigner" id="73472" value="Steven Aramini" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamedesigner" id="68355" value="Danny Devine" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamedesigner" id="91357" value="Paul Kluka" />
-		
-									
-			
-
-			      				
-		 			
-
-			
-		
-					<link type="boardgameartist" id="11462" value="Loïc Billiau" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameartist" id="68355" value="Danny Devine" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgameartist" id="119673" value="Karolina Jędrzejak" />
-		
-									
-			
-
-			      	      				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="26991" value="Button Shy" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="29895" value="Frosted Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="45134" value="Geekach Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="33626" value="Lucky Duck Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="5400" value="Matagot" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="10663" value="Quined Games" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="21053" value="REXhry" />
-		
-									
-				
-		 			
-
-			
-		
-					<link type="boardgamepublisher" id="40599" value="Salt &amp; Pepper Games" />
-		
-									
-			
-
-			
-	
-
-	
-
-	
-	
-	
-   		<statistics page="1">
-								<ratings >
-			<usersrated value="2433" />
-			<average value="7.32065" />
-			<bayesaverage value="6.46535" />
-
-			<ranks>
-															<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="1312" bayesaverage="6.46535" />
-																				<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="704" bayesaverage="6.6066" />
-												</ranks>
-
-			<stddev value="1.13208" />
-			<median value="0" />
-			<owned value="8110" />
-			<trading value="102" />
-			<wanting value="72" />
-			<wishing value="534" />
-			<numcomments value="683" />
-			<numweights value="62" />
-			<averageweight value="1.7742" />
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="0" />
+				<result value="5" numvotes="1" />
+				<result value="6" numvotes="1" />
+				<result value="8" numvotes="10" />
+				<result value="10" numvotes="27" />
+				<result value="12" numvotes="8" />
+				<result value="14" numvotes="2" />
+				<result value="16" numvotes="0" />
+				<result value="18" numvotes="0" />
+				<result value="21 and up" numvotes="0" />
+			</results>					
+		</poll> 			      			
+		<poll name="language_dependence" title="Language Dependence" totalvotes="34">
+			<results>		
+				<result level="1" value="No necessary in-game text" numvotes="1" />
+				<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="0" />
+				<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="2" />
+				<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="20" />
+				<result level="5" value="Unplayable in another language" numvotes="11" />
+			</results>					
+		</poll> 			      			 			      				
+		<link type="boardgamecategory" id="1022" value="Adventure" />
+		<link type="boardgamecategory" id="1029" value="City Building" />
+		<link type="boardgamecategory" id="1021" value="Economic" />
+		<link type="boardgamecategory" id="1020" value="Exploration" />
+		<link type="boardgamecategory" id="1010" value="Fantasy" />
+		<link type="boardgamecategory" id="1013" value="Farming" />
+		<link type="boardgamecategory" id="1026" value="Negotiation" />
+		<link type="boardgamemechanic" id="2001" value="Action Points" />
+		<link type="boardgamemechanic" id="2072" value="Dice Rolling" />
+		<link type="boardgamemechanic" id="2851" value="Narrative Choice / Paragraph" />
+		<link type="boardgamemechanic" id="2004" value="Set Collection" />
+		<link type="boardgamemechanic" id="2027" value="Storytelling" />
+		<link type="boardgamemechanic" id="2008" value="Trading" />
+		<link type="boardgamemechanic" id="2828" value="Turn Order: Progressive" />
+		<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
+		<link type="boardgamefamily" id="44818" value="Game: Above and Below" />
+		<link type="boardgamefamily" id="27646" value="Mechanism: Tableau Building" />
+		<link type="boardgamefamily" id="75241" value="Misc: Forteller Audio Narration" />
+		<link type="boardgamefamily" id="39414" value="Setting: World of Arzium" />
+		<link type="boardgameexpansion" id="229085" value="Above and Below: Desert Labyrinth and Underforest Encounter Book" />
+		<link type="boardgameexpansion" id="175452" value="Above and Below: Expanded Edition Exclusives" />
+		<link type="boardgameexpansion" id="211171" value="Above and Below: G@mebox Building Promo Card" />
+		<link type="boardgameexpansion" id="213992" value="Above and Below: Groves" />
+		<link type="boardgameexpansion" id="258589" value="Above and Below: Megaland Bonus Cards" />
+		<link type="boardgameexpansion" id="275731" value="Above and Below: Mystic&#039;s Hut Promo Card" />
+		<link type="boardgameexpansion" id="208201" value="Above and Below: Watch It Played Building Promo Card" />
+		<link type="boardgameexpansion" id="401690" value="Arzium Archive Promo Box" />
+		<link type="boardgameexpansion" id="303375" value="Near and Far: Bounty Hunter Character Tiles" />
+		<link type="boardgameexpansion" id="264355" value="Near and Far: Dice Tower Character Tiles" />
+		<link type="boardgameexpansion" id="234361" value="Near And Far: Rodney &amp; Pep Watch It Played Character Tiles" />
+		<link type="boardgameexpansion" id="244304" value="Near and Far: Secret Cabal Character Tiles" />
+		<link type="boardgameexpansion" id="274721" value="The Red Raven Fan Box #1" />
+		<link type="boardgameaccessory" id="273683" value="Above and Below: Complete Upgrade Set" />
+		<link type="boardgameaccessory" id="266243" value="Above and Below: Folded Space Insert" />
+		<link type="boardgameaccessory" id="282857" value="Above and Below: GeekUp Bit Set" />
+		<link type="boardgameaccessory" id="271936" value="Above and Below: Insert Here Insert" />
+		<link type="boardgameaccessory" id="273691" value="Above and Below: Resource Upgrade Set &quot;A&quot;" />
+		<link type="boardgameaccessory" id="273694" value="Above and Below: Resource Upgrade Set &quot;B&quot;" />
+		<link type="boardgameaccessory" id="430301" value="Above and Below: Treasure Chest" />
+		<link type="boardgameaccessory" id="273687" value="Above and Below: Wooden Coin Set" />
+		<link type="boardgameintegration" id="423553" value="Above and Below: Haunted" />
+		<link type="boardgameintegration" id="185589" value="Islebound" />
+		<link type="boardgameintegration" id="195421" value="Near and Far" />
+		<link type="boardgamedesigner" id="11854" value="Ryan Laukat" />
+		<link type="boardgameartist" id="11854" value="Ryan Laukat" />
+		<link type="boardgamepublisher" id="18617" value="Red Raven Games" />
+		<link type="boardgamepublisher" id="3475" value="Arclight Games" />
+		<link type="boardgamepublisher" id="9074" value="Bard Centrum Gier" />
+		<link type="boardgamepublisher" id="11043" value="Conclave Editora" />
+		<link type="boardgamepublisher" id="2366" value="Devir" />
+		<link type="boardgamepublisher" id="917" value="DV Games" />
+		<link type="boardgamepublisher" id="34801" value="Lavka Games" />
+		<link type="boardgamepublisher" id="33626" value="Lucky Duck Games" />
+		<link type="boardgamepublisher" id="23756" value="MYBG Co., Ltd." />
+		<link type="boardgamepublisher" id="34963" value="Mysterious Island Games" />
+		<link type="boardgamepublisher" id="24844" value="Schwerkraft-Verlag" />
+		<statistics page="1">
+			<ratings >
+				<usersrated value="16379" />
+				<average value="7.35976" />
+				<bayesaverage value="7.09606" />
+				<ranks>
+					<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="376" bayesaverage="7.09606" />
+					<rank type="family" id="5496" name="thematic" friendlyname="Thematic Rank" value="117" bayesaverage="7.12628" />
+				</ranks>
+				<stddev value="1.27354" />
+				<median value="0" />
+				<owned value="25956" />
+				<trading value="550" />
+				<wanting value="582" />
+				<wishing value="5382" />
+				<numcomments value="3186" />
+				<numweights value="439" />
+				<averageweight value="2.5216" />
 			</ratings>
-								</statistics>
-     
-	
-          
-</item>
+		</statistics>
+	</item>
+	<item type="boardgame" id="233266">
+		<thumbnail>https://cf.geekdo-images.com/Q1ft00yLGVebuHRrLSPqMg__thumb/img/PyJp_8GhlKgjZn8CR5YyiEqbd8c=/fit-in/200x150/filters:strip_icc()/pic3811018.jpg</thumbnail>
+		<image>https://cf.geekdo-images.com/Q1ft00yLGVebuHRrLSPqMg__original/img/TgzHt1JpDJ6qbgyTL1tgAKtQVVI=/0x0/filters:format(jpeg)/pic3811018.jpg</image>
+		<name type="primary" sortindex="1" value="Agents of Mayhem: Pride of Babylon" />
+		<description>Based on the Volition Deep Silver video game, Agents of Mayhem: Pride of Babylon is a competitive 32mm scale miniatures game that pits the evil LEGION (the League of Evil Gentlemen Intent on Obliterating Nations) against the more heroic, but potentially just as chaotic and destructive MAYHEM (Multinational Agency for Hunting Evil Masterminds).&amp;#10;&amp;#10;The game is played out on a map featuring multistory, modular buildings that can be destroyed and altered as the battle rages on. Miniatures combat itself is asymmetric, as the LEGION player runs an entire army of diverse and fearsome robots, dark matter powers, giant golems, and doomsday devices, while the MAYHEM player gets to build a team of three elite specialized agents, and give them unique upgrades to build on their individual strengths and shared synergies.&amp;#10;&amp;#10;The game features a procedural campaign, which has the MAYHEM player keeping their agents' progress and upgrades through a series of missions, while the LEGION player deploys more fearsome and dangerous squads of troopers. Choices made, victories and defeats, and buildings and blocks damaged and destroyed in combat will affect later missions and ensure that every campaign plays out differently.&amp;#10;&amp;#10;</description>
+		<yearpublished value="2019" />
+		<minplayers value="2" />
+		<maxplayers value="4" />
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="3">
+			<results numplayers="1">		
+				<result value="Best" numvotes="1" />
+				<result value="Recommended" numvotes="2" />
+				<result value="Not Recommended" numvotes="0" />
+			</results>					
+			<results numplayers="2">		
+				<result value="Best" numvotes="2" />
+				<result value="Recommended" numvotes="0" />
+				<result value="Not Recommended" numvotes="0" />
+			</results>					
+			<results numplayers="3">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="1" />
+				<result value="Not Recommended" numvotes="1" />
+			</results>					
+			<results numplayers="4">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="1" />
+				<result value="Not Recommended" numvotes="1" />
+			</results>					
+			<results numplayers="4+">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="1" />
+				<result value="Not Recommended" numvotes="1" />
+			</results>					
+		</poll>
+		<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
+			<result name="bestwith" value="Best with 2 players" />
+			<result name="recommmendedwith" value="Recommended with 1–2 players" />
+		</poll-summary> 			               				
+		<playingtime value="120" />
+		<minplaytime value="60" />
+		<maxplaytime value="120" />
+		<minage value="13" />
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="2">
+			<results>		
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="0" />
+				<result value="5" numvotes="0" />
+				<result value="6" numvotes="0" />
+				<result value="8" numvotes="0" />
+				<result value="10" numvotes="0" />
+				<result value="12" numvotes="0" />
+				<result value="14" numvotes="1" />
+				<result value="16" numvotes="0" />
+				<result value="18" numvotes="1" />
+				<result value="21 and up" numvotes="0" />
+			</results>					
+		</poll> 			      			
+		<poll name="language_dependence" title="Language Dependence" totalvotes="2">
+			<results>		
+				<result level="6" value="No necessary in-game text" numvotes="0" />
+				<result level="7" value="Some necessary text - easily memorized or small crib sheet" numvotes="0" />
+				<result level="8" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="1" />
+				<result level="9" value="Extensive use of text - massive conversion needed to be playable" numvotes="1" />
+				<result level="10" value="Unplayable in another language" numvotes="0" />
+			</results>					
+		</poll> 			      			 			      				
+		<link type="boardgamecategory" id="1046" value="Fighting" />
+		<link type="boardgamecategory" id="1079" value="Humor" />
+		<link type="boardgamecategory" id="1047" value="Miniatures" />
+		<link type="boardgamecategory" id="1069" value="Modern Warfare" />
+		<link type="boardgamecategory" id="1016" value="Science Fiction" />
+		<link type="boardgamecategory" id="1101" value="Video Game Theme" />
+		<link type="boardgamecategory" id="1019" value="Wargame" />
+		<link type="boardgamemechanic" id="2001" value="Action Points" />
+		<link type="boardgamemechanic" id="2023" value="Cooperative Game" />
+		<link type="boardgamemechanic" id="2676" value="Grid Movement" />
+		<link type="boardgamemechanic" id="2011" value="Modular Board" />
+		<link type="boardgamemechanic" id="2019" value="Team-Based Game" />
+		<link type="boardgamemechanic" id="2015" value="Variable Player Powers" />
+		<link type="boardgamefamily" id="48877" value="Components: Game Trayz Inside" />
+		<link type="boardgamefamily" id="25158" value="Components: Miniatures" />
+		<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
+		<link type="boardgamefamily" id="24281" value="Mechanism: Campaign Games" />
+		<link type="boardgamefamily" id="65851" value="Players: Games with expansions that add solo play" />
+		<link type="boardgameexpansion" id="257855" value="Agents of Mayhem: Bombshells Team" />
+		<link type="boardgameexpansion" id="257866" value="Agents of Mayhem: Civil Overwatch Patrol" />
+		<link type="boardgameexpansion" id="257853" value="Agents of Mayhem: Firing Squad" />
+		<link type="boardgameexpansion" id="257862" value="Agents of Mayhem: Get Gaunt" />
+		<link type="boardgameexpansion" id="289947" value="Agents of Mayhem: Gremlin Tech Deck 1" />
+		<link type="boardgameexpansion" id="257858" value="Agents of Mayhem: Hammersmith" />
+		<link type="boardgameexpansion" id="257864" value="Agents of Mayhem: Johnny Gat is Back" />
+		<link type="boardgameexpansion" id="257868" value="Agents of Mayhem: Solo &amp; Co-op Expansion" />
+		<link type="boardgameaccessory" id="257870" value="Agents of Mayhem: Giant Building Tiles Pack" />
+		<link type="boardgameaccessory" id="279778" value="Agents of Mayhem: Pride of Babylon – Extra Set of Dice" />
+		<link type="boardgameaccessory" id="279780" value="Agents of Mayhem: Pride of Babylon – Family Friendly Pack" />
+		<link type="boardgameaccessory" id="257872" value="Agents of Mayhem: Terrain Upgrade Pack" />
+		<link type="boardgamedesigner" id="66050" value="Gunter Eickert" />
+		<link type="boardgameartist" id="38447" value="Jarek Nocoń" />
+		<link type="boardgamepublisher" id="7747" value="Academy Games, Inc." />
+		<link type="boardgamepublisher" id="43119" value="Apollo Games" />
+		<statistics page="1">
+			<ratings >
+				<usersrated value="117" />
+				<average value="7.14256" />
+				<bayesaverage value="5.56842" />
+				<ranks>
+					<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="10587" bayesaverage="5.56842" />
+					<rank type="family" id="4664" name="wargames" friendlyname="War Game Rank" value="2040" bayesaverage="5.81478" />
+					<rank type="family" id="5496" name="thematic" friendlyname="Thematic Rank" value="1241" bayesaverage="5.64573" />
+				</ranks>
+				<stddev value="2.20355" />
+				<median value="0" />
+				<owned value="529" />
+				<trading value="38" />
+				<wanting value="16" />
+				<wishing value="102" />
+				<numcomments value="78" />
+				<numweights value="10" />
+				<averageweight value="3" />
+			</ratings>
+		</statistics>
+	</item>
+	<item type="boardgame" id="314088">
+		<thumbnail>https://cf.geekdo-images.com/KcE2t-zmo-p-POO8fPTUmA__thumb/img/Atmy64jQdwgenpROZdR35HLdM5A=/fit-in/200x150/filters:strip_icc()/pic5674430.png</thumbnail>
+		<image>https://cf.geekdo-images.com/KcE2t-zmo-p-POO8fPTUmA__original/img/C6HMgkML2-KMopI_T4ZfbvvgIJM=/0x0/filters:format(png)/pic5674430.png</image>
+		<name type="primary" sortindex="1" value="Agropolis" />
+		<name type="alternate" sortindex="1" value="Agrópolis" />
+		<name type="alternate" sortindex="1" value="Ranczer" />
+		<name type="alternate" sortindex="1" value="Velkostatek" />
+		<name type="alternate" sortindex="1" value="Агрополіс" />
+		<description>From clucking chickens to rumbling tractors, the sounds of a bustling farm are everywhere. It's up to your team of planners to turn this little farm into a flourishing ranching community!&amp;#10;&amp;#10;&amp;#10;Having developed dream cities in Sprawlopolis, it's now time to set your sights on the rolling countryside, where farm, ranches, and roads intermingle master plan, as ever, seems just out of reach.&amp;#10;&amp;#10;Agropolis is a stand-alone expansion to Sprawlopolis, bringing the same card-laying, variable-scoring gameplay into a new setting: city blocks give way to orchards, wheat fields, livestock pens, and vineyards. As before, players draw three goal cards and then attempt to place cards one at a time to create a rural tableau that best satisfies those goals. New gameplay features help offset overly-powerful scoring combos and layer additional attributes onto certain types of terrain, providing even greater depth of gameplay without sacrificing the original's signature elegance.&amp;#10;&amp;#10;Agropolis can be played entirely on its own, but it can also combined with Sprawlopolis using special rules and goal cards provided in the Combopolis mini-expansion.&amp;#10;&amp;#10;</description>
+		<yearpublished value="2021" />
+		<minplayers value="1" />
+		<maxplayers value="4" />
+		<poll name="suggested_numplayers" title="User Suggested Number of Players" totalvotes="59">
+			<results numplayers="1">		
+				<result value="Best" numvotes="52" />
+				<result value="Recommended" numvotes="7" />
+				<result value="Not Recommended" numvotes="0" />
+			</results>					
+			<results numplayers="2">		
+				<result value="Best" numvotes="7" />
+				<result value="Recommended" numvotes="26" />
+				<result value="Not Recommended" numvotes="7" />
+			</results>					
+			<results numplayers="3">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="8" />
+				<result value="Not Recommended" numvotes="24" />
+			</results>					
+			<results numplayers="4">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="3" />
+				<result value="Not Recommended" numvotes="29" />
+			</results>					
+			<results numplayers="4+">		
+				<result value="Best" numvotes="0" />
+				<result value="Recommended" numvotes="0" />
+				<result value="Not Recommended" numvotes="31" />
+			</results>					
+		</poll>
+		<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
+			<result name="bestwith" value="Best with 1 players" />
+			<result name="recommmendedwith" value="Recommended with 1–2 players" />
+		</poll-summary> 			               				
+		<playingtime value="20" />
+		<minplaytime value="15" />
+		<maxplaytime value="20" />
+		<minage value="8" />
+		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="12">
+			<results>		
+				<result value="2" numvotes="0" />
+				<result value="3" numvotes="0" />
+				<result value="4" numvotes="0" />
+				<result value="5" numvotes="0" />
+				<result value="6" numvotes="1" />
+				<result value="8" numvotes="5" />
+				<result value="10" numvotes="6" />
+				<result value="12" numvotes="0" />
+				<result value="14" numvotes="0" />
+				<result value="16" numvotes="0" />
+				<result value="18" numvotes="0" />
+				<result value="21 and up" numvotes="0" />
+			</results>					
+		</poll> 			      			
+		<poll name="language_dependence" title="Language Dependence" totalvotes="3">
+			<results>		
+				<result level="1" value="No necessary in-game text" numvotes="0" />
+				<result level="2" value="Some necessary text - easily memorized or small crib sheet" numvotes="2" />
+				<result level="3" value="Moderate in-game text - needs crib sheet or paste ups" numvotes="1" />
+				<result level="4" value="Extensive use of text - massive conversion needed to be playable" numvotes="0" />
+				<result level="5" value="Unplayable in another language" numvotes="0" />
+			</results>					
+		</poll> 			      			 			      				
+		<link type="boardgamecategory" id="1002" value="Card Game" />
+		<link type="boardgamecategory" id="1029" value="City Building" />
+		<link type="boardgamecategory" id="1013" value="Farming" />
+		<link type="boardgamecategory" id="1120" value="Print &amp; Play" />
+		<link type="boardgamecategory" id="1086" value="Territory Building" />
+		<link type="boardgamemechanic" id="2984" value="Closed Drafting" />
+		<link type="boardgamemechanic" id="2023" value="Cooperative Game" />
+		<link type="boardgamemechanic" id="3001" value="Layering" />
+		<link type="boardgamemechanic" id="2819" value="Solo / Solitaire Game" />
+		<link type="boardgamemechanic" id="2002" value="Tile Placement" />
+		<link type="boardgamefamily" id="7530" value="Animals: Cattle / Cows" />
+		<link type="boardgamefamily" id="65191" value="Components: Multi-Use Cards" />
+		<link type="boardgamefamily" id="97062" value="Containers: Wallets" />
+		<link type="boardgamefamily" id="8374" value="Crowdfunding: Kickstarter" />
+		<link type="boardgamefamily" id="107226" value="Game: Agropolis" />
+		<link type="boardgamefamily" id="65208" value="Mechanism: Partially overlapping cards" />
+		<link type="boardgamefamily" id="5666" value="Players: Games with Solitaire Rules" />
+		<link type="boardgamefamily" id="73760" value="Series: Master Print Mini (Quined)" />
+		<link type="boardgamefamily" id="103330" value="Series: Micro Game (Matagot)" />
+		<link type="boardgamefamily" id="58142" value="Series: Sprawlopolis" />
+		<link type="boardgamefamily" id="27795" value="Series: Wallet Games (Button Shy)" />
+		<link type="boardgameexpansion" id="408849" value="Agropolis: Expansion Collection" />
+		<link type="boardgameexpansion" id="431965" value="Agropolis: Harvest" />
+		<link type="boardgameexpansion" id="321696" value="Agropolis: Invasion" />
+		<link type="boardgameexpansion" id="321697" value="Agropolis: Points of Interest" />
+		<link type="boardgameexpansion" id="354898" value="Agropolis: Seasons" />
+		<link type="boardgameexpansion" id="407979" value="Agropolis/Combopolis: Micro Extension" />
+		<link type="boardgameexpansion" id="320282" value="Combopolis" />
+		<link type="boardgameexpansion" id="371017" value="Combopolis III" />
+		<link type="boardgameexpansion" id="371025" value="Combopolis: Expansion Collection" />
+		<link type="boardgameexpansion" id="371019" value="Ultimopolis" />
+		<link type="boardgameaccessory" id="397256" value="Button Shy Game Haul Bag" />
+		<link type="boardgameintegration" id="352606" value="Naturopolis" />
+		<link type="boardgameintegration" id="251658" value="Sprawlopolis" />
+		<link type="boardgamedesigner" id="73472" value="Steven Aramini" />
+		<link type="boardgamedesigner" id="68355" value="Danny Devine" />
+		<link type="boardgamedesigner" id="91357" value="Paul Kluka" />
+		<link type="boardgameartist" id="11462" value="Loïc Billiau" />
+		<link type="boardgameartist" id="68355" value="Danny Devine" />
+		<link type="boardgameartist" id="119673" value="Karolina Jędrzejak" />
+		<link type="boardgamepublisher" id="26991" value="Button Shy" />
+		<link type="boardgamepublisher" id="29895" value="Frosted Games" />
+		<link type="boardgamepublisher" id="45134" value="Geekach Games" />
+		<link type="boardgamepublisher" id="33626" value="Lucky Duck Games" />
+		<link type="boardgamepublisher" id="5400" value="Matagot" />
+		<link type="boardgamepublisher" id="10663" value="Quined Games" />
+		<link type="boardgamepublisher" id="21053" value="REXhry" />
+		<link type="boardgamepublisher" id="40599" value="Salt &amp; Pepper Games" />
+		<statistics page="1">
+			<ratings >
+				<usersrated value="2433" />
+				<average value="7.32065" />
+				<bayesaverage value="6.46535" />
+				<ranks>
+					<rank type="subtype" id="1" name="boardgame" friendlyname="Board Game Rank" value="1312" bayesaverage="6.46535" />
+					<rank type="family" id="5497" name="strategygames" friendlyname="Strategy Game Rank" value="704" bayesaverage="6.6066" />
+				</ranks>
+				<stddev value="1.13208" />
+				<median value="0" />
+				<owned value="8110" />
+				<trading value="102" />
+				<wanting value="72" />
+				<wishing value="534" />
+				<numcomments value="683" />
+				<numweights value="62" />
+				<averageweight value="1.7742" />
+			</ratings>
+		</statistics>
+	</item>
 </items>

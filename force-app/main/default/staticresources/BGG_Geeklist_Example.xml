@@ -1,16 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	This Example XML was pulled from BoardGameGeek using the API
+	Not all values are currently used in example application
+	Leaving the excess information in just in case it is needed to test against later
+-->
 <geeklist id="347463" termsofuse="https://boardgamegeek.com/xmlapi/termsofuse">
-<postdate>Sat, 30 Nov 2024 15:04:12 +0000</postdate>
-<postdate_timestamp>1732979052</postdate_timestamp>
-<editdate>Sat, 30 Nov 2024 15:05:04 +0000</editdate>
-<editdate_timestamp>1732979104</editdate_timestamp>
-<thumbs>0</thumbs>
-<numitems>13</numitems>
-
-<username>az933k</username> 
-<title>Geeklist Import Example</title>
-<description>This is a Geek List that is used as an example for being able to import by Geek List ID.  Tried to stick with a theme of Dungeon Crawlers/Miniatures Games</description>
-
-
+	<postdate>Sat, 30 Nov 2024 15:04:12 +0000</postdate>
+	<postdate_timestamp>1732979052</postdate_timestamp>
+	<editdate>Sat, 30 Nov 2024 15:05:04 +0000</editdate>
+	<editdate_timestamp>1732979104</editdate_timestamp>
+	<thumbs>0</thumbs>
+	<numitems>13</numitems>
+	<username>az933k</username> 
+	<title>Geeklist Import Example</title>
+	<description>This is a Geek List that is used as an example for being able to import by Geek List ID.  Tried to stick with a theme of Dungeon Crawlers/Miniatures Games</description>
 	<item id="11300477" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -21,9 +24,8 @@
 			editdate="Sat, 30 Nov 2024 14:43:04 +0000"
 			thumbs="0"
 									imageid="0">
-	<body>Game play mechanics make this a great Dungeon Crawler but the theme is kinda off putting. Lots of minis!</body>
-	
-		</item>
+		<body>Game play mechanics make this a great Dungeon Crawler but the theme is kinda off putting. Lots of minis!</body>
+	</item>
 	<item id="11300486" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -34,9 +36,8 @@
 			editdate="Sat, 30 Nov 2024 14:45:11 +0000"
 			thumbs="0"
 									imageid="0">
-	<body>It&apos;s an interesting Dungeon Crawler with some fun mechanics but needs a few house rules to increase the pressure of being in the dungeon</body>
-	
-		</item>
+		<body>It&apos;s an interesting Dungeon Crawler with some fun mechanics but needs a few house rules to increase the pressure of being in the dungeon</body>	
+	</item>
 	<item id="11300493" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -46,10 +47,9 @@
 			postdate="Sat, 30 Nov 2024 14:46:30 +0000" 
 			editdate="Sat, 30 Nov 2024 14:46:30 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>Kill Zombies. Get Loot. Very Simple and an easy gateway to Dungeon Crawlers</body>
-	
-		</item>
+			imageid="0">
+		<body>Kill Zombies. Get Loot. Very Simple and an easy gateway to Dungeon Crawlers</body>
+	</item>
 	<item id="11300497" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -59,10 +59,9 @@
 			postdate="Sat, 30 Nov 2024 14:47:19 +0000" 
 			editdate="Sat, 30 Nov 2024 14:47:19 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>A lot of Dungeon fits into this tiny little box</body>
-	
-		</item>
+			imageid="0">
+		<body>A lot of Dungeon fits into this tiny little box</body>
+	</item>
 	<item id="11300505" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -72,10 +71,9 @@
 			postdate="Sat, 30 Nov 2024 14:50:30 +0000" 
 			editdate="Sat, 30 Nov 2024 14:50:30 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>If you like Heavy, Chunky Games and Love Batman, boy do I have good news for you. I am afraid to break the shrink wrap on this one</body>
-	
-		</item>
+			imageid="0">
+		<body>If you like Heavy, Chunky Games and Love Batman, boy do I have good news for you. I am afraid to break the shrink wrap on this one</body>
+	</item>
 	<item id="11300509" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -85,10 +83,9 @@
 			postdate="Sat, 30 Nov 2024 14:51:45 +0000" 
 			editdate="Sat, 30 Nov 2024 14:51:45 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>More puzzle than Dungeon Crawler. Really want to get to the Table but a bit Difficult to get a consistent group going</body>
-	
-		</item>
+			imageid="0">
+		<body>More puzzle than Dungeon Crawler. Really want to get to the Table but a bit Difficult to get a consistent group going</body>
+	</item>
 	<item id="11300514" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -99,9 +96,8 @@
 			editdate="Sat, 30 Nov 2024 14:54:39 +0000"
 			thumbs="0"
 									imageid="0">
-	<body>Mechanics really highlight how teamwork should go. Downside is that while it IS a complete game, really needs City Fall to feel Complete.  Shame company went out of business</body>
-	
-		</item>
+		<body>Mechanics really highlight how teamwork should go. Downside is that while it IS a complete game, really needs City Fall to feel Complete.  Shame company went out of business</body>
+	</item>
 	<item id="11300516" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -111,10 +107,9 @@
 			postdate="Sat, 30 Nov 2024 14:55:00 +0000" 
 			editdate="Sat, 30 Nov 2024 14:55:00 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>Mechanics really highlight how teamwork should go. Downside is that while it IS a complete game, really needs Change is Constant to feel Complete.  Shame company went out of business</body>
-	
-		</item>
+			imageid="0">
+		<body>Mechanics really highlight how teamwork should go. Downside is that while it IS a complete game, really needs Change is Constant to feel Complete.  Shame company went out of business</body>
+	</item>
 	<item id="11300521" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -124,10 +119,9 @@
 			postdate="Sat, 30 Nov 2024 14:56:55 +0000" 
 			editdate="Sat, 30 Nov 2024 14:56:55 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>Same mechanics engine as TMNT City Fall and Change is constant so characters could be mixed and matched. Did someone say Crossover?</body>
-	
-		</item>
+			imageid="0">
+		<body>Same mechanics engine as TMNT City Fall and Change is constant so characters could be mixed and matched. Did someone say Crossover?</body>
+	</item>
 	<item id="11300528" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -137,10 +131,9 @@
 			postdate="Sat, 30 Nov 2024 14:58:43 +0000" 
 			editdate="Sat, 30 Nov 2024 14:58:43 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>Havent even hit the tip of the iceberg with Glomhaven, but sure, here is another Massive Campaign Crawler I should own! </body>
-	
-		</item>
+			imageid="0">
+		<body>Havent even hit the tip of the iceberg with Glomhaven, but sure, here is another Massive Campaign Crawler I should own! </body>
+	</item>
 	<item id="11300532" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -150,10 +143,9 @@
 			postdate="Sat, 30 Nov 2024 14:59:56 +0000" 
 			editdate="Sat, 30 Nov 2024 14:59:56 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>I like the spiral notebook maps as opposed to the multiple tiles. Makes for easier set up. Told this was an easier introduction to the series </body>
-	
-		</item>
+			imageid="0">
+		<body>I like the spiral notebook maps as opposed to the multiple tiles. Makes for easier set up. Told this was an easier introduction to the series </body>
+	</item>
 	<item id="11300538" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -163,10 +155,9 @@
 			postdate="Sat, 30 Nov 2024 15:01:32 +0000" 
 			editdate="Sat, 30 Nov 2024 15:01:32 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>This is the epitome of the Dungeon Crawler in my opinion. Heard Good Things about the 3rd Edition too but not sure I want to crack THAT can of wyrms.</body>
-	
-		</item>
+			imageid="0">
+		<body>This is the epitome of the Dungeon Crawler in my opinion. Heard Good Things about the 3rd Edition too but not sure I want to crack THAT can of wyrms.</body>
+	</item>
 	<item id="11300546" 
 			objecttype="thing"
 			subtype="boardgame" 
@@ -176,8 +167,7 @@
 			postdate="Sat, 30 Nov 2024 15:03:53 +0000" 
 			editdate="Sat, 30 Nov 2024 15:03:53 +0000"
 			thumbs="0"
-									imageid="0">
-	<body>Built on the Descent 2e Engine, this is a GREAT Dungeon Crawler but Star Wars. Fantastic accompanying app to go along with it. Love the Imperial Twists and surprises mid game. Really should knock the dust off this one soon  </body>
-	
-		</item>
+			imageid="0">
+		<body>Built on the Descent 2e Engine, this is a GREAT Dungeon Crawler but Star Wars. Fantastic accompanying app to go along with it. Love the Imperial Twists and surprises mid game. Really should knock the dust off this one soon  </body>
+	</item>
 </geeklist>
