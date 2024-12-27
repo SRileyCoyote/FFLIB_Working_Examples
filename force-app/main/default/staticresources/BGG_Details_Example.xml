@@ -48,10 +48,11 @@
 			</results>					
 		</poll>
 		<poll-summary name="suggested_numplayers"  title="User Suggested Number of Players">
-		<result name="bestwith" value="Best with 4–5 players" />
-		<result name="recommmendedwith" value="Recommended with 2–5 players" />
-		</poll-summary> 			               				<playingtime value="30" />
-														<minplaytime value="5" />
+			<result name="bestwith" value="Best with 4–5 players" />
+			<result name="recommmendedwith" value="Recommended with 2–5 players" />
+		</poll-summary> 			               				
+		<playingtime value="30" />
+		<minplaytime value="5" />
 		<maxplaytime value="30" />
 		<minage value="8" />
 		<poll name="suggested_playerage" title="User Suggested Player Age" totalvotes="46">
