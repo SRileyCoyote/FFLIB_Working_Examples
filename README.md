@@ -75,7 +75,7 @@ This Use Case shows examples for the following:
      - Mocking and Stubbing FFLIB
      - Use Case Unit Testing
 
-[Back to Top](/README.md#example-use-cases)
+[Back to Top](#example-use-cases)
 
 ### 2. Import Board Game List from BoardGameGeek API
 
@@ -121,7 +121,7 @@ This Use Case shows examples for the following:
 
 [^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will be queued resulting in an error. If this happens just re-click submit and try again. 
 
-[Back to Top](/README.md#example-use-cases)
+[Back to Top](#example-use-cases)
 
 ### 3. Update Individual Board Game Information from BoardGameGeek API
 
@@ -158,13 +158,13 @@ This Use Case shows examples for the following:
           - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
 
-[Back to Top](/README.md#example-use-cases)
+[Back to Top](#example-use-cases)
 
 ### 4. Check Out/In Board Game (WIP)
 
 As an Event Attendee, I would like to click a button and automatically Check Out a Board Game from the Board Game Library. I would like this option to only be available if there is a copy of the Board Game Available to Check Out. I would also like to be able to view the Board Games that are checked out and click a button from the Check Out Log Record or List View that will check that Board Game back in.  
 
-[Back to Top](/README.md#example-use-cases)
+[Back to Top](#example-use-cases)
 
 ### 6. Home Board Game Dashboard (WIP)
 
@@ -177,7 +177,7 @@ As an Event Owner, I would like to see a Dashboard showing:
 - Favorited Board Games
 - Top 5 User Rated Board Games
 
-[Back to Top](/README.md#example-use-cases)
+[Back to Top](#example-use-cases)
 
 ## Links for More Information 
 
