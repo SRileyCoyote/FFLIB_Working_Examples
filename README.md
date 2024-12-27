@@ -43,11 +43,11 @@ For this example, I put together an Application in Salesforce based on what I kn
 [Apex Classes](/force-app/main/default/classes/FFLIB%20Examples) are all sorted and organized in seperate folders based on the their respective layers. 
 
 In this example, we will be using the following Use Cases:
-1. [Mark Board Game as Favorite](/README.md#1-mark-as-board-game-as-favorite)
-1. [Import Board Game List from BoardGameGeek API](/README.md#2-import-board-game-list-from-boardgamegeek-api)
-1. [Update Individual Board Game Information from BoardGameGeek API](/README.md#3-update-individual-board-game-information-from-boardgamegeek-api)
-1. [Check Out/In Board Game (WIP)](/README.md#4-check-outin-board-game-wip)
-1. [Home Board Game Dashboard (WIP)](/README.md#6-home-board-game-dashboard-wip)
+1. [Mark Board Game as Favorite](#1-mark-as-board-game-as-favorite)
+1. [Import Board Game List from BoardGameGeek API](#2-import-board-game-list-from-boardgamegeek-api)
+1. [Update Individual Board Game Information from BoardGameGeek API](#3-update-individual-board-game-information-from-boardgamegeek-api)
+1. [Check Out/In Board Game (WIP)](#4-check-outin-board-game-wip)
+1. [Home Board Game Dashboard (WIP)](#6-home-board-game-dashboard-wip)
 
 ### 1. Mark as Board Game as Favorite
 
