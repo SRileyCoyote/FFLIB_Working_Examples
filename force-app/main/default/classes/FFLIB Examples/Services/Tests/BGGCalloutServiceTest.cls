@@ -12,7 +12,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-11-30
+* @modified       2024-12-27
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -38,28 +38,52 @@ private class BGGCalloutServiceTest {
     }
 
     // Helper method to read XML response from Static Resource
-    private static String getMockXmlResponse(String staticResourceName) {
+    private static String getMockXmlResponseFromStaticResource(String staticResourceName) {
         StaticResource staticResource = [SELECT Body FROM StaticResource WHERE Name = :staticResourceName LIMIT 1];
         return staticResource.Body.toString();
     }
 
-    //Test Plan
-    //Successfully Call Collection API
-    //Catch Error from Collection API 
-    //Successfully Call Geeklist API
-    //Catch Error from Geeklist API
-    //Call Details API with no IDs
-    //Call Details API with 1 ID
-    //Call Details API with 20 IDs
-    //Call Details API with 21 IDs
-    //Call Details API with # of IDs Exceeding Callout Limit
-    //Catch Error from Call Details API
+    // Helper methods to generate indiviual BGG Detail XML response
+    private static String generateXMLItem(Map<String, String> paramMap){        
+        String xmlTemplate = '<item id="{0}">'
+                                + '<name type="primary" sortindex="1" value="{1}" />'
+                            + '</item>';
+        return  String.format(xmlTemplate, new List<String>{
+                                                        getParam('id', paramMap),
+                                                        getParam('name', paramMap)
+                                                    });
+    }
 
-    //Successfully Call Collection API
+    private static String getMockIndividualXmlResponse(List<String> xmlItems){
+        return '<items>'+String.join(xmlItems, '')+'</items>';
+    }
+
+    private static String getParam(String paramName, Map<String, String> paramMap){
+        return paramMap.containsKey(paramName) ? paramMap.get(paramName) : '';
+    }
+
+    //Test Plan
+    // Successfully Call Collection API
+    // Catch Error from Collection API 
+    // Successfully Call Geeklist API
+    // Catch Error from Geeklist API
+    // Call Details API with no IDs
+    // Call Details API with 1 ID
+    // Call Details API with 20 IDs
+    // Call Details API with 21 IDs
+    // Call Details API with # of IDs Exceeding Callout Limit
+    // Catch Error from Call Details API
+    // Call Details for Specific BGG IDs with 1 BGG ID
+    // Call Details for Specific BGG IDs with multiple BGG IDs
+    // Call Details for Specific BGG IDs with no BGG IDs
+ 
+
+    //Start Testing
+    // Successfully Call Collection API
     @isTest
     static void givenCollectionName_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
-        String mockXmlResponse = getMockXmlResponse('BGG_Collection_Example');
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Collection_Example');
         
         // Mock HTTP response
         Test.startTest();
@@ -77,7 +101,7 @@ private class BGGCalloutServiceTest {
         Assert.areEqual('Backed On Kickstarter', result.wrapperMap.get('207830').comment, 'Comment mismatch');
     }
 
-    //Catch Error from Collection API 
+    // Catch Error from Collection API 
     @isTest
     static void givenCollectionName_WhenGetIDsFromBGGCalledWithBadStatusCode_ThenErrorThrown() {
         // Get XML response from the Static Resource
@@ -102,11 +126,11 @@ private class BGGCalloutServiceTest {
         Assert.areEqual(service.ERROR_COLLECTION_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
     }
 
-    //Successfully Call Geeklist API
+    // Successfully Call Geeklist API
     @isTest
     static void givenGeeklistId_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
-        String mockXmlResponse = getMockXmlResponse('BGG_Geeklist_Example');
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Geeklist_Example');
         
         // Mock HTTP response
         Test.startTest();
@@ -123,7 +147,7 @@ private class BGGCalloutServiceTest {
         Assert.areEqual('az933k', result.wrapperMap.get('315610').ownerName, 'Owner name mismatch');
     }
 
-    //Catch Error from Geeklist API
+    // Catch Error from Geeklist API
     @isTest
     static void givenGeekListId_WhenGetIDsFromBGGCalledWithBadStatusCode_ThenErrorThrown() {
         // Get XML response from the Static Resource
@@ -148,11 +172,11 @@ private class BGGCalloutServiceTest {
         Assert.areEqual(service.ERROR_GEEKLIST_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
     }
 
-    //Call Details API with no IDs
+    // Call Details API with no IDs
     @isTest
     static void givenNoBGGIDs_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenNoResultsReturned() {
         // Get XML response from the Static Resource
-        String mockXmlResponse = getMockXmlResponse('BGG_Details_Example');
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
         testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>();
         
@@ -170,11 +194,11 @@ private class BGGCalloutServiceTest {
         Assert.areEqual(service.NO_IDS_PROVIDED_MSG, result.resultMessage, 'Returned Messages Does Not Match: '+result.resultMessage);
     }
 
-    //Call Details API with 1 ID
+    // Call Details API with 1 ID
     @isTest
     static void givenOneBGGID_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
-        String mockXmlResponse = getMockXmlResponse('BGG_Details_Example');
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
         BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
         testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
@@ -195,11 +219,11 @@ private class BGGCalloutServiceTest {
         Assert.areEqual(5, result.wrapperMap.size(), 'Expected 5 items in the wrapper map');
     }
 
-    //Call Details API with 20 IDs
+    // Call Details API with 20 IDs
     @isTest
     static void givenTwentyBGGID_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
-        String mockXmlResponse = getMockXmlResponse('BGG_Details_Example');
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
         testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
             //Load First 5 IDs from Details Example into Map
@@ -227,11 +251,11 @@ private class BGGCalloutServiceTest {
         Assert.areEqual(20, result.wrapperMap.size(), 'Expected 20 items in the wrapper map');
     }
 
-    //Call Details API with 20+ IDs
+    // Call Details API with 20+ IDs
     @isTest
     static void givenOverTwentyBGGID_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
-        String mockXmlResponse = getMockXmlResponse('BGG_Details_Example');
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
         testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
             //Load First 5 IDs from Details Example into Map
@@ -259,11 +283,11 @@ private class BGGCalloutServiceTest {
         Assert.areEqual(25, result.wrapperMap.size(), 'Expected 20 items in the wrapper map');
     }
 
-    //Call Details API with # of IDs Exceeding Callout Limit
+    // Call Details API with # of IDs Exceeding Callout Limit
     @isTest
     static void givenTooManyCallouts_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenUnprocessIdsReturned() {
         // Get XML response from the Static Resource
-        String mockXmlResponse = getMockXmlResponse('BGG_Details_Example');
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
         testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
             //Load First 5 IDs from Details Example into Map
@@ -295,7 +319,7 @@ private class BGGCalloutServiceTest {
         Assert.areEqual(5, result.unprocessedIDs.size(), 'Expected 5 Unprocessed IDs');
     }
 
-    //Catch Error from Call Details API
+    // Catch Error from Call Details API
     @isTest
     static void givenOneBGGID_WhenGetIDsFromBGGCalledWithBadStatusCode_ThenErrorThrown() {
         // Get XML response from the Static Resource
@@ -323,6 +347,98 @@ private class BGGCalloutServiceTest {
         
         // Validate the results
         Assert.areEqual(service.ERROR_DETAILS_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
+    }
+
+    // Call Details for Specific BGG IDs with 1 BGG ID
+    @isTest
+    static void givenOneBGGId_WhenGetBoardGameDetailFromBGGIdsIsCalled_ThenCorrectResultsReturned() {
+        // Generate XML Item
+        String xmlItem = generateXMLItem(new Map<String, String>{
+                                                                'id' => '12345',
+                                                                'name' => 'My Board Game'
+                                                                });
+
+        //Create XML Response
+        String mockXmlResponse = getMockIndividualXmlResponse(new List<String>{xmlItem});
+        
+        // Mock HTTP response
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(mockXmlResponse, 200));
+        
+        BGGCalloutService service = new BGGCalloutService();
+        BGGCalloutService.CalloutResult result = service.getBoardGameDetailFromBGGIds(new Map<Id, String>{
+                                        fflib_IDGenerator.generate(Board_Games__c.sObjectType) => '12345'
+                                    });
+        
+        Test.stopTest();
+        
+        // Validate the results
+        Assert.areEqual(1, result.wrapperMap.size(), 'Expected 1 items in the wrapper map');
+        Assert.areEqual('My Board Game', result.wrapperMap.get('12345').boardGame.Name, 'Name does not Match Expected Result');
+    }
+
+    // Call Details for Specific BGG IDs with multiple BGG IDs
+    @isTest
+    static void givenMultipleBGGIds_WhenGetBoardGameDetailFromBGGIdsIsCalled_ThenCorrectResultsReturned() {
+        // Generate XML Items
+        String xmlItem1 = generateXMLItem(new Map<String, String>{
+                                                                'id' => '12345',
+                                                                'name' => 'My First Board Game'
+                                                                });
+        String xmlItem2 = generateXMLItem(new Map<String, String>{
+                                                                'id' => '23456',
+                                                                'name' => 'My Second Board Game'
+                                                                });
+
+        //Create XML Response
+        String mockXmlResponse = getMockIndividualXmlResponse(new List<String>{xmlItem1,xmlItem2});
+        
+        // Mock HTTP response
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(mockXmlResponse, 200));
+        
+        BGGCalloutService service = new BGGCalloutService();
+        BGGCalloutService.CalloutResult result = service.getBoardGameDetailFromBGGIds(new Map<Id, String>{
+                                        fflib_IDGenerator.generate(Board_Games__c.sObjectType) => '12345',
+                                        fflib_IDGenerator.generate(Board_Games__c.sObjectType) => '23456'
+                                    });
+        
+        Test.stopTest();
+        
+        // Validate the results
+        Assert.areEqual(2, result.wrapperMap.size(), 'Expected 2 items in the wrapper map');
+        Assert.areEqual('My First Board Game', result.wrapperMap.get('12345').boardGame.Name, 'Name does not Match Expected Result');
+        Assert.areEqual('My Second Board Game', result.wrapperMap.get('23456').boardGame.Name, 'Name does not Match Expected Result');
+    }
+
+    // Call Details for Specific BGG IDs with no BGG IDs
+    @isTest
+    static void givenNoBGGIds_WhenGetBoardGameDetailFromBGGIdsIsCalled_ThenNoResultsReturned() {
+        // Generate XML Items
+        String xmlItem1 = generateXMLItem(new Map<String, String>{
+                                                                'id' => '12345',
+                                                                'name' => 'My First Board Game'
+                                                                });
+        String xmlItem2 = generateXMLItem(new Map<String, String>{
+                                                                'id' => '23456',
+                                                                'name' => 'My Second Board Game'
+                                                                });
+
+        //Create XML Response
+        String mockXmlResponse = getMockIndividualXmlResponse(new List<String>{xmlItem1,xmlItem2});
+        
+        // Mock HTTP response
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(mockXmlResponse, 200));
+        
+        BGGCalloutService service = new BGGCalloutService();
+        BGGCalloutService.CalloutResult result = service.getBoardGameDetailFromBGGIds(new Map<Id, String>());
+        
+        Test.stopTest();
+        
+        // Validate the results
+        Assert.areEqual(0, result.wrapperMap.size(), 'Expected no items in the wrapper map');
+        Assert.areEqual(service.NO_IDS_PROVIDED_MSG, result.resultMessage, 'Return Message Does Not Match Expected Result');
     }
 
 }
