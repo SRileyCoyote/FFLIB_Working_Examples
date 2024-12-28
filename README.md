@@ -83,7 +83,7 @@ This Use Case shows examples for the following:
      - Mocking and Stubbing FFLIB
      - Use Case Unit Testing
 
-[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
+[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ### 2. Import Board Game List from BoardGameGeek API
 
@@ -129,7 +129,7 @@ This Use Case shows examples for the following:
 
 [^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will be queued resulting in an error. If this happens just re-click submit and try again. 
 
-[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
+[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ### 3. Update Individual Board Game Information from BoardGameGeek API
 
@@ -166,7 +166,7 @@ This Use Case shows examples for the following:
           - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
 
-[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
+[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ### 4. Check Out/In Board Game (WIP)
 
@@ -185,7 +185,7 @@ As an Event Owner, I would like to see a Dashboard showing:
 - Favorited Board Games
 - Top 5 User Rated Board Games
 
-[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
+[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ## Links for More Information 
 
