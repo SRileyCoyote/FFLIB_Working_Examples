@@ -14,6 +14,14 @@ Already Included in the Metadata are copies of the following Repos:
 - [FFLIB Mocks](/force-app/main/default/classes/FFLIB%20Common%20Classes/APEX_MOCKS) 
 - [SObjectFabricator](/force-app/main/default/classes/FFLIB%20Common%20Classes/SOBJECT_FABRICATOR)
 
+Did I missed the mark on something? <br>
+Do you still have questions about how to do something? <br>
+Are the examples or comments not clear enough for what you are trying to do?
+
+I consider this Example Repo as still a Work In Progress and would love to hear any feedback on what you think is still missing, what is not correct, or could be done better or more efficiently. 
+
+Please feel free to leave a comment in the [Discussions Tab](https://github.com/SRileyCoyote/FFLIB_Working_Examples/discussions). 
+
 ## Scratch Org Setup Instructions
 
 1. Download Repository to Local Machine with VS Code (or similiar IDE)
@@ -75,7 +83,7 @@ This Use Case shows examples for the following:
      - Mocking and Stubbing FFLIB
      - Use Case Unit Testing
 
-[Back to Top](#example-use-cases)
+[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ### 2. Import Board Game List from BoardGameGeek API
 
@@ -121,7 +129,7 @@ This Use Case shows examples for the following:
 
 [^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will be queued resulting in an error. If this happens just re-click submit and try again. 
 
-[Back to Top](#example-use-cases)
+[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ### 3. Update Individual Board Game Information from BoardGameGeek API
 
@@ -158,13 +166,13 @@ This Use Case shows examples for the following:
           - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
 
-[Back to Top](#example-use-cases)
+[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ### 4. Check Out/In Board Game (WIP)
 
 As an Event Attendee, I would like to click a button and automatically Check Out a Board Game from the Board Game Library. I would like this option to only be available if there is a copy of the Board Game Available to Check Out. I would also like to be able to view the Board Games that are checked out and click a button from the Check Out Log Record or List View that will check that Board Game back in.  
 
-[Back to Top](#example-use-cases)
+[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ### 6. Home Board Game Dashboard (WIP)
 
@@ -177,7 +185,7 @@ As an Event Owner, I would like to see a Dashboard showing:
 - Favorited Board Games
 - Top 5 User Rated Board Games
 
-[Back to Top](#example-use-cases)
+[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ## Links for More Information 
 
@@ -185,7 +193,9 @@ As an Event Owner, I would like to see a Dashboard showing:
 
 [FFLIB Examples](/force-app/main/default/classes/FFLIB%20Examples) - [Official Definitions](https://fflib.dev/docs)
 - [Application Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Application)
-- [Trigger Handler Example](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers)
+- Implementation Layer - [Official Definition](https://fflib.dev/docs/implementation-layer/overview)
+     - [Apex Controller Example](/force-app/main/default/classes/FFLIB%20Examples/Controllers)
+     - [Trigger Handler Example](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers)
 - [Domain Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Domains)  - [Official Definition](https://fflib.dev/docs/domain-layer/overview)
 - [Selector Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Selectors) - [Official Definition](https://fflib.dev/docs/selector-layer/overview)
 - [Service Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Services) - [Official Definition](https://fflib.dev/docs/service-layer/overview)
