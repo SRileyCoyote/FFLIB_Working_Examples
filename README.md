@@ -133,14 +133,15 @@ This Use Case shows examples for the following:
 
 ### 3. Update Individual Board Game Information from BoardGameGeek API
 
-As an Event Owner, I would like to be able to click on a button to update individual board game's information from BoardGameGeek. I would like to be able to do this from the Board Game Record as well as the Board Game Library Entry Record, the latter of which would also update the Comments for the Entry. I would also like to be able to do this from the List View for each of these Objects and be able to Select Multiple Records to be Updated at once.
+As an Event Owner, I would like to be able to click on a button to update individual board game's information from BoardGameGeek. I would like to be able to do this from the Board Game Record as well as the Board Game Library Entry Record, the latter of which would also update the Comments for the Entry. I would also like to be able to do this from the List View[^2] for each of these Objects and be able to Select Multiple Records to be Updated at once.
+
+[^2]: LWC Headless Actions are not currently Available for List View Buttons. Attempted several workarounds using URL buttons linking to Aura, Flow, VF Pages to show the results in a pop-up modal with little to no success. Settled on just using a Flow with an Invocable Action that opens in a new Screen and redirects back to the List View When Done.
 
 #### (TODO):
 ```
 1. Add Headless Action to BG Library Entry
      - Update Comment on BG Library Entry as well
-2. Add Headless Action to Board Game List View
-3. Add Headless Action to BG Library Entry List View
+2. Add Flow to BG Library Entry List View
 ```
 
 This Use Case shows examples for the following:
@@ -151,11 +152,15 @@ This Use Case shows examples for the following:
      - Wire Connection to Standard getRecord
      - Promise Connection to Apex Controller
 - Expanding on Exisiting Code Base
+     - Adding to UpdateRecordsFromBGGController
      - Adding to BGGCalloutService
           - Reusing/Modifying Existing Methods
      - Adding to BoardGameService
      - Adding to Interfaces
      - Adding to Test Classes
+- Screen Flow[^2]
+     - Invocable Action
+     - Invocable Variables
 - FFLIB
      - Application Layor
      - Implementation Layer (APEX Controller)
@@ -165,6 +170,8 @@ This Use Case shows examples for the following:
      - Mocking and Stubbing FFLIB Classes
           - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
+     - Mock Http Callouts
+          - Generate Ad Hoc XML Results
 
 [Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
@@ -192,13 +199,13 @@ As an Event Owner, I would like to see a Dashboard showing:
 [SObjects and Custom Metadata Types](/force-app/main/default/objects)
 
 [FFLIB Examples](/force-app/main/default/classes/FFLIB%20Examples) - [Official Definitions](https://fflib.dev/docs)
-- [Application Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Application)
+- [Application Layer Examples](/force-app/main/default/classes/FFLIB%20Examples/Application)
 - Implementation Layer - [Official Definition](https://fflib.dev/docs/implementation-layer/overview)
-     - [Apex Controller Example](/force-app/main/default/classes/FFLIB%20Examples/Controllers)
-     - [Trigger Handler Example](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers)
-- [Domain Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Domains)  - [Official Definition](https://fflib.dev/docs/domain-layer/overview)
-- [Selector Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Selectors) - [Official Definition](https://fflib.dev/docs/selector-layer/overview)
-- [Service Layer Example](/force-app/main/default/classes/FFLIB%20Examples/Services) - [Official Definition](https://fflib.dev/docs/service-layer/overview)
+     - [Apex Controller Examples](/force-app/main/default/classes/FFLIB%20Examples/Controllers)
+     - [Trigger Handler Examples](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers)
+- [Domain Layer Examples](/force-app/main/default/classes/FFLIB%20Examples/Domains)  - [Official Definition](https://fflib.dev/docs/domain-layer/overview)
+- [Selector Layer Examples](/force-app/main/default/classes/FFLIB%20Examples/Selectors) - [Official Definition](https://fflib.dev/docs/selector-layer/overview)
+- [Service Layer Examples](/force-app/main/default/classes/FFLIB%20Examples/Services) - [Official Definition](https://fflib.dev/docs/service-layer/overview)
 
 - [Official FFLIB Sample Code GitHub Repo](https://github.com/apex-enterprise-patterns/fflib-apex-common-samplecode)
 
