@@ -296,6 +296,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>BG_Library_Entry__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Board_Game_Importer</tab>
         <visibility>Visible</visibility>
     </tabSettings>

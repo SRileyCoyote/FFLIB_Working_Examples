@@ -18,6 +18,7 @@
     <tabs>Event_Attendee__c</tabs>
     <tabs>Board_Game_Importer</tabs>
     <tabs>Board_Games__c</tabs>
+    <tabs>BG_Library_Entry__c</tabs>
     <tabs>Board_Game_Rating__c</tabs>
     <tabs>BG_Checkout_Log__c</tabs>
     <uiType>Lightning</uiType>
