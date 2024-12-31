@@ -13,7 +13,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-26
+* @modified       2024-12-23
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -32,7 +32,7 @@ public without sharing class BoardGamesService extends BaseService implements IB
     @TestVisible private final String EVENT_ID_INVALID_MSG = 'Invalid Event ID';
     @TestVisible private final String COLLECTION_OR_ID_INVALID_MSG = 'Invalid Collection or Geek ID';
     @TestVisible private final String NO_RECORD_IDS_PROVIDED_MSG = 'No Record IDs or BGG IDs Found';
-    @TestVisible private final String UPDATE_RECORD_SUCCESS_MSG = 'Board Game {0} has been Refreshed. {1}';
+    @TestVisible private final String UPDATE_RECORD_SUCCESS_MSG = 'The Following Board Games have been Refreshed: {0}. {1}';
     @TestVisible private final String NO_RECORDS_UPDATED_ERR_MSG = 'BGG Game ID Not Found in BoardGameGeek. Please Check the BGG ID and Try Again';
 
     //Initialize Service Class

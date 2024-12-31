@@ -95,7 +95,10 @@ private class UpdateFromBGGControllerTest {
     // Test Plan
     // Call UpdateRecordFromBGG Method Given Dummy Inputs Successfully
     // Call UpdateRecordFromBGG Method Given Dummy Inputs With Error Thrown
+    // Call UpdateRecordsFromBGG Method Given Dummy Inputs Successfully
+    // Call UpdateRecordsFromBGG Method Given Dummy Inputs With Error Thrown
 
+    //Start Testing
     // Call UpdateRecordFromBGG Method Given Dummy Inputs Successfully
     @IsTest
     public static void givenDummyInputs_WhenUpdateRecordFromBGGIsCalled_ThenReturnExpectedMessage(){
@@ -136,6 +139,68 @@ private class UpdateFromBGGControllerTest {
         String errMsg = 'No Errors';
         try{
             String result = UpdateFromBGGController.UpdateRecordFromBGG(fflib_IDGenerator.generate(Board_Games__c.SObjectType), '12345');
+            Assert.isTrue(false, 'Error Not Thrown');
+        } catch (Exception ex){
+            errMsg = ex.getMessage();
+        }
+        Test.stopTest();
+
+        //Validate Data
+        Assert.areEqual('Thrown Exception', errMsg, 'Incorrect Message Recieved: '+ errMsg);
+    }
+
+    // Call UpdateRecordsFromBGG Method Given Dummy Inputs Successfully
+    @IsTest
+    public static void givenMultipleDummyInputs_WhenUpdateRecordsFromBGGIsCalled_ThenReturnExpectedMessage(){
+
+        //Setup Test Data and Mocking
+        //Setup Test Data
+        UpdateFromBGGController.InputWrapper wrapper = new UpdateFromBGGController.InputWrapper();
+        wrapper.boardGames = new List<Board_Games__c>{new Board_Games__c(
+                                                ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                                BGG_Id__c = '12345'
+                                            )};
+
+        // Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_MESSAGE => 'Service Mocked Successfully'
+        };
+
+        //Initialize MockSetup with Params without throwing errors
+        MockSetup mock = new MockSetup(params, false);
+
+        //Run Test
+        Test.startTest();
+        List<String> results = UpdateFromBGGController.UpdateRecordsFromBGG(new List<UpdateFromBGGController.InputWrapper>{wrapper});
+        Test.stopTest();
+
+        //Validate Data
+        Assert.areEqual('Service Mocked Successfully', results[0], 'Incorrect Message Recieved: '+ results[0]);
+    }
+
+    // Call UpdateRecordsFromBGG Method Given Dummy Inputs With Error Thrown
+    @IsTest
+    public static void givenMultipleDummyInputs_WhenUpdateRecordsFromBGGIsCalled_ThenThrowError(){
+
+        //Setup Test Data and Mocking
+        //Setup Test Data
+        UpdateFromBGGController.InputWrapper wrapper = new UpdateFromBGGController.InputWrapper();
+        wrapper.boardGames = new List<Board_Games__c>();
+
+        // Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{
+            MockParams.RETURNED_MESSAGE => 'Service Mocked Successfully'
+        };
+
+
+        //Initialize MockSetup with Params with errors thrown
+        MockSetup mock = new MockSetup(params, true);
+
+        //Run Test
+        Test.startTest();
+        String errMsg = 'No Errors';
+        try{
+            List<String> results = UpdateFromBGGController.UpdateRecordsFromBGG(new List<UpdateFromBGGController.InputWrapper>{wrapper});
             Assert.isTrue(false, 'Error Not Thrown');
         } catch (Exception ex){
             errMsg = ex.getMessage();
