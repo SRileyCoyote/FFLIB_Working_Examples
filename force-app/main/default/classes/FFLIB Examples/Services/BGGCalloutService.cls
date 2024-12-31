@@ -53,6 +53,8 @@ public class BGGCalloutService implements IBGGCalloutService {
                 result.comment = item.getChildElement('comment', null)?.getText();
                 result.boardGame = new Board_Games__c();
                 result.boardGame.BGG_ID__c = bggId;
+                rtv.sourceName = collectionName;
+                rtv.sourceType = 'Collection';
                 rtv.wrapperMap.put(bggId, result);
             }
         } catch (Exception ex){
@@ -76,6 +78,8 @@ public class BGGCalloutService implements IBGGCalloutService {
                     result.boardGame.BGG_ID__c = bggId;
                     result.comment = item.getChildElement('body', null)?.getText();
                     result.ownerName = item.getAttribute('username', null);
+                    rtv.sourceName = geekListId;
+                    rtv.sourceType = 'GeekList';
                     rtv.wrapperMap.put(bggId, result);
                 }
             }
@@ -266,6 +270,8 @@ public class BGGCalloutService implements IBGGCalloutService {
     public class CalloutResult{
         public Map<String, BoardGameWrapper> wrapperMap = new Map<String, BoardGameWrapper>();
         public Set<String> unprocessedIDs = new Set<String>();
+        public string sourceType {get; set;}
+        public string sourceName {get; set;}
         public String resultMessage;
     }
 

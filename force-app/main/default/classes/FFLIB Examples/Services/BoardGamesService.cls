@@ -138,6 +138,8 @@ public without sharing class BoardGamesService extends BaseService implements IB
                         BG_Library_Entry__c bge = bglEntries.get(thisBG.BGG_ID__c);
                         bge.Comments__c = wrapper.comment;
                         bge.BGG_Owner__c = wrapper.ownerName;
+                        bge.Source__c = result.sourceName;
+                        bge.Source_Type__c = result.sourceType;
                         uow.registerDirty(bge); //Register Board Game Library Entry for Update 
                     }
                 } 
@@ -157,6 +159,8 @@ public without sharing class BoardGamesService extends BaseService implements IB
                     bge.Comments__c = wrapper?.comment;
                     bge.BGG_Owner__c = wrapper?.ownerName;
                     bge.Board_Game__c = thisBG.Id;
+                    bge.Source__c = result.sourceName;
+                    bge.Source_Type__c = result.sourceType;
                     uow.registerNew(bge);
                 }
 
@@ -173,6 +177,8 @@ public without sharing class BoardGamesService extends BaseService implements IB
                 bge.Event__c = eventId;
                 bge.Comments__c = wrapper.comment;
                 bge.BGG_Owner__c = wrapper.ownerName;
+                bge.Source__c = result.sourceName;
+                bge.Source_Type__c = result.sourceType;
                 //Register new Board Game Library Entry with Relationship to new Board Game
                 uow.registerNew(bge, BG_Library_Entry__c.Board_Game__c, wrapper.boardGame); 
             }
