@@ -1,12 +1,12 @@
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import UpdateRecordFromBGG from '@salesforce/apex/UpdateFromBGGController.UpdateRecordFromBGG';
+import UpdateGameRecordFromBGG from '@salesforce/apex/UpdateFromBGGController.UpdateGameRecordFromBGG';
 
 // Fields to query from the record
 const FIELDS = ['Board_Games__c.BGG_ID__c'];
 
-export default class UpdateFromBGG extends LightningElement {
+export default class updateGameFromBGG extends LightningElement {
     @api recordId; // Automatically provided
     recordData;
 
@@ -27,7 +27,7 @@ export default class UpdateFromBGG extends LightningElement {
     //Invoke method required for Headless Actions
     @api invoke() {
         //Call Apex Controller passing along record ID and the BGG_ID__c values
-        UpdateRecordFromBGG({ recordId: this.recordId, bggId: this.recordData.fields.BGG_ID__c.value})
+        UpdateGameRecordFromBGG({ recordId: this.recordId, bggId: this.recordData.fields.BGG_ID__c.value})
             .then(result => {
                 // Handle successful update
                 this.showToast('Import Successful', result, 'success');

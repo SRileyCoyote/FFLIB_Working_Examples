@@ -31,6 +31,10 @@
                 <behavior>Readonly</behavior>
                 <field>Average_Attendee_Rating__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Link_to_BoardGameGeek__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

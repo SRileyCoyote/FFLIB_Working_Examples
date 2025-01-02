@@ -7,12 +7,7 @@
     <columns>Board_Game__c</columns>
     <columns>Status__c</columns>
     <columns>Comments__c</columns>
-    <columns>BGG_Owner__c</columns>
-    <columns>Num_of_Copies__c</columns>
-    <columns>Total_Checked_Out__c</columns>
-    <columns>Total_Available__c</columns>
-    <columns>Source__c</columns>
-    <columns>Source_Type__c</columns>
+    <columns>Link_to_Collection_Geeklist__c</columns>
     <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>

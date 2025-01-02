@@ -82,7 +82,7 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Game_Thumbnail__c</fields>
-        <fields>Board_Games__c.NAME</fields>
+        <fields>Board_Game__c</fields>
         <fields>Comments__c</fields>
         <fields>Num_of_Copies__c</fields>
         <relatedList>BG_Library_Entry__c.Event__c</relatedList>

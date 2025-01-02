@@ -19,7 +19,7 @@
 public with sharing class UpdateFromBGGController {
 
     @AuraEnabled
-    public static string UpdateRecordFromBGG(ID recordId, String bggId){
+    public static string UpdateGameRecordFromBGG(ID recordId, String bggId){
         
         //Initializing Unit of Work here and Passing as variable to Service
         //Done this way so that all DMLs are performed in this method
@@ -52,8 +52,8 @@ public with sharing class UpdateFromBGGController {
     // and a List of Values to be returned. By Using the input Parameter of a Wrapper
     // class. We can make the variables in the wrapper visible to the flow by using the
     // InvocableVariable annotation which will allow us to set the variables in the Flow  
-    @InvocableMethod(label='Update Records From BGG' description='Updates Given Board Game Values from BoardGameGeek API' category='BoardGameGeeek API')
-    public static List<String> UpdateRecordsFromBGG(List<InputWrapper> inputs){
+    @InvocableMethod(label='Update Game Records From BGG' description='Updates Given Board Game Values from BoardGameGeek API' category='BoardGameGeeek API')
+    public static List<String> UpdateMultipleGameRecordsFromBGG(List<InputWrapper> inputs){
         
         //Initializing Unit of Work here and Passing as variable to Service
         //Done this way so that all DMLs are performed in this method
