@@ -29,10 +29,10 @@ The Benefit is that this Layer can then Mocked and Stub out those other Services
 
 ### Mocks.Verify Example Quick Reference:
 
-Verify that UOW Register Dirty Method was called
+Verify that UOW Register Dirty Method was called X number of times
 
 ```
-((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
+((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, X))
     .registerDirty(fflib_Match.anySObject());
 ```
 Verify that UOW Method ran for a Single Specific Record and matches expected values being updated
