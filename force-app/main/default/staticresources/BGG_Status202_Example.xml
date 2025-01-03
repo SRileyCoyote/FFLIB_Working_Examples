@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	This Example XML for a Status 202 Response from BoardGameGeek using the API.
+	Text in the Message has been altered for testing
+-->
+<message>This is the Message Recieved for a Status 202 Error.</message>

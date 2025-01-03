@@ -79,6 +79,7 @@ private class BGGCalloutServiceTest {
     // Call IDs From BGG with No Collection Name or GeekList ID
     // Call IDs from BGG with Collection Name Exceeding Call Limit 
     // Call IDs from BGG with GeekList ID Exceeding Call Limit 
+    // Call GeekList API with Status Code 202 
 
     //Start Testing
     // Successfully Call Collection API
@@ -523,4 +524,28 @@ private class BGGCalloutServiceTest {
                         result.resultMessage, 'Incorrect Message Returned: '+result.resultMessage);
     }
 
+    // Call GeekList API with Status Code 202 
+    @isTest
+    public static void givenGeekListId_WhenGetIDsFromBoardGameGeekCalledWithStatusCode202_ThenErrorThrown() {
+        // Get XML response from the Static Resource
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Status202_Example');
+        
+        // Mock HTTP response
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(mockXmlResponse, 202));
+        
+        String errMessage = 'No Error Message';
+        BGGCalloutService service = new BGGCalloutService();
+        try{
+            BGGCalloutService.CalloutResult result = service.getIDsFromBoardGameGeek('12345', true);
+            Assert.isTrue(false, 'Error Not Thrown');
+        }
+        catch (Exception ex){
+            errMessage = ex.getMessage();
+        }        
+        Test.stopTest();
+        
+        // Validate the results
+        Assert.areEqual(BGGCalloutService.ERROR_GEEKLIST_MSG + 'This is the Message Recieved for a Status 202 Error.', errMessage, 'Wrong Error Message Recieved: '+errMessage);
+    }
 }

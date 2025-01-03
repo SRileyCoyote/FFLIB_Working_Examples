@@ -284,6 +284,12 @@ public class BGGCalloutService implements IBGGCalloutService {
         totalCallouts++;
         If(response.getStatusCode()==200){
             return response.getBodyDocument().getRootElement().getChildElements();
+        } else if(response.getStatusCode()==202){
+            //Response Code 202 from BGG is common for the first time a Geeklist or Collection is called
+            // Parse given XML for Message and throw custom Message.
+            throw new HttpServiceException(
+                response.getBodyDocument().getRootElement().getText()
+                );
         }
         else {
             throw new HttpServiceException(response.getStatusCode() +': '+ response.getBody());
