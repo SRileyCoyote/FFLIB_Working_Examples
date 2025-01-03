@@ -10,7 +10,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-26
+* @modified       2025-01-03
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -18,11 +18,15 @@ public class BGGCalloutService implements IBGGCalloutService {
 
     //Set Final Strings for Return Messages
     //Use Final Strings so that exact text can be used in the Test Class without worrying about text changes
-    @TestVisible private final String ERROR_COLLECTION_MSG = 'An Error Occured Getting Collection: ';
-    @TestVisible private final String ERROR_GEEKLIST_MSG = 'An Error Occured Getting GeekList: ';
-    @TestVisible private final String ERROR_DETAILS_MSG = 'An Error Occured Getting Details: ';
-    @TestVisible private final String NO_IDS_PROVIDED_MSG = 'No New Games Found';
-    @TestVisible private final String ERROR_TOO_MANY_CALLOUTS = 'Too Many Games. Details for {0} out of {1} returned';
+    @TestVisible private static final String ERROR_COLLECTION_MSG = 'An Error Occured Getting Collection: ';
+    @TestVisible private static final String ERROR_GEEKLIST_MSG = 'An Error Occured Getting GeekList: ';
+    @TestVisible private static final String ERROR_DETAILS_MSG = 'An Error Occured Getting Details: ';
+    @TestVisible private static final String NO_IDS_PROVIDED_MSG = 'No New Games Found';
+    @TestVisible private static final String ERROR_TOO_MANY_CALLOUTS = 'Too Many Games. Details for {0} out of {1} returned';
+    @TestVisible private static final String ERROR_COLLECTION_NOT_RETRIEVED = '{0} {1} not Retrieved.';
+    @TestVisible private static final String ERROR_SOURCE_ID_MISSING = 'Source ID Not Found.';
+    @TestVisible private static final String COLLECTION = 'Collection:';
+    @TestVisible private static final String GEEKLIST = 'GeekList ID:';
 
     //Used to override Values during testing
     @TestVisible private Integer maxCalloutLimit = System.Limits.getLimitCallouts();
@@ -33,12 +37,31 @@ public class BGGCalloutService implements IBGGCalloutService {
     }
 
     public CalloutResult getIDsFromBoardGameGeek(String nameOrId, Boolean isGeekList){
-        if(isGeekList){
-            return getIDsFromGeekList(nameOrId);
+        
+        CalloutResult rtv = new CalloutResult();
+        
+        //Add Check to ensure Callout limit is not reached
+        if(totalCallouts < maxCalloutLimit){
+            if(nameOrId == null || nameOrId == ''){
+                rtv.resultMessage = ERROR_SOURCE_ID_MISSING;
+            } else {
+                if(isGeekList){
+                    rtv = getIDsFromGeekList(nameOrId);
+                }
+                else{
+                    rtv = getIDsFromCollection(nameOrId);
+                }
+            }
+        } else {
+            rtv.resultMessage = String.format(ERROR_COLLECTION_NOT_RETRIEVED,
+                                                new List<String>{
+                                                    isGeekList ? GEEKLIST : COLLECTION,
+                                                    nameOrId 
+                                                }
+                                            );
+            rtv.unprocessedIDs.add(nameOrId);
         }
-        else{
-            return getIDsFromCollection(nameOrId);
-        }
+        return rtv;
     }
 
     private CalloutResult getIDsFromCollection(String collectionName){
@@ -272,7 +295,7 @@ public class BGGCalloutService implements IBGGCalloutService {
         public Set<String> unprocessedIDs = new Set<String>();
         public string sourceType {get; set;}
         public string sourceName {get; set;}
-        public String resultMessage;
+        public String resultMessage {get; set;}
     }
 
     public class BoardGameWrapper{

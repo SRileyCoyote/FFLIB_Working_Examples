@@ -12,7 +12,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-27
+* @modified       2025-01-03
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -76,12 +76,14 @@ private class BGGCalloutServiceTest {
     // Call Details for Specific BGG IDs with 1 BGG ID
     // Call Details for Specific BGG IDs with multiple BGG IDs
     // Call Details for Specific BGG IDs with no BGG IDs
- 
+    // Call IDs From BGG with No Collection Name or GeekList ID
+    // Call IDs from BGG with Collection Name Exceeding Call Limit 
+    // Call IDs from BGG with GeekList ID Exceeding Call Limit 
 
     //Start Testing
     // Successfully Call Collection API
     @isTest
-    static void givenCollectionName_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
+    public static void givenCollectionName_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Collection_Example');
         
@@ -103,7 +105,7 @@ private class BGGCalloutServiceTest {
 
     // Catch Error from Collection API 
     @isTest
-    static void givenCollectionName_WhenGetIDsFromBGGCalledWithBadStatusCode_ThenErrorThrown() {
+    public static void givenCollectionName_WhenGetIDsFromBGGCalledWithBadStatusCode_ThenErrorThrown() {
         // Get XML response from the Static Resource
         String mockXmlResponse = 'Code 400 Error';
         
@@ -123,12 +125,12 @@ private class BGGCalloutServiceTest {
         Test.stopTest();
         
         // Validate the results
-        Assert.areEqual(service.ERROR_COLLECTION_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
+        Assert.areEqual(BGGCalloutService.ERROR_COLLECTION_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
     }
 
     // Successfully Call Geeklist API
     @isTest
-    static void givenGeeklistId_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
+    public static void givenGeeklistId_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Geeklist_Example');
         
@@ -149,7 +151,7 @@ private class BGGCalloutServiceTest {
 
     // Catch Error from Geeklist API
     @isTest
-    static void givenGeekListId_WhenGetIDsFromBGGCalledWithBadStatusCode_ThenErrorThrown() {
+    public static void givenGeekListId_WhenGetBoardGameDetailsFromBGGCalledWithBadStatusCode_ThenErrorThrown() {
         // Get XML response from the Static Resource
         String mockXmlResponse = 'Code 400 Error';
         
@@ -169,12 +171,12 @@ private class BGGCalloutServiceTest {
         Test.stopTest();
         
         // Validate the results
-        Assert.areEqual(service.ERROR_GEEKLIST_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
+        Assert.areEqual(BGGCalloutService.ERROR_GEEKLIST_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
     }
 
     // Call Details API with no IDs
     @isTest
-    static void givenNoBGGIDs_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenNoResultsReturned() {
+    public static void givenNoBGGIDs_WhenGetBoardGameDetailsFromBGGCalledWithCorrectStatusCode_ThenNoResultsReturned() {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
@@ -191,12 +193,12 @@ private class BGGCalloutServiceTest {
         
         // Validate the results
         Assert.areEqual(0, result.wrapperMap.size(), 'Expected no items in the wrapper map');
-        Assert.areEqual(service.NO_IDS_PROVIDED_MSG, result.resultMessage, 'Returned Messages Does Not Match: '+result.resultMessage);
+        Assert.areEqual(BGGCalloutService.NO_IDS_PROVIDED_MSG, result.resultMessage, 'Returned Messages Does Not Match: '+result.resultMessage);
     }
 
     // Call Details API with 1 ID
     @isTest
-    static void givenOneBGGID_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
+    public static void givenOneBGGID_WhenGetBoardGameDetailsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
@@ -221,7 +223,7 @@ private class BGGCalloutServiceTest {
 
     // Call Details API with 20 IDs
     @isTest
-    static void givenTwentyBGGID_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
+    public static void givenTwentyBGGID_WhenGetBoardGameDetailsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
@@ -253,7 +255,7 @@ private class BGGCalloutServiceTest {
 
     // Call Details API with 20+ IDs
     @isTest
-    static void givenOverTwentyBGGID_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
+    public static void givenOverTwentyBGGID_WhenGetBoardGameDetailsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
@@ -285,7 +287,7 @@ private class BGGCalloutServiceTest {
 
     // Call Details API with # of IDs Exceeding Callout Limit
     @isTest
-    static void givenTooManyCallouts_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenUnprocessIdsReturned() {
+    public static void givenTooManyCallouts_WhenGetBoardGameDetailsFromBGGCalledWithCorrectStatusCode_ThenUnprocessIdsReturned() {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
@@ -310,7 +312,7 @@ private class BGGCalloutServiceTest {
         Test.stopTest();
         
         // Validate the results
-        Assert.areEqual(String.format(service.ERROR_TOO_MANY_CALLOUTS, new Integer[]{
+        Assert.areEqual(String.format(BGGCalloutService.ERROR_TOO_MANY_CALLOUTS, new Integer[]{
                                                                                 0,// Total Processed
                                                                                 5 // Total IDs
                                                                             }), 
@@ -321,7 +323,7 @@ private class BGGCalloutServiceTest {
 
     // Catch Error from Call Details API
     @isTest
-    static void givenOneBGGID_WhenGetIDsFromBGGCalledWithBadStatusCode_ThenErrorThrown() {
+    public static void givenOneBGGID_WhenGetBoardGameDetailsFromBGGCalledWithBadStatusCode_ThenErrorThrown() {
         // Get XML response from the Static Resource
         String mockXmlResponse = 'Code 400 Error';
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
@@ -346,12 +348,12 @@ private class BGGCalloutServiceTest {
         Test.stopTest();
         
         // Validate the results
-        Assert.areEqual(service.ERROR_DETAILS_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
+        Assert.areEqual(BGGCalloutService.ERROR_DETAILS_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
     }
 
     // Call Details for Specific BGG IDs with 1 BGG ID
     @isTest
-    static void givenOneBGGId_WhenGetBoardGameDetailFromBGGIdsIsCalled_ThenCorrectResultsReturned() {
+    public static void givenOneBGGId_WhenGetBoardGameDetailFromBGGIdsIsCalled_ThenCorrectResultsReturned() {
         // Generate XML Item
         String xmlItem = generateXMLItem(new Map<String, String>{
                                                                 'id' => '12345',
@@ -379,7 +381,7 @@ private class BGGCalloutServiceTest {
 
     // Call Details for Specific BGG IDs with multiple BGG IDs
     @isTest
-    static void givenMultipleBGGIds_WhenGetBoardGameDetailFromBGGIdsIsCalled_ThenCorrectResultsReturned() {
+    public static void givenMultipleBGGIds_WhenGetBoardGameDetailFromBGGIdsIsCalled_ThenCorrectResultsReturned() {
         // Generate XML Items
         String xmlItem1 = generateXMLItem(new Map<String, String>{
                                                                 'id' => '12345',
@@ -413,7 +415,7 @@ private class BGGCalloutServiceTest {
 
     // Call Details for Specific BGG IDs with no BGG IDs
     @isTest
-    static void givenNoBGGIds_WhenGetBoardGameDetailFromBGGIdsIsCalled_ThenNoResultsReturned() {
+    public static void givenNoBGGIds_WhenGetBoardGameDetailFromBGGIdsIsCalled_ThenNoResultsReturned() {
         // Generate XML Items
         String xmlItem1 = generateXMLItem(new Map<String, String>{
                                                                 'id' => '12345',
@@ -438,7 +440,87 @@ private class BGGCalloutServiceTest {
         
         // Validate the results
         Assert.areEqual(0, result.wrapperMap.size(), 'Expected no items in the wrapper map');
-        Assert.areEqual(service.NO_IDS_PROVIDED_MSG, result.resultMessage, 'Return Message Does Not Match Expected Result');
+        Assert.areEqual(BGGCalloutService.NO_IDS_PROVIDED_MSG, result.resultMessage, 'Return Message Does Not Match Expected Result');
+    }
+
+    // Call IDs From BGG with No Collection Name or GeekList ID
+    @isTest
+    public static void givenNoCollectionNameOrGeekListId_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectMessageReturned() {
+        // Get XML response from the Static Resource
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Collection_Example');
+        
+        // Mock HTTP response
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(mockXmlResponse, 200));
+        
+        BGGCalloutService service = new BGGCalloutService();
+        BGGCalloutService.CalloutResult result = service.getIDsFromBoardGameGeek(null, false);
+        
+        Test.stopTest();
+        
+        // Validate the results
+        Assert.areEqual(0, result.wrapperMap.size(), 'Expected no items in the wrapper map');
+        Assert.areEqual(BGGCalloutService.ERROR_SOURCE_ID_MISSING, result.resultMessage, 'Incorrect Message Returned: '+result.resultMessage);
+    }
+
+    // Call IDs from BGG with Collection Name Exceeding Call Limit 
+    @isTest
+    public static void givenTooManyCalloutsForCollection_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenUnprocessedIdsReturned() {
+        // Get XML response from the Static Resource
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Collection_Example');
+        
+        // Mock HTTP response
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(mockXmlResponse, 200));
+        
+        BGGCalloutService service = new BGGCalloutService();
+        service.totalCallouts = 1; //Mock Callouts already made
+        service.maxCalloutLimit = 1; //Mock Limit of Callouts Reached
+
+        BGGCalloutService.CalloutResult result = service.getIDsFromBoardGameGeek('CollectionName', false);
+        
+        Test.stopTest();
+        
+        // Validate the results
+        Assert.areEqual(0, result.wrapperMap.size(), 'Expected no items in the wrapper map');
+        Assert.areEqual(1, result.unprocessedIDs.size(), 'Expected 1 items in the unprocessedIds List');
+        Assert.areEqual(String.format(BGGCalloutService.ERROR_COLLECTION_NOT_RETRIEVED,
+                                        new List<String>{
+                                            BGGCalloutService.COLLECTION,
+                                            'CollectionName' 
+                                        }
+                                    ), 
+                        result.resultMessage, 'Incorrect Message Returned: '+result.resultMessage);
+    }
+
+    // Call IDs from BGG with GeekList ID Exceeding Call Limit 
+    @isTest
+    public static void givenTooManyCalloutsForGeekList_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenUnprocessedIdsReturned() {
+        // Get XML response from the Static Resource
+        String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Collection_Example');
+        
+        // Mock HTTP response
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(mockXmlResponse, 200));
+        
+        BGGCalloutService service = new BGGCalloutService();
+        service.totalCallouts = 1; //Mock Callouts already made
+        service.maxCalloutLimit = 1; //Mock Limit of Callouts Reached
+
+        BGGCalloutService.CalloutResult result = service.getIDsFromBoardGameGeek('GeekListId', true);
+        
+        Test.stopTest();
+        
+        // Validate the results
+        Assert.areEqual(0, result.wrapperMap.size(), 'Expected no items in the wrapper map');
+        Assert.areEqual(1, result.unprocessedIDs.size(), 'Expected 1 items in the unprocessedIds List');
+        Assert.areEqual(String.format(BGGCalloutService.ERROR_COLLECTION_NOT_RETRIEVED,
+                                        new List<String>{
+                                            BGGCalloutService.GEEKLIST,
+                                            'GeekListId' 
+                                        }
+                                    ), 
+                        result.resultMessage, 'Incorrect Message Returned: '+result.resultMessage);
     }
 
 }

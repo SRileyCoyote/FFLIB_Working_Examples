@@ -231,6 +231,16 @@
                 <identifier>RecordLink_to_Game_on_BoardGameGeek_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.BGG_Id__c</fieldItem>
+                <identifier>RecordBGG_ID_c__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-b53db69d-ac58-4491-b1d5-20207545b0fb</name>
         <type>Facet</type>
     </flexiPageRegions>

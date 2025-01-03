@@ -20,7 +20,8 @@ public class Application {
             //Addtional SObject Service Classes Go Here 
             IBoardGameRatingsService.class => BoardGameRatingsService.class,
             IBoardGamesService.class => BoardGamesService.class,
-            IBGGCalloutService.class => BGGCalloutService.class
+            IBGGCalloutService.class => BGGCalloutService.class,
+            IBGLibraryEntryService.class => BGLibraryEntryService.class
         }
     );
 

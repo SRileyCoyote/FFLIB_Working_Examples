@@ -1,23 +1,24 @@
 /**
 * ─────────────────────────────────────────────────────────────────────────────────────────────────┐
-* Test Class just for the Update From Board Game Geek Controller Class
+* Test Class just for the Update Board Game From BGG Flow Controller Class
 *
-* Testing for actual Logic in the Controller are tested in the Service Class Tests, 
-* so these are true Unit Tests to make sure that the Controller is working as intended.
+* A Test Plan is required to cover all possible scenarios for the inputs or variations to 
+* variables that might occur. Up to and Including: Positive, Negative, and Bulk Testing.
+* If done correctly, minimal manual testing should be needed in the Application. 
 *
 * Makes use of the MockSetup Test Pattern to stub out Service Class used in the Controller.
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 * @author         Sean Riley
 * @modifiedBy     Sean Riley
 * @version        1.0
-* @created        2024-12-26
+* @created        2025-01-03
 * @modified       2025-01-03
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
 @isTest
-private class UpdateFromBGGControllerTest {
-
+public class FlowUpdateBoardGameFromBGGControllerTest {
+        
     /**
      * List of possible params for the mock setup.
      * Done to allow dynamically providing params without having to update every 
@@ -34,7 +35,7 @@ private class UpdateFromBGGControllerTest {
     static Map<MockParams, Type> paramTypes {
         get {
             return new Map<MockParams, Type>{
-                MockParams.RETURNED_MESSAGE => String.class
+                MockParams.RETURNED_MESSAGE => List<String>.class
             };
         }
     }
@@ -60,35 +61,31 @@ private class UpdateFromBGGControllerTest {
             //Initialize the Mocks
             uowMock = (fflib_SobjectUnitOfWork) mocks.mock(fflib_SObjectUnitOfWork.class);
             IBoardGamesService mockBoardGameService = (IBoardGamesService) mocks.mock(BoardGamesService.class);
-            IBGLibraryEntryService mockBGLEService = (IBGLibraryEntryService) mocks.mock(BGLibraryEntryService.class);
 
             mocks.startStubbing();
-            //Stubbing the Board Game and BGLE Services
+            //Stubbing the Board Game Service
             //Stub out each Service Method that the Controller calls
-            If(throwErrors){ //If throwErrors is true, throw an error when methods are called instead
+            If(throwErrors){ //If throwErrors is true, throw an error when method is called instead
                 ((IBoardGamesService) mocks.doThrowWhen(new BoardGamesService.BGServiceException('Thrown Exception'),
                                                     mockBoardGameService)).updateBoardGameDetailsFromBGG(
                                                                             (fflib_SObjectUnitOfWork) fflib_Match.anyObject(),
                                                                             (Map<ID, String>) fflib_Match.anyObject());
-                ((IBGLibraryEntryService) mocks.doThrowWhen(new BGLibraryEntryService.BGLEServiceException('Thrown Exception'),
-                                                    mockBGLEService)).updateBGLibraryEntriesFromBGG(
-                                                                            (fflib_SObjectUnitOfWork) fflib_Match.anyObject(),
-                                                                            (List<BG_Library_Entry__c>) fflib_Match.anyObject());
-            } else { //If throwErrors is false, return given string value when methods are called
+            } else { //If throwErrors is false, return given string value when method is called
                 mocks.when(mockBoardGameService.updateBoardGameDetailsFromBGG((fflib_SObjectUnitOfWork) fflib_Match.anyObject(),
                                                                             (Map<ID, String>) fflib_Match.anyObject()))
+                    // The Mocked Selector will BYPASS calling of the actual method and instead just return
+                    // the Value in the Params Map that was passed in for the Enum Key RETURNED_EVENTS
+                    // If no value was provided, a newInstance of the Object (List<Event__c>) was created
+                    // and we will return that here instead
                     .thenReturn((String) params.get(MockParams.RETURNED_MESSAGE));
-                mocks.when(mockBGLEService.updateBGLibraryEntriesFromBGG((fflib_SObjectUnitOfWork) fflib_Match.anyObject(),
-                                                                            (List<BG_Library_Entry__c>) fflib_Match.anyObject()))
-                    .thenReturn((String) params.get(MockParams.RETURNED_MESSAGE));
-            }
+                //Any Methods of the Selector that are NOT Stubbed will return a NULL value if called
+                }
             mocks.stopStubbing();
 
             //Whenever the BoardGamesService is created using the Application Class, 
             //Replace that class and all of its methods with our Mock Service with stubbed methods
             //Any Methods not set with a specific value, will return null
             Application.Service.setMock(IBoardGamesService.class, mockBoardGameService);
-            Application.Service.setMock(IBGLibraryEntryService.class, mockBGLEService);
             Application.UnitOfWork.setMock(uowMock);
         }
     } 
@@ -97,102 +94,55 @@ private class UpdateFromBGGControllerTest {
     // Tests should follow a Use Case Test Plan
 
     // Test Plan
-    // Call UpdateGameRecordFromBGG Method Given Dummy Inputs Successfully
-    // Call UpdateGameRecordFromBGG Method Given Dummy Inputs With Error Thrown
-    // Call UpdateLibraryEntryRecordFromBGG Method Given Dummy Inputs Successfully
-    // Call UpdateLibraryEntryRecordFromBGG Method Given Dummy Inputs With Error Thrown
+    // Call updateMultipleGameRecordsFromBGG Method Given Dummy Inputs, Return Success Message
+    // Call updateMultipleGameRecordsFromBGG Method Given Dummy Inputs, Throw Error
 
     //Start Testing
-    // Call UpdateGameRecordFromBGG Method Given Dummy Inputs Successfully
+    // Call updateMultipleGameRecordsFromBGG Method Given Dummy Inputs
     @IsTest
-    public static void givenDummyInputs_WhenUpdateGameRecordFromBGGIsCalled_ThenReturnExpectedMessage(){
-
-        //Setup Test Data and Mocking
+    public static void givenDummyInputs_WhenUpdateMultipleGameRecordsFromBGGIsCalled_ThenReturnExpectedMessage(){
+                //Setup Test Data and Mocking
         //No Test Data Needed For this Unit Test
         Map<MockParams, Object> params = new Map<MockParams, Object>{
             MockParams.RETURNED_MESSAGE => 'Service Mocked Successfully'
         };
 
-        //Initialize MockSetup with Params without throwing errors
+        FlowUpdateBoardGameFromBGGController.InputWrapper input = new FlowUpdateBoardGameFromBGGController.InputWrapper();
+        input.boardGames = new List<Board_Games__c>();
+
+        //Initialize MockSetup with Params 
         MockSetup mock = new MockSetup(params, false);
 
         //Run Test
         Test.startTest();
-        String result = UpdateFromBGGController.UpdateGameRecordFromBGG(fflib_IDGenerator.generate(Board_Games__c.SObjectType), '12345');
+        List<String> results = FlowUpdateBoardGameFromBGGController.updateMultipleGameRecordsFromBGG(new List<FlowUpdateBoardGameFromBGGController.InputWrapper>{input});
         Test.stopTest();
 
         //Validate Data
-        Assert.areEqual('Service Mocked Successfully', result, 'Incorrect Message Recieved: '+ result);
+        Assert.areEqual(1, results.size(), 'Incorrect Number of Results Returned');
+        Assert.areEqual('Service Mocked Successfully', results[0], 'Incorrect Message Recieved: '+ results[0]);
     }
 
-    // Call UpdateGameRecordFromBGG Method Given Dummy Inputs With Error Thrown
+    // Call updateMultipleGameRecordsFromBGG Method Given Dummy Inputs, Throw Error
     @IsTest
-    public static void givenDummyInputs_WhenUpdateGameRecordFromBGGIsCalled_ThenThrowError(){
-
-        //Setup Test Data and Mocking
+    public static void givenDummyInputs_WhenUpdateMultipleGameRecordsFromBGGIsCalled_ThenThrowError(){
+                //Setup Test Data and Mocking
         //No Test Data Needed For this Unit Test
         Map<MockParams, Object> params = new Map<MockParams, Object>{
             MockParams.RETURNED_MESSAGE => 'Service Mocked Successfully'
         };
 
-        //Initialize MockSetup with Params with errors thrown
+        FlowUpdateBoardGameFromBGGController.InputWrapper input = new FlowUpdateBoardGameFromBGGController.InputWrapper();
+        input.boardGames = new List<Board_Games__c>();
+        
+        //Initialize MockSetup with Params 
         MockSetup mock = new MockSetup(params, true);
 
         //Run Test
         Test.startTest();
         String errMsg = 'No Errors';
         try{
-            String result = UpdateFromBGGController.UpdateGameRecordFromBGG(fflib_IDGenerator.generate(Board_Games__c.SObjectType), '12345');
-            Assert.isTrue(false, 'Error Not Thrown');
-        } catch (Exception ex){
-            errMsg = ex.getMessage();
-        }
-        Test.stopTest();
-
-        //Validate Data
-        Assert.areEqual('Thrown Exception', errMsg, 'Incorrect Message Recieved: '+ errMsg);
-    }
-    
-    // Call UpdateLibraryEntryRecordFromBGG Method Given Dummy Inputs Successfully
-    @IsTest
-    public static void givenDummyInputs_WhenUpdateLibraryEntryRecordFromBGGIsCalled_ThenReturnExpectedMessage(){
-
-        //Setup Test Data and Mocking
-        //No Test Data Needed For this Unit Test
-        Map<MockParams, Object> params = new Map<MockParams, Object>{
-            MockParams.RETURNED_MESSAGE => 'Service Mocked Successfully'
-        };
-
-        //Initialize MockSetup with Params without throwing errors
-        MockSetup mock = new MockSetup(params, false);
-
-        //Run Test
-        Test.startTest();
-        String result = UpdateFromBGGController.updateLibraryEntryRecordFromBGG(fflib_IDGenerator.generate(Board_Games__c.SObjectType), new BG_Library_Entry__c());
-        Test.stopTest();
-
-        //Validate Data
-        Assert.areEqual('Service Mocked Successfully', result, 'Incorrect Message Recieved: '+ result);
-    }
-
-    // Call UpdateLibraryEntryRecordFromBGG Method Given Dummy Inputs With Error Thrown
-    @IsTest
-    public static void givenDummyInputs_WhenUpdateLibraryEntryRecordFromBGGIsCalled_ThenThrowError(){
-
-        //Setup Test Data and Mocking
-        //No Test Data Needed For this Unit Test
-        Map<MockParams, Object> params = new Map<MockParams, Object>{
-            MockParams.RETURNED_MESSAGE => 'Service Mocked Successfully'
-        };
-
-        //Initialize MockSetup with Params with errors thrown
-        MockSetup mock = new MockSetup(params, true);
-
-        //Run Test
-        Test.startTest();
-        String errMsg = 'No Errors';
-        try{
-            String result = UpdateFromBGGController.updateLibraryEntryRecordFromBGG(fflib_IDGenerator.generate(Board_Games__c.SObjectType), new BG_Library_Entry__c());
+            List<String> results = FlowUpdateBoardGameFromBGGController.updateMultipleGameRecordsFromBGG(new List<FlowUpdateBoardGameFromBGGController.InputWrapper>{input});
             Assert.isTrue(false, 'Error Not Thrown');
         } catch (Exception ex){
             errMsg = ex.getMessage();

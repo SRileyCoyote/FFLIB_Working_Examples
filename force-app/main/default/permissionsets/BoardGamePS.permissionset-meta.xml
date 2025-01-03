@@ -51,8 +51,18 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>BG_Library_Entry__c.BGG_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>BG_Library_Entry__c.BGG_Owner__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BG_Library_Entry__c.BoardGameName__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -68,6 +78,16 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>BG_Library_Entry__c.Game_Thumbnail__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BG_Library_Entry__c.Link_to_Collection_Geeklist__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BG_Library_Entry__c.Link_to_Game_on_BoardGameGeek__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -163,6 +183,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Board_Games__c.Is_New__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Board_Games__c.Link_to_BoardGameGeek__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
