@@ -62,6 +62,22 @@ In this example, we will be using the following Use Cases:
 As an Event Attendee, when I add a Board Game Rating that is Marked as Favorite, I would like all of the other Board Game Ratings marked as Favorite for that Attendee to be Unchecked.
 If Multiple Board Game Ratings are added for Attendee where Favorite is Checked, Display Error to Attendee.
 
+We will use the following to implement this Use Case: 
+- Create [Trigger](/force-app/main/default/triggers/BoardGameRatingsTrigger.trigger) using SObjectDomain as TriggerHandler
+     - Which Calls Created [Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/BoardGameRatingsTriggerHandler.cls) extending [Base Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/BaseTriggerHandler.cls)
+          - Which Uses Created [Custom MDT](/force-app/main/default/customMetadata/Domain_Config.BoardGameRatings.md-meta.xml) to Enable and Disable Trigger
+          - And Calls Created [Board Game Rating Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BoardGameRatingsService.cls) extending [Base Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BaseService.cls) and implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Services/Interfaces/IBoardGameRatingsService.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+               - Which Uses Created [Custom MDT](/force-app/main/default/customMetadata/Services_Config.setNewFavorite.md-meta.xml) to Enable and Disable Features
+               - And Calls Created [Board Game Rating Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/BoardGameRatingSelector.cls) and implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Selectors/Interfaces/IBoardGameRatingSelector.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+               - And Created [Board Game Rating Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains/BoardGameRatingsDomain.cls) extending [Base Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains/BaseDomain.cls) and implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Domains/Interfaces/IBoardGameRatingsDomain.cls) which extends [Base Interface](/force-app/main/default/classes/FFLIB%20Examples/Domains/Interfaces/IBaseDomain.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+- Test Classes
+     - Create [Trigger Test Class](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/Tests/Trigger%20Tests/BoardGameRatingTriggerTest.cls)
+     - Create [Trigger Handler Test Class](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/Tests/BoardGameRatingsTriggerHandlerTest.cls) mocks [Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BoardGameRatingsService.cls) when called by [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Create [Service Test Class](/force-app/main/default/classes/FFLIB%20Examples/Services/Tests/BoardGameRatingsServiceTest.cls) mocks [Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains/BoardGameRatingsDomain.cls) and [Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/BoardGameRatingSelector.cls) when called by [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Create [Domain Test Class](/force-app/main/default/classes/FFLIB%20Examples/Domains/Tests/BoardGameRatingsDomainTest.cls) 
+     - Create [Base Domain Test Class](/force-app/main/default/classes/FFLIB%20Examples/Domains/Tests/BaseDomainTest.cls)
+     - Create [Selector Test Class](/force-app/main/default/classes/FFLIB%20Examples/Selectors/Tests/BoardGameRatingSelectorTest.cls)
+
 This Use Case shows examples for the following:
 - Trigger using SObjectDomain as TriggerHandler
 - Using Custom Metadata Types to Configure:
@@ -79,9 +95,11 @@ This Use Case shows examples for the following:
     - Selector Layer
     - Unit Of Work Layer
 - Testing
-     - MockSetup Class
-     - Mocking and Stubbing FFLIB
+     - Mocking and Stubbing FFLIB Classes
+          - Using [MockSetup Class](/force-app/main/default/classes/FFLIB%20Examples/README.md#mock-setup-class)
+          - Validate Using [Mocks.Verify](/force-app/main/default/classes/FFLIB%20Examples/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
+
 
 [Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
@@ -90,6 +108,24 @@ This Use Case shows examples for the following:
 As an Event Owner, I would like a form to import my Collection or GeekList from BoardGameGeek and add new those new Board Games into the application. 
 Any Board Games not already in the application I would like marked as 🆕 and for those games to automatically be added to the Board Game Library for the Event I selected. 
 Upon follow up imports, I would like the option to update the existing Board Games information as well as the Board Game Library Entry from BoardGameGeek and for the Board Game to no longer be marked as 🆕.
+
+We will use the following to implement this Use Case:
+- Create [Lightning Web Component](/force-app/main/default/lwc/boardGameImporter/boardGameImporter.js)
+     - Which Calls Created [Apex Controller](/force-app/main/default/classes/FFLIB%20Examples/Controllers/BoardGameImporterController.cls)
+          - Which Calls Created [Event Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/EventSelector.cls) implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Selectors/Interfaces/IEventSelector.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+          - And Calls Created [Board Game Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BoardGamesService.cls) extending [Base Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BaseService.cls) implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Services/Interfaces/IBoardGamesService.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+               - Which Uses Created [Custom MDT](/force-app/main/default/customMetadata/Services_Config.getBoardGameDetailsFromBGG.md-meta.xml) to Enable and Disable Features
+               - And Calls Created [Board Game Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/BoardGameSelector.cls) implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Selectors/Interfaces/IBoardGameSelector.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+               - And Calls Created [Board Game Library Entry Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/BGLibraryEntrySelector.cls) implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Selectors/Interfaces/IBGLibraryEntrySelector.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+               - As Well As Created [BoardGameGeek Callout Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGGCalloutService.cls) implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Services/Interfaces/IBGGCalloutService.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     
+- Test Classes
+     - Create [Apex Controller Test Class](/force-app/main/default/classes/FFLIB%20Examples/Controllers/Tests/BoardGameImporterControllerTest.cls) mocks [Board Game Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BoardGamesService.cls) when called by [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Create [Board Game Service Test Class](/force-app/main/default/classes/FFLIB%20Examples/Services/Tests/BoardGamesServiceTest.cls) mocks [BGG Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGGCalloutService.cls), [Board Game Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/BoardGameSelector.cls), and [BGLE Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/BGLibraryEntrySelector.cls) when called by [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Create [Board Game Selector Test Class](/force-app/main/default/classes/FFLIB%20Examples/Selectors/Tests/BoardGameSelectorTest.cls)
+     - Create [Board Game Library Entry Selector Test Class](/force-app/main/default/classes/FFLIB%20Examples/Selectors/Tests/BGLibraryEntrySelectorTest.cls)
+     - Create [BoardGameGeek Callout Service Test Class](/force-app/main/default/classes/FFLIB%20Examples/Services/Tests/BGGCalloutServiceTest.cls) which mocks the HTTP Callout
+
 
 This Use Case shows examples for the following:
 - LWC
@@ -114,7 +150,8 @@ This Use Case shows examples for the following:
      - Unit Of Work Layer
 - Testing
      - Mocking and Stubbing FFLIB Classes
-          - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
+          - Using [MockSetup Class](/force-app/main/default/classes/FFLIB%20Examples/README.md#mock-setup-class)
+          - Validate Using [Mocks.Verify](/force-app/main/default/classes/FFLIB%20Examples/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
      - Mock Http Callouts
           - Using Static Resources for XML Results
@@ -137,13 +174,33 @@ As an Event Owner, I would like to be able to click on a button to update indivi
 
 [^2]: LWC Headless Actions are not currently Available for List View Buttons. Attempted several workarounds using URL buttons linking to Aura, Flow, VF Pages to show the results in a pop-up modal with little to no success. Settled on just using a Flow with an Invocable Action that opens in a new Screen and redirects back to the List View When Done.
 
-#### (TODO):
-```
-1. Add Headless Action to BG Library Entry
-     - Update Comment on BG Library Entry as well
-2. Add Flow to BG Library Entry List View
-```
-
+We will use the following to implement this Use Case:
+- Two Headless Lightning Web Components
+     - Create One for [Board Game](/force-app/main/default/lwc/updateGameFromBGG/updateGameFromBGG.js)
+          - Which Calls Created [Apex Controller](/force-app/main/default/classes/FFLIB%20Examples/Controllers/UpdateFromBGGController.cls)
+               - And Calls Updated [Board Game Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BoardGamesService.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+                    - Which Uses Created [Custom MDT](/force-app/main/default/customMetadata/Services_Config.updateBoardGameDetailsFromBGG.md-meta.xml) to Enable and Disable Features
+                    - Which Calls Updated [BoardGameGeek Callout Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGGCalloutService.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Create One for [Board Game Library Entry](/force-app/main/default/lwc/updateCollectionFromBGG/updateCollectionFromBGG.js)
+          - Which Calls Same [Apex Controller](/force-app/main/default/classes/FFLIB%20Examples/Controllers/UpdateFromBGGController.cls)
+               - Which Calls Created [BGLE Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGLibraryEntryService.cls) extending [Base Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BaseService.cls) implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Services/Interfaces/IBGLibraryEntryService.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+                    - Which Uses Created [Custom MDT](/force-app/main/default/customMetadata/Services_Config.updateBGLibraryEntryFromBGG.md-meta.xml) to Enable and Disable Features
+                    - Which Calls Updated [BoardGameGeek Callout Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGGCalloutService.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+- And Two Flows
+     - Create One for [Board Game](/force-app/main/default/flows/UpdateRecordFromBGG.flow-meta.xml)
+          - Which Calls Created [Invocable Action](/force-app/main/default/classes/FFLIB%20Examples/Controllers/FlowUpdateBoardGameFromBGGController.cls)
+               - Which Reuses Same Method in [Board Game Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BoardGamesService.cls) as LWC
+     - One for [Board Game Library Entry](/force-app/main/default/flows/UpdateBGLEFromBGG.flow-meta.xml)
+          - Which Calls Created [Invocable Action](/force-app/main/default/classes/FFLIB%20Examples/Controllers/FlowUpdateBGLEFromBGGController.cls)
+               - Which Reuses Same Method in [BGLE Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGLibraryEntryService.cls) as LWC
+- Test Classes
+     - Create [Apex Controller Test Class](/force-app/main/default/classes/FFLIB%20Examples/Controllers/Tests/UpdateFromBGGControllerTest.cls) which mocks [Board Game Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BoardGamesService.cls) and [BGLE Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGLibraryEntryService.cls) when called by [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Create [Board Game Invocable Action Test Class](/force-app/main/default/classes/FFLIB%20Examples/Controllers/Tests/FlowUpdateBoardGameFromBGGControllerTest.cls) which mocks [Board Game Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BoardGamesService.cls) when called by [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Create [BGLE Invocable Action Test Class](/force-app/main/default/classes/FFLIB%20Examples/Controllers/Tests/FlowUpdateBGLEFromBGGControllerTest.cls) which mocks [BGLE Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGLibraryEntryService.cls) when called by [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Update [Board Game Service Test Class](/force-app/main/default/classes/FFLIB%20Examples/Services/Tests/BoardGamesServiceTest.cls) which mocks [BoardGameGeek Callout Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGGCalloutService.cls) when called by [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Create [BGLE Service Test Class](/force-app/main/default/classes/FFLIB%20Examples/Services/Tests/BGLibraryEntryServiceTest.cls) which mocks [BoardGameGeek Callout Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGGCalloutService.cls) when called by [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
+     - Update [BoardGameGeek Callout Service Test Class](/force-app/main/default/classes/FFLIB%20Examples/Services/Tests/BGGCalloutServiceTest.cls) which mocks the HTTP Callout
+ 
 This Use Case shows examples for the following:
 - LWC
      - Headless LWC
@@ -168,7 +225,8 @@ This Use Case shows examples for the following:
      - Unit Of Work Layer
 - Testing
      - Mocking and Stubbing FFLIB Classes
-          - [Mocks.Verify() Examples](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#mocksverify-example-quick-reference)
+          - Using [MockSetup Class](/force-app/main/default/classes/FFLIB%20Examples/README.md#mock-setup-class)
+          - Validate Using [Mocks.Verify](/force-app/main/default/classes/FFLIB%20Examples/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
      - Mock Http Callouts
           - Generate Ad Hoc XML Results
