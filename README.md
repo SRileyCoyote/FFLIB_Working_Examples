@@ -4,9 +4,25 @@
 
 This Repo Shows working examples of the FFLIB architechure design patterns using design patterns and best practices I have picked up over the years. This is an open source repo intended for my own personal use and to share with those that need it. 
 
+While the title ___IS___ FFLIB Working Examples, included in this repo are also examples on how to do addtional things like I normally need to look up:
+- Creating LWCs
+- Creating and Implementing Interfaces
+- Extending Parent Classes
+     - Diffecence between Abstract and Virtual Methods
+     - Using the Protected Access Modifier
+- Using Custom Metadata Types
+- Creating REST API Callouts
+- Mocking HTTP Callouts
+- Given_When_Then Test Class Setup
+- [MockSetup](/force-app/main/default/classes/FFLIB%20Examples/README.md#mock-setup-class) Example
+- [Mocks.Verify](/force-app/main/default/classes/FFLIB%20Examples/README.md#mocksverify-example-quick-reference) Examples
+- Wrapper Classes
+- Custom Exceptions
+- Invocable Methods and Variables
+
 Below you will find:
 - [Setup Instructions](#scratch-org-setup-instructions) on how to create a Scratch Org and populate it with all of the metadata included for the org as well as some Example Test Data so that you can see how the examples work in a live environment.
-- [Use Cases](#example-use-cases) for all of the code provided in this Repository as well as a brief overview of the coding method examples are included in that Use Case.
+- [Use Cases](#example-use-cases) for all of the code provided in this Repository, which classes are utilized for that Use Case, as well as a brief overview of the coding method examples that are included in that Use Case.
 - [Links for More Information](#links-for-more-information) about the Application Schema as well as each of the different FFLIB Layers, both official definitions as well as notes about my own understanding of how each Layer is works with each other.
 
 Already Included in the Metadata are copies of the following Repos:
@@ -209,7 +225,6 @@ This Use Case shows examples for the following:
      - Wire Connection to Standard getRecord
      - Promise Connection to Apex Controller
 - Expanding on Exisiting Code Base
-     - Adding to UpdateRecordsFromBGGController
      - Adding to BGGCalloutService
           - Reusing/Modifying Existing Methods
      - Adding to BoardGameService
