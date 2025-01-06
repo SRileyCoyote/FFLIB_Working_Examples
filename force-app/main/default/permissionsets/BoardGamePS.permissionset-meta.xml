@@ -51,6 +51,16 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>BG_Checkout_Log__c.Total_Min_Checked_Out__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BG_Library_Entry__c.Average_Time_Checked_Out__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>BG_Library_Entry__c.BGG_Id__c</field>
         <readable>true</readable>
@@ -117,7 +127,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BG_Library_Entry__c.Total_Checked_Out__c</field>
+        <field>BG_Library_Entry__c.Total_Completed_Check_Outs__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BG_Library_Entry__c.Total_Currently_Checked_Out__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BG_Library_Entry__c.Total_Min_Checked_Out__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BG_Library_Entry__c.Total_Times_Checked_Out__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>BG_Library_Entry__c.of_Copies_Available__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

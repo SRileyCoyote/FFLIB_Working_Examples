@@ -76,6 +76,16 @@
                 <identifier>RecordGame_Image_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.of_Copies_Available__c</fieldItem>
+                <identifier>Recordof_Copies_Available__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-25c4b77d-e826-4cdc-9cf0-edc5bd8991e3</name>
         <type>Facet</type>
     </flexiPageRegions>
@@ -144,7 +154,7 @@
                     <name>uiBehavior</name>
                     <value>readonly</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Total_Checked_Out__c</fieldItem>
+                <fieldItem>Record.Total_Currently_Checked_Out__c</fieldItem>
                 <identifier>RecordTotal_Checked_Out_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -502,51 +512,139 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>showLegacyActivityComposer</name>
-                    <value>false</value>
-                </componentInstanceProperties>
-                <componentName>runtime_sales_activities:activityPanel</componentName>
-                <identifier>runtime_sales_activities_activityPanel</identifier>
-            </componentInstance>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>readonly</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Total_Times_Checked_Out__c</fieldItem>
+                <identifier>RecordTotal_Times_Checked_Out_cField</identifier>
+            </fieldInstance>
         </itemInstances>
-        <mode>Replace</mode>
-        <name>activityTabContent</name>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Average_Time_Checked_Out__c</fieldItem>
+                <identifier>RecordAverage_Time_Checked_Out__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <name>Facet-3865770c-ea6c-4466-be62-46b30742a7c1</name>
         <type>Facet</type>
     </flexiPageRegions>
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
                 <componentInstanceProperties>
-                    <name>active</name>
+                    <name>body</name>
+                    <value>Facet-3865770c-ea6c-4466-be62-46b30742a7c1</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:column</componentName>
+                <identifier>flexipage_column9</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>Facet-da30ae0f-78bf-49bf-b0ae-34685f092a4a</name>
+        <type>Facet</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>columns</name>
+                    <value>Facet-da30ae0f-78bf-49bf-b0ae-34685f092a4a</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>horizontalAlignment</name>
+                    <value>false</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>label</name>
+                    <value>Check Out Summary</value>
+                </componentInstanceProperties>
+                <componentName>flexipage:fieldSection</componentName>
+                <identifier>flexipage_fieldSection6</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Total_Completed_Check_Outs__c}</leftValue>
+                        <operator>GT</operator>
+                        <rightValue>0</rightValue>
+                    </criteria>
+                </visibilityRule>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>actionNames</name>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>adminFilters</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Check_In_Time__c|EQUALS|</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>maxRecordsToDisplay</name>
+                    <value>10</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>parentFieldApiName</name>
+                    <value>BG_Library_Entry__c.Id</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListApiName</name>
+                    <value>Board_Game_Checkout_Logs__r</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListDisplayType</name>
+                    <value>ADVGRID</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListFieldAliases</name>
+                    <valueList>
+                        <valueListItems>
+                            <value>Attendee_Name__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Check_Out_Time__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Average_Duration__c</value>
+                        </valueListItems>
+                        <valueListItems>
+                            <value>Total_Check_Out_Time__c</value>
+                        </valueListItems>
+                    </valueList>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>relatedListLabel</name>
+                    <value>Currently Checked Out By</value>
+                </componentInstanceProperties>
+                <componentInstanceProperties>
+                    <name>showActionBar</name>
                     <value>true</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>body</name>
-                    <value>activityTabContent</value>
+                    <name>sortFieldAlias</name>
+                    <value>__DEFAULT__</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
-                    <name>title</name>
-                    <value>Standard.Tab.activity</value>
+                    <name>sortFieldOrder</name>
+                    <value>Default</value>
                 </componentInstanceProperties>
-                <componentName>flexipage:tab</componentName>
-                <identifier>activityTab</identifier>
-            </componentInstance>
-        </itemInstances>
-        <mode>Replace</mode>
-        <name>sidebartabs</name>
-        <type>Facet</type>
-    </flexiPageRegions>
-    <flexiPageRegions>
-        <itemInstances>
-            <componentInstance>
-                <componentInstanceProperties>
-                    <name>tabs</name>
-                    <value>sidebartabs</value>
-                </componentInstanceProperties>
-                <componentName>flexipage:tabset</componentName>
-                <identifier>flexipage_tabset2</identifier>
+                <componentName>lst:dynamicRelatedList</componentName>
+                <identifier>lst_dynamicRelatedList</identifier>
+                <visibilityRule>
+                    <criteria>
+                        <leftValue>{!Record.Total_Currently_Checked_Out__c}</leftValue>
+                        <operator>GT</operator>
+                        <rightValue>0</rightValue>
+                    </criteria>
+                </visibilityRule>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

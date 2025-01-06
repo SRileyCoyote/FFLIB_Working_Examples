@@ -6,6 +6,7 @@
     <columns>Game_Thumbnail__c</columns>
     <columns>Board_Game__c</columns>
     <columns>Status__c</columns>
+    <columns>of_Copies_Available__c</columns>
     <columns>Comments__c</columns>
     <columns>Link_to_Collection_Geeklist__c</columns>
     <filterScope>Everything</filterScope>

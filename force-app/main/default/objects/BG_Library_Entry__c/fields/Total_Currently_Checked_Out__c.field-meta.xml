@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Currently_Checked_Out__c</fullName>
+    <description>Rollup Summary of all of the Open Checkout Logs for this Board Game for this Event</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Rollup Summary of all of the Open Checkout Logs for this Board Game for this Event</inlineHelpText>
+    <label>Total Currently Checked Out</label>
+    <summaryFilterItems>
+        <field>BG_Checkout_Log__c.Check_In_Time__c</field>
+        <operation>equals</operation>
+        <value></value>
+    </summaryFilterItems>
+    <summaryForeignKey>BG_Checkout_Log__c.BG_Library_Entry__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

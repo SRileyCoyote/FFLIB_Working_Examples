@@ -9,7 +9,7 @@
 )/60/1000</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <inlineHelpText>Total Time the Board Game Was Checked Out</inlineHelpText>
-    <label>Total Check Out Time</label>
+    <label>Total Check Out Time (in Min)</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>

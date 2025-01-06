@@ -179,6 +179,9 @@
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
         <listViewButtons>Update_BG_Library_Entry_From_BGG</listViewButtons>
+        <searchResultsAdditionalFields>Board_Game__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Event__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>of_Copies_Available__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
