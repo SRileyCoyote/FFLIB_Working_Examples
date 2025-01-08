@@ -6,6 +6,6 @@
     <columns>Attendee_Name__c</columns>
     <columns>Rating__c</columns>
     <columns>Is_Favorite__c</columns>
-    <filterScope>Mine</filterScope>
+    <filterScope>Everything</filterScope>
     <label>All</label>
 </ListView>
