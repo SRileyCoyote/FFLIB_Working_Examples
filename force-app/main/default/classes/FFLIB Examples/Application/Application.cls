@@ -21,7 +21,8 @@ public class Application {
             IBoardGameRatingsService.class => BoardGameRatingsService.class,
             IBoardGamesService.class => BoardGamesService.class,
             IBGGCalloutService.class => BGGCalloutService.class,
-            IBGLibraryEntryService.class => BGLibraryEntryService.class
+            IBGLibraryEntryService.class => BGLibraryEntryService.class,
+            IBGCheckOutLogService.class => BGCheckOutLogService.class
         }
     );
 
@@ -51,7 +52,8 @@ public class Application {
         // Map SObjectType to Domain Class Constructors
         new Map<SObjectType, Type>{
             //Additional SObject Domains Go Here
-            Board_Game_Rating__c.SObjectType => BoardGameRatingsDomain.Constructor.class
+            Board_Game_Rating__c.SObjectType => BoardGameRatingsDomain.Constructor.class,
+            BG_Checkout_Log__c.SObjectType => BGCheckOutLogDomain.Constructor.class
         }
     );
 
@@ -66,7 +68,8 @@ public class Application {
             //Additional SObjectTypes for Unit Of Work Go Here with Parent Objects Above Child
             Board_Game_Rating__c.SObjectType,
             Board_Games__c.SObjectType,
-            BG_Library_Entry__c.SObjectType
+            BG_Library_Entry__c.SObjectType,
+            BG_Checkout_Log__c.SObjectType
         }
     );
 }

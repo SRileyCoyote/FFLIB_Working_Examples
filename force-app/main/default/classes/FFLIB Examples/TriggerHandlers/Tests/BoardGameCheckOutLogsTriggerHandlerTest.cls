@@ -1,6 +1,6 @@
 /**
 * ─────────────────────────────────────────────────────────────────────────────────────────────────┐
-* Test Class just for the Board Game Rating Trigger Handler Class
+* Test Class just for the Board Game Check Out Log Trigger Handler Class
 *
 * A Test Plan is required to cover all possible scenarios for the inputs or variations to 
 * variables that might occur. Up to and Including: Positive, Negative, and Bulk Testing.
@@ -14,13 +14,13 @@
 * @author         Sean Riley
 * @modifiedBy     Sean Riley
 * @version        1.0
-* @created        2024-11-30
-* @modified       2024-12-21
+* @created        2025-01-08
+* @modified       2025-01-08
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
 @IsTest
-public class BoardGameRatingsTriggerHandlerTest {
+public class BoardGameCheckOutLogsTriggerHandlerTest {
 
     /**
      * List of possible params for the mock setup.
@@ -48,7 +48,7 @@ public class BoardGameRatingsTriggerHandlerTest {
 
         public fflib_ApexMocks mocks = new fflib_ApexMocks();
         public fflib_SObjectUnitOfWork uowMock;
-        public BoardGameRatingsTriggerHandler triggerHandler;
+        public BoardGameCheckOutLogTriggerHandler triggerHandler;
         
         // Constructor with Booleon if Errors Should be thrown
         private MockSetup(Map<MockParams, Object> params, Boolean throwErrors){
@@ -75,35 +75,35 @@ public class BoardGameRatingsTriggerHandlerTest {
             
             //Initialize the Mocks
             uowMock = (fflib_SObjectUnitOfWork) mocks.mock(fflib_SObjectUnitOfWork.class);
-            IBoardGameRatingsService mockBGRService = (IBoardGameRatingsService) mocks.mock(BoardGameRatingsService.class);
+            IBGCheckOutLogService mockBGCheckOutLogService = (IBGCheckOutLogService) mocks.mock(BGCheckOutLogService.class);
 
             mocks.startStubbing();
-            //Stubbing the BGR Service
+            //Stubbing the BG Checkout Log Service
             // If we want to throw errors, stub out the Set New Favorite Methods to throw an error when called
             if(throwErrors){
-                ((IBoardGameRatingsService) mocks.doThrowWhen(new BoardGameRatingsTriggerHandler.BGRatingsTriggerHandlerException('Thrown Exception'),
-                                                mockBGRService)).setNewFavorite(
+                ((IBGCheckOutLogService) mocks.doThrowWhen(new BoardGameCheckOutLogTriggerHandler.BGCheckOutLogTriggerHandlerException('Thrown Exception'),
+                                                mockBGCheckOutLogService)).setTotalCheckOutTime(
                                                                     (fflib_SObjectUnitOfWork) fflib_Match.anyObject(), 
-                                                                    (List<Board_Game_Rating__c>) fflib_Match.anyObject()
+                                                                    (List<BG_Checkout_Log__c>) fflib_Match.anyObject()
                                                                 );
-                ((IBoardGameRatingsService) mocks.doThrowWhen(new BoardGameRatingsTriggerHandler.BGRatingsTriggerHandlerException('Thrown Exception'),
-                                                mockBGRService)).setNewFavorite(
+                ((IBGCheckOutLogService) mocks.doThrowWhen(new BoardGameCheckOutLogTriggerHandler.BGCheckOutLogTriggerHandlerException('Thrown Exception'),
+                                                mockBGCheckOutLogService)).setTotalCheckOutTime(
                                                                     (fflib_SObjectUnitOfWork) fflib_Match.anyObject(), 
-                                                                    (List<Board_Game_Rating__c>) fflib_Match.anyObject(),
+                                                                    (List<BG_Checkout_Log__c>) fflib_Match.anyObject(),
                                                                     (Map<Id, SObject>) fflib_Match.anyObject()
                                                                 );
             }
             mocks.stopStubbing();
 
-            //Whenever the BoardGameRatingsService or UnitOfWork is created using the Application Class, 
+            //Whenever the BGCheckOutLogService or UnitOfWork is created using the Application Class, 
             //Replace those class and all of their methods with our Mock Service with stubbed methods
             //Any Methods not set with a specific value, will return null
-            Application.Service.setMock(IBoardGameRatingsService.class, mockBGRService); 
+            Application.Service.setMock(IBGCheckOutLogService.class, mockBGCheckOutLogService); 
             Application.UnitOfWork.setMock(uowMock);
 
             //Initialize Trigger Handler with empty list
             //Do this last so that mocks are applied
-            triggerHandler = new BoardGameRatingsTriggerHandler(config, new List<Board_Game_Rating__c>()); 
+            triggerHandler = new BoardGameCheckOutLogTriggerHandler(config, new List<BG_Checkout_Log__c>()); 
         }
     } 
 
@@ -113,8 +113,8 @@ public class BoardGameRatingsTriggerHandlerTest {
     // Test Plan
     // Call Constructor Class 
     // Call TriggerHandler with Current Config 
-    // Call AfterUpdate Method with BGR Record
-    // Call AfterInsert Method with BGR Record
+    // Call AfterUpdate Method with BG Checkout Log Record
+    // Call AfterInsert Method with BG Checkout Log Record
     // Call AfterUpdate Method with Custom Config where Recursion Disabled
     // Call AfterInsert Method with Custom Config where Recursion Disabled
     // Call TriggerHandler with Custom Config where Trigger Disabled 
@@ -126,9 +126,9 @@ public class BoardGameRatingsTriggerHandlerTest {
     // Call Constructor Class
     @isTest
     public static void givenListOfRecords_WhenConstructorClassCalled_ThenReturnsCorrectNumberOfRecords(){
-        List<Board_Game_Rating__c> records = new List<Board_Game_Rating__c>{new Board_Game_Rating__c()};
-        BoardGameRatingsTriggerHandler.Constructor constructor = new BoardGameRatingsTriggerHandler.Constructor();
-        BoardGameRatingsTriggerHandler handler = (BoardGameRatingsTriggerHandler) constructor.construct(records);
+        List<BG_Checkout_Log__c> records = new List<BG_Checkout_Log__c>{new BG_Checkout_Log__c()};
+        BoardGameCheckOutLogTriggerHandler.Constructor constructor = new BoardGameCheckOutLogTriggerHandler.Constructor();
+        BoardGameCheckOutLogTriggerHandler handler = (BoardGameCheckOutLogTriggerHandler) constructor.construct(records);
         
         Assert.areEqual(records.size(), handler.getRecords().size(), 'Number of Records Match');
     } 
@@ -147,21 +147,21 @@ public class BoardGameRatingsTriggerHandlerTest {
         // Create Test Data
             // No DML will occur on these records so a Fake Id will be used as the ID and the record can be empty
             // Actual Logic will be tested in the Service Class
-        List<Board_Game_Rating__c> testRecords = new List<Board_Game_Rating__c>{
-            new Board_Game_Rating__c(Id = fflib_IdGenerator.generate(Board_Game_Rating__c.sobjectType))
+        List<BG_Checkout_Log__c> testRecords = new List<BG_Checkout_Log__c>{
+            new BG_Checkout_Log__c(Id = fflib_IdGenerator.generate(BG_Checkout_Log__c.sobjectType))
         };
 
         Test.startTest();
-            BoardGameRatingsTriggerHandler triggerhandler = new BoardGameRatingsTriggerHandler(testRecords);
+            BoardGameCheckOutLogTriggerHandler triggerhandler = new BoardGameCheckOutLogTriggerHandler(testRecords);
         Test.stopTest();
 
         //Validate Current Config Record was Used
-        Assert.areEqual('BoardGameRatings', triggerhandler.domainConfig.DeveloperName, 'Dev Name for Config File Does not match');
+        Assert.areEqual('BGCheckOutLog', triggerhandler.domainConfig.DeveloperName, 'Dev Name for Config File Does not match');
     }
 
-    // Call AfterUpdate Method with BGR Record    
+    // Call AfterUpdate Method with BGCheckOuLog Record    
     @IsTest
-    public static void givenBGRRecord_WhenOnAfterUpdateIsCalled_ThenNoErrors(){
+    public static void givenBGCheckOutLog_WhenOnAfterUpdateIsCalled_ThenNoErrors(){
 
         //Setup Test Data and Mocking
         //Setup Return Values
@@ -173,9 +173,9 @@ public class BoardGameRatingsTriggerHandlerTest {
         // Create Test Data
             // No DML will occur on these records so a Fake Id will be used as the ID and the record can be empty
             // Actual Logic will be tested in the Service Class
-        ID bgrID = fflib_IdGenerator.generate(Board_Game_Rating__c.sobjectType);
-        Map<ID, Board_Game_Rating__c> existingRecords = new Map<ID, Board_Game_Rating__c>{
-                                                                bgrID => new Board_Game_Rating__c( ID = bgrID )                      
+        ID bgrID = fflib_IdGenerator.generate(BG_Checkout_Log__c.sobjectType);
+        Map<ID, BG_Checkout_Log__c> existingRecords = new Map<ID, BG_Checkout_Log__c>{
+                                                                bgrID => new BG_Checkout_Log__c( ID = bgrID )                      
                                                         };
 
         Test.startTest();
@@ -186,9 +186,9 @@ public class BoardGameRatingsTriggerHandlerTest {
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1)).commitWork();
     }
 
-    // Call AfterInsert Method with BGR Record    
+    // Call AfterInsert Method with BGCheckOuLog Record    
     @IsTest
-    public static void givenBGRRecord_WhenOnAfterInsertIsCalled_ThenNoErrors(){
+    public static void givenBGCheckOutLog_WhenOnAfterInsertIsCalled_ThenNoErrors(){
 
         //Setup Test Data and Mocking
         //Setup Return Values
@@ -227,9 +227,9 @@ public class BoardGameRatingsTriggerHandlerTest {
         // Create Test Data
             // No DML will occur on these records so a Fake Id will be used as the ID and the record can be empty
             // Actual Logic will be tested in the Service Class
-        ID bgrID = fflib_IdGenerator.generate(Board_Game_Rating__c.sobjectType);
-        Map<ID, Board_Game_Rating__c> existingRecords = new Map<ID, Board_Game_Rating__c>{
-                                                                bgrID => new Board_Game_Rating__c( ID = bgrID )                      
+        ID bgrID = fflib_IdGenerator.generate(BG_Checkout_Log__c.sobjectType);
+        Map<ID, BG_Checkout_Log__c> existingRecords = new Map<ID, BG_Checkout_Log__c>{
+                                                                bgrID => new BG_Checkout_Log__c( ID = bgrID )                      
                                                         };
 
         Test.startTest();
@@ -237,7 +237,7 @@ public class BoardGameRatingsTriggerHandlerTest {
         Test.stopTest();
 
         //Validate After Update Trigger is Disabled
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).AfterUpdateEnabled, 'After Update Was Not Disabled');
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterUpdateEnabled, 'After Update Was Not Disabled');
     }
 
     // Call AfterInsert Method with Custom Config where Recursion Disabled
@@ -264,7 +264,7 @@ public class BoardGameRatingsTriggerHandlerTest {
         Test.stopTest();
 
         //Validate After Update Trigger is Disabled
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).AfterInsertEnabled, 'After Insert Was Not Disabled');
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterInsertEnabled, 'After Insert Was Not Disabled');
     }
 
 
@@ -289,10 +289,10 @@ public class BoardGameRatingsTriggerHandlerTest {
         Test.stopTest();
 
         //Validate Triggers are Disabled
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).AfterUpdateEnabled, 'After Update Was Not Disabled');
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).AfterInsertEnabled, 'After Insert Was Not Disabled');
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).BeforeUpdateEnabled, 'Before Update Was Not Disabled');
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).BeforeInsertEnabled, 'Before Insert Was Not Disabled');
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterUpdateEnabled, 'After Update Was Not Disabled');
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterInsertEnabled, 'After Insert Was Not Disabled');
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).BeforeUpdateEnabled, 'Before Update Was Not Disabled');
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).BeforeInsertEnabled, 'Before Insert Was Not Disabled');
     }
 
     // Call AfterUpdate and Throw Error with Custom Config where Bypass Triggers Disabled
@@ -303,9 +303,9 @@ public class BoardGameRatingsTriggerHandlerTest {
         // Create Test Data
             // No DML will occur on these records so a Fake Id will be used as the ID and the record can be empty
             // Actual Logic will be tested in the Service Class
-        ID bgrID = fflib_IdGenerator.generate(Board_Game_Rating__c.sobjectType);
-        Map<ID, Board_Game_Rating__c> existingRecords = new Map<ID, Board_Game_Rating__c>{
-                                                                bgrID => new Board_Game_Rating__c( ID = bgrID )                      
+        ID bgrID = fflib_IdGenerator.generate(BG_Checkout_Log__c.sobjectType);
+        Map<ID, BG_Checkout_Log__c> existingRecords = new Map<ID, BG_Checkout_Log__c>{
+                                                                bgrID => new BG_Checkout_Log__c( ID = bgrID )                      
                                                         };
         //Setup Return Values
         Map<MockParams, Object> params = new Map<MockParams, Object>();
@@ -326,7 +326,7 @@ public class BoardGameRatingsTriggerHandlerTest {
         Test.stopTest();
 
         //Validate Correct Error Was Thrown
-        Assert.areEqual(String.format(BoardGameRatingsTriggerHandler.ERR_MESSAGE, new String[]{'After Update', 'Thrown Exception'}), errMsg, 'Error Message Recieved: '+ errMsg);
+        Assert.areEqual(String.format(BoardGameCheckOutLogTriggerHandler.ERR_MESSAGE, new String[]{'After Update', 'Thrown Exception'}), errMsg, 'Error Message Recieved: '+ errMsg);
     }
 
     // Call AfterInsert and Throw Error with Custom Config where Bypass Triggers Disabled
@@ -356,7 +356,7 @@ public class BoardGameRatingsTriggerHandlerTest {
         Test.stopTest();
 
         //Validate Correct Error Was Thrown
-        Assert.areEqual(String.format(BoardGameRatingsTriggerHandler.ERR_MESSAGE, new String[]{'After Insert', 'Thrown Exception'}), errMsg, 'Error Message Recieved: '+ errMsg);
+        Assert.areEqual(String.format(BoardGameCheckOutLogTriggerHandler.ERR_MESSAGE, new String[]{'After Insert', 'Thrown Exception'}), errMsg, 'Error Message Recieved: '+ errMsg);
     }
 
     // Call AfterUpdate and Throw Error with Custom Config where Bypass Triggers Enabled
@@ -367,9 +367,9 @@ public class BoardGameRatingsTriggerHandlerTest {
         // Create Test Data
             // No DML will occur on these records so a Fake Id will be used as the ID and the record can be empty
             // Actual Logic will be tested in the Service Class
-        ID bgrID = fflib_IdGenerator.generate(Board_Game_Rating__c.sobjectType);
-        Map<ID, Board_Game_Rating__c> existingRecords = new Map<ID, Board_Game_Rating__c>{
-                                                                bgrID => new Board_Game_Rating__c( ID = bgrID )                      
+        ID bgrID = fflib_IdGenerator.generate(BG_Checkout_Log__c.sobjectType);
+        Map<ID, BG_Checkout_Log__c> existingRecords = new Map<ID, BG_Checkout_Log__c>{
+                                                                bgrID => new BG_Checkout_Log__c( ID = bgrID )                      
                                                         };
         //Setup Return Values
         Map<MockParams, Object> params = new Map<MockParams, Object>();

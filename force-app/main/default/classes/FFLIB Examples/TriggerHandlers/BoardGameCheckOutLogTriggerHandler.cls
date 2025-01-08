@@ -1,6 +1,6 @@
 /**
 * ─────────────────────────────────────────────────────────────────────────────────────────────────┐
-* Handler for all Board Games Ratings Trigger.
+* Handler for all Board Games Check Out Log Trigger.
 *
 * TriggerHandlers handle all of the trigger based logic like if the trigger should fire or not.
 * They will then call the call the Serice for the object to perform the actual logic for the 
@@ -18,37 +18,37 @@
 * @author         Sean Riley
 * @modifiedBy     Sean Riley
 * @version        1.0
-* @created        2024-11-30
-* @modified       2024-12-21
+* @created        2025-01-08
+* @modified       2025-01-08
 * @systemLayer    Trigger Handler
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
-public with sharing class BoardGameRatingsTriggerHandler extends BaseTriggerHandler {
+public with sharing class BoardGameCheckOutLogTriggerHandler extends BaseTriggerHandler {
     
     //Variables and Objects Used throughout the Trigger Handler
-    private BoardGameRatingsService service;
-
+    private BGCheckOutLogService service;
+    
     //Set Final Strings for Error Messages
     //Use Final Strings so that exact text can be used in the Test Class without worrying about text changes
-    @TestVisible private static final String ERR_MESSAGE = 'An Error Occured {0} in the Board Game Ratings Trigger Handler: {1}';
+    @TestVisible private static final String ERR_MESSAGE = 'An Error Occured {0} in the Board Game Check Out Logs Trigger Handler: {1}';
 
     //Actual Constructor for the Trigger Handler
-    public BoardGameRatingsTriggerHandler(List<Board_Game_Rating__c> sObjectList){
+    public BoardGameCheckOutLogTriggerHandler(List<BG_Checkout_Log__c> sObjectList){
         //Get Custom Metadata Type for Domain
-        super('BoardGameRatings', BoardGameRatingsTriggerHandler.class, sObjectList); //Calls the Constructor from the Parent Class
+        super('BGCheckOutLog', BoardGameCheckOutLogTriggerHandler.class, sObjectList); //Calls the Constructor from the Parent Class
     }
 
     @TestVisible
     //Constructor Used For Testing and Setting Own Config File
-    private BoardGameRatingsTriggerHandler(Domain_Config__mdt config, List<Board_Game_Rating__c> sObjectList)
+    private BoardGameCheckOutLogTriggerHandler(Domain_Config__mdt config, List<BG_Checkout_Log__c> sObjectList)
     {
-        super(config, BoardGameRatingsTriggerHandler.class, sObjectList); // Calls the protected constructor of BaseTriggerHandler with custom config record for Testing
+        super(config, BoardGameCheckOutLogTriggerHandler.class, sObjectList); // Calls the protected constructor of BaseTriggerHandler with custom config record for Testing
     }
 
     //Abstract methods Must be overriden by Child Classes.
     //The Child Initialize method will be what is used in the constructor  
     protected override void initialize(){
-        service = (BoardGameRatingsService) Application.Service.newInstance(IBoardGameRatingsService.class);
+        service = (BGCheckOutLogService) Application.Service.newInstance(IBGCheckOutLogService.class);
     }
 
     public override void onAfterInsert(){
@@ -58,12 +58,12 @@ public with sharing class BoardGameRatingsTriggerHandler extends BaseTriggerHand
         if(this.domainConfig.Prevent_Recursion__c)
         {
             system.debug('Disabling Trigger For Recursion ...');
-            fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).disableAfterInsert(); 
+            fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).disableAfterInsert(); 
         }
 
         try{         
             //Do Work
-            service.setNewFavorite(uow, super.getRecords());
+            service.setTotalCheckOutTime(uow, super.getRecords());
 
             //Perform DML on all Registered Records
             uow.commitWork();
@@ -77,7 +77,7 @@ public with sharing class BoardGameRatingsTriggerHandler extends BaseTriggerHand
             }
             else 
             {
-                throw new BGRatingsTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'After Insert', ex.getMessage()}));
+                throw new BGCheckOutLogTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'After Insert', ex.getMessage()}));
             }
         }
     }
@@ -90,12 +90,12 @@ public with sharing class BoardGameRatingsTriggerHandler extends BaseTriggerHand
         if(this.domainConfig.Prevent_Recursion__c)
         {
             system.debug('Disabling Trigger For Recursion ...');
-            fflib_SObjectDomain.getTriggerEvent(BoardGameRatingsTriggerHandler.class).disableAfterUpdate(); 
+            fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).disableAfterUpdate(); 
         }
 
         try{         
             //Do Work
-            service.setNewFavorite(uow, super.getRecords(), existingRecords);
+            service.setTotalCheckOutTime(uow, super.getRecords(), existingRecords);
 
             //Perform DML on all Registered Records
             uow.commitWork();
@@ -109,19 +109,18 @@ public with sharing class BoardGameRatingsTriggerHandler extends BaseTriggerHand
             }
             else 
             {
-                throw new BGRatingsTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'After Update', ex.getMessage()}));
+                throw new BGCheckOutLogTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'After Update', ex.getMessage()}));
             }
         }
     }
 
-    public class Constructor implements fflib_SObjectDomain.IConstructable
-	{
+    public class Constructor implements fflib_SObjectDomain.IConstructable{
 		public fflib_SObjectDomain construct(List<SObject> sObjectList)
 		{
-			return new BoardGameRatingsTriggerHandler(sObjectList);
+			return new BoardGameCheckOutLogTriggerHandler(sObjectList);
 		}
 	}
 
-    public class BGRatingsTriggerHandlerException extends Exception {}
+    public class BGCheckOutLogTriggerHandlerException extends Exception {}
 
 }

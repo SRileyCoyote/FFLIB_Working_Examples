@@ -7,6 +7,20 @@ public class TestUtil {
     //  Insert of the returned record should be done in the test itself so that any adjustments to the record needed
     //  can be done before insert 
 
+    public static BG_Checkout_Log__c createBoardGameCheckOutLog(){
+        Event_Attendee__c ea = createEventAttendee();
+        insert ea;
+
+        BG_Library_Entry__c bgle = createBoardGameLibraryEntry();
+        insert bgle;
+
+        BG_Checkout_Log__c record = new BG_Checkout_Log__c();
+        record.Checked_Out_By__c = ea.Id;
+        record.BG_Library_Entry__c = bgle.Id;
+        record.Check_Out_Time__c = System.now();
+        return record;
+    }
+
     public static Board_Game_Rating__c createBoardGameRating(){
         Board_Games__c bg = createBoardGame();
         insert bg;
