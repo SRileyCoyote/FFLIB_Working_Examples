@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2025_Event_Collection</fullName>
+    <columns>NAME</columns>
+    <columns>Event__c</columns>
+    <columns>Game_Thumbnail__c</columns>
+    <columns>Board_Game__c</columns>
+    <columns>Status__c</columns>
+    <columns>of_Copies_Available__c</columns>
+    <columns>Comments__c</columns>
+    <columns>Link_to_Collection_Geeklist__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>equals</operation>
+        <value>My 2025 Event</value>
+    </filters>
+    <label>2025 Event Collection</label>
+</ListView>
