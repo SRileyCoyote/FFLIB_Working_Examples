@@ -12,8 +12,8 @@
 * @author         Sean Riley
 * @modifiedBy     Sean Riley
 * @version        1.0
-* @created        2025-01-08
-* @modified       2025-01-08
+* @created        2025-01-09
+* @modified       2025-01-09
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -35,15 +35,15 @@ public without sharing class BGCheckOutLogService extends BaseService implements
 
     //Abstract Method from Parent that Must be implemented
     protected override void initialize(){
-        //Initialize Selectors through Application Layer 
+        //Initialize Any Selectors through Application Layer 
         // so they can be Mocked and Stubbed from the Test Class
     }
 
-    public void setTotalCheckOutTime(fflib_SObjectUnitOfWork uow, List<BG_Checkout_Log__c> records){
-        setTotalCheckOutTime(uow, records, null);
+    public void setTotalCheckOutTime(List<BG_Checkout_Log__c> records){
+        setTotalCheckOutTime(records, null);
     }
 
-    public void setTotalCheckOutTime(fflib_SObjectUnitOfWork uow, List<BG_Checkout_Log__c> records, Map<ID, SObject> existingRecords){
+    public void setTotalCheckOutTime(List<BG_Checkout_Log__c> records, Map<ID, SObject> existingRecords){
         
         domain = (BGCheckOutLogDomain) Application.Domain.newInstance(records);
         domain.setExistingRecords(existingRecords);
@@ -59,9 +59,8 @@ public without sharing class BGCheckOutLogService extends BaseService implements
         records = domain.getCompletedCheckOutLogs(records);
 
         for(BG_Checkout_Log__c record : records){
-            //Set Total_Min_Checked_Out__c field to equal the formula field Value
-            record.Total_Min_Checked_Out__c = record.Total_Check_Out_Time__c;
-            uow.registerDirty(record);
+            //Set Total_Check_Out_Time_Value__c field to equal the formula field Value
+            record.Total_Check_Out_Time_Value__c = record.Total_Check_Out_Time_Formula__c;
         }
 
     }

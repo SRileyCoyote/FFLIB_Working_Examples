@@ -14,8 +14,8 @@
 * @author         Sean Riley
 * @modifiedBy     Sean Riley
 * @version        1.0
-* @created        2025-01-08
-* @modified       2025-01-08
+* @created        2025-01-09
+* @modified       2025-01-09
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -83,12 +83,10 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
             if(throwErrors){
                 ((IBGCheckOutLogService) mocks.doThrowWhen(new BoardGameCheckOutLogTriggerHandler.BGCheckOutLogTriggerHandlerException('Thrown Exception'),
                                                 mockBGCheckOutLogService)).setTotalCheckOutTime(
-                                                                    (fflib_SObjectUnitOfWork) fflib_Match.anyObject(), 
                                                                     (List<BG_Checkout_Log__c>) fflib_Match.anyObject()
                                                                 );
                 ((IBGCheckOutLogService) mocks.doThrowWhen(new BoardGameCheckOutLogTriggerHandler.BGCheckOutLogTriggerHandlerException('Thrown Exception'),
                                                 mockBGCheckOutLogService)).setTotalCheckOutTime(
-                                                                    (fflib_SObjectUnitOfWork) fflib_Match.anyObject(), 
                                                                     (List<BG_Checkout_Log__c>) fflib_Match.anyObject(),
                                                                     (Map<Id, SObject>) fflib_Match.anyObject()
                                                                 );
@@ -113,15 +111,15 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
     // Test Plan
     // Call Constructor Class 
     // Call TriggerHandler with Current Config 
-    // Call AfterUpdate Method with BG Checkout Log Record
-    // Call AfterInsert Method with BG Checkout Log Record
-    // Call AfterUpdate Method with Custom Config where Recursion Disabled
-    // Call AfterInsert Method with Custom Config where Recursion Disabled
+    // Call BeforeUpdate Method with BG Checkout Log Record
+    // Call BeforeInsert Method with BG Checkout Log Record
+    // Call BeforeUpdate Method with Custom Config where Recursion Disabled
+    // Call BeforeInsert Method with Custom Config where Recursion Disabled
     // Call TriggerHandler with Custom Config where Trigger Disabled 
-    // Call AfterUpdate and Throw Error with Custom Config where Bypass Triggers Disabled
-    // Call AfterInsert and Throw Error with Custom Config where Bypass Triggers Disabled
-    // Call AfterUpdate and Throw Error with Custom Config where Bypass Triggers Enabled
-    // Call AfterInsert and Throw Error with Custom Config where Bypass Triggers Enabled
+    // Call BeforeUpdate and Throw Error with Custom Config where Bypass Triggers Disabled
+    // Call BeforeInsert and Throw Error with Custom Config where Bypass Triggers Disabled
+    // Call BeforeUpdate and Throw Error with Custom Config where Bypass Triggers Enabled
+    // Call BeforeInsert and Throw Error with Custom Config where Bypass Triggers Enabled
 
     // Call Constructor Class
     @isTest
@@ -159,9 +157,9 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         Assert.areEqual('BGCheckOutLog', triggerhandler.domainConfig.DeveloperName, 'Dev Name for Config File Does not match');
     }
 
-    // Call AfterUpdate Method with BGCheckOuLog Record    
+    // Call BeforeUpdate Method with BGCheckOuLog Record    
     @IsTest
-    public static void givenBGCheckOutLog_WhenOnAfterUpdateIsCalled_ThenNoErrors(){
+    public static void givenBGCheckOutLog_WhenOnBeforeUpdateIsCalled_ThenNoErrors(){
 
         //Setup Test Data and Mocking
         //Setup Return Values
@@ -179,16 +177,24 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
                                                         };
 
         Test.startTest();
-            mock.triggerHandler.onAfterUpdate(existingRecords);
+        String errMsg = 'No Errors';
+        try{
+            mock.triggerHandler.onBeforeUpdate(existingRecords);
+            Assert.isTrue(true, 'Error Thrown');
+        }
+        catch (Exception ex){
+            errMsg = ex.getMessage();
+        }
         Test.stopTest();
 
-        //Validate Method finished and Service Not Called
-        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1)).commitWork();
+        //Validate No Error Was Thrown
+        Assert.areEqual('No Errors', errMsg, 'Error Message Recieved: '+ errMsg);
+
     }
 
-    // Call AfterInsert Method with BGCheckOuLog Record    
+    // Call BeforeInsert Method with BGCheckOuLog Record    
     @IsTest
-    public static void givenBGCheckOutLog_WhenOnAfterInsertIsCalled_ThenNoErrors(){
+    public static void givenBGCheckOutLog_WhenOnBeforeInsertIsCalled_ThenNoErrors(){
 
         //Setup Test Data and Mocking
         //Setup Return Values
@@ -201,16 +207,23 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         //No Additional Test Data Needed
 
         Test.startTest();
-            mock.triggerHandler.onAfterInsert();
+        String errMsg = 'No Errors';
+        try{
+            mock.triggerHandler.onBeforeInsert();
+            Assert.isTrue(true, 'Error Thrown');
+        }
+        catch (Exception ex){
+            errMsg = ex.getMessage();
+        }
         Test.stopTest();
 
-        //Validate Method finished and Service Not Called
-        ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1)).commitWork();
+        //Validate No Error Was Thrown
+        Assert.areEqual('No Errors', errMsg, 'Error Message Recieved: '+ errMsg);
     }
 
-    // Call AfterUpdate Method with Custom Config where Recursion Disabled
+    // Call BeforeUpdate Method with Custom Config where Recursion Disabled
     @IsTest
-    public static void givenConifigWithPreventRecursionEnabled_WhenOnAfterUpdateIsCalled_ThenOnAfterUpdateMethodsDisabled(){
+    public static void givenConifigWithPreventRecursionEnabled_WhenOnBeforeUpdateIsCalled_ThenOnBeforeUpdateMethodsDisabled(){
         
         //Setup Test Data and Mocking
         //Setup Return Values
@@ -233,16 +246,16 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
                                                         };
 
         Test.startTest();
-            mock.triggerHandler.onAfterUpdate(existingRecords);
+            mock.triggerHandler.onBeforeUpdate(existingRecords);
         Test.stopTest();
 
-        //Validate After Update Trigger is Disabled
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterUpdateEnabled, 'After Update Was Not Disabled');
+        //Validate Before Update Trigger is Disabled
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).BeforeUpdateEnabled, 'Before Update Was Not Disabled');
     }
 
-    // Call AfterInsert Method with Custom Config where Recursion Disabled
+    // Call BeforeInsert Method with Custom Config where Recursion Disabled
     @IsTest
-    public static void givenConifigWithPreventRecursionEnabled_WhenOnAfterInsertIsCalled_ThenOnAfterInsertMethodsDisabled(){
+    public static void givenConifigWithPreventRecursionEnabled_WhenOnBeforeInsertIsCalled_ThenOnBeforeInsertMethodsDisabled(){
         
         //Setup Test Data and Mocking
         //Setup Return Values
@@ -260,11 +273,11 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         //No Additional Test Data Needed
 
         Test.startTest();
-            mock.triggerHandler.onAfterInsert();
+            mock.triggerHandler.onBeforeInsert();
         Test.stopTest();
 
-        //Validate After Update Trigger is Disabled
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterInsertEnabled, 'After Insert Was Not Disabled');
+        //Validate Before Update Trigger is Disabled
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).BeforeInsertEnabled, 'Before Insert Was Not Disabled');
     }
 
 
@@ -289,15 +302,15 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         Test.stopTest();
 
         //Validate Triggers are Disabled
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterUpdateEnabled, 'After Update Was Not Disabled');
-        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterInsertEnabled, 'After Insert Was Not Disabled');
         Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).BeforeUpdateEnabled, 'Before Update Was Not Disabled');
         Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).BeforeInsertEnabled, 'Before Insert Was Not Disabled');
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterUpdateEnabled, 'After Update Was Not Disabled');
+        Assert.isFalse(fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).AfterInsertEnabled, 'After Insert Was Not Disabled');
     }
 
-    // Call AfterUpdate and Throw Error with Custom Config where Bypass Triggers Disabled
+    // Call BeforeUpdate and Throw Error with Custom Config where Bypass Triggers Disabled
     @IsTest
-    public static void givenConifigWithByPassErrorHandlingDisabled_WhenAfterUpdateErrorOccurs_ThenErrorThrown(){
+    public static void givenConifigWithByPassErrorHandlingDisabled_WhenBeforeUpdateErrorOccurs_ThenErrorThrown(){
 
         //Setup Test Data and Mocking
         // Create Test Data
@@ -317,7 +330,7 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         Test.startTest();
         String errMsg = 'No Errors';
         try{
-            mock.triggerHandler.onAfterUpdate(existingRecords);
+            mock.triggerHandler.onBeforeUpdate(existingRecords);
             Assert.isTrue(false, 'Error Not Thrown');
         }
         catch (Exception ex){
@@ -326,12 +339,12 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         Test.stopTest();
 
         //Validate Correct Error Was Thrown
-        Assert.areEqual(String.format(BoardGameCheckOutLogTriggerHandler.ERR_MESSAGE, new String[]{'After Update', 'Thrown Exception'}), errMsg, 'Error Message Recieved: '+ errMsg);
+        Assert.areEqual(String.format(BoardGameCheckOutLogTriggerHandler.ERR_MESSAGE, new String[]{'Before Update', 'Thrown Exception'}), errMsg, 'Error Message Recieved: '+ errMsg);
     }
 
-    // Call AfterInsert and Throw Error with Custom Config where Bypass Triggers Disabled
+    // Call BeforeInsert and Throw Error with Custom Config where Bypass Triggers Disabled
     @IsTest
-    public static void givenConifigWithByPassErrorHandlingDisabled_WhenAfterInsertErrorOccurs_ThenErrorThrown(){
+    public static void givenConifigWithByPassErrorHandlingDisabled_WhenBeforeInsertErrorOccurs_ThenErrorThrown(){
 
         //Setup Test Data and Mocking
         // Create Test Data
@@ -347,7 +360,7 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         Test.startTest();
         String errMsg = 'No Errors';
         try{
-            mock.triggerHandler.onAfterInsert();
+            mock.triggerHandler.onBeforeInsert();
             Assert.isTrue(false, 'Error Not Thrown');
         }
         catch (Exception ex){
@@ -356,12 +369,12 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         Test.stopTest();
 
         //Validate Correct Error Was Thrown
-        Assert.areEqual(String.format(BoardGameCheckOutLogTriggerHandler.ERR_MESSAGE, new String[]{'After Insert', 'Thrown Exception'}), errMsg, 'Error Message Recieved: '+ errMsg);
+        Assert.areEqual(String.format(BoardGameCheckOutLogTriggerHandler.ERR_MESSAGE, new String[]{'Before Insert', 'Thrown Exception'}), errMsg, 'Error Message Recieved: '+ errMsg);
     }
 
-    // Call AfterUpdate and Throw Error with Custom Config where Bypass Triggers Enabled
+    // Call BeforeUpdate and Throw Error with Custom Config where Bypass Triggers Enabled
     @IsTest
-    public static void givenConifigWithByPassErrorHandlingEnabled_WhenAfterUpdateErrorOccurs_ThenErrorBypassed(){
+    public static void givenConifigWithByPassErrorHandlingEnabled_WhenBeforeUpdateErrorOccurs_ThenErrorBypassed(){
 
         //Setup Test Data and Mocking
         // Create Test Data
@@ -387,20 +400,20 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         Test.startTest();
         String errMsg = 'No Errors';
         try{
-            mock.triggerHandler.onAfterUpdate(existingRecords);
+            mock.triggerHandler.onBeforeUpdate(existingRecords);
         }
         catch (Exception ex){
             errMsg = ex.getMessage();
         }
         Test.stopTest();
 
-        //Validate After Update Trigger is Disabled
+        //Validate Before Update Trigger is Disabled
         Assert.areEqual('No Errors', errMsg, 'Error Message Recieved: '+ errMsg);
     }
 
-    // Call AfterUpdate and Throw Error with Custom Config where Bypass Triggers Enabled
+    // Call BeforeUpdate and Throw Error with Custom Config where Bypass Triggers Enabled
     @IsTest
-    public static void givenConifigWithByPassErrorHandlingEnabled_WhenAfterInsertErrorOccurs_ThenErrorBypassed(){
+    public static void givenConifigWithByPassErrorHandlingEnabled_WhenBeforeInsertErrorOccurs_ThenErrorBypassed(){
 
         //Setup Test Data and Mocking
         // Create Test Data
@@ -422,14 +435,14 @@ public class BoardGameCheckOutLogsTriggerHandlerTest {
         Test.startTest();
         String errMsg = 'No Errors';
         try{
-            mock.triggerHandler.onAfterInsert();
+            mock.triggerHandler.onBeforeInsert();
         }
         catch (Exception ex){
             errMsg = ex.getMessage();
         }
         Test.stopTest();
 
-        //Validate After Update Trigger is Disabled
+        //Validate Before Update Trigger is Disabled
         Assert.areEqual('No Errors', errMsg, 'Error Message Recieved: '+ errMsg);
     }
 }

@@ -115,8 +115,8 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Attendee_Name__c</fields>
-        <fields>Total_Check_Out_Time__c</fields>
-        <fields>Total_Min_Checked_Out__c</fields>
+        <fields>Total_Check_Out_Time_Formula__c</fields>
+        <fields>Total_Check_Out_Time_Value__c</fields>
         <fields>Check_Out_Time__c</fields>
         <fields>Check_In_Time__c</fields>
         <fields>Board_Game_Name__c</fields>

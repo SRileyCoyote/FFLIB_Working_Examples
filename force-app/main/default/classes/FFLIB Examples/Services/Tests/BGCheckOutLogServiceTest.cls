@@ -11,8 +11,8 @@
 * @author         Sean Riley
 * @modifiedBy     Sean Riley
 * @version        1.0
-* @created        2025-01-08
-* @modified       2025-01-08
+* @created        2025-01-09
+* @modified       2025-01-09
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -120,7 +120,11 @@ private class BGCheckOutLogServiceTest {
         public static void givenServiceConfigWithServiceDisabled_WhenSetTotalCheckOutTimeCalled_ThenNothingHappens(){
 
             //Setup Test Data and Mocking
-            // No Test Data Needed as Service Method Should Exit Before Any Logic is processed
+            BG_Checkout_Log__c testRecord = (BG_Checkout_Log__c) new sfab_FabricatedSObject(BG_Checkout_Log__c.class)
+                                                                        .setField(BG_Checkout_Log__c.Id,
+                                                                                    fflib_IDGenerator.generate(BG_Checkout_Log__c.SObjectType))
+                                                                        .setField(BG_Checkout_Log__c.Total_Check_Out_Time_Formula__c, 60) // Formula Field
+                                                                    .toSObject();
 
             //Setup Return Values
             //By Not addeding Anything to the Params Map, the return value from the Selector will be an empty list
@@ -136,13 +140,11 @@ private class BGCheckOutLogServiceTest {
             //Run Test
             Test.startTest();
             BGCheckOutLogService service = new BGCheckOutLogService(new List<Services_Config__mdt>{mock.mockConfig});
-            service.setTotalCheckOutTime(mock.uowMock, new List<BG_Checkout_Log__c>()); //Record Provided Not needed as Value From Domain is what will be Processed
+            service.setTotalCheckOutTime(new List<BG_Checkout_Log__c>{testRecord});
             Test.stopTest();
 
             //Validate Data
-            //Verify that UOW Register Dirty method did NOT run
-            ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
-                .registerDirty((BG_Checkout_Log__c) fflib_Match.anySObject());
+            Assert.areEqual(null, testRecord.Total_Check_Out_Time_Value__c, 'Value Was Updated');
         }
 
         // Call setTotalCheckOutTime With No Records Returned From Domain
@@ -150,7 +152,11 @@ private class BGCheckOutLogServiceTest {
         public static void givenNoRecordsReturnedFromDomain_WhenSetTotalCheckOutTimeCalled_ThenNoUpdate(){
                     
             //Setup Test Data and Mocking
-            // No Test Data Needed
+            BG_Checkout_Log__c testRecord = (BG_Checkout_Log__c) new sfab_FabricatedSObject(BG_Checkout_Log__c.class)
+                                                                        .setField(BG_Checkout_Log__c.Id,
+                                                                                    fflib_IDGenerator.generate(BG_Checkout_Log__c.SObjectType))
+                                                                        .setField(BG_Checkout_Log__c.Total_Check_Out_Time_Formula__c, 60) // Formula Field
+                                                                    .toSObject();
 
             //Setup Return Values
             //By Not addeding Anything to the Params Map, the return value from the Domain will be an empty list
@@ -165,13 +171,11 @@ private class BGCheckOutLogServiceTest {
             //Run Test
             Test.startTest();
             BGCheckOutLogService service = new BGCheckOutLogService(new List<Services_Config__mdt>{mock.mockConfig});
-            service.setTotalCheckOutTime(mock.uowMock, new List<BG_Checkout_Log__c>()); //Record Provided Not needed as Value From Domain is what will be Processed
+            service.setTotalCheckOutTime(new List<BG_Checkout_Log__c>{testRecord});
             Test.stopTest();
 
             //Validate Data
-            //Verify that UOW Register Dirty method did NOT run
-            ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
-                .registerDirty((BG_Checkout_Log__c) fflib_Match.anySObject());
+            Assert.areEqual(null, testRecord.Total_Check_Out_Time_Value__c, 'Value Was Updated');
         }
 
         // Call setTotalCheckOutTime With Records Returned From Domain
@@ -183,7 +187,7 @@ private class BGCheckOutLogServiceTest {
             BG_Checkout_Log__c testRecord = (BG_Checkout_Log__c) new sfab_FabricatedSObject(BG_Checkout_Log__c.class)
                                                                         .setField(BG_Checkout_Log__c.Id,
                                                                                     fflib_IDGenerator.generate(BG_Checkout_Log__c.SObjectType))
-                                                                        .setField(BG_Checkout_Log__c.Total_Check_Out_Time__c, 60) // Formula Field
+                                                                        .setField(BG_Checkout_Log__c.Total_Check_Out_Time_Formula__c, 60) // Formula Field
                                                                     .toSObject();
 
 
@@ -201,20 +205,11 @@ private class BGCheckOutLogServiceTest {
             //Run Test
             Test.startTest();
             BGCheckOutLogService service = new BGCheckOutLogService(new List<Services_Config__mdt>{mock.mockConfig});
-            service.setTotalCheckOutTime(mock.uowMock, new List<BG_Checkout_Log__c>()); //Record Provided Not needed as Value From Domain is what will be Processed
+            service.setTotalCheckOutTime(new List<BG_Checkout_Log__c>{testRecord});
             Test.stopTest();
 
             //Validate Data
-            //Verify that UOW Register Dirty method Ran Twice
-            ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
-            .registerDirty(fflib_Match.sobjectWith(
-                new Map<Schema.SObjectField, Object>{
-                    //Validate Record in Register Dirty is the same as the first record returned from the Selector
-                    //And that the Total_Min_Checked_Out__c Value updated to match the Total_Check_Out_Time__c field
-                    BG_Checkout_Log__c.Id => testRecord.Id,
-                    BG_Checkout_Log__c.Total_Min_Checked_Out__c => testRecord.Total_Check_Out_Time__c
-                }
-            ));       
+            Assert.areEqual(testRecord.Total_Check_Out_Time_Formula__c, testRecord.Total_Check_Out_Time_Value__c, 'Value Was Not Updated');   
         }
 
 

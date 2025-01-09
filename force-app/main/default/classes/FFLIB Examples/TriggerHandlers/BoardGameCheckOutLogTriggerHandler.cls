@@ -18,8 +18,8 @@
 * @author         Sean Riley
 * @modifiedBy     Sean Riley
 * @version        1.0
-* @created        2025-01-08
-* @modified       2025-01-08
+* @created        2025-01-09
+* @modified       2025-01-09
 * @systemLayer    Trigger Handler
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -51,65 +51,55 @@ public with sharing class BoardGameCheckOutLogTriggerHandler extends BaseTrigger
         service = (BGCheckOutLogService) Application.Service.newInstance(IBGCheckOutLogService.class);
     }
 
-    public override void onAfterInsert(){
-        //Initialize Unit of Work from Application Layer
-        fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
+    public override void onBeforeInsert(){
         
         if(this.domainConfig.Prevent_Recursion__c)
         {
             system.debug('Disabling Trigger For Recursion ...');
-            fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).disableAfterInsert(); 
+            fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).disableBeforeInsert(); 
         }
 
         try{         
             //Do Work
-            service.setTotalCheckOutTime(uow, super.getRecords());
-
-            //Perform DML on all Registered Records
-            uow.commitWork();
+            service.setTotalCheckOutTime(super.getRecords());
         }
         catch (Exception ex) 
         {
             //Bypass Error Handling, If Enabled
             if(this.domainConfig.Bypass_Error_Handling__c)
             {
-                System.debug('An Error Occured After Insert: ' + ex.getMessage());
+                System.debug('An Error Occured Before Insert: ' + ex.getMessage());
             }
             else 
             {
-                throw new BGCheckOutLogTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'After Insert', ex.getMessage()}));
+                throw new BGCheckOutLogTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'Before Insert', ex.getMessage()}));
             }
         }
     }
 
-    public override void onAfterUpdate(Map<Id,SObject> existingRecords){
-        //Initialize Unit of Work from Application Layer
-        fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
+    public override void onBeforeUpdate(Map<Id,SObject> existingRecords){
         
-        //Prevent Recursion on After Update, If enabled
+        //Prevent Recursion on Before Update, If enabled
         if(this.domainConfig.Prevent_Recursion__c)
         {
             system.debug('Disabling Trigger For Recursion ...');
-            fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).disableAfterUpdate(); 
+            fflib_SObjectDomain.getTriggerEvent(BoardGameCheckOutLogTriggerHandler.class).disableBeforeUpdate(); 
         }
 
         try{         
             //Do Work
-            service.setTotalCheckOutTime(uow, super.getRecords(), existingRecords);
-
-            //Perform DML on all Registered Records
-            uow.commitWork();
+            service.setTotalCheckOutTime(super.getRecords(), existingRecords);
         }
         catch (Exception ex) 
         {
             //Bypass Error Handling, If Enabled
             if(this.domainConfig.Bypass_Error_Handling__c)
             {
-                System.debug('An Error Occured After Update: ' + ex.getMessage());
+                System.debug('An Error Occured Before Update: ' + ex.getMessage());
             }
             else 
             {
-                throw new BGCheckOutLogTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'After Update', ex.getMessage()}));
+                throw new BGCheckOutLogTriggerHandlerException( String.format(ERR_MESSAGE, new String[]{'Before Update', ex.getMessage()}));
             }
         }
     }
