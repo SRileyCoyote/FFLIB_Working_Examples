@@ -47,12 +47,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>BG_Checkout_Log__c.Total_Check_Out_Time__c</field>
+        <field>BG_Checkout_Log__c.Total_Check_Out_Time_Formula__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>BG_Checkout_Log__c.Total_Min_Checked_Out__c</field>
+        <field>BG_Checkout_Log__c.Total_Check_Out_Time_Value__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

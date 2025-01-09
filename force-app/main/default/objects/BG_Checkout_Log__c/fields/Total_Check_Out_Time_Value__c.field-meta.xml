@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Total_Min_Checked_Out__c</fullName>
+    <fullName>Total_Check_Out_Time_Value__c</fullName>
     <description>Hidden Field That is Updated When Board Game is Checked Back In. Used to Calculate Average Time the Game is Checked Out.</description>
     <externalId>false</externalId>
     <inlineHelpText>Updated When Board Game is Checked Back In. Used to Calculate Average Time the Game is Checked Out.</inlineHelpText>
-    <label>Total Min Checked Out</label>
+    <label>Total Check Out Time (Hidden)</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>

@@ -152,7 +152,7 @@
                             <value>Check_In_Time__c</value>
                         </valueListItems>
                         <valueListItems>
-                            <value>Total_Check_Out_Time__c</value>
+                            <value>Total_Check_Out_Time_Formula__c</value>
                         </valueListItems>
                     </valueList>
                 </componentInstanceProperties>

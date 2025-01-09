@@ -3,7 +3,7 @@
     <fullName>Total_Min_Checked_Out__c</fullName>
     <externalId>false</externalId>
     <label>Total Min Checked Out</label>
-    <summarizedField>BG_Checkout_Log__c.Total_Min_Checked_Out__c</summarizedField>
+    <summarizedField>BG_Checkout_Log__c.Total_Check_Out_Time_Value__c</summarizedField>
     <summaryFilterItems>
         <field>BG_Checkout_Log__c.Check_In_Time__c</field>
         <operation>notEqual</operation>

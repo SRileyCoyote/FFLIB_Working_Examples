@@ -261,8 +261,18 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Total_Check_Out_Time__c</fieldItem>
+                <fieldItem>Record.Total_Check_Out_Time_Formula__c</fieldItem>
                 <identifier>RecordTotal_Check_Out_Time_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
+                <fieldItem>Record.Total_Check_Out_Time_Value__c</fieldItem>
+                <identifier>RecordTotal_Check_Out_Time_Value_cField</identifier>
             </fieldInstance>
         </itemInstances>
         <itemInstances>
