@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Link_to_Game_on_BoardGameGeek__c</fullName>
     <externalId>false</externalId>
-    <formula>Board_Game__r.Link_to_BoardGameGeek__c</formula>
+    <formula>Board_Game__r.Link_to_BGG__c</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Link to Game on BoardGameGeek</label>
     <required>false</required>

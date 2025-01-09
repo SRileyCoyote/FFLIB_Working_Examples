@@ -85,16 +85,6 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.BGG_Link__c</fieldItem>
-                <identifier>RecordBGG_Link__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
                 <fieldItem>Record.Total_Favorited__c</fieldItem>
                 <identifier>RecordTotal_Favorited__cField</identifier>
             </fieldInstance>
@@ -107,16 +97,6 @@
                 </fieldInstanceProperties>
                 <fieldItem>Record.Average_Attendee_Rating__c</fieldItem>
                 <identifier>RecordAverage_Attendee_Rating__cField</identifier>
-            </fieldInstance>
-        </itemInstances>
-        <itemInstances>
-            <fieldInstance>
-                <fieldInstanceProperties>
-                    <name>uiBehavior</name>
-                    <value>none</value>
-                </fieldInstanceProperties>
-                <fieldItem>Record.Link_to_BoardGameGeek__c</fieldItem>
-                <identifier>RecordLink_to_BoardGameGeek__cField</identifier>
             </fieldInstance>
         </itemInstances>
         <name>Facet-fa756ca4-c70d-492a-aa92-1b305627fb80</name>
@@ -149,7 +129,7 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
-                <fieldItem>Record.Link_to_BoardGameGeek__c</fieldItem>
+                <fieldItem>Record.Link_to_BGG__c</fieldItem>
                 <identifier>RecordLink_to_BoardGameGeek_cField</identifier>
             </fieldInstance>
         </itemInstances>
@@ -602,7 +582,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>relatedListLabel</name>
-                    <value>Check Out Board Games</value>
+                    <value>Check Out Logs</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showActionBar</name>

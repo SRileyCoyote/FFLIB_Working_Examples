@@ -162,7 +162,7 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Board Game Library Entry</label>
     <nameField>
-        <displayFormat>EBD-{000000}</displayFormat>
+        <displayFormat>BGLE-{000}</displayFormat>
         <label>Library Entry ID</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>

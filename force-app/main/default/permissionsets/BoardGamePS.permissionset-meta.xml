@@ -186,11 +186,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Board_Games__c.BGG_Link__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Board_Games__c.Categories__c</field>
         <readable>true</readable>
@@ -217,7 +212,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>Board_Games__c.Link_to_BoardGameGeek__c</field>
+        <field>Board_Games__c.Link_to_BGG__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

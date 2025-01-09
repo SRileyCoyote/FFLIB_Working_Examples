@@ -128,20 +128,26 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Board_Game_Checkout_Log_Record_Page</content>
         <formFactor>Large</formFactor>
-        <type>Default</type>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Board_Game_Checkout_Log_Record_Page</content>
         <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>Custom</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This Object holds information about each time a board game was checked out and back in</description>
     <enableActivities>false</enableActivities>
@@ -156,8 +162,8 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Board Game Checkout Log</label>
     <nameField>
-        <displayFormat>BGL-{000000}</displayFormat>
-        <label>Board Game Checkout Log Name</label>
+        <displayFormat>BGL-{000}</displayFormat>
+        <label>Checkout Log ID</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Board Game Checkout Logs</pluralLabel>
