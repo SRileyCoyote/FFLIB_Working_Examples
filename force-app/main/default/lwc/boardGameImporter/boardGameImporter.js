@@ -1,6 +1,6 @@
 import { LightningElement, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import importFromBGG from '@salesforce/apex/boardGameImporterController.importFromBGG';
+import importFromBGG from '@salesforce/apex/BoardGameImporterController.importFromBGG';
 import getEvents from '@salesforce/apex/BoardGameImporterController.getEventList';
 
 export default class BoardGameImporter extends LightningElement {

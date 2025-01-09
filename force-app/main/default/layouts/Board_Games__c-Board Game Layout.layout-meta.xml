@@ -18,10 +18,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>BGG_Link__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>Total_Favorited__c</field>
             </layoutItems>
             <layoutItems>
@@ -34,7 +30,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Link_to_BoardGameGeek__c</field>
+                <field>Link_to_BGG__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

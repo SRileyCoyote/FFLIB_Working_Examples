@@ -107,7 +107,7 @@ private class BoardGameRatingsServiceTest {
     // Begin Tests
     // Tests should follow a Use Case Test Plan
 
-////////////////////////////// Constructor Tests //////////////////////////////////////////    
+    ////////////////////////////// Constructor Tests //////////////////////////////////////////    
     // Test Plan
     // Call Service using Current Config Record 
     @IsTest
@@ -127,7 +127,7 @@ private class BoardGameRatingsServiceTest {
         Assert.isTrue(service.serviceConfigMap.containsKey('setNewFavorite'), 'Service Config for setNewFavorite Method Not Found');
     }
 
-////////////////////////////// SetNewFavorite Tests ////////////////////////////////////////
+    ////////////////////////////// SetNewFavorite Tests ////////////////////////////////////////
     // Test Plan
     // Call Service with Custom Config where Service Disabled
     // BGR Set As Fav with no other Fav BGRs
@@ -453,6 +453,6 @@ private class BoardGameRatingsServiceTest {
         Assert.areEqual('Duplicate Favorite Found', errMsg, 'Incorrect Error Message: '+errMsg);
     }
 
-////////////////////////////// End SetNewFavorite Tests ////////////////////////////////////////
+    ////////////////////////////// End SetNewFavorite Tests ////////////////////////////////////////
 
 }
