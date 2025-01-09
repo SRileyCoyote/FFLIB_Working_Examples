@@ -176,6 +176,12 @@
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
+        <searchResultsAdditionalFields>Event_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Attendee_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Board_Game_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Check_Out_Time__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Check_In_Time__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Total_Check_Out_Time_Formula__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>

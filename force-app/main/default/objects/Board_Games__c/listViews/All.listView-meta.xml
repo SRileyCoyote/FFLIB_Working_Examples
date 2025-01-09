@@ -5,11 +5,6 @@
     <columns>New_Icon__c</columns>
     <columns>NAME</columns>
     <columns>Description__c</columns>
-    <columns>Min_Players__c</columns>
-    <columns>Max_Players__c</columns>
-    <columns>Playing_Time__c</columns>
-    <columns>Min_Age__c</columns>
-    <columns>Year_Published__c</columns>
     <filterScope>Everything</filterScope>
     <label>All Records</label>
 </ListView>

@@ -179,9 +179,14 @@
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
         <listViewButtons>Update_BG_Library_Entry_From_BGG</listViewButtons>
-        <searchResultsAdditionalFields>Board_Game__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Event__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Game_Thumbnail__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Board_Game__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>of_Copies_Available__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Comments__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Link_to_Collection_Geeklist__c</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>Update_BG_Library_Entry_From_BGG</searchResultsCustomButtons>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>

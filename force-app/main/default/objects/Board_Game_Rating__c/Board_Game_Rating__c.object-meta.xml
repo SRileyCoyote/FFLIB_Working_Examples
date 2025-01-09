@@ -176,6 +176,11 @@
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
+        <searchResultsAdditionalFields>Board_Game__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Attendee_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Rating__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Is_Favorite__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Review__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>

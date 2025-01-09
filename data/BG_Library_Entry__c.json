@@ -9,7 +9,7 @@
             "Board_Game__c": "@Chess",
             "Comments__c": "King has a chip in it",
             "Event__c": "@2024",
-            "Num_of_Copies__c": 1
+            "Num_of_Copies__c": 2
         },
         {
             "attributes": {
@@ -30,7 +30,7 @@
             "BGG_Owner__c": "Public",
             "Board_Game__c": "@Chess",
             "Event__c": "@2025",
-            "Num_of_Copies__c": 1
+            "Num_of_Copies__c": 3
         }
     ]
 }

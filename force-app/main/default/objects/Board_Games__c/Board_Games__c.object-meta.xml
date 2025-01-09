@@ -175,13 +175,9 @@
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
         <listViewButtons>Update_BGG_Data_Flow</listViewButtons>
         <searchResultsAdditionalFields>Thumbnail_Image__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Name__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Is_New__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Min_Players__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Max_Players__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Min_Age__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Playing_Time__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Publisher__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>New_Icon__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Description__c</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>Update_BGG_Data_Flow</searchResultsCustomButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

@@ -177,6 +177,9 @@
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
         <searchResultsAdditionalFields>Attendee_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Attendee_Email__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Event_Logo__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Event__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
