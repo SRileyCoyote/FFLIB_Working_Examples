@@ -12,13 +12,14 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2025-01-03
-* @modified       2025-01-03
+* @modified       2025-02-05
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
 @isTest
 public class FlowUpdateBoardGameFromBGGControllerTest {
         
+    //#region Setup
     /**
      * List of possible params for the mock setup.
      * Done to allow dynamically providing params without having to update every 
@@ -89,6 +90,7 @@ public class FlowUpdateBoardGameFromBGGControllerTest {
             Application.UnitOfWork.setMock(uowMock);
         }
     } 
+    //#endregion
 
     // Begin Tests
     // Tests should follow a Use Case Test Plan
@@ -108,7 +110,10 @@ public class FlowUpdateBoardGameFromBGGControllerTest {
         };
 
         FlowUpdateBoardGameFromBGGController.InputWrapper input = new FlowUpdateBoardGameFromBGGController.InputWrapper();
-        input.boardGames = new List<Board_Games__c>();
+        input.boardGames = new List<Board_Games__c>{new Board_Games__c(
+                                                        ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
+                                                        BGG_ID__c = '12345'
+                                                    )};
 
         //Initialize MockSetup with Params 
         MockSetup mock = new MockSetup(params, false);

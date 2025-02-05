@@ -1,0 +1,93 @@
+<template>
+    <!-- If Available, Show Button-->
+    <div class="slds-grid slds-align_absolute-center">
+        <lightning-button
+            variant="brand"
+            label={buttonLabel}
+            onclick={handleOpenModal}
+            disabled={isDisabled}
+        ></lightning-button>
+    </div>
+    <!-- Pop Up Modal -->
+    <div if:true={showModal} class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- Header -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                    title="Close" onclick={handleCloseModal}>
+                    <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"></lightning-icon>
+                </button>
+                <h2 class="slds-text-heading_medium">Check Out {boardGameName}</h2>
+            </header>
+            <!-- Body -->
+            <div class="slds-modal__content slds-p-around_medium">
+                <!-- If Multple BGLEs to Select From, Display Picklist -->
+                <div if:true={showBGLEPicklist}>
+                    <lightning-combobox
+                        label="Available Board Games"
+                        options={bgleOptions}
+                        value={selectedBGLEId}
+                        onchange={handleBGLEChange}>
+                    </lightning-combobox>
+                </div>
+                <div if:true={selectedBGLE}>
+                    <div class="slds-grid slds-wrap">
+                    <!-- Event Name -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_medium">
+                            <div class="slds-text-align_left slds-m-top_small">
+                                <p><strong>Event: </strong>{selectedBGLE.Event_Name__c}</p>
+                            </div>
+                        </div>
+                    <!-- Game Name -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_medium">
+                            <div class="slds-text-align_left slds-m-top_small">
+                                <p><strong>Game: </strong>{selectedBGLE.BoardGameName__c}</p>
+                            </div>
+                        </div>
+                    <!-- Event Image -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_medium">
+                            <img class="slds-image slds-image_large slds-text-align_center" 
+                                    src={selectedBGLE.Event_Logo_URL__c} 
+                                    alt={selectedBGLE.Event_Name__c} 
+                                    height="75"
+                                    width="75"/>
+
+                        </div>
+                    <!-- Board Game Image -->
+                        <div class="slds-col slds-size_1-of-2 slds-p-around_medium">
+                            <img class="slds-image slds-image_large slds-text-align_center" 
+                                    src={selectedBGLE.Board_Game_Image_URL__c} 
+                                    alt={selectedBGLE.BoardGameName__c} 
+                                    height="75"
+                                    width="75"
+                                    />
+                        </div>
+                    </div>
+                    <!-- Select Attendee -->
+                    <lightning-combobox
+                        label="Checked Out By"
+                        options={attendees}
+                        value={selectedAttendeeId}
+                        onchange={handleAttendeeChange}>
+                    </lightning-combobox>
+                    <!-- Select Check out time (default to NOW) -->
+                    <lightning-input
+                        label="Check Out Date and Time"
+                        type="datetime"
+                        value={checkOutDate}
+                        onchange={handleDateChange}>
+                    </lightning-input>
+                </div>
+            </div>
+            <!-- Footer -->
+            <footer class="slds-modal__footer">
+                <!-- Cancel Button -->
+                <lightning-button variant="neutral" label="Cancel" onclick={handleCloseModal}></lightning-button>
+                <!-- Check Out Button -->
+                <lightning-button variant="brand" label="Submit" disabled={hasInvalidInputs} onclick={handleSubmit}></lightning-button>
+            </footer>
+        </div>
+    </div>
+    <!-- Darken Background -->
+    <div if:true={showModal} class="slds-backdrop slds-backdrop_open"></div>
+</template>

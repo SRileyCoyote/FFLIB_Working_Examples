@@ -21,6 +21,17 @@ public class TestUtil {
         return record;
     }
 
+    public static BG_Checkout_Log__c createBoardGameCheckOutLog(Id bgleId){
+        Event_Attendee__c ea = createEventAttendee();
+        insert ea;
+
+        BG_Checkout_Log__c record = new BG_Checkout_Log__c();
+        record.Checked_Out_By__c = ea.Id;
+        record.BG_Library_Entry__c = bgleId;
+        record.Check_Out_Time__c = System.now();
+        return record;
+    }
+
     public static Board_Game_Rating__c createBoardGameRating(){
         Board_Games__c bg = createBoardGame();
         insert bg;

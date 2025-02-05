@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <!-- Since this is a Child Component, we do not want to have Available to Display on the Flow Screen -->
+    <isExposed>false</isExposed> 
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <!-- This is our List of Configurable Settings for the LWC that will be passed in by the Parent Container LWC -->
+        <targetConfig targets="lightning__FlowScreen">
+            <!-- Get List Specific SObjects (Only Available for Screen Flows) -->
+            <property name="bgleRecords" type="@salesforce/schema/BG_Library_Entry__c[]" label="Collection of Board Game Library Entries"/>            
+            <property name="buttonLabel" type="String" label="Check Out Button Label" default="Check Out Game"/>
+            <property name="boardGameName" type="String" label="Name of Board Game"/>
+            <property name="isDisabled" type="Boolean" label="Is Button Disabled?" default="false"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -6,9 +6,10 @@ This Repo Shows working examples of the FFLIB architechure design patterns using
 
 While the title ___IS___ FFLIB Working Examples, included in this repo are also examples on how to do addtional things like I normally need to look up:
 - Creating LWCs
+- [Creating CPEs for Screen Flow LWCs](/force-app/main/default/lwc)
 - Creating and Implementing Interfaces
 - Extending Parent Classes
-     - Diffecence between Abstract and Virtual Methods
+     - Difference between Abstract and Virtual Methods
      - Using the Protected Access Modifier
 - Using Custom Metadata Types
 - Creating REST API Callouts
@@ -43,7 +44,7 @@ Please feel free to leave a comment in the [Discussions Tab](https://github.com/
 1. Download Repository to Local Machine with VS Code (or similiar IDE)
    1. Ensure [latest Salesforce CLI is installed](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) for `SF` Commands
 1. Connect IDE to DevHub Enabled Org (Org Alias: DevHub)
-1. Create Scratch Org from DevHub 
+1. Create Scratch Org from DevHub for 30 Days
 ```
 sf org create scratch -f config/project-scratch-def.json -a MyScratchOrg -d -v DevHub -y 30
 ```
@@ -80,7 +81,7 @@ If Multiple Board Game Ratings are added for Attendee where Favorite is Checked,
 
 We will use the following to implement this Use Case: 
 - Create [Trigger](/force-app/main/default/triggers/BoardGameRatingsTrigger.trigger) using SObjectDomain as TriggerHandler
-     - Which Calls Created [Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/BoardGameRatingsTriggerHandler.cls) extending [Base Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/BaseTriggerHandler.cls)
+     - Which Calls Created [Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/BoardGameRatingsTriggerHandler.cls) extending [Base Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/BaseTriggerHandler.cls) overriding After Insert and After Update
           - Which Uses Created [Custom MDT](/force-app/main/default/customMetadata/Domain_Config.BoardGameRatings.md-meta.xml) to Enable and Disable Trigger
           - And Calls Created [Board Game Rating Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BoardGameRatingsService.cls) extending [Base Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BaseService.cls) and implementing [Interface](/force-app/main/default/classes/FFLIB%20Examples/Services/Interfaces/IBoardGameRatingsService.cls) and is Instantiated through [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls)
                - Which Uses Created [Custom MDT](/force-app/main/default/customMetadata/Services_Config.setNewFavorite.md-meta.xml) to Enable and Disable Features
@@ -124,6 +125,15 @@ This Use Case shows examples for the following:
 As an Event Owner, I would like a form to import my Collection or GeekList from BoardGameGeek and add new those new Board Games into the application. 
 Any Board Games not already in the application I would like marked as 🆕 and for those games to automatically be added to the Board Game Library for the Event I selected. 
 Upon follow up imports, I would like the option to update the existing Board Games information as well as the Board Game Library Entry from BoardGameGeek and for the Board Game to no longer be marked as 🆕.
+
+TODO:
+```
+- When Importer Runs, Add Library Entries to Event if not found when Update NOT Selected
+- Update Success Message to include number of Library entries created
+- Add Button Remove Collection From Event That Deletes BGLE for that Collection for the Event
+- Remove Game From Library When Removed From Collection or GeekList
+- If Collection Not Found, Return Error.
+```
 
 We will use the following to implement this Use Case:
 - Create [Lightning Web Component](/force-app/main/default/lwc/boardGameImporter/boardGameImporter.js)
@@ -173,12 +183,14 @@ This Use Case shows examples for the following:
           - Using Static Resources for XML Results
 
 **To use Importer:** 
-- Open Board Games App, 
-- Click Board Game Importer Tab. 
-- Select Default Event (My Event)
-- Enter Collection Name or GeekList ID:
-     - Collection Name Example: __AZ933K__[^1]
-     - GeekList ID Example:     __347463__
+- Open App Launcher
+- Move Board Games App to Top of List (Optional)
+- Open Board Games App
+- Click Board Game Importer Tab
+- Select Event
+- Enter Collection Name[^1] or GeekList ID:
+     - Collection Name Example: AZ933K
+     - GeekList ID Example:     347463
 
 [^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will be queued resulting in an error. If this happens just re-click submit and try again. 
 
@@ -250,9 +262,57 @@ This Use Case shows examples for the following:
 
 ### 4. Check Out/In Board Game (WIP)
 
-As an Event Attendee, I would like to click a button and automatically Check Out a Board Game from the Board Game Library. I would like this option to only be available if there is a copy of the Board Game Available to Check Out. I would also like to be able to view the Board Games that are checked out and click a button from the Check Out Log Record or List View that will check that Board Game back in.  
+As an Event Runner, I would like to click a button and automatically Check Out a Board Game from the Board Game Library. I would like this option to only be available if there is a copy of the Board Game Available to Check Out. If a Copy of the Board is already checked out, I would also like to see a Button to Check the Board Game In. 
+I would like this functionality to be available throughout the app and available on any record page that displays a board game (i.e. Board Games, Library Entries, Check Out Logs, Ratings, etc.)
 
-[Back to Use Case Exmaples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
+In order to accomplish this, we will create a Flow for each SObject Type that will support the functionaility. On each Flow, we will add a Lightning Web Component that can be added to a Flow Screen and will accept Input Properties so that the LWC Component will be configurable and resuable across all of the SObject Flows. We will also utilize a [Custom Property Editor (CPE)](/force-app/main/default/lwc/README.md#what-are-cpes) LWC. 
+
+We will use the following to implement this Use Case:
+
+- Create Five Lightning Web Components
+     - Parent Component to hold Child Components
+     - Child Component for Check Out Button
+     - Child Component for Check In Button
+     - Parent CPE Component to format LWC Properties and holds Child CPE Component
+     - Child CPE Component to format Button Properties
+- Create Apex Controller for LWCs
+     - Create Check Out Log Selector
+     - Update Check Out Log Service
+     - Update Library Entry Selector
+     - Create Event Attendee Selector
+- Create Flow for Each SObject
+- Add Flow to Record Pages for Respective SObjects
+
+- Trigger on Before Update and Before Insert Checkout Logs that will populate Hidden Field with Total Min Checked Out for Rollup Calcs
+
+From the BGLE List View Screen and BGLE Record Screen
+- If at least 1 Copy of the Game is Available, Display Check Out Game Button. Otherwise Display Nothing
+     - When Check Out Button is Clicked,
+          - If No Games Available,
+               - Do Nothing
+          - If Games Available,
+               - Prompt User to Enter Info
+               - Check Out Game
+- If at least 1 Copy of the Game is Checked out, Display Check In Game Button. Otherwise Display Nothing
+     - When Check In Button is Clicked, 
+          - If No Games Checked Out, 
+               - Do Nothing.
+          - If Multiple Game Copies Checked Out, 
+               - Prompt to Select Check Out Log
+               - Check In Game
+          - If 1 Game Copy is Checked Out, 
+               - Check In Game
+From the Check Out Log List View, Display Check In Games Button
+     - If 1 or Multiple Games Checked Out Games Selected,
+          - Prompt User to Enter Check In Time, 
+          - Update All Records
+
+We will use the following to implement this Use Case:
+
+This Use Case shows examples for the following:
+[TODO: Fill This Out Later]
+
+[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
 ### 6. Home Board Game Dashboard (WIP)
 
@@ -283,5 +343,4 @@ As an Event Owner, I would like to see a Dashboard showing:
 - [Official FFLIB Sample Code GitHub Repo](https://github.com/apex-enterprise-patterns/fflib-apex-common-samplecode)
 
 [Deployment Order and Dependancy Troubleshooting](/force-app/main/default/classes/FFLIB%20Examples/README.md#deployment-order)
-
 

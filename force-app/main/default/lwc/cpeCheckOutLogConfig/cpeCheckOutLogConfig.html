@@ -1,0 +1,78 @@
+<template>
+    <!-- Show Header -->
+    <div
+        class="slds-box slds-theme_success slds-m-bottom_medium slds-text-align_center" 
+        style="background-color: #0070d2; color: white; border-radius: 0.25rem; padding: 1rem;">
+
+        <h1 class="slds-text-heading_medium slds-text-color_inverse">Create Log LWC Settings</h1>
+    </div>
+    <!-- Pick SObject Type -->
+    <lightning-combobox
+        name="recordType"
+        label="Object for Record Variable"
+        value={selectedRecordType}
+        placeholder="Select object..."
+        options={recordTypeOptions}
+        onchange={handleRecordTypeChange}
+    >
+    </lightning-combobox>
+    <!-- Display Error Message for Invalid Record Type -->
+    <c-fsc_display-error
+        is-error={isRecordTypeInvalid}
+        error-message={recordTypeErrorMessage}
+    ></c-fsc_display-error>
+
+    <lightning-combobox if:true={selectedRecordType}
+        name="recordId"
+        label="Flow Record Id"
+        value={flowRecordId}
+        placeholder="Select Record Id"
+        options={recordIdOptions}
+        onchange={handleRecordIdValueChange}
+    ></lightning-combobox>
+    <!-- Display Error Message for Invalid Record ID -->
+    <c-fsc_display-error
+        is-error={isRecordIdInvalid}
+        error-message={recordIdErrorMessage}
+    ></c-fsc_display-error>
+
+    <!-- Add Some Spacing and Formatting Here -->
+     <br/>
+    <!-- Show Checkbox if using Check Out button -->
+    <lightning-accordion if:true={flowRecordId} allow-multiple-sections-open active-section-name="outSettings">
+        <lightning-input type="checkbox"
+                label="Show Check Out Button"
+                checked={boolShowChkOutBtn}
+                onchange={handleEnableCheckOutBtnChange}>
+        </lightning-input>
+        <lightning-accordion-section if:true={boolShowChkOutBtn} name="outSettings" label="Check Out Button Settings">
+            <c-cpe-log-button-config
+                label="Check Out Button"
+                button-label={strChkOutBtnLbl}
+                include-b-g-name={boolAddBGNameToChkOutBtn}
+                button-action={strChkOutBtnAction}
+                onbtnconfigchange={handleChkOutBtnChange}
+            ></c-cpe-log-button-config>
+        </lightning-accordion-section>
+    </lightning-accordion>
+    <br/>
+    <lightning-accordion if:true={flowRecordId} allow-multiple-sections-open active-section-name="inSettings">
+    <!-- Button Config LWC for Check Out Button -->
+    <!-- Show Checkbox if using Check In button -->
+        <lightning-input type="checkbox"
+            label="Show Check In Button"
+            checked={boolShowChkInBtn}
+            onchange={handleEnableCheckInBtnChange}>
+        </lightning-input>
+        <!-- Button Config LWC for Check In Button -->
+        <lightning-accordion-section if:true={boolShowChkInBtn} name="inSettings" label="Check In Button Settings">
+            <c-cpe-log-button-config
+                label="Check In Button"
+                button-label={strChkInBtnLbl}
+                include-b-g-name={boolAddBGNameToChkInBtn}
+                button-action={strChkInBtnAction}
+                onbtnconfigchange={handleChkInBtnChange}
+            ></c-cpe-log-button-config>
+        </lightning-accordion-section>
+    </lightning-accordion>
+</template>

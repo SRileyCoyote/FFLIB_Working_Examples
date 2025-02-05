@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <!-- Since this is Parent Component, This NEEDS to be TRUE make it Available to Display on the Flow Screen -->
+    <description>Check Out Log Buttons</description>
+    <isExposed>true</isExposed>
+    <masterLabel>Check Out Log Buttons</masterLabel>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+    <!-- Configuration Editors are currently only available for Flow Screens and Invocable Actions -->
+        <targetConfig targets="lightning__FlowScreen" configurationEditor="c-cpe-check-out-log-config">
+        <!-- This is our List of Configurable Settings for the LWC that will be passed in from the Flow -->
+        <!-- NOTE: BEFORE Deploying any Changes to List of Properties below, Remove the LWC from any Screens
+                using it and SAVE the Flow. Otherwise, an error will occur when the Flow is Refreshed. The only
+                way to correct this error will be to Delete the Enitre Screen Element itself and re-create it.
+                Just attempting to remove the LWC after it has been deployed will also result in an error.  -->
+            <property name="flowRecordId" type="String" label="Flow Record ID" role="inputOnly" />
+            <property name="strSObjectType" type="String" label="Flow Record Type" role="inputOnly"/>
+            <property name="strChkOutBtnLbl" type="String" label="Check Out Button Label" role="inputOnly" />
+            <property name="strChkInBtnLbl" type="String" label="Check In Button Label"  role="inputOnly"/>
+            <property name="boolAddBGNameToChkOutBtn" type="Boolean" label="Add Board Game Name to Check Out Button Label?" role="inputOnly"/>
+            <property name="boolAddBGNameToChkInBtn" type="Boolean" label="Add Board Game Name to Check In Button Label?" role="inputOnly"/>
+            <property name="boolShowChkOutBtn" type="Boolean" label="Show Check Out Button?" role="inputOnly"/>
+            <property name="boolShowChkInBtn" type="Boolean" label="Show Check In Button?" role="inputOnly"/>
+            <property name="strChkOutBtnAction" type="String" label="No Available BGLE Action" role="inputOnly" description="What Action to Take if No Available BGLEs"/>
+            <property name="strChkInBtnAction" type="String" label="No Active Log Action" role="inputOnly" description="What Action to Take if No Active Logs"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

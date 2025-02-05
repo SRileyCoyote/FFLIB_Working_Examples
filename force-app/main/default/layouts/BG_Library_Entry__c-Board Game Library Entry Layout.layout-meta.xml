@@ -79,6 +79,10 @@
                 <behavior>Readonly</behavior>
                 <field>Total_Times_Checked_Out__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Event_Name__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>

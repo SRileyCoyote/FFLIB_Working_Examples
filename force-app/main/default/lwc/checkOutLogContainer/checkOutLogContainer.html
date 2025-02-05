@@ -1,0 +1,23 @@
+<template>
+    <!-- Pass Values to Child Components -->
+    <div class="slds-grid slds-grid_align-center slds-wrap">
+        <div if:false={hideCheckOutButton} class="slds-col slds-m-horizontal_small">
+                    <c-check-out-game 
+                        button-label={checkOutButtonLabel}
+                        bgle-records={bgleRecords}
+                        board-game-name={strBoardGameName}
+                        is-disabled={isCheckOutButtonDisabled}
+                        onbgleupdated={handleRecordUpdated}>
+                    </c-check-out-game>
+        </div>
+        <div if:false={hideCheckInButton} class="slds-col slds-m-horizontal_small">
+                    <c-check-in-game
+                        button-label={checkInButtonLabel}
+                        log-records={logRecords}
+                        board-game-name={strBoardGameName}
+                        is-disabled={isCheckInButtonDisabled}
+                        onlogupdated={handleRecordUpdated}
+                    ></c-check-in-game>
+        </div>
+    </div>
+</template>

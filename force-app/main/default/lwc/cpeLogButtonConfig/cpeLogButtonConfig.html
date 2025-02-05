@@ -1,0 +1,23 @@
+<template>
+    <div class="slds-box slds-theme_default slds-m-top_medium">
+    <!-- Set Button Label -->
+        <lightning-input type="text"
+                         label="Button Label"
+                         value={buttonLabel}
+                         onchange={handleLabelChange}
+        ></lightning-input>
+    <!-- Set Add BG Name ChkBox -->
+        <lightning-input type="checkbox"
+             label="Include Board Game Name in Label?"
+             checked={includeBGName}
+             onchange={handleIncludeBGNameChange}
+        ></lightning-input>
+    <!-- Set Button Action Picklist -->
+    <lightning-combobox name="actionBehavior"
+        label="Action when Unavailable"
+        value={buttonAction}
+        options={actionOptions}
+        onchange={handleActionChange}
+    ></lightning-combobox>
+     </div>
+</template>

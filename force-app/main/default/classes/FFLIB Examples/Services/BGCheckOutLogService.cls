@@ -13,7 +13,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2025-01-09
-* @modified       2025-01-09
+* @modified       2025-02-05
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -21,6 +21,14 @@ public without sharing class BGCheckOutLogService extends BaseService implements
     
     //Set Variables, Domains, and Selectors used throughout Service
     private BGCheckOutLogDomain domain;
+    @TestVisible private static final String SERVICE_NOT_ENABLED_MSG = 'This Service is Not Enabled. Please Contact a System Administrator to Enable';
+    @TestVisible private static final String NO_BGLE_ID_ERR_MSG = 'Invalid Library Entry ID';
+    @TestVisible private static final String NO_CHK_OUT_TIME_ERR_MSG = 'Check Out Time Required';
+    @TestVisible private static final String FUTURE_CHK_OUT_TIME_ERR_MSG = 'Check Out Time Cannot be in the Future';
+    @TestVisible private static final String NO_ATTENDEE_ID_ERR_MSG = 'Invalid Attendee ID';
+    @TestVisible private static final String NO_LOG_ID_ERR_MSG = 'Invalid Check Out Log ID';
+    @TestVisible private static final String NO_CHK_IN_TIME_ERR_MSG = 'Check In Time Required';
+    @TestVisible private static final String INVALID_CHK_IN_TIME_ERR_MSG = 'Check In Time Cannot be Before Check Out Time';
 
     //Initialize Service Class
     public BGCheckOutLogService(){
@@ -62,7 +70,54 @@ public without sharing class BGCheckOutLogService extends BaseService implements
             //Set Total_Check_Out_Time_Value__c field to equal the formula field Value
             record.Total_Check_Out_Time_Value__c = record.Total_Check_Out_Time_Formula__c;
         }
+    }
 
+    public void createCheckOutLog(fflib_SObjectUnitOfWork uow, Id bgleId, Id attendeeId, Datetime checkOutTime){
+        //If Not Enabled, Throw Error
+        if(!this.serviceEnabled('createCheckOutLog')){ //Check if this Service Method is Enabled from Parent
+            throw new BGCheckOutLogServiceException(SERVICE_NOT_ENABLED_MSG);
+        }
+        //Validate Inputs
+        if(bgleId == null || bgleId.getSObjectType() != BG_Library_Entry__c.getSObjectType()){
+            throw new BGCheckOutLogServiceException(NO_BGLE_ID_ERR_MSG);
+        }
+        if(attendeeId == null || attendeeId.getSObjectType() != Event_Attendee__c.getSObjectType()){
+            throw new BGCheckOutLogServiceException(NO_ATTENDEE_ID_ERR_MSG);
+        }
+        if(checkOutTime == null){
+            throw new BGCheckOutLogServiceException(NO_CHK_OUT_TIME_ERR_MSG);
+        }
+        if(checkOutTime > System.now()){
+            throw new BGCheckOutLogServiceException(FUTURE_CHK_OUT_TIME_ERR_MSG);
+        }
+        
+        //Create Record
+        BG_Checkout_Log__c log = new BG_Checkout_Log__c();
+        log.BG_Library_Entry__c = bgleId;
+        log.Checked_Out_By__c = attendeeId;
+        log.Check_Out_Time__c = checkOutTime;
+        uow.registerNew(log);
+    }
+
+    public void updateCheckOutLog(fflib_SObjectUnitOfWork uow, BG_Checkout_Log__c log, Datetime checkInTime){
+        //If Not Enabled, Throw Error
+        if(!this.serviceEnabled('updateCheckOutLog')){ //Check if this Service Method is Enabled from Parent
+            throw new BGCheckOutLogServiceException(SERVICE_NOT_ENABLED_MSG);
+        }
+        //Validate Inputs
+        if(log == null || log.Id == null){
+            throw new BGCheckOutLogServiceException(NO_LOG_ID_ERR_MSG);
+        }
+        if(checkInTime == null){
+            throw new BGCheckOutLogServiceException(NO_CHK_IN_TIME_ERR_MSG);
+        }
+        if(checkInTime < log.Check_Out_Time__c){
+            throw new BGCheckOutLogServiceException(INVALID_CHK_IN_TIME_ERR_MSG);
+        }
+        
+        //Update Record
+        log.Check_In_Time__c = checkInTime;
+        uow.registerDirty(log);
     }
 
     public class BGCheckOutLogServiceException extends Exception {}
