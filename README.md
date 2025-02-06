@@ -2,7 +2,7 @@
 
 ### Reporistory Documentation Directory
 1. [FFLIB Architechure](/force-app/main/default/classes/FFLIB%20Examples/README.md)
-     - [Implementation Layer](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md)
+     - [Implementation Layer]()
           - [Controllers](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md)
           - [Trigger Handlers](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md)
      - [Service Layer](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md)
