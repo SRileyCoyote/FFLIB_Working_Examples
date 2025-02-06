@@ -1,10 +1,21 @@
 # FFLIB Working Examples
 
+### Reporistory Documentation Directory
+1. [FFLIB Architechure](/force-app/main/default/classes/FFLIB%20Examples/README.md)
+     - [Implementation Layer](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md)
+          - [Controllers](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md)
+          - [Trigger Handlers](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md)
+     - [Service Layer](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md)
+     - [Domain Layer](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md)
+     - [Selector Layer](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md)
+1. [Schema](/force-app/main/default/objects/README.md)
+1. [Custom Property Editors](/force-app/main/default/lwc/README.md)
+
 ## Overview
 
 This Repo Shows working examples of the FFLIB architechure design patterns using design patterns and best practices I have picked up over the years. This is an open source repo intended for my own personal use and to share with those that need it. 
 
-While the title ___IS___ FFLIB Working Examples, included in this repo are also examples on how to do addtional things like I normally need to look up:
+While the title ___IS___ "FFLIB Working Examples", included in this repo are also examples on how to do addtional things like I normally need to look up:
 - Creating LWCs
 - [Creating CPEs for Screen Flow LWCs](/force-app/main/default/lwc)
 - Creating and Implementing Interfaces
@@ -71,7 +82,7 @@ In this example, we will be using the following Use Cases:
 1. [Mark Board Game as Favorite](#1-mark-as-board-game-as-favorite)
 1. [Import Board Game List from BoardGameGeek API](#2-import-board-game-list-from-boardgamegeek-api)
 1. [Update Individual Board Game Information from BoardGameGeek API](#3-update-individual-board-game-information-from-boardgamegeek-api)
-1. [Check Out/In Board Game (WIP)](#4-check-outin-board-game-wip)
+1. [Check Out/In Board Game](#4-check-outin-board-game)
 1. [Home Board Game Dashboard (WIP)](#6-home-board-game-dashboard-wip)
 
 ### 1. Mark as Board Game as Favorite
@@ -242,13 +253,13 @@ This Use Case shows examples for the following:
      - Adding to BoardGameService
      - Adding to Interfaces
      - Adding to Test Classes
-- Screen Flow[^2]
+- Screen Flow
      - Invocable Action
      - Invocable Variables
 - FFLIB
-     - Application Layor
+     - Application Layer
      - Implementation Layer (APEX Controller)
-     - Service Layor
+     - Service Layer
      - Unit Of Work Layer
 - Testing
      - Mocking and Stubbing FFLIB Classes
@@ -260,61 +271,63 @@ This Use Case shows examples for the following:
 
 [Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
-### 4. Check Out/In Board Game (WIP)
+### 4. Check Out/In Board Game
 
 As an Event Runner, I would like to click a button and automatically Check Out a Board Game from the Board Game Library. I would like this option to only be available if there is a copy of the Board Game Available to Check Out. If a Copy of the Board is already checked out, I would also like to see a Button to Check the Board Game In. 
 I would like this functionality to be available throughout the app and available on any record page that displays a board game (i.e. Board Games, Library Entries, Check Out Logs, Ratings, etc.)
 
-In order to accomplish this, we will create a Flow for each SObject Type that will support the functionaility. On each Flow, we will add a Lightning Web Component that can be added to a Flow Screen and will accept Input Properties so that the LWC Component will be configurable and resuable across all of the SObject Flows. We will also utilize a [Custom Property Editor (CPE)](/force-app/main/default/lwc/README.md#what-are-cpes) LWC. 
+In order to accomplish this, we will create a Flow for each SObject Type that will support the functionaility. On each Flow, we will add a Lightning Web Component that can be added to a Flow Screen and will accept Input Properties so that the LWC Component will be configurable and resuable across all of the SObject Flows. We will also utilize a [Custom Property Editor (CPE)](/force-app/main/default/lwc/README.md#what-are-cpes) LWC on the Flow Screens for a cleaner UI for entering the inputs for the LWC on the Screen Flow.  
 
 We will use the following to implement this Use Case:
 
-- Create Five Lightning Web Components
-     - Parent Component to hold Child Components
-     - Child Component for Check Out Button
-     - Child Component for Check In Button
-     - Parent CPE Component to format LWC Properties and holds Child CPE Component
-     - Child CPE Component to format Button Properties
-- Create Apex Controller for LWCs
-     - Create Check Out Log Selector
-     - Update Check Out Log Service
-     - Update Library Entry Selector
-     - Create Event Attendee Selector
-- Create Flow for Each SObject
-- Add Flow to Record Pages for Respective SObjects
-
-- Trigger on Before Update and Before Insert Checkout Logs that will populate Hidden Field with Total Min Checked Out for Rollup Calcs
-
-From the BGLE List View Screen and BGLE Record Screen
-- If at least 1 Copy of the Game is Available, Display Check Out Game Button. Otherwise Display Nothing
-     - When Check Out Button is Clicked,
-          - If No Games Available,
-               - Do Nothing
-          - If Games Available,
-               - Prompt User to Enter Info
-               - Check Out Game
-- If at least 1 Copy of the Game is Checked out, Display Check In Game Button. Otherwise Display Nothing
-     - When Check In Button is Clicked, 
-          - If No Games Checked Out, 
-               - Do Nothing.
-          - If Multiple Game Copies Checked Out, 
-               - Prompt to Select Check Out Log
-               - Check In Game
-          - If 1 Game Copy is Checked Out, 
-               - Check In Game
-From the Check Out Log List View, Display Check In Games Button
-     - If 1 or Multiple Games Checked Out Games Selected,
-          - Prompt User to Enter Check In Time, 
-          - Update All Records
-
-We will use the following to implement this Use Case:
+- Create Screen Flow for Each SObject
+     - Which has a Screen with a [Parent Container Component](/force-app/main/default/lwc/checkOutLogContainer)
+          - Which calls the [Apex Controller](/force-app/main/default/classes/FFLIB%20Examples/Controllers/checkOutLogController.cls)
+               - Which calls the correct Selector based on SObject Type:
+                    - [Board Game Library Entry Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/BGLibraryEntrySelector.cls)
+                    - [Check Out Log Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/BGCheckOutLogSelector.cls)
+                    - [Board Game Rating Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/BoardGameRatingSelector.cls)
+          - Which will include a [Check Out Button Child Component](/force-app/main/default/lwc/checkOutGame)
+               - Which calls the [Apex Controller](/force-app/main/default/classes/FFLIB%20Examples/Controllers/checkOutLogController.cls)
+                    - Which calls to [Check Out Log Service Class](/force-app/main/default/classes/FFLIB%20Examples/Services/BGCheckOutLogService.cls) to Create the Check Out Log 
+          - And also includes a [Check In Button Child Component](/force-app/main/default/lwc/checkInGame)
+               - Which calls the [Apex Controller](/force-app/main/default/classes/FFLIB%20Examples/Controllers/checkOutLogController.cls)
+                    - Which calls to [Check Out Log Service Class](/force-app/main/default/classes/FFLIB%20Examples/Services/BGCheckOutLogService.cls) to Update the Check Out Log 
+          - Which uses a [CPE Component](/force-app/main/default/lwc/cpeCheckOutLogConfig) to format the Properties of the Component
+               - Which includes a [Child Component](/force-app/main/default/lwc/cpeLogButtonConfig) for the Properties for each of the Buttons
+- Add the Screen Flow to Record Pages for Respective SObjects
+- Create a [Trigger](/force-app/main/default/triggers/BoardGameCheckOutLogTrigger.trigger) on Check Out Log
+     - Which calls the [Trigger Handler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/BoardGameCheckOutLogTriggerHandler.cls)
+          - Which calls the [Service](/force-app/main/default/classes/FFLIB%20Examples/Services/BGCheckOutLogService.cls) that will populate a Hidden Field for Rollup Calculations
 
 This Use Case shows examples for the following:
-[TODO: Fill This Out Later]
+- Screen Flows
+- LWC
+     - Import Apex Controller
+     - Toast Messaging
+     - Wire Connection to get Records from Controller
+     - Utilize Refresh Apex
+     - Nested Child LWCs
+          - Passing Values to Child
+          - Firing Custom Events
+          - Catching Events Fired from Child
+     - Using Properties
+     - Using CPE for Properties
+- FFLIB
+     - Application Layer
+     - Implementation Layer (APEX Controller and Trigger Handler)
+     - Service Layer
+     - Selector Layer
+     - Unit Of Work Layer
+- Testing
+     - Mocking and Stubbing FFLIB Classes
+          - Using [MockSetup Class](/force-app/main/default/classes/FFLIB%20Examples/README.md#mock-setup-class)
+          - Validate Using [Mocks.Verify](/force-app/main/default/classes/FFLIB%20Examples/README.md#mocksverify-example-quick-reference)
+     - Use Case Unit Testing
 
 [Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
 
-### 6. Home Board Game Dashboard (WIP)
+### 5. Home Board Game Dashboard (WIP)
 
 As an Event Owner, I would like to see a Dashboard showing: 
 - Total number of Board Games for the Event 
