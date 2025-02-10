@@ -17,6 +17,65 @@ The Benefit is that this Layer can then Mocked and Stub out those other Services
     1. Call [Selectors](/force-app/main/default/classes/FFLIB%20Examples/Selectors) for any SOQL Calls Needed 
     1. Call [Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains) for any record filtering or processing
     1. Register All DMLs needed into passed in [UnitOfWork]() Object
+
+#### Service Interface Template
+```
+public interface IMySObjectService {
+    //Service Methods Go Here
+}
+```
+
+#### Service Initialization Template
+```
+MySObjectService service = (MySObjectService) MySObjectService.newInstance();
+```
+
+#### Service Template
+[Extends Base Service Class](/force-app/main/default/classes/FFLIB%20Examples/Services/BaseService.cls)
+```
+public without sharing class MySObjectService extends BaseService implements IMySObjectService {
+    
+    //Set Variables, Domains, and Selectors used throughout Service
+
+    //Set Static Error Messages
+    @TestVisible private static final String SERVICE_NOT_ENABLED_MSG = 'This Service is Not Enabled. Please Contact a System Administrator to Enable';
+    @TestVisible private static final String NO_RECORD_ID_ERR_MSG = 'Invalid ID';
+
+    //Initialize Service Class
+    public BGCheckOutLogService(){
+        super('MySObject');
+    }
+
+    @TestVisible
+    //Private Constructor for Testing to provide own Service Config
+    private MySObjectService(List<Services_Config__mdt> configList){
+        super(configList, 'MySObject'); 
+    }
+
+    //Abstract Method from Parent that Must be implemented
+    protected override void initialize(){
+        //Initialize Any Selectors through Application Layer 
+        // so they can be Mocked and Stubbed from the Test Class
+    }
+
+    public void myMethod(fflib_SObjectUnitOfWork uow, Id recordId){
+        //If Not Enabled, Throw Error
+        if(!this.serviceEnabled('myMethod')){ //Check if this Service Method is Enabled from Parent
+            throw new MySObjectServiceException(SERVICE_NOT_ENABLED_MSG);
+        }
+
+        //Validate Inputs
+        if(recordId == null){
+            throw new MySObjectServiceException(NO_RECORD_ID_ERR_MSG);
+        }
+
+        // Do Work
+    }
+
+    public class MySObjectServiceException extends Exception {}
+}
+```
+
 ### Test Class
 1. Add Mocking & Stubbing for any [Selectors](/force-app/main/default/classes/FFLIB%20Examples/Selectors) or [Domains](/force-app/main/default/classes/FFLIB%20Examples/Domains) Used
 1. Add Mocking & Stubbing for [UnitOfWork]()
@@ -25,7 +84,71 @@ The Benefit is that this Layer can then Mocked and Stub out those other Services
     1. Negative Paths
     1. Alternative Paths
     1. Bulkified Records
-1. Use Asserts or [Mocks.Verify()](/force-app/main/default/classes/FFLIB%20Examples/README.md#mocksverify-example-quick-reference) Methods to Validate Results
+1. Use Asserts or [Mocks.Verify()](/documentation/Mocks.Verify-Examples.md) Methods to Validate Results
+
+#### Service Test Class Template
+**NOTE**: [MockSetup Class Template](/documentation/MockSetup-Class#8-final-product)
+```
+@isTest
+private class MySObjectServiceTest {
+    //#region MockSetup
+    // MockSetup Class Template Goes Here
+    //#endregion
+
+    //Test Plan
+    // Call Service using Current Config Record
+    // List of Unit Tests Go Here
+
+    //Start Testing
+    // Call Service using Current Config Record
+    @IsTest
+    public static void givenCurrentServiceConfig_WhenServiceClassCalled_ThenCurrentServiceConfigReturned(){
+        Test.startTest();
+        MySObjectService service = (MySObjectService) MySObjectService.newInstance();
+        Test.stopTest(); 
+
+        // Validate that serviceConfigMap not only contains values for the MySObjectService
+        Assert.areNotEqual(0, service.serviceConfigMap.size(), 'No Service Configs Found for MySObject Domain');
+        // Check for Methods in Service Config Here
+        Assert.isTrue(service.serviceConfigMap.containsKey('myMethod'), 'Service Config for myMethod Method Not Found');
+    }
+
+    //#region /////////////////// MyMethod ///////////////////////////////
+    // Call MyMethod with Custom Config where Service Disabled
+    @IsTest
+    public static void givenServiceConfigWithServiceDisabled_WhenMyMethodIsCalled_ThenErrorThrown(){
+
+        //Setup Test Data and Mocking
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>();
+
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'myMethod';
+        mock.mockConfig.Service_Enabled__c = false;
+
+        //Run Test
+        Test.startTest();
+        String errMessage = 'No Error Found';
+        MySObjectService service = new MySObjectService(new List<Services_Config__mdt>{mock.mockConfig});
+        try{
+            service.myMethod(mock.uowMock, fflib_IDGenerator.generate(MySObject__c.SObjectType));            
+        Assert.isTrue(false, 'Error Not Thrown');
+        } catch (Exception ex){
+            errMessage = ex.getMessage();
+        }
+        Test.stopTest();
+
+        //Validate Data
+        Assert.areEqual(service.SERVICE_NOT_ENABLED_MSG, errMessage, 'Error Message Does Not Match: '+ errMessage);
+    }
+    //Additional MyMethod Tests Go Here
+    //#endregion
+
+}
+```
 
 ## Trailhead and Resources
 

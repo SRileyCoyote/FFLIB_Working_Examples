@@ -1,55 +1,20 @@
-# FFLIB Examples
+# MockSetup Class
+Mocking and Stubbing is a key component and benefit of using FFLIB. Beacause of this, many of the test classes will utilize the use of a MockSetup as an Inner Class in the Test Class. This Inner Class handles all of the Mocking and Stubbing needed for all of the unit tests for quick re-use in each test method. Full Credit to John Towers for the initial design!
 
-I have broken down the Apex Classes into Seperate Folders for ease of Navigation.
-Each Folder has it's own README File to Briefly describe each Layer of the Design Pattern.
+1. [Setup](#setup-mocksetup-class)
+    1. [Create ENUM List](#1-create-enum-list)
+    1. [Create Map of ParamTypes](#2-create-map-of-paramtypes)
+    1. [Create MockSetup Class](#3-create-mocksetup-class)
+    1. [Initialize Undeclared Params](#4-initialize-undeclared-params)
+    1. [Initialize Variables and Classes to be Stubbed](#5-initialize-variables-and-classes-to-be-stubbed)
+    1. [Mock and Stub Classes](#6-mock-and-stub-classes)
+    1. [Set Mocks on Application](#7-replace-classes-with-mocks-when-called-from-application)
+    1. [Final Product](#8-final-product)
+1. [Example Usage in a Test Method](#example-in-a-test-method)
+    1. [Example Test Method](#example-test-method-utilizing-mocksetup)
+    1. [Example Test Method for Exception](#example-test-method-utilizing-mocksetup-catching-exception)
 
-- [Application Layer](/force-app/main/default/classes/FFLIB%20Examples/Application) - Single Class holds the lists and Mappings for all of the other Layers 
-- Implementation Layer
-    - [Trigger Handlers](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers) - Called by the Trigger, Handles all the After and Before Trigger Methods for an SObject 
-    - [Apex Controllers](/force-app/main/default/classes/FFLIB%20Examples/Controllers) - Called by either Aura, LWC or VF Pages, Houses all of the Methods for the UI 
-- [Domain Layer](/force-app/main/default/classes/FFLIB%20Examples/Domains) - Handles all of the SObject Specific Logic like Validation logic or filtering Triggered Records
-- [Selector Layer](/force-app/main/default/classes/FFLIB%20Examples/Selectors) - Handles all of the SOQL Queries for an SObject
-- [Services Layer](/force-app/main/default/classes/FFLIB%20Examples/Services) - Handles all of the Logic for an SObject
-- [UnitOfWork Layer]() [^1] - Handles all of the DML transactions for all Objects
-
-
-# Deployment Order
-Because of the Dependancies Injected in this Style, Classes and Class Folders needed to be deployed in the following order
-
-| Class Type        | Dependancies 
-| ----------------- | ----------------------------------
-| Interfaces:       | None
-| Selectors:        | Interfaces
-| Domain:           | Interfaces and Selectors
-| Service:          | Interfaces, Domains, and Selectors
-| Trigger Handlers: | Interfaces and Services
-| Apex Controllers: | Interfaces and Services
-| Application:      | Implemntation, Selectors, Services, and Domains
-| Test Classes:     | Application
-
-In order to avoid Deployment Errors or if Deployment Errors occur due to dependancy issues, 
-- Comment out the contents of the Maps and Lists in the factories on the [Application](/force-app/main/default/classes/FFLIB%20Examples/Application)
-- Deploy [Application](/force-app/main/default/classes/FFLIB%20Examples/Application)
-- Deploy Classes in Given Folder Order
-- Uncomment out the contents on the [Application](/force-app/main/default/classes/FFLIB%20Examples/Application)
-- Deploy [Application](/force-app/main/default/classes/FFLIB%20Examples/Application)
-
-As new FFLIB Class Layers are created, Deploy interfaces and classes immediately before adding methods or logic so that the Application registers that the classes exist
-
-[^1]: UnitOfWork Layer does not have or need it's own set of classes so doesnt have a folder
-
-# Mock Setup Class
-Many of the test classes utilize the use of a MockSetup as an Inner Class in the Test Class. This Inner Class handles all of the Mocking and Stubbing needed for all of the unit tests for quick re-use. 
-
-1. [Create ENUM List](#1-create-enum-list)
-1. [Create Map of ParamTypes](#2-create-map-of-paramtypes)
-1. [Create MockSetup Class](#3-create-mocksetup-class)
-1. [Initialize Undeclared Params](#4-initialize-undeclared-params)
-1. [Initialize Variables and Classes to be Stubbed](#5-initialize-variables-and-classes-to-be-stubbed)
-1. [Mock and Stub Classes](#6-mock-and-stub-classes)
-1. [Set Mocks on Application](#7-replace-classes-with-mocks-when-called-from-application)
-1. [Final Product](#8-final-product)
-1. [Usage in a Test Method](#9-usage-in-a-test-method)
+## Setup MockSetup Class
 
 ### 1. Create ENUM List
 Start by creating a set of [ENUMs](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_enums.htm), one for each return value you will need for stubbing
@@ -59,7 +24,7 @@ enum MockParams {
     RETURNED_MESSAGE
 }
 ```
-[Back to Steps](#mock-setup-class) - [Back to Top](#fflib-examples)
+[Back to Steps](#mocksetup-class)
 
 ### 2. Create Map of ParamTypes
 Next, create a Map where the Key is the ENUM created above and the value is the data type the stub will return
@@ -67,13 +32,14 @@ Next, create a Map where the Key is the ENUM created above and the value is the 
 static Map<MockParams, Type> paramTypes {
     get {
         return new Map<MockParams, Type>{
-            MockParams.RETURNED_BOARD_GAMES => List<Board_Games__c>.class,
+            MockParams.RE[^1]: UnitOfWork Layer does not have or need it's own set of classes so doesnt have a folder
+TURNED_BOARD_GAMES => List<Board_Games__c>.class,
             MockParams.RETURNED_MESSAGE => String.class
         };
     }
 }
 ```
-[Back to Steps](#mock-setup-class) - [Back to Top](#fflib-examples)
+[Back to Steps](#mocksetup-class) 
 
 ### 3. Create MockSetup Class
 
@@ -99,7 +65,7 @@ class MockSetup {
     }
 }
 ```
-[Back to Steps](#mock-setup-class) - [Back to Top](#fflib-examples)
+[Back to Steps](#mocksetup-class) 
 
 ### 4. Initialize Undeclared Params
 Loop through all of the Keys in the ParamTypes Map.
@@ -113,7 +79,7 @@ for (MockParams param : paramTypes.keySet()) {
     }
 }
 ```
-[Back to Steps](#mock-setup-class) - [Back to Top](#fflib-examples)
+[Back to Steps](#mocksetup-class) 
 
 ### 5. Initialize Variables and Classes to be Stubbed
 Initialize any public variables declared in [Step #3](#3-create-mocksetup-class).
@@ -126,7 +92,7 @@ IBoardGameSelector mockBoardGameSelector = (IBoardGameSelector) mocks.mock(Board
 IBoardGameRatingsDomain mockBGRDomain = (IBoardGameRatingsDomain) mocks.mock(BoardGameRatingsDomain.class)
 IBGGCalloutService mockCalloutService = (IBGGCalloutService) mocks.mock(BGGCalloutService.class);
 ```
-[Back to Steps](#mock-setup-class) - [Back to Top](#fflib-examples)
+[Back to Steps](#mocksetup-class) 
 
 ### 6. Mock and Stub Classes
 Between the ___Mocks.StartStubbing()___ and ___Mocks.StopStubbing()___ calls, we are going to actually stub out out mocked classes intialized in the previous step. Any Methods that are not Stubbed here, will return a null value.
@@ -162,7 +128,7 @@ if(throwErrors){
 }
 
 ```
-[Back to Steps](#mock-setup-class) - [Back to Top](#fflib-examples)
+[Back to Steps](#mocksetup-class) 
 
 ### 7. Replace Classes with Mocks when called from Application
 Finally, we will set the Mocks so that whenever they are created using the [Application Class](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls), they will instead create and use our Mock Class.
@@ -173,7 +139,7 @@ Application.Domain.setMock(mockBGRDomain);
 Application.Selector.setMock(mockBoardGameSelector);
 Application.Service.setMock(IBoardGamesService.class, mockBoardGameService);
 ```
-[Back to Steps](#mock-setup-class) - [Back to Top](#fflib-examples)
+[Back to Steps](#mocksetup-class) 
 
 ### 8. Final Product
 When we put it all together it should look something like this:
@@ -248,15 +214,15 @@ class MockSetup {
     }
 }
 ```
-[Back to Steps](#mock-setup-class) - [Back to Top](#fflib-examples)
+[Back to Steps](#mocksetup-class) 
 
-### 9. Usage in a Test Method
+## Example in a Test Method
 Now that we have our MockSetup Class built, here is how we would use it in a test method.
 
-#### Test Method Utilizing MockSetup
+### Example Test Method Utilizing MockSetup
 Notice that we are only setting the Returned Board Games in the Params as this is the only return value we would need in this test method.
 
-Since we are not needing to perform any DMLs, can use ___Mocks.Verify()___ to validate that the records were commited to be updated in the mocked UnitOfWork ([See Below for Mocks.Verify() examples](#mocksverify-example-quick-reference))
+Since we are not needing to perform any DMLs, can use ___Mocks.Verify()___ to validate that the records were commited to be updated in the mocked UnitOfWork ([More Mocks.Verify() Examples](/documentation/Mocks.Verify-Examples.md))
 ```
 @IsTest
 public static void givenInputParamters_WhenMethodNameIsCalled_ThenReturnExpectedMessage(){
@@ -293,7 +259,7 @@ public static void givenInputParamters_WhenMethodNameIsCalled_ThenReturnExpected
             ));
 }
 ```
-#### Test Method Utilizing MockSetup Catching Exception
+### Example Test Method Utilizing MockSetup Catching Exception
 Notice that the Exception Message returned matches the Exception Message that was provided in our MockSetup Class when we mocked throwing the Exception.
 ```
 @IsTest
@@ -323,68 +289,5 @@ public static void givenInputParamters_WhenMethodNameIsCalled_ThenThrowError(){
     Assert.areEqual('Thrown Exception', errMsg, 'Incorrect Message Recieved: '+ errMsg);
 }
 ```
-[Back to Steps](#mock-setup-class) - [Back to Top](#fflib-examples)
-
-Full Credit to John Towers for this design!
-
-# Mocks.Verify Example Quick Reference:
-Since one of the benefits of Mocking and Stubbing is that we will not need to do any actual Inserts or Updates in Test Methods for the majority of classes, thereby not having to worry about any validation rules or other triggers firing while testing, we need a way to validate that a record has been (or in this case will be) inserted or updated with the correct information. This is where we will use the ___Mocks.Verify()___ method.
-
-Here are examples of usage of some of the different types of ways to use the ___Mocks.Verify()___ method:
-
-Verify that UOW Register Dirty Method was called X number of times
-
-```
-((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, X))
-    .registerDirty(fflib_Match.anySObject());
-```
-Verify that UOW Method ran for a Single Specific Record and matches expected values being updated
-
-```
- ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
-            .registerDirty(fflib_Match.sobjectWith(
-                new Map<Schema.SObjectField, Object>{
-                    Board_Games__c.ID => testRecord.ID,
-                    Board_Games__c.Name => testRecord.Name
-                }
-            ));
-```
-Verify that UOW Method ran for a LIST of Specific Records and matches expected values being updated
-
-```
- ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
-            .registerDirty(fflib_Match.sObjectsWith(
-                  new List<Map<SObjectField,Object>> {
-                    new Map<SObjectField,Object> {
-                        Board_Games__c.ID => testRecord1.ID,
-                        Board_Games__c.Name => testRecord1.Name
-                    },
-                    new Map<SObjectField,Object> {
-                        Board_Games__c.ID => testRecord2.ID,
-                        Board_Games__c.Name => testRecord2.Name
-                    }
-                }
-            ));
-```
-Verify that UOW Method ran for a Specific Record WITH Relationship
-
-```
- ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
-            .registerNew(fflib_Match.sobjectWith(
-                            new Map<Schema.SObjectField, Object>{
-                                BG_Library_Entry__c.BGG_Owner__c => testOwnerName,
-                                BG_Library_Entry__c.Event__c => testEventId
-                            }
-                        ),
-                        //Matches Relationship Field
-                        fflib_Match.eqSObjectField(BG_Library_Entry__c.Board_Game__c), 
-                        //Matches Object to create Relationship with
-                        fflib_Match.sobjectWith(
-                            new Map<Schema.SObjectField, Object>{
-                                Board_Games__c.BGG_ID__c => testBoardGame.BGG_ID__c
-                            }
-                        ) 
-            );
-```
-
+[Back to Steps](#mocksetup-class) 
 

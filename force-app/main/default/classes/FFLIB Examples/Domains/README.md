@@ -13,10 +13,87 @@ The Benefit is that this Layer can then be Mocked and Stubbed out from the [Serv
 1. Add Domain to [Application](/force-app/main/default/classes/FFLIB%20Examples/Application)
 1. Add Methods for Record Filtering, Validation, or Processesing 
 
+#### Domain Interface Template
+[Extends Base Domain Interface](/force-app/main/default/classes/FFLIB%20Examples/Domains/Interfaces/IBaseDomain.cls)
+```
+public interface IMySObjectDomain extends IBaseDomain {
+    //Any Additional Methods specific to the MySObjectDomain should go here
+}
+```
+
+#### Domain Initialization Template
+```
+MySObjectDomain domain = (MySObjectDomain) MySObjectDomain.newInstance(records);
+```
+
+#### Domain Template
+
+[Extends Base Domain Class](/force-app/main/default/classes/FFLIB%20Examples/Domains/BaseDomain.cls)
+
+```
+public class MySObjectDomain extends BaseDomain implements IMySObjectDomain {
+    
+    public static IMySObjectDomain newInstance(List<MySObject__c> recordList){
+        return (MySObjectDomain) Application.Domain.newInstance(recordList);
+    }
+
+    public MySObjectDomain(List<MySObject__c> sObjectList) {
+        super(sObjectList, MySObject__c.SObjectType);
+    }
+
+    public List<MySObject__c> getMySObjectRecords()
+	{
+		return (List<MySObject__c>) getRecords();
+	}
+
+    //Additional Domain Methods Here
+
+    public class Constructor implements fflib_IDomainConstructor {
+        public fflib_SObjects construct(List<Object> objectList) {
+            return new MySObjectDomain((List<SObject>) objectList);
+        }
+    }
+
+}
+```
+
+
 ### Test Class
 1. Create Test Class for Domain
     1. Create Unit Test Methods for Domain
     1. Use Asserts to Validate Results
+
+#### Domain Test Class Template
+```
+@IsTest
+public class BoardGameRatingsDomainTest {
+       
+    // Call newInstance
+    @IsTest
+    public static void givenRecord_WhenNewInstanceCalled_ThenReturnInstance() {
+
+        MySObject__c testRecord = new MySObject__c();
+        Test.startTest();
+        IMySObjectDomain result = MySObjectDomain.newInstance(new List<MySObject__c>{testRecord});
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Should return instance');
+    }
+
+    // Call Constructor
+    @isTest
+    public static void givenListOfRecords_WhenConstructorClassCalled_ThenReturnsCorrectNumberOfRecords(){
+        List<MySObject__c> records = new List<MySObject__c>{new MySObject__c()};
+        MySObjectDomain.Constructor constructor = new MySObjectDomain.Constructor();
+        MySObjectDomain domain = (MySObjectDomain) constructor.construct(records);
+        
+        Assert.areEqual(records.size(), domain.getMySObjectRecords().size(), 'Number of Records Match');
+    } 
+
+    //Test Additional Domain Methods Here 
+
+}
+```
 
 ## Trailhead and Resources
 

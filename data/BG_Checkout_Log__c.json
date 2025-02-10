@@ -8,7 +8,7 @@
             "BG_Library_Entry__c": "@CATAN_2024",
             "Check_In_Time__c": "2024-12-10T17:36:00.000+0000",
             "Check_Out_Time__c": "2024-12-10T15:39:44.000+0000",
-            "Total_Min_Checked_Out__c": 116,
+            "Total_Check_Out_Time_Value__c": 116,
             "Checked_Out_By__c": "@Dean"
             },
         {
@@ -19,7 +19,7 @@
             "BG_Library_Entry__c": "@CATAN_2024",
             "Check_In_Time__c": "2024-12-09T20:00:00.000+0000",
             "Check_Out_Time__c": "2024-12-09T18:36:00.000+0000",
-            "Total_Min_Checked_Out__c": 84,
+            "Total_Check_Out_Time_Value__c": 84,
             "Checked_Out_By__c": "@Rory"
         }
     ]
