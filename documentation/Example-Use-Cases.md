@@ -60,7 +60,7 @@ This Use Case shows examples for the following:
      - Use Case Unit Testing
 
 
-[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
+[Back to Use Case Examples List](#example-use-cases) 
 
 ## 2. Import Board Game List from BoardGameGeek API
 
@@ -136,7 +136,7 @@ This Use Case shows examples for the following:
 
 [^1]: NOTE: The first time a Collection is requested from BoardGameGeek after a long period of time, it will be queued resulting in an error. If this happens just re-click submit and try again. 
 
-[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
+[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#example-use-cases)
 
 ## 3. Update Individual Board Game Information from BoardGameGeek API
 
@@ -200,7 +200,7 @@ This Use Case shows examples for the following:
      - Mock Http Callouts
           - Generate Ad Hoc XML Results
 
-[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
+[Back to Use Case Examples List](#example-use-cases) 
 
 ## 4. Check Out/In Board Game
 
@@ -256,6 +256,16 @@ This Use Case shows examples for the following:
           - Validate Using [Mocks.Verify](/force-app/main/default/classes/FFLIB%20Examples/README.md#mocksverify-example-quick-reference)
      - Use Case Unit Testing
 
-[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
+[Back to Use Case Examples List](#example-use-cases) 
 
 ## 5. Home Board Game Dashboard (WIP)
+As an Event Owner, I would like to see a Dashboard showing: 
+- Total number of Board Games for the Event 
+- How many Board Games have been Checked Out
+- How many Board Games are Currently Checked Out
+     - How long they have been checked out for
+     - If they have been checked out for longer than the average Duration for the Game
+- Favorited Board Games
+- Top 5 User Rated Board Games
+
+[Back to Use Case Examples List](#example-use-cases) 

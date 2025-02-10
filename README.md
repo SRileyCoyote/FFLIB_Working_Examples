@@ -78,17 +78,6 @@ I consider this Example Repo as still a Work In Progress and would love to hear 
 
 Please feel free to leave a comment in the [Discussions Tab](https://github.com/SRileyCoyote/FFLIB_Working_Examples/discussions). 
 
-As an Event Owner, I would like to see a Dashboard showing: 
-- Total number of Board Games for the Event 
-- How many Board Games have been Checked Out
-- How many Board Games are Currently Checked Out
-     - How long they have been checked out for
-     - If they have been checked out for longer than the average Duration for the Game
-- Favorited Board Games
-- Top 5 User Rated Board Games
-
-[Back to Use Case Examples List](#example-use-cases) - [Back to Top](#fflib-working-examples)
-
 ## Links for More Information 
 
 [SObjects and Custom Metadata Types](/documentation/SObject-Schema.md)
