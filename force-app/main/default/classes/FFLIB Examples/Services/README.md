@@ -41,6 +41,10 @@ public without sharing class MySObjectService extends BaseService implements IMy
     @TestVisible private static final String SERVICE_NOT_ENABLED_MSG = 'This Service is Not Enabled. Please Contact a System Administrator to Enable';
     @TestVisible private static final String NO_RECORD_ID_ERR_MSG = 'Invalid ID';
 
+    public static IMySObjectService newInstance(){
+        return (IMySObjectService) Application.Service.newInstance(IMySObjectService.class);
+    }
+
     //Initialize Service Class
     public BGCheckOutLogService(){
         super('MySObject');
@@ -96,10 +100,24 @@ private class MySObjectServiceTest {
     //#endregion
 
     //Test Plan
+    // Call newInstance
     // Call Service using Current Config Record
-    // List of Unit Tests Go Here
+    // Call MyMethod with Custom Config where Service Disabled
+    // List of Additional Unit Tests Go Here
 
     //Start Testing
+    // Call newInstance
+    @IsTest
+    public static void givenRecord_WhenNewInstanceCalled_ThenReturnInstance() {
+
+        MySObject__c testRecord = new MySObject__c();
+        Test.startTest();
+        IMySObjectService result = MySObjectService.newInstance();
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Should return instance');
+    }
+
     // Call Service using Current Config Record
     @IsTest
     public static void givenCurrentServiceConfig_WhenServiceClassCalled_ThenCurrentServiceConfigReturned(){

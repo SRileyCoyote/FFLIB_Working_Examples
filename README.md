@@ -8,35 +8,9 @@
      - [Service Layer](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md)
      - [Domain Layer](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md)
      - [Selector Layer](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md)
-1. [Schema](/force-app/main/default/objects/README.md)
-1. [Custom Property Editors](/force-app/main/default/lwc/README.md)
-
-### Templates
-- [Application](/force-app/main/default/classes/FFLIB%20Examples/Application/README.md#application-template)
-- Implementation
-     - [AuraEnabled](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md#auraenabled-template)
-     - [Invocable Method](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md#invocableaction-template)
-     - [Trigger](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md)
-     - [TriggerHandler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md)
-- [Domain Class](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md)
-     - [Base Class](/force-app/main/default/classes/FFLIB%20Examples/Domains/BaseDomain.cls)
-     - [Interface](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md)
-     - [Initialize](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md)
-- [Service Class](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md)
-     - [Base Class](/force-app/main/default/classes/FFLIB%20Examples/Services/BaseService.cls)
-     - [Interface](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md)
-     - [Initialize](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md)
-- [Selector Class](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md)
-     - [Interface](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md)
-     - [Initialize](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md)
-- Test Classes
-     - [MockSetup Class](/documentation/MockSetup-Class#8-final-product)
-     - [Controllers](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md)
-     - [Trigger](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md)
-     - [TriggerHandler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md)
-     - [Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md)
-     - [Service](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md)
-     - [Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md)
+1. [Schema](/documentation/SObject-Schema.md)
+1. [Custom Property Editors](/documentation/Custom-Property-Editors.md)
+1. [Templates](/documentation/Template-Quick-Links.md)
 
 ## Overview
 

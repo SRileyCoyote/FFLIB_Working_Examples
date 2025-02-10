@@ -20,7 +20,7 @@ Mocking and Stubbing is a key component and benefit of using FFLIB. Beacause of 
 Start by creating a set of [ENUMs](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_enums.htm), one for each return value you will need for stubbing
 ```
 enum MockParams {
-    RETURNED_BOARD_GAMES,
+    RETURNED_MYSOBJECTS,
     RETURNED_MESSAGE
 }
 ```
@@ -32,8 +32,7 @@ Next, create a Map where the Key is the ENUM created above and the value is the 
 static Map<MockParams, Type> paramTypes {
     get {
         return new Map<MockParams, Type>{
-            MockParams.RE[^1]: UnitOfWork Layer does not have or need it's own set of classes so doesnt have a folder
-TURNED_BOARD_GAMES => List<Board_Games__c>.class,
+            MockParams.RETURNED_MYSOBJECTS => List<MySObject__c>.class,
             MockParams.RETURNED_MESSAGE => String.class
         };
     }
@@ -88,9 +87,9 @@ Notice that the stubbed classes are actually the respective Interfaces.
 ```
 mocks = new fflib_ApexMocks();
 uowMock = (fflib_SObjectUnitOfWork) mocks.mock(fflib_SObjectUnitOfWork.class);
-IBoardGameSelector mockBoardGameSelector = (IBoardGameSelector) mocks.mock(BoardGameSelector.class);
-IBoardGameRatingsDomain mockBGRDomain = (IBoardGameRatingsDomain) mocks.mock(BoardGameRatingsDomain.class)
-IBGGCalloutService mockCalloutService = (IBGGCalloutService) mocks.mock(BGGCalloutService.class);
+IMySObjectSelector mockSelector = (IMySObjectSelector) mocks.mock(MySObjectSelector.class);
+IMySObjectDomain mockDomain = (IMySObjectDomain) mocks.mock(MySObjectDomain.class)
+ICalloutService mockCalloutService = (ICalloutService) mocks.mock(CalloutService.class);
 ```
 [Back to Steps](#mocksetup-class) 
 
@@ -100,17 +99,17 @@ Between the ___Mocks.StartStubbing()___ and ___Mocks.StopStubbing()___ calls, we
 Notice that we are using the ___fflib_Match___ class to mock the inputs the method recieves. What this means is that regardless of what values are given to the method when it is called, always return the value provided in the Params Map given to the constructor. As mentioned in [Step #4](#4-initialize-undeclared-params), if no value was given in the test method, it will return an empty instance of that data type  
 #### Stubbed Selector Example:
 ```
-mocks.when(mockBoardGameSelector.SObjectType()).thenReturn(Board_Games__c.SObjectType);
-mocks.when(mockBoardGameSelector.selectByBGGIDs(
+mocks.when(mockSelector.SObjectType()).thenReturn(MySObject__c.SObjectType);
+mocks.when(mockSelector.selectById(
                                             (Set<String>) fflib_Match.anyObject()
                                         ))
-    .thenReturn((List<Board_Games__c>) params.get(MockParams.RETURNED_BOARD_GAMES));
+    .thenReturn((List<MySObject__c>) params.get(MockParams.RETURNED_MYSOBJECTS));
 ```
 __IMPORTANT__: Stubbing the SObjectType is REQUIRED here or the Mocking of the Selector WILL Fail
 
 #### Stubbed Service Example:
 ```
-mocks.when(mockBoardGameService.getIDsFromBoardGameGeek(
+mocks.when(mockCalloutService.makeCallout(
                                 fflib_Match.anyString(),
                                 fflib_Match.eqBoolean(true)
                             ))
@@ -120,8 +119,8 @@ mocks.when(mockBoardGameService.getIDsFromBoardGameGeek(
 If you need to test the Catch Block on a Try-Catch, you can Stub the method to Throw an Exception whenever the method is called instead. You can include a Boolean in the MockSetup Class Constructor for ___throwErrors___ so that you can control which test methods need to test if the catching of Exceptions.
 ```
 if(throwErrors){
-    ((IBoardGamesService) mocks.doThrowWhen(new BoardGamesService.BGServiceException('Thrown Exception'),
-                                            mockBoardGameService)).getIDsFromBoardGameGeek(
+    ((ICalloutService) mocks.doThrowWhen(new CalloutService.ServiceException('Thrown Exception'),
+                                            mockCalloutService)).makeCallout(
                                                         fflib_Match.anyString(),
                                                         fflib_Match.anyBoolean()
                                                     );
@@ -135,9 +134,9 @@ Finally, we will set the Mocks so that whenever they are created using the [Appl
 This is why it is important that whenever we call these classes from our Methods, we do so using the [Application Layer](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls).
 ```
 Application.UnitOfWork.setMock(uowMock);
-Application.Domain.setMock(mockBGRDomain);
-Application.Selector.setMock(mockBoardGameSelector);
-Application.Service.setMock(IBoardGamesService.class, mockBoardGameService);
+Application.Domain.setMock(mockDomain);
+Application.Selector.setMock(mockSelector);
+Application.Service.setMock(ICalloutService.class, mockCalloutService);
 ```
 [Back to Steps](#mocksetup-class) 
 
@@ -146,7 +145,7 @@ When we put it all together it should look something like this:
 ```
 //Step 1:
 enum MockParams {
-    RETURNED_BOARD_GAMES,
+    RETURNED_MYSOBJECTS,
     RETURNED_MESSAGE
 }
 
@@ -154,7 +153,7 @@ enum MockParams {
 static Map<MockParams, Type> paramTypes {
     get {
         return new Map<MockParams, Type>{
-            MockParams.RETURNED_BOARD_GAMES => List<Board_Games__c>.class,
+            MockParams.RETURNED_MYSOBJECTS => List<MySObject__c>.class,
             MockParams.RETURNED_MESSAGE => String.class
         };
     }
@@ -177,27 +176,27 @@ class MockSetup {
 // Step 5:
         mocks = new fflib_ApexMocks();
         uowMock = (fflib_SObjectUnitOfWork) mocks.mock(fflib_SObjectUnitOfWork.class);
-        IBoardGameSelector mockBoardGameSelector = (IBoardGameSelector) mocks.mock(BoardGameSelector.class);
-        IBoardGameRatingsDomain mockBGRDomain = (IBoardGameRatingsDomain) mocks.mock(BoardGameRatingsDomain.class)
-        IBGGCalloutService mockCalloutService = (IBGGCalloutService) mocks.mock(BGGCalloutService.class);
+        IMySObjectSelector mockSelector = (IMySObjectSelector) mocks.mock(MySObjectSelector.class);
+        IMySObjectDomain mockDomain = (IMySObjectDomain) mocks.mock(MySObjectDomain.class)
+        ICalloutService mockCalloutService = (ICalloutService) mocks.mock(CalloutService.class);
 
         mocks.startStubbing();
 
 // Step 6:
-        mocks.when(mockBoardGameSelector.SObjectType()).thenReturn(Board_Games__c.SObjectType);
-        mocks.when(mockBoardGameSelector.selectByBGGIDs(
+        mocks.when(mockSelector.SObjectType()).thenReturn(MySObject__c.SObjectType);
+        mocks.when(mockSelector.selectById(
                                                     (Set<String>) fflib_Match.anyObject()
                                                 ))
-            .thenReturn((List<Board_Games__c>) params.get(MockParams.RETURNED_BOARD_GAMES));
+            .thenReturn((List<MySObject__c>) params.get(MockParams.RETURNED_MYSOBJECTS));
 
         if(throwErrors){
-            ((IBoardGamesService) mocks.doThrowWhen(new BoardGamesService.BGServiceException('Thrown Exception'),
-                                    mockBoardGameService)).getIDsFromBoardGameGeek(
-                                            fflib_Match.anyString(),
-                                            fflib_Match.anyBoolean()
-                                        );
+            ((ICalloutService) mocks.doThrowWhen(new CalloutService.ServiceException('Thrown Exception'),
+                                                    mockCalloutService)).makeCallout(
+                                                                fflib_Match.anyString(),
+                                                                fflib_Match.anyBoolean()
+                                                            );
         } else {
-            mocks.when(mockBoardGameService.getIDsFromBoardGameGeek(
+            mocks.when(mockCalloutService.makeCallout(
                                             fflib_Match.anyString(),
                                             fflib_Match.eqBoolean(true)
                                         ))
@@ -208,9 +207,9 @@ class MockSetup {
 
 // Step 7:
         Application.UnitOfWork.setMock(uowMock);
-        Application.Domain.setMock(mockBGRDomain);
-        Application.Selector.setMock(mockBoardGameSelector);
-        Application.Service.setMock(IBoardGamesService.class, mockBoardGameService);
+        Application.Domain.setMock(mockDomain);
+        Application.Selector.setMock(mockSelector);
+        Application.Service.setMock(ICalloutService.class, mockCalloutService);
     }
 }
 ```
@@ -228,15 +227,14 @@ Since we are not needing to perform any DMLs, can use ___Mocks.Verify()___ to va
 public static void givenInputParamters_WhenMethodNameIsCalled_ThenReturnExpectedMessage(){
 
     //Setup Test Data and Mocking
-    Board_Games__c testBoardGame = new Board_Games__c(
-                                        ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
-                                        BGG_ID__c = '12345',
-                                        Name = 'My Board Game'
+    MySObject__c testRecord = new MySObject__c(
+                                        ID = fflib_IDGenerator.generate(MySObject__c.SObjectType),
+                                        Name = 'My Object'
                                     );
 
     //Setup Return Values
     Map<MockParams, Object> params = new Map<MockParams, Object>{
-        MockParams.RETURNED_BOARD_GAMES => new List<Board_Games__c>{testBoardGame},
+        MockParams.RETURNED_MYSOBJECTS => new List<MySObject__c>{testRecord},
     };
 
     //Initialize MockSetup with Params without throwing errors
@@ -244,7 +242,7 @@ public static void givenInputParamters_WhenMethodNameIsCalled_ThenReturnExpected
 
     //Run Test
     Test.startTest();
-    String result = ClassBeingTested.MethodBeingTested(testBoardGame.Id, '12345');
+    String result = ClassBeingTested.MethodBeingTested(testRecord.Id, '12345');
     Test.stopTest();
 
     //Validate Data
@@ -253,8 +251,8 @@ public static void givenInputParamters_WhenMethodNameIsCalled_ThenReturnExpected
      ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
             .registerDirty(fflib_Match.sobjectWith(
                 new Map<Schema.SObjectField, Object>{
-                    Board_Games__c.ID => testBoardGame.ID,
-                    Board_Games__c.Name => testBoardGame.Name
+                    MySObject__c.ID => testRecord.ID,
+                    MySObject__c.Name => testRecord.Name
                 }
             ));
 }
@@ -278,7 +276,10 @@ public static void givenInputParamters_WhenMethodNameIsCalled_ThenThrowError(){
     Test.startTest();
     String errMsg = 'No Errors';
     try{
-        String result = ClassBeingTested.MethodBeingTested(testBoardGame.Id, '12345');
+        String result = ClassBeingTested.MethodBeingTested(
+                                        fflib_IDGenerator.generate(MySObject__c.SObjectType), 
+                                        '12345'
+                                    );
         Assert.isTrue(false, 'Error Not Thrown');
     } catch (Exception ex){
         errMsg = ex.getMessage();

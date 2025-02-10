@@ -1,0 +1,27 @@
+# Templates
+- [Application Class](/force-app/main/default/classes/FFLIB%20Examples/Application/README.md#application-template)
+- Implementation
+     - [AuraEnabled Method](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md#auraenabled-template)
+     - [Invocable Method](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md#invocableaction-template)
+     - [Trigger](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md#trigger-template)
+     - [TriggerHandler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md#triggerhandler-template)
+- [Domain Class](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md#domain-template)
+     - [Base Class](/force-app/main/default/classes/FFLIB%20Examples/Domains/BaseDomain.cls)
+     - [Interface](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md#domain-interface-template)
+     - [Initialize](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md#domain-initialization-template)
+- [Service Class](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#service-template)
+     - [Base Class](/force-app/main/default/classes/FFLIB%20Examples/Services/BaseService.cls)
+     - [Interface](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#service-interface-template)
+     - [Initialize](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#service-initialization-template)
+- [Selector Class](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md#selector-template)
+     - [Interface](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md#selector-interface-template)
+     - [Initialize](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md#initialize-selector-template)
+- Test Classes
+     - [MockSetup Class](/documentation/MockSetup-Class#8-final-product)
+     - [Controllers](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md#test-class-template)
+     - [Trigger](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md#trigger-test-template)
+     - [TriggerHandler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md#triggerhandler-test-template)
+     - [Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains/README.md#domain-test-class-template)
+     - [Service](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#service-test-class-template)
+     - [Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md#selector-test-template)
+
