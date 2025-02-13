@@ -12,13 +12,14 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2025-01-03
+* @modified       2025-02-13
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
 @isTest
 private class BGGCalloutServiceTest {
 
+    //#region Setup
     // Mock HttpResponse class to simulate the actual HTTP response for callouts
     public class MockHttpResponse implements HttpCalloutMock {
         private String responseBody;
@@ -61,8 +62,10 @@ private class BGGCalloutServiceTest {
     private static String getParam(String paramName, Map<String, String> paramMap){
         return paramMap.containsKey(paramName) ? paramMap.get(paramName) : '';
     }
+    //#endregion
 
     //Test Plan
+    // Call New Instance
     // Successfully Call Collection API
     // Catch Error from Collection API 
     // Successfully Call Geeklist API
@@ -82,6 +85,19 @@ private class BGGCalloutServiceTest {
     // Call GeekList API with Status Code 202 
 
     //Start Testing
+    // Call New Instance
+    @IsTest
+    public static void newInstance_shouldReturnInstance() {
+
+        Test.startTest();
+        IBGGCalloutService result = BGGCalloutService.newInstance();
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Should return instance');
+    }
+    
+    //#region ///////////////////////////////// GetIDsFromBoardGameGeek ///////////////////////////////////////////
+
     // Successfully Call Collection API
     @isTest
     public static void givenCollectionName_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectResultsReturned() {
@@ -174,6 +190,9 @@ private class BGGCalloutServiceTest {
         // Validate the results
         Assert.areEqual(BGGCalloutService.ERROR_GEEKLIST_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
     }
+    //#endregion
+
+    //#region ///////////////////////////////// GetBoardGameDetailsFromBGG ///////////////////////////////////////////
 
     // Call Details API with no IDs
     @isTest
@@ -351,6 +370,9 @@ private class BGGCalloutServiceTest {
         // Validate the results
         Assert.areEqual(BGGCalloutService.ERROR_DETAILS_MSG + '400: Code 400 Error', errMessage, 'Wrong Error Message Recieved: '+errMessage);
     }
+    //#endregion
+
+    //#region ///////////////////////////////// GetBoardGameDetailFromBGGIds ///////////////////////////////////////////
 
     // Call Details for Specific BGG IDs with 1 BGG ID
     @isTest
@@ -443,6 +465,9 @@ private class BGGCalloutServiceTest {
         Assert.areEqual(0, result.wrapperMap.size(), 'Expected no items in the wrapper map');
         Assert.areEqual(BGGCalloutService.NO_IDS_PROVIDED_MSG, result.resultMessage, 'Return Message Does Not Match Expected Result');
     }
+    //#endregion
+
+    //#region ///////////////////////////////// GetIDsFromBoardGameGeek ///////////////////////////////////////////
 
     // Call IDs From BGG with No Collection Name or GeekList ID
     @isTest
@@ -548,4 +573,5 @@ private class BGGCalloutServiceTest {
         // Validate the results
         Assert.areEqual(BGGCalloutService.ERROR_GEEKLIST_MSG + 'This is the Message Recieved for a Status 202 Error.', errMessage, 'Wrong Error Message Recieved: '+errMessage);
     }
+    //#endregion
 }

@@ -13,7 +13,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-23
+* @modified       2025-02-13
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -36,6 +36,10 @@ public without sharing class BoardGamesService extends BaseService implements IB
     @TestVisible private final String NO_RECORDS_UPDATED_ERR_MSG = 'BGG Game ID Not Found in BoardGameGeek. Please Check the BGG ID and Try Again';
 
     //Initialize Service Class
+    public static IBoardGamesService newInstance(){
+        return (IBoardGamesService) Application.Service.newInstance(IBoardGamesService.class);
+    }
+
     public BoardGamesService(){
         super('BoardGames'); //Calls the Constructor from the Parent Class
     }
@@ -51,7 +55,7 @@ public without sharing class BoardGamesService extends BaseService implements IB
     protected override void initialize(){
         //Initialize Serivces and Selectors through Application Layer 
         //so they can be Mocked and Stubbed from the Test Class
-        bggHttpService = (BGGCalloutService) Application.Service.newInstance(IBGGCalloutService.class);
+        bggHttpService = (BGGCalloutService) BGGCalloutService.newInstance();
         bgSelector = (BoardGameSelector) Application.Selector.newInstance(Board_Games__c.SObjectType);
         bgleSelector = (BGLibraryEntrySelector) Application.Selector.newInstance(BG_Library_Entry__c.sObjectType);
     }

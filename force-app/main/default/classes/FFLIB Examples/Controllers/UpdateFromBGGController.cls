@@ -11,7 +11,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-12-26
-* @modified       2025-01-03
+* @modified       2025-02-13
 * @systemLayer    Controller
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -23,7 +23,7 @@ public class UpdateFromBGGController {
         //Initializing Unit of Work here and Passing as variable to Service
         //Done this way so that all DMLs are performed in this method
         fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
-        BoardGamesService service = (BoardGamesService) Application.Service.newInstance(IBoardGamesService.class);
+        BoardGamesService service = (BoardGamesService) BoardGamesService.newInstance();
 
         String resultMsg;
         
@@ -53,7 +53,7 @@ public class UpdateFromBGGController {
         //Initializing Unit of Work here and Passing as variable to Service
         //Done this way so that all DMLs are performed in this method
         fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
-        BGLibraryEntryService service = (BGLibraryEntryService) Application.Service.newInstance(IBGLibraryEntryService.class);
+        BGLibraryEntryService service = (BGLibraryEntryService) BGLibraryEntryService.newInstance();
 
         String resultMsg;
         

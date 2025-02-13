@@ -8,7 +8,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-11-30
+* @modified       2025-02-13
 * @systemLayer    Controller
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -29,7 +29,7 @@ public class BoardGameImporterController {
         //Initializing Unit of Work here and Passing as variable to Service
         //Done this way so that all DMLs are performed in this method
         fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
-        BoardGamesService service = (BoardGamesService) Application.Service.newInstance(IBoardGamesService.class);
+        BoardGamesService service = (BoardGamesService) BoardGamesService.newInstance();
         
         String returnResult = service.getBoardGameDetailsFromBGG(uow, 
                                                                 eventId, 

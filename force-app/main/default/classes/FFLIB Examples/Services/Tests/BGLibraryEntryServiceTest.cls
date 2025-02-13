@@ -17,12 +17,14 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2025-01-03
-* @modified       2025-01-03
+* @modified       2025-02-13
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
 @isTest
 public with sharing class BGLibraryEntryServiceTest {
+    
+    //#region Setup
     /**
      * List of possible params for the mock setup.
      * Done to allow dynamically providing params without having to update every 
@@ -94,12 +96,24 @@ public with sharing class BGLibraryEntryServiceTest {
             Application.Service.setMock(IBGGCalloutService.class, mockCalloutService);
         }
     }
+    //#endregion
 
     // Begin Tests
     // Tests should follow a Use Case Test Plan
 
-    ////////////////////////////// Constructor Tests //////////////////////////////////////////    
+    //#region //////////////////////////// Constructor Tests //////////////////////////////////////////    
     // Test Plan
+    // Call New Instance
+    @IsTest
+    public static void newInstance_shouldReturnInstance() {
+
+        Test.startTest();
+        IBGLibraryEntryService result = BGLibraryEntryService.newInstance();
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Should return instance');
+    }
+    
     // Call Service using Current Config Record
     @IsTest
     public static void givenCurrentServiceConfig_WhenServiceClassCalled_ThenCurrentServiceConfigReturned(){
@@ -117,8 +131,9 @@ public with sharing class BGLibraryEntryServiceTest {
         Assert.areNotEqual(0, service.serviceConfigMap.size(), 'No Service Configs Found for BGLibraryEntry Domain');
         Assert.isTrue(service.serviceConfigMap.containsKey('updateBGLibraryEntryFromBGG'), 'Service Config for updateBGLibraryEntryFromBGG Method Not Found');
     }
+    //#endregion
 
-    ////////////////////////////// updateBGLibraryEntryFromBGG Tests ////////////////////////////////////////
+    //#region //////////////////////////// updateBGLibraryEntryFromBGG Tests ////////////////////////////////////////
     //Test Plan
     // Update BGLE Details with Custom Config where Service Disabled
     // Update BGLE Details with Empty List
@@ -807,6 +822,6 @@ public with sharing class BGLibraryEntryServiceTest {
                     BG_Library_Entry__c.Comments__c => wrapper.comment                }
             ));
     }
-
+    //#endregion
 
 }

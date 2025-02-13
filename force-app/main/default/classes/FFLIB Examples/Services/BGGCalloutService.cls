@@ -10,7 +10,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2025-01-03
+* @modified       2025-02-13
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -31,6 +31,11 @@ public class BGGCalloutService implements IBGGCalloutService {
     //Used to override Values during testing
     @TestVisible private Integer maxCalloutLimit = System.Limits.getLimitCallouts();
     @TestVisible private Integer totalCallouts = System.Limits.getCallouts(); //Get All Callouts already made
+
+    //Initialize Service Class
+    public static IBGGCalloutService newInstance(){
+        return (IBGGCalloutService) Application.Service.newInstance(IBGGCalloutService.class);
+    }
 
     public BGGCalloutService(){
 

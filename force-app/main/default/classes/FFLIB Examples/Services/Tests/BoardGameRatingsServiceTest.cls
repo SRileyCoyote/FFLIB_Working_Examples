@@ -12,13 +12,14 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-21
+* @modified       2025-02-13
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
 @isTest
 private class BoardGameRatingsServiceTest {
 
+    //#region Setup
     /**
      * List of possible params for the mock setup.
      * Done to allow dynamically providing params without having to update every 
@@ -103,12 +104,24 @@ private class BoardGameRatingsServiceTest {
             Application.Domain.setMock(mockBGRDomain);
         }
     }
+    //#endregion
 
     // Begin Tests
     // Tests should follow a Use Case Test Plan
 
-    ////////////////////////////// Constructor Tests //////////////////////////////////////////    
+    //#region //////////////////////////// Constructor Tests //////////////////////////////////////////    
     // Test Plan
+    // Call New Instance
+    @IsTest
+    public static void newInstance_shouldReturnInstance() {
+
+        Test.startTest();
+        IBoardGameRatingsService result = BoardGameRatingsService.newInstance();
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Should return instance');
+    }
+    
     // Call Service using Current Config Record 
     @IsTest
     public static void givenCurrentServiceConfig_WhenServiceClassCalled_ThenCurrentServiceConfigReturned(){
@@ -126,8 +139,9 @@ private class BoardGameRatingsServiceTest {
         Assert.areNotEqual(0, service.serviceConfigMap.size(), 'No Service Configs Found for BoardGameRatingsDomain');
         Assert.isTrue(service.serviceConfigMap.containsKey('setNewFavorite'), 'Service Config for setNewFavorite Method Not Found');
     }
+    //#endregion
 
-    ////////////////////////////// SetNewFavorite Tests ////////////////////////////////////////
+    //#region //////////////////////////// SetNewFavorite Tests ////////////////////////////////////////
     // Test Plan
     // Call Service with Custom Config where Service Disabled
     // BGR Set As Fav with no other Fav BGRs
@@ -453,6 +467,6 @@ private class BoardGameRatingsServiceTest {
         Assert.areEqual('Duplicate Favorite Found', errMsg, 'Incorrect Error Message: '+errMsg);
     }
 
-    ////////////////////////////// End SetNewFavorite Tests ////////////////////////////////////////
+    //#endregion
 
 }

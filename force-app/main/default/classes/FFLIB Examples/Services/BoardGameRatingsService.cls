@@ -13,7 +13,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-21
+* @modified       2025-02-13
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -24,6 +24,10 @@ public without sharing class BoardGameRatingsService extends BaseService impleme
     private BoardGameRatingSelector bgRatingSelector;
 
     //Initialize Service Class
+    public static IBoardGameRatingsService newInstance(){
+        return (IBoardGameRatingsService) Application.Service.newInstance(IBoardGameRatingsService.class);
+    }
+
     public BoardGameRatingsService(){
         super('BoardGameRatings'); //Calls the Constructor from the Parent Class
     }

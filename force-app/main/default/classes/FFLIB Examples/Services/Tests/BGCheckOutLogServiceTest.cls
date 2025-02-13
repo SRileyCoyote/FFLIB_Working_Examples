@@ -12,7 +12,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2025-01-09
-* @modified       2025-02-05
+* @modified       2025-02-13
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -92,6 +92,17 @@ private class BGCheckOutLogServiceTest {
 
     //#region //////////////////////////// Constructor Tests //////////////////////////////////////////    
     // Test Plan
+    // Call New Instance
+    @IsTest
+    public static void newInstance_shouldReturnInstance() {
+
+        Test.startTest();
+        IBGCheckOutLogService result = BGCheckOutLogService.newInstance();
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Should return instance');
+    }
+
     // Call Service using Current Config Record 
     @IsTest
     public static void givenCurrentServiceConfig_WhenServiceClassCalled_ThenCurrentServiceConfigReturned(){

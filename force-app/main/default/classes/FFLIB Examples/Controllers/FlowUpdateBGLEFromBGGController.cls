@@ -11,7 +11,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2025-01-03
-* @modified       2025-01-03
+* @modified       2025-02-13
 * @systemLayer    Controller
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -27,7 +27,7 @@ public with sharing class FlowUpdateBGLEFromBGGController {
         //Initializing Unit of Work here and Passing as variable to Service
         //Done this way so that all DMLs are performed in this method
         fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
-        BGLibraryEntryService service = (BGLibraryEntryService) Application.Service.newInstance(IBGLibraryEntryService.class);
+        BGLibraryEntryService service = (BGLibraryEntryService) BGLibraryEntryService.newInstance();
 
         String resultMsg;
 

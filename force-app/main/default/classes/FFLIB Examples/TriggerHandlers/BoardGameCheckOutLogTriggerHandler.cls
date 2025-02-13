@@ -19,7 +19,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2025-01-09
-* @modified       2025-01-09
+* @modified       2025-02-13
 * @systemLayer    Trigger Handler
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -48,7 +48,7 @@ public with sharing class BoardGameCheckOutLogTriggerHandler extends BaseTrigger
     //Abstract methods Must be overriden by Child Classes.
     //The Child Initialize method will be what is used in the constructor  
     protected override void initialize(){
-        service = (BGCheckOutLogService) Application.Service.newInstance(IBGCheckOutLogService.class);
+        service = (BGCheckOutLogService) BGCheckOutLogService.newInstance();
     }
 
     public override void onBeforeInsert(){

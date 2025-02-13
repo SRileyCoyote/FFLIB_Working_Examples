@@ -13,7 +13,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2025-01-02
-* @modified       2025-01-02
+* @modified       2025-02-13
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -33,6 +33,10 @@ public without sharing class BGLibraryEntryService extends BaseService implement
     @TestVisible private static final String GEEKLIST = 'GeekList';
 
 
+    public static IBGLibraryEntryService newInstance(){
+        return (IBGLibraryEntryService) Application.Service.newInstance(IBGLibraryEntryService.class);
+    }
+
     public BGLibraryEntryService() {
         super('BGLibraryEntry'); //Calls the Constructor from the Parent Class
     }
@@ -48,7 +52,7 @@ public without sharing class BGLibraryEntryService extends BaseService implement
     protected override void initialize(){
         //Initialize Serivces and Selectors through Application Layer 
         //so they can be Mocked and Stubbed from the Test Class
-        bggHttpService = (BGGCalloutService) Application.Service.newInstance(IBGGCalloutService.class);
+        bggHttpService = (BGGCalloutService) BGGCalloutService.newInstance();
     }
 
     public String updateBGLibraryEntriesFromBGG(fflib_SObjectUnitOfWork uow, List<BG_Library_Entry__c> bgleList){

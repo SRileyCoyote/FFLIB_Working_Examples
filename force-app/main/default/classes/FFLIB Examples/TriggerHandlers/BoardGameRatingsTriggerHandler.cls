@@ -19,7 +19,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-21
+* @modified       2025-02-13
 * @systemLayer    Trigger Handler
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -48,7 +48,7 @@ public with sharing class BoardGameRatingsTriggerHandler extends BaseTriggerHand
     //Abstract methods Must be overriden by Child Classes.
     //The Child Initialize method will be what is used in the constructor  
     protected override void initialize(){
-        service = (BoardGameRatingsService) Application.Service.newInstance(IBoardGameRatingsService.class);
+        service = (BoardGameRatingsService) BoardGameRatingsService.newInstance();
     }
 
     public override void onAfterInsert(){

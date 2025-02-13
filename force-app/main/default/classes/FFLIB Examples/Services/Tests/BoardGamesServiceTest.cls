@@ -17,13 +17,14 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2024-11-30
-* @modified       2024-12-23
+* @modified       2025-02-13
 * @systemLayer    Test
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
 @isTest
 private class BoardGamesServiceTest {
 
+    //#region Setup
     /**
      * List of possible params for the mock setup.
      * Done to allow dynamically providing params without having to update every 
@@ -129,12 +130,24 @@ private class BoardGamesServiceTest {
             Application.Service.setMock(IBGGCalloutService.class, mockCalloutService);
         }
     }
+    //#endregion
 
     // Begin Tests
     // Tests should follow a Use Case Test Plan
 
-    ////////////////////////////// Constructor Tests //////////////////////////////////////////    
+    //#region //////////////////////////// Constructor Tests //////////////////////////////////////////    
     // Test Plan
+    // Call New Instance
+    @IsTest
+    public static void newInstance_shouldReturnInstance() {
+
+        Test.startTest();
+        IBoardGamesService result = BoardGamesService.newInstance();
+        Test.stopTest();
+
+        System.assertNotEquals(null, result, 'Should return instance');
+    }
+
     // Call Service using Current Config Record
     @IsTest
     public static void givenCurrentServiceConfig_WhenServiceClassCalled_ThenCurrentServiceConfigReturned(){
@@ -153,8 +166,9 @@ private class BoardGamesServiceTest {
         Assert.isTrue(service.serviceConfigMap.containsKey('getBoardGameDetailsFromBGG'), 'Service Config for getBoardGameDetailsFromBGG Method Not Found');
         Assert.isTrue(service.serviceConfigMap.containsKey('updateBoardGameDetailsFromBGG'), 'Service Config for updateBoardGameDetailsFromBGG Method Not Found');
     }
+    //#endregion
 
-    ////////////////////////////// getBoardGameDetailsFromBGG Tests ////////////////////////////////////////
+    //#region //////////////////////////// getBoardGameDetailsFromBGG Tests ////////////////////////////////////////
     // Test Plan
     // Get Board Game Details with Custom Config where Service Disabled
     // Get Board Game Details with Blank Event ID
@@ -1275,8 +1289,9 @@ private class BoardGamesServiceTest {
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
         .registerNew(fflib_Match.anySObject());
     }
+    //#endregion
 
-    ////////////////////////////// updateBoardGameDetailsFromBGG Tests ////////////////////////////////////////
+    //#region //////////////////////////// updateBoardGameDetailsFromBGG Tests ////////////////////////////////////////
     //Test Plan
     // Update Board Game Details with Custom Config where Service Disabled
     // Update Board Game Details with Empty or Null ID/String Map
@@ -1665,6 +1680,7 @@ private class BoardGamesServiceTest {
                 Board_Games__c.Is_New__c => false
             }
         ));
-
     }
+    //#endregion
+
 }

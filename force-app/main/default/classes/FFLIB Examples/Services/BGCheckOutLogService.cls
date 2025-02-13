@@ -13,7 +13,7 @@
 * @modifiedBy     Sean Riley
 * @version        1.0
 * @created        2025-01-09
-* @modified       2025-02-05
+* @modified       2025-02-13
 * @systemLayer    Service
 * ──────────────────────────────────────────────────────────────────────────────────────────────────
 */
@@ -31,6 +31,10 @@ public without sharing class BGCheckOutLogService extends BaseService implements
     @TestVisible private static final String INVALID_CHK_IN_TIME_ERR_MSG = 'Check In Time Cannot be Before Check Out Time';
 
     //Initialize Service Class
+    public static IBGCheckOutLogService newInstance(){
+        return (IBGCheckOutLogService) Application.Service.newInstance(IBGCheckOutLogService.class);
+    }
+
     public BGCheckOutLogService(){
         super('BGCheckOutLog'); //Calls the Constructor from the Parent Class
     }
