@@ -77,7 +77,7 @@ public class BoardGameRatingsDomainTest {
         IMySObjectDomain result = MySObjectDomain.newInstance(new List<MySObject__c>{testRecord});
         Test.stopTest();
 
-        System.assertNotEquals(null, result, 'Should return instance');
+        Assert.areNotEqual(null, result, 'Should return instance');
     }
 
     // Call Constructor

@@ -10,7 +10,7 @@ __Parameters__ for Selector Methods should always be Sets or Lists for bulkifica
 
 Selector Methods should __Return__ Lists of the SObject Type not just an individual SObject for bulkification and possible resuability later.
 
-The Benefit is that this Layer can then be Mocked and Stubbed out from the whatever Test Class is calling the Selector to return relevant results without having to actually perform any DML inserts or updates with the Test Data bypassing any unneeded data manipulation required by Validation Rules as well as unexpected results from Triggers on the SObject that might change the data on the Test Record. Unit test data can then focus on just the logic in the mthod without having to worry about an Data Manipulation or Validation Rules that might be applied now or in the future.
+The Benefit is that this Layer can then be Mocked and Stubbed out from the whatever Test Class is calling the Selector to return relevant results without having to actually perform any DML with Test Data. This will allow us to bypass any unneeded data manipulation required by Validation Rules as well as unexpected results from Triggers on the SObject that might change the data on the Test Record. Unit test data can then focus on just the logic in the mthod without having to worry about any Data Manipulation or Validation Rules that might be applied now or in the future.
 
 ### Class
 1. Create Selector Layer Class and Interface
@@ -60,6 +60,8 @@ public without sharing class MySObjectSelector extends fflib_SObjectSelector imp
     
     //Standard Method. Basic Select By ID Query (From Parent fflib_SObjectSelector)
     public List<MySObject__c> selectById(Set<Id> recordIds){
+        // If customization is needed like adding related fields, 
+        // Replace this line with a standard QueryFactory Setup
         return super.selectSObjectsById(recordIds);
     }
     
@@ -92,7 +94,7 @@ private class MySObjectSelectorTest {
         IMySObjectSelector result = MySObjectSelector.newInstance();
         Test.stopTest();
 
-        System.assertNotEquals(null, result, 'Should return instance');
+        Assert.areNotEqual(null, result, 'Should return instance');
     }
 
     @isTest
@@ -125,6 +127,8 @@ fflib_QueryFactory query = newQueryFactory(false[^2], false[^3], true[^4]);
     query.setCondition('ID in :setIDs'); //Where Clause for the Query
     query.addOrdering('Name', fflib_QueryFactory.SortOrder.ASCENDING, true) //Sort Results (Field Name, Sort Order, NullsLast)
     query.setLimit(10); //Limit Results
+
+There are more options than those listed above but these are the most common
 
 [^2]: **AssertCRUD**: (Optional) False By Default, Determines if CRUD Permissions are Enforced.
 
