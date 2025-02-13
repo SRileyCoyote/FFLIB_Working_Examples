@@ -18,6 +18,7 @@
      - [Initialize](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md#initialize-selector-template)
 - Test Classes
      - [MockSetup Class](/documentation/MockSetup-Class#8-final-product)
+     - [Mocks.Verify()](/documentation/Mocks.Verify-Examples.md)
      - [Controllers](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md#test-class-template)
      - [Trigger](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md#trigger-test-template)
      - [TriggerHandler](/force-app/main/default/classes/FFLIB%20Examples/TriggerHandlers/README.md#triggerhandler-test-template)

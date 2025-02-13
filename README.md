@@ -19,7 +19,7 @@ This Repo Shows working examples of the FFLIB architechure design patterns using
 While the title ___IS___ "FFLIB Working Examples", included in this repo are also examples on how to do addtional things like I normally need to look up:
 - [Setting up a Scratch Org](/documentation/Setup-Scratch-Org.md)
 - Creating LWCs
-- [Creating CPEs for Screen Flow LWCs](/force-app/main/default/lwc)
+- [Creating CPEs for Screen Flow LWCs](/documentation/Custom-Property-Editors.md)
 - Creating and Implementing Interfaces
 - Extending Parent Classes
      - Difference between Abstract and Virtual Methods
@@ -34,7 +34,7 @@ While the title ___IS___ "FFLIB Working Examples", included in this repo are als
 - Custom Exceptions
 - Invocable Methods and Variables
 
-If this Repo, you will find:
+In this Repo, you will find:
 - [Setup Instructions](/documentation/Setup-Scratch-Org.md) on how to create a Scratch Org and populate it with all of the metadata included for the org as well as some Example Test Data so that you can see how the examples work in a live environment.
 - [Use Cases](/documentation/Example-Use-Cases.md) for all of the code provided in this Repository, which classes are utilized for that Use Case, as well as a brief overview of the coding method examples that are included in that Use Case.
 - [Links for More Information](#links-for-more-information) about the Application Schema as well as each of the different FFLIB Layers, both official definitions as well as notes about my own understanding of how each Layer is works with each other.
@@ -48,7 +48,7 @@ Did I missed the mark on something? <br>
 Do you still have questions about how to do something? <br>
 Are the examples or comments not clear enough for what you are trying to do?
 
-I consider this Example Repo as still a Work In Progress and would love to hear any feedback on what you think is still missing, what is not correct, or could be done better or more efficiently. 
+I consider this Example Repo as still a Work In Progress and would love to hear any feedback on what you think is still missing, what is not correct, what could be done better, or what could be done more efficiently. 
 
 Please feel free to leave a comment in the [Discussions Tab](https://github.com/SRileyCoyote/FFLIB_Working_Examples/discussions). 
 
