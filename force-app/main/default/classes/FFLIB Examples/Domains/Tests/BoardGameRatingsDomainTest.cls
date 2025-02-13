@@ -33,7 +33,7 @@ public class BoardGameRatingsDomainTest {
         IBoardGameRatingsDomain result = BoardGameRatingsDomain.newInstance(new List<Board_Game_Rating__c>{testRecord});
         Test.stopTest();
 
-        System.assertNotEquals(null, result, 'Should return instance');
+        Assert.areNotEqual(null, result, 'Should return instance');
     }
 
     // Call Constructor

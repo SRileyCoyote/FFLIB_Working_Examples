@@ -93,7 +93,7 @@ private class BGGCalloutServiceTest {
         IBGGCalloutService result = BGGCalloutService.newInstance();
         Test.stopTest();
 
-        System.assertNotEquals(null, result, 'Should return instance');
+        Assert.areNotEqual(null, result, 'Should return instance');
     }
     
     //#region ///////////////////////////////// GetIDsFromBoardGameGeek ///////////////////////////////////////////

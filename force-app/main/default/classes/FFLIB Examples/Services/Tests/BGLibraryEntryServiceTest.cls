@@ -111,7 +111,7 @@ public with sharing class BGLibraryEntryServiceTest {
         IBGLibraryEntryService result = BGLibraryEntryService.newInstance();
         Test.stopTest();
 
-        System.assertNotEquals(null, result, 'Should return instance');
+        Assert.areNotEqual(null, result, 'Should return instance');
     }
     
     // Call Service using Current Config Record

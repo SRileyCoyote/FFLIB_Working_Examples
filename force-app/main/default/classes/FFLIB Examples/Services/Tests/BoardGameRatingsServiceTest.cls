@@ -119,7 +119,7 @@ private class BoardGameRatingsServiceTest {
         IBoardGameRatingsService result = BoardGameRatingsService.newInstance();
         Test.stopTest();
 
-        System.assertNotEquals(null, result, 'Should return instance');
+        Assert.areNotEqual(null, result, 'Should return instance');
     }
     
     // Call Service using Current Config Record 

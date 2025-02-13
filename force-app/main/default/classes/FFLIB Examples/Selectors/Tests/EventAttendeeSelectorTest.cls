@@ -22,7 +22,7 @@ private class EventAttendeeSelectorTest {
         IEventAttendeeSelector result = EventAttendeeSelector.newInstance();
         Test.stopTest();
 
-        System.assertNotEquals(null, result, 'Should return instance');
+        Assert.areNotEqual(null, result, 'Should return instance');
     }
 
     @isTest

@@ -22,7 +22,7 @@ private class BoardGameRatingSelectorTest {
         IBoardGameRatingSelector result = BoardGameRatingSelector.newInstance();
         Test.stopTest();
 
-        System.assertNotEquals(null, result, 'Should return instance');
+        Assert.areNotEqual(null, result, 'Should return instance');
     }
 
     @isTest
