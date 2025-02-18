@@ -1,6 +1,30 @@
-# HTML
+# Overview
 
+1. [HTML](#html)
+1. [Javascript](#common-javascript-methods)
+    - [Get Record](#get-record)
+    - [Show Toast](#show-toast)
+    - [Wire Method](#wire-method)
+    - [Promise Method](#promise-method)
+1. [JS-Meta.xml](#js-metaxml)
+    - [Header](#header)
+    - [Targets](#targets)
+    - [Target Configs](#target-configs)
+    - [Properties](#properties)
+        - [Standard Properties](#standard-property-types)
+        - [Flow Specific Properties](#additional-flow-property-types)
+1. [@AuraEnabled Apex Method](#auraenabled-apex-method)
+
+# HTML
 The HTML for a LWC is going to be too hyper-specific to what you need to be able to provide a basic template and there are WAY too many [LWC Components](https://developer.salesforce.com/docs/component-library/overview/components) to provide examples of each one here especially when [This Library](https://developer.salesforce.com/docs/component-library/overview/components) exists.
+
+```
+<template>
+
+</template>
+```
+
+[Back to Top](#overview)
 
 # Common JavaScript Methods
 ## Get Record
@@ -42,6 +66,9 @@ wiredRecord({error, data}){
     }
 }
 ```
+
+[Back to Top](#overview)
+
 ## Show Toast
 ### Import
 ```
@@ -65,6 +92,9 @@ this.showToast('Import Successful', result, 'success');
 ```
 this.showToast('Error Occured', errormessage, 'error');
 ```
+
+[Back to Top](#overview)
+
 ## Wire Method
 ### Import
 ```
@@ -84,6 +114,9 @@ import myMethod from '@salesforce/apex/myController.myMethod';
         }
     }
 ```
+
+[Back to Top](#overview)
+
 ## Promise Method
 ### Import
 ```
@@ -113,6 +146,8 @@ handleClickMethod(){
 } 
 ```
 
+[Back to Top](#overview)
+
 # JS-Meta.xml
 [JS-Meta.xml Config Documentation](https://developer.salesforce.com/docs/platform/lwc/guide/reference-configuration-tags.html)
 ## Header
@@ -122,6 +157,9 @@ handleClickMethod(){
 <isExposed>true</isExposed>
 <masterLabel>My LWC</masterLabel>
 ```
+
+[Back to Top](#overview)
+
 ## Targets
 [Full List of Targets](https://developer.salesforce.com/docs/platform/lwc/guide/reference-configuration-tags.html#target)
 ```
@@ -138,6 +176,9 @@ handleClickMethod(){
     <target>lightning__RecordAction</target>
 </targets>
 ```
+
+[Back to Top](#overview)
+
 ## Target Configs
 ### App Page
 ```
@@ -168,6 +209,9 @@ handleClickMethod(){
     </targetConfig>
 </targetConfigs>
 ```
+
+[Back to Top](#overview)
+
 ## Properties
 ### Standard Property Types
 [Full List of Standard Property Options](https://developer.salesforce.com/docs/platform/lwc/guide/targets-lightning-record-page.html#property)
@@ -188,6 +232,9 @@ handleClickMethod(){
 ```
 <property name="strPickList" type="String" label="My Picklist" description="This is My Picklist's Description" default="value1" datasource="value1,value2,value3" required="true"/>
 ```
+
+[Back to Top](#overview)
+
 ### Additional Flow Property Types
 **NOTE**: Flows have an addition attribute of `role` which can be set to `inputOnly` or `outputOnly`. If not set, the default is both input and output.
 #### Date
@@ -211,3 +258,25 @@ If you want the Admin User to Select a specific SObject Type for a Property, you
 
 <property name="myRecord" type="{mySObject}" label="Selected Record" description="Record Description." role="inputOnly"/>   
 ```
+
+[Back to Top](#overview)
+
+# @AuraEnabled Apex Method
+**NOTE**: Regardless of the message given, the message on the AuraHandledException is "Script-thrown exception". Setting the message as indicated below passes along the correct message recieved when testing.
+
+```
+@AuraEnabled
+public static String myAuraEnabledMethod(ID recordId){
+    AuraHandledException auraEx = new AuraHandledException('Message');
+    try {
+        //Do Work
+        return null;
+    } catch (Exception e) {
+        System.debug('Error Thrown in Controller', e);
+        auraEx.setMessage(e.getMessage());
+        throw auraEx;
+    }
+}
+```
+
+[Back to Top](#overview)
