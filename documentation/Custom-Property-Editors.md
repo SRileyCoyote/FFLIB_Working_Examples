@@ -93,7 +93,7 @@ sf package install -p 04t5G000004fzAgQAI -w 30 -o MyScratchOrg
 
 ### 2. Build LWC
 
-Create your LWC HTML, CSS (if needed), JavaScript as you normally would.
+Create your [LWC HTML and JavaScript](/documentation/LWC-Templates.md) as you normally would
 
 #### Properties
 On the `js-meta.xml` file, set the target as `lightning__FlowScreen` and add any Inputs you want as Properties in the `targetConfig` tag like so:
@@ -106,40 +106,6 @@ On the `js-meta.xml` file, set the target as `lightning__FlowScreen` and add any
 </targetConfigs>
 ```
 **NOTE**: Only `Name` and `Type` are needed as everything else (like `label`, `description`, etc) will be handled by the CPE.
-
-#### SObject Property Types
-If you want the Admin User to Select a specific SObject Type for a Property, you can add the Property Type to your LWCs `js-meta.xml` like this:
-
-```
-<targetConfig targets="lightning__FlowScreen">
-<!-- List of Properties for LWC -->
-    <propertyType name="mySObject" extends="SObject" label="Pick an SObject Type"/>
-    <property name="myRecord" type="{mySObject}" label="Selected Record"/>   
-    <!-- Other Properties for the LWC-->         
-</targetConfig>
-
-```
-##### SObject Property Type Examples
-###### Use PropertyType to prompt User to Select SObjects Type
-```
-<propertyType name="mySObject" extends="SObject" label="Flow Record Type" description="Generic sObject data type used for input sObject properties."/>
-```
-###### Example for Getting Record of the SObject Type
-```
-<property name="myRecord" type="{mySObject}" label="Flow Record" description="Record From Triggered Flow."/>            
-```
-###### Example for Getting Mutliple Records of the SObject Type
-```
-<property name="myRecords" type="{mySObject[]}" label="Collection of Selected SObject Type Records" description="Collection of Records."/>      
-```      
-###### Example for Getting Record of the Specific SObject Type
-```
-<property name="myCustomObjectRecord" type="@salesforce/schema/My_Custom_Object__c" label="My Custom Object Record" description="My Custom Object Record."/>   
-```         
-###### Example for Getting Mutliple of Specific SObjects
-```
-<property name="myCustomObjectRecords" type="@salesforce/schema/My_Custom_Object__c[]" label="Collection of My Custom Object" description="Collection of My Custom Objects."/>   
-```
 
 [(Back to Top)](#custom-property-editors) - [(Setup Steps)](#steps-to-create-a-screen-flow-cpe)
 

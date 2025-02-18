@@ -1,4 +1,4 @@
-# Templates
+## Apex Class Templates
 - [Application Class](/force-app/main/default/classes/FFLIB%20Examples/Application/README.md#application-template)
 - Implementation
      - [AuraEnabled Method](/force-app/main/default/classes/FFLIB%20Examples/Controllers/README.md#auraenabled-template)
@@ -26,3 +26,15 @@
      - [Service](/force-app/main/default/classes/FFLIB%20Examples/Services/README.md#service-test-class-template)
      - [Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors/README.md#selector-test-template)
 
+## Lightning Web Component Templates
+- [Lightning Web Components](/documentation/LWC-Templates.md)
+     - [HTML](/documentation/LWC-Templates.md#html)
+     - [Javascript](/documentation/LWC-Templates.md#common-javascript-methods)
+          - [GetRecord](/documentation/LWC-Templates.md#get-record)
+          - [Promise](/documentation/LWC-Templates.md#promise-method)
+          - [Wire](/documentation/LWC-Templates.md#wire-method)
+          - [ShowToast](/documentation/LWC-Templates.md#show-toast)
+     - [JS-Meta.xml](/documentation/LWC-Templates.md#js-metaxml)
+          - [Standard Properties](/documentation/LWC-Templates.md#standard-property-types)
+          - [Flow Screen Properties](/documentation/LWC-Templates.md#additional-flow-property-types)
+- [Custom Property Editors](/documentation/Custom-Property-Editors.md)

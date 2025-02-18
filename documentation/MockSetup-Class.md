@@ -1,5 +1,5 @@
 # MockSetup Class
-Mocking and Stubbing is a key component and benefit of using FFLIB. Beacause of this, many of the test classes will utilize the use of a MockSetup as an Inner Class in the Test Class. This Inner Class handles all of the Mocking and Stubbing needed for all of the unit tests for quick re-use in each test method. Full Credit to John Towers for the initial design!
+Mocking and Stubbing is a key component and benefit of using FFLIB. Beacause of this, many of the test classes will utilize the use of a MockSetup as an Inner Class in the Test Class. This Inner Class handles all of the Mocking and Stubbing needed for all of the unit tests for quick re-use in each test method. Full Credit to John Towers for showing me this initial design!
 
 1. [Setup](#setup-mocksetup-class)
     1. [Create ENUM List](#1-create-enum-list)
@@ -94,9 +94,9 @@ ICalloutService mockCalloutService = (ICalloutService) mocks.mock(CalloutService
 [Back to Steps](#mocksetup-class) 
 
 ### 6. Mock and Stub Classes
-Between the ___Mocks.StartStubbing()___ and ___Mocks.StopStubbing()___ calls, we are going to actually stub out out mocked classes intialized in the previous step. Any Methods that are not Stubbed here, will return a null value.
+Between the ***`Mocks.StartStubbing()`*** and ***`Mocks.StopStubbing()`*** calls, we are going to actually stub out out mocked classes intialized in the previous step. Any Methods that are not Stubbed here, will return a null value.
 
-Notice that we are using the ___fflib_Match___ class to mock the inputs the method recieves. What this means is that regardless of what values are given to the method when it is called, always return the value provided in the Params Map given to the constructor. As mentioned in [Step #4](#4-initialize-undeclared-params), if no value was given in the test method, it will return an empty instance of that data type  
+Notice that we are using the ***`fflib_Match`*** class to mock the inputs the method recieves. What this means is that regardless of what values are given to the method when it is called, always return the value provided in the Params Map given to the constructor. As mentioned in [Step #4](#4-initialize-undeclared-params), if no value was given in the test method, it will return an empty instance of that data type  
 #### Stubbed Selector Example:
 ```
 mocks.when(mockSelector.SObjectType()).thenReturn(MySObject__c.SObjectType);
@@ -105,7 +105,7 @@ mocks.when(mockSelector.selectById(
                                         ))
     .thenReturn((List<MySObject__c>) params.get(MockParams.RETURNED_MYSOBJECTS));
 ```
-__IMPORTANT__: Stubbing the SObjectType is REQUIRED here or the Mocking of the Selector WILL Fail
+**NOTE**: Stubbing the SObjectType is ***REQUIRED*** here or the Mocking of the Selector **WILL** Fail
 
 #### Stubbed Service Example:
 ```
@@ -218,10 +218,12 @@ class MockSetup {
 ## Example in a Test Method
 Now that we have our MockSetup Class built, here is how we would use it in a test method.
 
-### Example Test Method Utilizing MockSetup
-Notice that we are only setting the Returned Board Games in the Params as this is the only return value we would need in this test method.
+NOTE: We are using the [GIVEN-WHEN-THEN Style](https://martinfowler.com/bliki/GivenWhenThen.html) for Test methods
 
-Since we are not needing to perform any DMLs, can use ___Mocks.Verify()___ to validate that the records were commited to be updated in the mocked UnitOfWork ([More Mocks.Verify() Examples](/documentation/Mocks.Verify-Examples.md))
+### Example Test Method Utilizing MockSetup
+Notice that we are only setting the `RETURNED_MYSOBJECTS` in the Params as this is the only return value we would need in this test method.
+
+Since we are not needing to perform any DMLs, can use ***`Mocks.Verify()`*** to validate that the records were commited to be updated in the mocked `UnitOfWork` ([More Mocks.Verify() Examples](/documentation/Mocks.Verify-Examples.md))
 ```
 @IsTest
 public static void givenInputParamters_WhenMethodNameIsCalled_ThenReturnExpectedMessage(){
@@ -261,7 +263,7 @@ public static void givenInputParamters_WhenMethodNameIsCalled_ThenReturnExpected
 Notice that the Exception Message returned matches the Exception Message that was provided in our MockSetup Class when we mocked throwing the Exception.
 ```
 @IsTest
-public static void givenInputParamters_WhenMethodNameIsCalled_ThenThrowError(){
+public static void givenInputParamters_WhenMethodNameIsCalled_ThenCatchError(){
 
     //Setup Test Data and Mocking
     //No Test Data Needed For this Unit Test

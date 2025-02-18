@@ -4,7 +4,7 @@ Since one of the benefits of Mocking and Stubbing is that we will not need to do
 ## Examples
 Here are examples of usage of some of the different types of ways to use the ***Mocks.Verify()*** method:
 
-#### Verify that UOW Register Dirty Method was called X number of times
+#### Verify that UOW Method was called *X* number of times
 
 ```
 ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, X))
@@ -14,26 +14,28 @@ Here are examples of usage of some of the different types of ways to use the ***
 
 ```
  ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
-            .registerDirty(fflib_Match.sobjectWith(
+            .registerDirty(fflib_Match.sObjectWith(
                 new Map<Schema.SObjectField, Object>{
-                    Board_Games__c.ID => testRecord.ID,
-                    Board_Games__c.Name => testRecord.Name
+                    MySObject__c.ID => testRecord.ID,
+                    MySObject__c.Name => testRecord.Name
                 }
             ));
 ```
 #### Verify that UOW Method ran for a LIST of Specific Records and matches expected values being updated
+
+**NOTE**: Uses the plural `fflib_Match.sObjectsWith` Method instead of the singular `fflib_Match.sObjectWith` Method
 
 ```
  ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
             .registerDirty(fflib_Match.sObjectsWith(
                   new List<Map<SObjectField,Object>> {
                     new Map<SObjectField,Object> {
-                        Board_Games__c.ID => testRecord1.ID,
-                        Board_Games__c.Name => testRecord1.Name
+                        MySObject__c.ID => testRecord1.ID,
+                        MySObject__c.Name => testRecord1.Name
                     },
                     new Map<SObjectField,Object> {
-                        Board_Games__c.ID => testRecord2.ID,
-                        Board_Games__c.Name => testRecord2.Name
+                        MySObject__c.ID => testRecord2.ID,
+                        MySObject__c.Name => testRecord2.Name
                     }
                 }
             ));
@@ -42,18 +44,17 @@ Here are examples of usage of some of the different types of ways to use the ***
 
 ```
  ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
-            .registerNew(fflib_Match.sobjectWith(
+            .registerNew(fflib_Match.sObjectWith(
                             new Map<Schema.SObjectField, Object>{
-                                BG_Library_Entry__c.BGG_Owner__c => testOwnerName,
-                                BG_Library_Entry__c.Event__c => testEventId
-                            }
+                                MySObject__c.Name => testOwnerName
+                        }
                         ),
                         //Matches Relationship Field
-                        fflib_Match.eqSObjectField(BG_Library_Entry__c.Board_Game__c), 
+                        fflib_Match.eqSObjectField(MySObject__c.RelatedField__c), 
                         //Matches Object to create Relationship with
-                        fflib_Match.sobjectWith(
+                        fflib_Match.sObjectWith(
                             new Map<Schema.SObjectField, Object>{
-                                Board_Games__c.BGG_ID__c => testBoardGame.BGG_ID__c
+                                Related__c.Id => testRelatedRecord.Id
                             }
                         ) 
             );
