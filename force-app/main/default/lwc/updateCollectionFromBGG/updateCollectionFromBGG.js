@@ -27,7 +27,6 @@ export default class UpdateCollectionFromBGG extends LightningElement {
                 Source_Type__c: data.fields.Source_Type__c.value,
                 BGG_Id__c: data.fields.BGG_Id__c.value
             };
-;
         } else if (error) {
             this.showToast(
                 'Error Fetching Data',
