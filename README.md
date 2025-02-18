@@ -7,6 +7,7 @@ This Repo holds a working example of how to use and implement FFLIB as well as e
 ## Contents
 
 This Repo contains metadata for a working Salesforce Instance intended to be deployed as a Scratch Org or to a Developer Edition Environment. Included in this repo are also examples on how to do addtional things like I normally need to look up like:
+- [Utilizing the FFLIB Architechure Design Patterns](/documentation/FFLIB.md)
 - [Setting up a Scratch Org](/documentation/Setup-Scratch-Org.md)
 - [Creating Lightning Web Components](/documentation/LWC-Templates.md)
 - [Creating CPEs for Screen Flow LWCs](/documentation/Custom-Property-Editors.md)
@@ -30,17 +31,6 @@ Already Included in the Metadata are copies of the following Repos:
 - [FFLIB Common](/force-app/main/default/classes/FFLIB%20Common%20Classes/FFLIB_COMMON)
 - [FFLIB Mocks](/force-app/main/default/classes/FFLIB%20Common%20Classes/APEX_MOCKS) 
 - [SObjectFabricator](/force-app/main/default/classes/FFLIB%20Common%20Classes/SOBJECT_FABRICATOR)
-
-
-This Repo Shows working examples of the FFLIB architechure design pattern using patterns and best practices I have picked up over the years. This is an open source repo intended for my own personal use and to share with those that need it. 
-
-While the title ___IS___ "FFLIB Working Examples", 
-
-In this Repo, you will find:
-- [Setup Instructions](/documentation/Setup-Scratch-Org.md) on how to create a Scratch Org and populate it with all of the metadata included for the org as well as some Example Test Data so that you can see how the examples work in a live environment.
-- [Use Cases](/documentation/Example-Use-Cases.md) for all of the code provided in this Repository, which classes are utilized for that Use Case, as well as a brief overview of the coding method examples that are included in that Use Case.
-- [Links for More Information](#links-for-more-information) about the Application Schema as well as each of the different FFLIB Layers, both official definitions as well as notes about my own understanding of how each Layer is works with each other.
-
 
 Did I missed the mark on something? <br>
 Do you still have questions about how to do something? <br>
