@@ -66,7 +66,7 @@ public class MySObjectDomain extends BaseDomain implements IMySObjectDomain {
 #### Domain Test Class Template
 ```
 @IsTest
-public class BoardGameRatingsDomainTest {
+public class MySObjectDomainTest {
        
     // Call newInstance
     @IsTest

@@ -4,9 +4,9 @@
 
 The Service Layer is the Meat and Potatoes of the Apex Method. This is where any and all logic should be performed for an SObject. A Service Class Method might call a [Domain](/force-app/main/default/classes/FFLIB%20Examples/Domains) to filter records passed in from the [Implementation Layer](), A [Selector](/force-app/main/default/classes/FFLIB%20Examples/Selectors) to make a SOQL call to retrieve related records, or even other Services to perform actions or logic not related to its SObject.
 
-Each Service Method that performs any DML should accept a [Unit of Work]() Object as a parameter from the [Implementation Layer](). The [Implementation Layer]() should commit the records after the call to all the Service methods. Because no actual DML is being performed yet, __RegisterNew__ or __RegisterDirty__ Methods from the [Unit of Work]() CAN be done inside of a Loop without any issue of hitting Governor Limits. 
+Each Service Method that performs any DML should accept a [Unit of Work]() Object as a parameter from the [Implementation Layer](). The [Implementation Layer]() should commit the records after the call to all the Service methods. Because no actual DML is being performed yet, **`RegisterNew`** or **`RegisterDirty`** Methods from the [Unit of Work]() CAN be done inside of a Loop without any issue of hitting Governor Limits. 
 
-The Benefit is that this Layer can then Mock and Stub out those other Services, [Domains](/force-app/main/default/classes/FFLIB%20Examples/Domains), [Selectors](/force-app/main/default/classes/FFLIB%20Examples/Selectors), and the [UnitOfWork](). In doing so, Test data can be created and limited to just the fields and values required by the logic of the Service Unit Test and not have to worry about any additional validation rules for required fields of the record as no SOQL calls or DML will actually be performed in the Unit Tests.
+The Benefit is that this Layer can then Mock and Stub out those other Services, [Domains](/force-app/main/default/classes/FFLIB%20Examples/Domains), [Selectors](/force-app/main/default/classes/FFLIB%20Examples/Selectors), and the [UnitOfWork](). In doing so, Test data can be created and limited to just the fields and values required by the logic of the Service Unit Test and not have to worry about any additional validation rules or required fields of the record as no SOQL calls or DML will actually be performed in the Unit Tests.
 
 ### Class
 1. Create Service Layer Class and Interface
@@ -46,7 +46,7 @@ public without sharing class MySObjectService extends BaseService implements IMy
     }
 
     //Initialize Service Class
-    public BGCheckOutLogService(){
+    public MySObjectService(){
         super('MySObject');
     }
 
