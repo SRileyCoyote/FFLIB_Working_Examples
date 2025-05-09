@@ -74,7 +74,6 @@ TODO:
 - Update Success Message to include number of Library entries created
 - Add Button Remove Collection From Event That Deletes BGLE for that Collection for the Event
 - Remove Game From Library When Removed From Collection or GeekList
-- If Collection Not Found, Return Error.
 ```
 
 We will use the following to implement this Use Case:

@@ -16,8 +16,8 @@ This Repo contains metadata for a working Salesforce Instance intended to be dep
      - Difference between Abstract and Virtual Methods
      - Using the Protected Access Modifier
 - Using [Custom Metadata Types](/documentation/SObject-Schema.md#custom-metadata-types)
-- [Creating REST API Callouts](/force-app/main/default/classes/FFLIB%20Examples/Services/BGGCalloutService.cls)
-- [Mocking HTTP Callouts](/force-app/main/default/classes/FFLIB%20Examples/Services/Tests/BGGCalloutServiceTest.cls)
+- [Creating REST API Callouts](/documentation/API-Connections.md)
+- [Mocking HTTP Callouts](/documentation/API-Connections.md#mocking-http-response)
 - [GIVEN-WHEN-THEN Style](https://martinfowler.com/bliki/GivenWhenThen.html) Test Classes
 - [MockSetup Class](/documentation/MockSetup-Class) Example
 - [Mocks.Verify](/documentation/Mocks.Verify-Examples.md) Examples
