@@ -119,7 +119,6 @@ global static Account doGet() {
 
         //Do Work
         
-        res.responseBody = Blob.valueOf(JSON.serialize(myResults));
         res.statusCode = 200;
     } catch (Exception e) {
         res.statusCode = 404;
@@ -167,7 +166,7 @@ global static void doPut() {
         
         //Do Work
 
-        res.statusCode = 204; // No content
+        res.statusCode = 204;
     } catch (Exception e) {
         res.statusCode = 400;
         res.responseBody = Blob.valueOf('{"error": "' + e.getMessage() + '"}');
