@@ -80,10 +80,8 @@ private class BoardGameImporterControllerTest {
 
             //Stubbing the Board Game Service
             mocks.when(mockBoardGameService.getBoardGameDetailsFromBGG( (fflib_SObjectUnitOfWork) fflib_Match.anyObject(),
-                                                                                        fflib_Match.anyId(), 
-                                                                                        fflib_Match.anyString(), 
-                                                                                        fflib_Match.anyBoolean(), 
-                                                                                        fflib_Match.anyBoolean()))
+                                                                            (Map<String, Object>) fflib_Match.anyObject()
+                                                                        ))
                 .thenReturn((String) params.get(MockParams.RETURNED_MESSAGE));
             mocks.stopStubbing();
 
@@ -148,7 +146,8 @@ private class BoardGameImporterControllerTest {
         String result = BoardGameImporterController.importFromBGG(fflib_IDGenerator.generate(Event__c.SObjectType),
                                                     'Fake Collection Name',
                                                     true,
-                                                    true );
+                                                    true ,
+                                                    false);
         Test.stopTest();
 
         //Validate Data

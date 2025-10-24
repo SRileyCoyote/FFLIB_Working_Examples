@@ -1,0 +1,139 @@
+<template>
+    <lightning-card title="Results">
+        <div style="min-height: 375px;" class="slds-p-around_medium">
+            <template if:true={results}>
+                <!-- Error Box -->
+                <template if:true={hasErrors}>
+                    <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error slds-m-bottom_medium">
+                        <span class="slds-assistive-text">Error</span>
+                        <strong class="slds-text-heading_small">Import Errors:</strong>
+                        <ul class="slds-list_dotted slds-m-left_medium">
+                            <template for:each={results.errorMessages} for:item="errorMsg">
+                                <li key={errorMsg}>{errorMsg}</li>
+                            </template>
+                            <template if:true={hasUnprocessedIds}>
+                                <li>{unprocessedCount} unprocessed BGG IDs</li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            
+                <!-- New Board Games Section -->
+                <template if:true={hasNewBoardGames}>
+                    <div class="slds-box slds-m-bottom_small">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-p-bottom_x-small slds-border_bottom" onclick={toggleNewBoardGames} style="cursor:pointer;">
+                            <lightning-icon icon-name={toggleNewBoardGameIcon} size="small" class="slds-m-right_small"></lightning-icon>
+                            <strong>New Board Games Added:&nbsp; </strong> {newBoardGamesCount}
+                        </div>
+                        <template if:true={expandedSections.newBoardGames}>
+                            <ul class="slds-list_dotted slds-m-top_small slds-m-left_large">
+                                <template for:each={newBoardGames} for:item="game">
+                                    <li key={game.Id}>{game.Name}</li>
+                                </template>
+                            </ul>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- New BGLEs Section -->
+                <template if:true={hasNewBGLEs}>
+                    <div class="slds-box slds-m-bottom_small">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-p-bottom_x-small slds-border_bottom" onclick={toggleNewBGLEs} style="cursor:pointer;">
+                            <lightning-icon icon-name={toggleNewBGLEsIcon} size="small" class="slds-m-right_small"></lightning-icon>
+                            <strong>New Library Entries Added:&nbsp; </strong> {newBGLEsCount}
+                        </div>
+                        <template if:true={expandedSections.newBGLEs}>
+                            <ul class="slds-list_dotted slds-m-top_small slds-m-left_large">
+                                <template for:each={newBGLEs} for:item="game">
+                                    <li key={game.Id}>
+                                        {game.Event_Name__c}:&nbsp; <strong>{game.BoardGameName__c}</strong>
+                                        <ul class="slds-list_dotted slds-m-left_medium">
+                                            <li if:true={game.Comments__c}><strong>Comments:</strong> {game.Comments__c}</li>
+                                        </ul>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                    </div>
+                </template>
+                
+                <!-- Updated Board Games Section -->
+                <template if:true={hasUpdatedBoardGames}>
+                    <div class="slds-box slds-m-bottom_small">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-p-bottom_x-small slds-border_bottom" onclick={toggleUpdatedBoardGames} style="cursor:pointer;">
+                            <lightning-icon icon-name={toggleUpdatedBoardGameIcon} size="small" class="slds-m-right_small"></lightning-icon>
+                            <strong>Updated Board Games:&nbsp; </strong> {updatedBoardGamesCount}
+                        </div>
+                        <template if:true={expandedSections.updatedBoardGames}>
+                            <template for:each={updatedBoardGames} for:item="game">
+                                <li key={game.Id}>
+                                    <strong>{game.Name}</strong>
+                                    <ul class= "slds-list_dotted slds-m-bottom_small slds-m-left_large">
+                                        <template for:each={game.changeRows} for:item="change">
+                                            <li key={change.field}>
+                                                <strong>{change.field}</strong>: {change.oldValue} <strong>→</strong> {change.newValue}
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </li>
+                            </template>
+                        </template>
+                    </div>
+                </template>
+            
+                <!-- Updated BGLEs -->
+                <template if:true={hasUpdatedBGLEs}>
+                    <div class="slds-box slds-m-bottom_small">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-p-bottom_x-small slds-border_bottom" onclick={toggleUpdatedBGLEs} style="cursor:pointer;">
+                            <lightning-icon icon-name={toggleUpdatedBGLEsIcon} size="small" class="slds-m-right_small"></lightning-icon>
+                            <strong>Updated Library Entries:&nbsp; </strong> {updatedBGLEsCount}
+                        </div>
+                        <template if:true={expandedSections.updatedBGLEs}>
+                            <ul class="slds-list_dotted slds-m-top_small slds-m-left_large">
+                                <template for:each={updatedBGLEs} for:item="game">
+                                    <li key={game.Id}>
+                                        {game.Event_Name__c}: <strong>{game.BoardGameName__c}</strong>
+                                        <ul class="slds-list_dotted slds-m-bottom_small slds-m-left_large">
+                                            <template for:each={game.changeRows} for:item="change">
+                                                <li key={change.field}>
+                                                    <strong>{change.field}</strong>: {change.oldValue} <strong>→</strong> {change.newValue}
+                                                </li>
+                                            </template>
+                                        </ul>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                    </div>
+                </template>
+    
+                <!-- Removed Library Entries -->
+                <template if:true={hasRemovedBGLEs}>
+                    <div class="slds-box slds-m-bottom_small">
+                        <div class="slds-grid slds-grid_vertical-align-center slds-p-bottom_x-small slds-border_bottom" onclick={toggleUpdatedBoardGames} style="cursor:pointer;">
+                            <lightning-icon icon-name={toggleRemovedBGLEsIcon} size="small" class="slds-m-right_small"></lightning-icon>
+                            <strong>Removed Library Entries:&nbsp; </strong> {removedBGLEsCount}
+                        </div>
+                        <template if:true={expandedSections.removedBGLEs}>
+                            <ul class="slds-list_dotted slds-m-top_small">
+                                <template for:each={removedBGLEs} for:item="game">
+                                    <li key={game.Id}>
+                                        {game.Event_Name__c} - <strong>{game.BoardGameName__c}</strong>
+                                        <ul class="slds-list_dotted slds-m-left_medium">
+                                            <li><strong>Copies:</strong> {game.Status__c}</li>
+                                            <li><strong>Comments:</strong> {game.Comments__c}</li>
+                                        </ul>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                    </div>
+                </template>
+
+            </template>
+            <template if:false={hasAnyResults}>
+                No Results Returned.
+            </template>
+        </div>        
+    </lightning-card>
+</template>

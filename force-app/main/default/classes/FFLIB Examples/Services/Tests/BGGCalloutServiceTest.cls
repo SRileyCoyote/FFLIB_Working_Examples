@@ -82,7 +82,9 @@ private class BGGCalloutServiceTest {
     // Call IDs From BGG with No Collection Name or GeekList ID
     // Call IDs from BGG with Collection Name Exceeding Call Limit 
     // Call IDs from BGG with GeekList ID Exceeding Call Limit 
-    // Call GeekList API with Status Code 202 
+    // Call GeekList API with Status Code 202
+    // Call Collection API with Invalid Collection Name
+    // Call Collection API with No Items Returned
 
     //Start Testing
     // Call New Instance
@@ -200,7 +202,7 @@ private class BGGCalloutServiceTest {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
-        testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>();
+        testParam.wrapperMap = new Map<String, BoardGameWrapper>();
         
         // Mock HTTP response
         Test.startTest();
@@ -222,8 +224,8 @@ private class BGGCalloutServiceTest {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
-        testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        BoardGameWrapper wrapper = new BoardGameWrapper();
+        testParam.wrapperMap = new Map<String, BoardGameWrapper>{
             '207830' => wrapper
         };
         
@@ -247,17 +249,17 @@ private class BGGCalloutServiceTest {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
-        testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        testParam.wrapperMap = new Map<String, BoardGameWrapper>{
             //Load First 5 IDs from Details Example into Map
-            '207830' => new BGGCalloutService.BoardGameWrapper(),
-            '176286' => new BGGCalloutService.BoardGameWrapper(),
-            '172818' => new BGGCalloutService.BoardGameWrapper(),
-            '233266' => new BGGCalloutService.BoardGameWrapper(),
-            '314088' => new BGGCalloutService.BoardGameWrapper()
+            '207830' => new BoardGameWrapper(),
+            '176286' => new BoardGameWrapper(),
+            '172818' => new BoardGameWrapper(),
+            '233266' => new BoardGameWrapper(),
+            '314088' => new BoardGameWrapper()
         };
         //Add Remaining IDs Needed For testing
         for (Integer i = 0; i < 15; i++){
-            testParam.wrapperMap.put(i.toString(), new BGGCalloutService.BoardGameWrapper());
+            testParam.wrapperMap.put(i.toString(), new BoardGameWrapper());
         }
         
         // Mock HTTP response
@@ -279,17 +281,17 @@ private class BGGCalloutServiceTest {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
-        testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        testParam.wrapperMap = new Map<String, BoardGameWrapper>{
             //Load First 5 IDs from Details Example into Map
-            '207830' => new BGGCalloutService.BoardGameWrapper(),
-            '176286' => new BGGCalloutService.BoardGameWrapper(),
-            '172818' => new BGGCalloutService.BoardGameWrapper(),
-            '233266' => new BGGCalloutService.BoardGameWrapper(),
-            '314088' => new BGGCalloutService.BoardGameWrapper()
+            '207830' => new BoardGameWrapper(),
+            '176286' => new BoardGameWrapper(),
+            '172818' => new BoardGameWrapper(),
+            '233266' => new BoardGameWrapper(),
+            '314088' => new BoardGameWrapper()
         };
         //Add Remaining IDs Needed For testing
         for (Integer i = 0; i < 20; i++){
-            testParam.wrapperMap.put(i.toString(), new BGGCalloutService.BoardGameWrapper());
+            testParam.wrapperMap.put(i.toString(), new BoardGameWrapper());
         }
         
         // Mock HTTP response
@@ -311,13 +313,13 @@ private class BGGCalloutServiceTest {
         // Get XML response from the Static Resource
         String mockXmlResponse = getMockXmlResponseFromStaticResource('BGG_Details_Example');
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
-        testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        testParam.wrapperMap = new Map<String, BoardGameWrapper>{
             //Load First 5 IDs from Details Example into Map
-            '207830' => new BGGCalloutService.BoardGameWrapper(),
-            '176286' => new BGGCalloutService.BoardGameWrapper(),
-            '172818' => new BGGCalloutService.BoardGameWrapper(),
-            '233266' => new BGGCalloutService.BoardGameWrapper(),
-            '314088' => new BGGCalloutService.BoardGameWrapper()
+            '207830' => new BoardGameWrapper(),
+            '176286' => new BoardGameWrapper(),
+            '172818' => new BoardGameWrapper(),
+            '233266' => new BoardGameWrapper(),
+            '314088' => new BoardGameWrapper()
         };
         
         // Mock HTTP response
@@ -347,9 +349,9 @@ private class BGGCalloutServiceTest {
         // Get XML response from the Static Resource
         String mockXmlResponse = 'Code 400 Error';
         BGGCalloutService.CalloutResult testParam = new BGGCalloutService.CalloutResult();
-        testParam.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        testParam.wrapperMap = new Map<String, BoardGameWrapper>{
             //Load First 5 IDs from Details Example into Map
-            '207830' => new BGGCalloutService.BoardGameWrapper()
+            '207830' => new BoardGameWrapper()
         };
 
         // Mock HTTP response
@@ -572,6 +574,57 @@ private class BGGCalloutServiceTest {
         
         // Validate the results
         Assert.areEqual(BGGCalloutService.ERROR_GEEKLIST_MSG + 'This is the Message Recieved for a Status 202 Error.', errMessage, 'Wrong Error Message Recieved: '+errMessage);
+    }
+
+    // Call Collection API with Invalid Collection Name
+    @isTest
+    public static void givenInvalidCollectionName_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectMessageReturned() {
+        // Get XML response from the Static Resource
+        String mockXmlResponse = '<errors><error><message>Invalid username specified</message></error></errors>';
+        
+        // Mock HTTP response
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(mockXmlResponse, 200));
+        
+        String errMessage = 'No Error Message';
+        BGGCalloutService service = new BGGCalloutService();
+        try{
+            BGGCalloutService.CalloutResult result = service.getIDsFromBoardGameGeek('testCollectionName', false);
+            Assert.isTrue(false, 'Error Not Thrown');
+        }
+        catch (Exception ex){
+            errMessage = ex.getMessage();
+        }        
+        Test.stopTest();
+        
+        // Validate the results
+        Assert.areEqual(BGGCalloutService.ERROR_COLLECTION_MSG + 'Invalid username specified', errMessage, 'Wrong Error Message Recieved: '+errMessage);
+    }
+
+
+    // Call Collection API with No Items Returned
+    @isTest
+    public static void givenCollectionNameWithNoItems_WhenGetIDsFromBGGCalledWithCorrectStatusCode_ThenCorrectMessageReturned() {
+        // Get XML response from the Static Resource
+        String mockXmlResponse = '<items totalitems="0"> </items>';
+        
+        // Mock HTTP response
+        Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(mockXmlResponse, 200));
+        
+        String errMessage = 'No Error Message';
+        BGGCalloutService service = new BGGCalloutService();
+        try{
+            BGGCalloutService.CalloutResult result = service.getIDsFromBoardGameGeek('testCollectionName', false);
+            Assert.isTrue(false, 'Error Not Thrown');
+        }
+        catch (Exception ex){
+            errMessage = ex.getMessage();
+        }        
+        Test.stopTest();
+        
+        // Validate the results
+        Assert.areEqual(BGGCalloutService.ERROR_COLLECTION_MSG + BGGCalloutService.ERROR_NO_ITEMS_IN_COLLECTION, errMessage, 'Wrong Error Message Recieved: '+errMessage);
     }
     //#endregion
 }

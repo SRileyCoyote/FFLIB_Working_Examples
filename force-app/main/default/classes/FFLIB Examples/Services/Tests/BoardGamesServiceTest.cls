@@ -100,8 +100,9 @@ private class BoardGamesServiceTest {
 
             //Stubbing the Board Game Library Entry Selector
             mocks.when(mockBGLEntrySelector.SObjectType()).thenReturn(BG_Library_Entry__c.SObjectType);
-            mocks.when(mockBGLEntrySelector.selectByEventIDs(
-                                            (Set<ID>) fflib_Match.anyObject()
+            mocks.when(mockBGLEntrySelector.selectByEventIDsAndSources(
+                                            (Set<ID>) fflib_Match.anyObject(),
+                                            (Set<String>) fflib_Match.anyObject()
                                         ))
                 .thenReturn((List<BG_Library_Entry__c>) params.get(MockParams.RETURNED_BG_LIBRARY_ENTRIES));
 
@@ -117,7 +118,7 @@ private class BoardGamesServiceTest {
                 //Using Seperate Return Value for the Second Callout 
                 .thenReturn((BGGCalloutService.CalloutResult) params.get(MockParams.RETURNED_DETAILS_CALLOUT_RESULT));
             mocks.when(mockCalloutService.getBoardGameDetailFromBGGIds(
-                                            (Map<Id, String>) fflib_Match.anyObject()
+                                            (Set<String>) fflib_Match.anyObject()
                                         ))
                 .thenReturn((BGGCalloutService.CalloutResult) params.get(MockParams.RETURNED_DETAILS_CALLOUT_RESULT));
             mocks.stopStubbing();
@@ -207,11 +208,11 @@ private class BoardGamesServiceTest {
         String errMessage = 'No Error Found';
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
         try{
-            service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                            fflib_IDGenerator.generate(Event__c.SObjectType), 
-                                            'This String',
-                                            false,
-                                            false);
+            service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => fflib_IDGenerator.generate(Event__c.SObjectType), 
+                                            'collectionNameOrGeekListId' => 'This String',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
             Assert.isTrue(false, 'Error Not Thrown');
         } catch (Exception ex){
             errMessage = ex.getMessage();
@@ -241,11 +242,11 @@ private class BoardGamesServiceTest {
         String errMessage = 'No Error Found';
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
         try{
-            service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                            null, 
-                                            'This String',
-                                            false,
-                                            false);
+            service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => null, 
+                                            'collectionNameOrGeekListId' => 'This String',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
             Assert.isTrue(false, 'Error Not Thrown');
         } catch (Exception ex){
             errMessage = ex.getMessage();
@@ -275,11 +276,11 @@ private class BoardGamesServiceTest {
         String errMessage = 'No Error Found';
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
         try{
-            service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                            fflib_IDGenerator.generate(Board_Games__c.SObjectType), 
-                                            'This String',
-                                            false,
-                                            false);
+            service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => fflib_IDGenerator.generate(Board_Games__c.SObjectType), 
+                                            'collectionNameOrGeekListId' => 'This String',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
             Assert.isTrue(false, 'Error Not Thrown');
         } catch (Exception ex){
             errMessage = ex.getMessage();
@@ -292,7 +293,7 @@ private class BoardGamesServiceTest {
 
     // Get Board Game Details with Blank Collection Name or ID
     @IsTest
-    public static void givenBlankEventID_WhenGetBGDetailsCalled_ThenErrorThrown(){
+    public static void givenBlankCollectionName_WhenGetBGDetailsCalled_ThenErrorThrown(){
 
         //Setup Test Data and Mocking
         //Setup Return Values
@@ -309,11 +310,11 @@ private class BoardGamesServiceTest {
         String errMessage = 'No Error Found';
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
         try{
-            service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                            fflib_IDGenerator.generate(Event__c.SObjectType), 
-                                            null,
-                                            false,
-                                            false);
+            service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => fflib_IDGenerator.generate(Event__c.SObjectType), 
+                                            'collectionNameOrGeekListId' => null,
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
             Assert.isTrue(false, 'Error Not Thrown');
         } catch (Exception ex){
             errMessage = ex.getMessage();
@@ -321,7 +322,41 @@ private class BoardGamesServiceTest {
         Test.stopTest();
 
         //Validate Data
-        Assert.areEqual(service.COLLECTION_OR_ID_INVALID_MSG, errMessage, 'Error Message Does Not Match: '+ errMessage);
+        Assert.areEqual(service.MISSING_COLLECTION_NAME, errMessage, 'Error Message Does Not Match: '+ errMessage);
+    }
+
+    // Get Board Game Details with Blank Collection Name or ID
+    @IsTest
+    public static void givenBlankGeekId_WhenGetBGDetailsCalled_ThenErrorThrown(){
+
+        //Setup Test Data and Mocking
+        //Setup Return Values
+        Map<MockParams, Object> params = new Map<MockParams, Object>{};
+
+        //Initialize MockSetup with Params 
+        MockSetup mock = new MockSetup(params);
+        
+        //Customize Service Config Record
+        mock.mockConfig.DeveloperName = 'getBoardGameDetailsFromBGG';
+
+        //Run Test
+        Test.startTest();
+        String errMessage = 'No Error Found';
+        BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
+        try{
+            service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => fflib_IDGenerator.generate(Event__c.SObjectType), 
+                                            'collectionNameOrGeekListId' => null,
+                                            'isGeekList' => true,
+                                            'updateExisting' => false});
+            Assert.isTrue(false, 'Error Not Thrown');
+        } catch (Exception ex){
+            errMessage = ex.getMessage();
+        }
+        Test.stopTest();
+
+        //Validate Data
+        Assert.areEqual(service.MISSING_GEEK_ID, errMessage, 'Error Message Does Not Match: '+ errMessage);
     }
 
     // Get Board Game Details with Failed Result From Getting IDs
@@ -348,11 +383,11 @@ private class BoardGamesServiceTest {
         String errMessage = 'No Error Found';
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
         try{
-            service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                            fflib_IDGenerator.generate(Event__c.SObjectType), 
-                                            'CollectionName',
-                                            false,
-                                            false);
+            service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => fflib_IDGenerator.generate(Event__c.SObjectType), 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
             Assert.isTrue(false, 'Error Not Thrown');
         } catch (Exception ex){
             errMessage = ex.getMessage();
@@ -387,11 +422,11 @@ private class BoardGamesServiceTest {
         String errMessage = 'No Error Found';
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
         try{
-            service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                            fflib_IDGenerator.generate(Event__c.SObjectType), 
-                                            'CollectionName',
-                                            false,
-                                            false);
+            service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => fflib_IDGenerator.generate(Event__c.SObjectType), 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
             Assert.isTrue(false, 'Error Not Thrown');
         } catch (Exception ex){
             errMessage = ex.getMessage();
@@ -412,11 +447,11 @@ private class BoardGamesServiceTest {
                                                 Name = 'My Board Game'
                                             );
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'My Name';
-        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        calloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
 
@@ -434,22 +469,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        false);
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                                        '1', // # of New
-                                                                        '0', // # of Updated
-                                                                        '' // Unprocessed Message
-                                                                    }), 
-                                        result, 
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isFalse(result.errorOccured, 'Unexpected Error Occured: '+String.Join(result.errorMessages,'; '));
+        Assert.areEqual(1, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(0, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(1, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(0, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(0, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
 
         //Verify that UOW Register Dirty did NOT Run, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
@@ -499,17 +534,17 @@ private class BoardGamesServiceTest {
                                                 Name = 'My Board Game'
                                             );
         BGGCalloutService.CalloutResult detailCalloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.ownerName = 'My Name';
-        detailCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        detailCalloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
         detailCalloutResult.unprocessedIDs = new Set<String>{'5678'};
         BGGCalloutService.CalloutResult idCalloutResult = new BGGCalloutService.CalloutResult();
-        idCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        idCalloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper,
-            '5678' => new BGGCalloutService.BoardGameWrapper()
+            '5678' => new BoardGameWrapper()
         };
 
         //Setup Return Values
@@ -527,26 +562,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        false);
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        String unprocessedMsg = String.format(service.UNPROCESSED_FOUND_MSG, new Integer[]{
-                                                                                1, // Total Unprocessed
-                                                                                2  // Total Found
-                                                                            });
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                    '1', // # of New
-                                                    '0', // # of Updated
-                                                    unprocessedMsg // Unprocessed Message
-                                                }), 
-                                        result,  
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isTrue(result.errorOccured, 'Expecting Error. No Error Occured');
+        Assert.areEqual(1, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(0, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(1, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(0, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(1, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
 
         //Verify that UOW Register Dirty Did Not Run,
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
@@ -597,11 +628,11 @@ private class BoardGamesServiceTest {
                                                 Is_New__c = true
                                             );
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'OwnerName';
-        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        calloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
 
@@ -620,22 +651,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        true); //Update Exisiting
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => true}); //Update Exisiting
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                                        '0', // # of New
-                                                                        '1', // # of Updated
-                                                                        '' // Unprocessed Message
-                                                                    }), 
-                                        result, 
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isFalse(result.errorOccured, 'Unexpected Error Occured: '+String.Join(result.errorMessages,'; '));
+        Assert.areEqual(0, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(1, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(0, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(1, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(0, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
             
         //Verify that UOW Register Dirty method Runs Once, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
@@ -681,11 +712,11 @@ private class BoardGamesServiceTest {
                                                 Is_New__c = true
                                             );
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'OwnerName';
-        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        calloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
 
@@ -705,22 +736,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        false); //Update Exisiting
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false}); //Update Exisiting
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                                        '0', // # of New
-                                                                        '0', // # of Updated
-                                                                        '' // Unprocessed Message
-                                                                    }), 
-                                        result, 
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isFalse(result.errorOccured, 'Unexpected Error Occured: '+String.Join(result.errorMessages,'; '));
+        Assert.areEqual(0, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(0, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(0, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(0, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(0, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
 
         //Verify that UOW Register New and Register Dirty Ran the correct Number of Times, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
@@ -769,11 +800,11 @@ private class BoardGamesServiceTest {
                                                 Is_New__c = false
                                             );
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'OwnerName';
-        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        calloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
 
@@ -792,22 +823,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        true); //Update Exisiting
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => true}); //Update Exisiting
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                                        '0', // # of New
-                                                                        '1', // # of Updated
-                                                                        '' // Unprocessed Message
-                                                                    }), 
-                                        result, 
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isFalse(result.errorOccured, 'Unexpected Error Occured: '+String.Join(result.errorMessages,'; '));
+        Assert.areEqual(0, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(1, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(0, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(1, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(0, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
           
         //Verify that UOW Register Dirty method Runs Once, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 1))
@@ -853,11 +884,11 @@ private class BoardGamesServiceTest {
                                                 Is_New__c = false
                                             );
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'OwnerName';
-        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        calloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
 
@@ -877,22 +908,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        false); //Update Exisiting
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                                        '0', // # of New
-                                                                        '0', // # of Updated
-                                                                        '' // Unprocessed Message
-                                                                    }), 
-                                        result, 
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isFalse(result.errorOccured, 'Unexpected Error Occured: '+String.Join(result.errorMessages,'; '));
+        Assert.areEqual(0, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(0, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(1, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(0, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(0, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
 
         ///Verify that UOW Register Dirty Did NOT Run, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
@@ -939,11 +970,11 @@ private class BoardGamesServiceTest {
                                                 Event__c = eventId
                                             );
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'OwnerName';
-        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        calloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
 
@@ -962,22 +993,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        true); //Update Exisiting
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => true});
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                                        '0', // # of New
-                                                                        '1', // # of Updated
-                                                                        '' // Unprocessed Message
-                                                                    }), 
-                                        result, 
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isFalse(result.errorOccured, 'Unexpected Error Occured: '+String.Join(result.errorMessages,'; '));
+        Assert.areEqual(0, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(1, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(0, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(1, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(0, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
 
         //Verify that UOW Register New and Register Dirty Ran the correct Number of Times, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
@@ -1041,11 +1072,11 @@ private class BoardGamesServiceTest {
                                                 Event__c = eventId
                                             );
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'OwnerName';
-        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        calloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
 
@@ -1065,22 +1096,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        false); //Update Exisiting
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                                        '0', // # of New
-                                                                        '0', // # of Updated
-                                                                        '' // Unprocessed Message
-                                                                    }), 
-                                        result, 
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isFalse(result.errorOccured, 'Unexpected Error Occured: '+String.Join(result.errorMessages,'; '));
+        Assert.areEqual(0, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(0, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(0, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(1, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(0, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
 
         //Verify that UOW Register New and Register Dirty Ran the correct Number of Times, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
@@ -1138,11 +1169,11 @@ private class BoardGamesServiceTest {
                                                 Event__c = eventId
                                             );
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'OwnerName';
-        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        calloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
 
@@ -1161,22 +1192,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        true); //Update Exisiting
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => true});
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                                        '0', // # of New
-                                                                        '1', // # of Updated
-                                                                        '' // Unprocessed Message
-                                                                    }), 
-                                        result, 
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isFalse(result.errorOccured, 'Unexpected Error Occured: '+String.Join(result.errorMessages,'; '));
+        Assert.areEqual(0, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(1, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(0, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(1, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(0, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
         
         //Verify that UOW Register New method did NOT Run
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
@@ -1240,18 +1271,17 @@ private class BoardGamesServiceTest {
                                                 Event__c = eventId
                                             );
         BGGCalloutService.CalloutResult calloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = testBoardGame;
         wrapper.comment = 'This is My Comment';
         wrapper.ownerName = 'OwnerName';
-        calloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        calloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             testBoardGame.BGG_ID__c => wrapper
         };
 
         //Setup Return Values
         Map<MockParams, Object> params = new Map<MockParams, Object>{
             MockParams.RETURNED_ID_CALLOUT_RESULT => calloutResult,
-            MockParams.RETURNED_DETAILS_CALLOUT_RESULT => calloutResult,
             MockParams.RETURNED_BOARD_GAMES => new List<Board_Games__c>{testBoardGame},
             MockParams.RETURNED_BG_LIBRARY_ENTRIES => new List<BG_Library_Entry__c>{testLibraryEntry}
         };
@@ -1264,22 +1294,22 @@ private class BoardGamesServiceTest {
         //Run Test
         Test.startTest();
         BoardGamesService service = new BoardGamesService(new List<Services_Config__mdt>{mock.mockConfig});
-        String result = service.getBoardGameDetailsFromBGG(mock.uowMock, 
-                                        eventId, 
-                                        'CollectionName',
-                                        false,
-                                        false); //Update Exisiting
+        BoardGameServiceResults result = service.getBoardGameDetailsFromBGG(mock.uowMock, new Map<String, Object>{
+                                            'eventId' => eventId, 
+                                            'collectionNameOrGeekListId' => 'CollectionName',
+                                            'isGeekList' => false,
+                                            'updateExisting' => false});
         Test.stopTest();
 
         //Validate Data
-        //Verify Result Message
-        Assert.areEqual(String.format(service.SUCCESS_MSG, new String[]{
-                                                                        '0', // # of New
-                                                                        '0', // # of Updated
-                                                                        '' // Unprocessed Message
-                                                                    }), 
-                                        result, 
-                                        'Result Message does not match Expected: '+result);
+        //Verify Result Object
+        Assert.isFalse(result.errorOccured, 'Unexpected Error Occured: '+String.Join(result.errorMessages,'; '));
+        Assert.areEqual(0, result.newBoardGames.size(), 'Number of New Board Games Added does not match Expected');
+        Assert.areEqual(0, result.updatedBoardGames.size(), 'Number of Board Games Updated does not match Expected');
+        Assert.areEqual(0, result.newBGLEs.size(), 'Number of New Board Game Entries Added does not match Expected');
+        Assert.areEqual(0, result.updatedBGLEs.size(), 'Number of Board Game Entries Updated does not match Expected');
+        Assert.areEqual(0, result.removedBGLEs.size(), 'Number of Board Game Entries Removed does not match Expected');
+        Assert.areEqual(0, result.unprocessedIds.size(), 'Number of Unprocessed Games does not match Expected');
 
         ///Verify that UOW Register Dirty Did NOT Run, 
         ((fflib_ISObjectUnitOfWork) mock.mocks.verify(mock.uowMock, 0))
@@ -1409,7 +1439,7 @@ private class BoardGamesServiceTest {
 
         //Setup Test Data and Mocking
         BGGCalloutService.CalloutResult detailCalloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper processedWrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper processedWrapper = new BoardGameWrapper();
         processedWrapper.boardGame = new Board_Games__c(
                                         ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
                                         BGG_ID__c = '12345',
@@ -1417,7 +1447,7 @@ private class BoardGamesServiceTest {
                                         Is_New__c = true
                                     );
     
-        BGGCalloutService.BoardGameWrapper unprocessedWrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper unprocessedWrapper = new BoardGameWrapper();
         unprocessedWrapper.boardGame = new Board_Games__c(
                                         ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
                                         BGG_ID__c = '56789',
@@ -1425,7 +1455,7 @@ private class BoardGamesServiceTest {
                                         Is_New__c = true
                                     );
 
-        detailCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        detailCalloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             '12345' => processedWrapper,
             '56789' => unprocessedWrapper
         };
@@ -1501,7 +1531,7 @@ private class BoardGamesServiceTest {
 
         //Setup Test Data and Mocking
         BGGCalloutService.CalloutResult detailCalloutResult = new BGGCalloutService.CalloutResult();   
-        detailCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>();
+        detailCalloutResult.wrapperMap = new Map<String, BoardGameWrapper>();
 
         //Setup Return Values
         Map<MockParams, Object> params = new Map<MockParams, Object>{
@@ -1543,7 +1573,7 @@ private class BoardGamesServiceTest {
 
         //Setup Test Data and Mocking
         BGGCalloutService.CalloutResult detailCalloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.boardGame = new Board_Games__c(
                                         ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
                                         BGG_ID__c = '12345',
@@ -1551,7 +1581,7 @@ private class BoardGamesServiceTest {
                                         Is_New__c = true
                                     );
     
-        detailCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        detailCalloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             '12345' => wrapper
         };
 
@@ -1604,14 +1634,14 @@ private class BoardGamesServiceTest {
 
         //Setup Test Data and Mocking
         BGGCalloutService.CalloutResult detailCalloutResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper1 = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper1 = new BoardGameWrapper();
         wrapper1.boardGame = new Board_Games__c(
                                         ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
                                         BGG_ID__c = '12345',
                                         Name = 'My First Board Game',
                                         Is_New__c = true
                                     );
-        BGGCalloutService.BoardGameWrapper wrapper2 = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper2 = new BoardGameWrapper();
         wrapper2.boardGame = new Board_Games__c(
                                         ID = fflib_IDGenerator.generate(Board_Games__c.SObjectType),
                                         BGG_ID__c = '67890',
@@ -1620,7 +1650,7 @@ private class BoardGamesServiceTest {
                                     );
                         
     
-        detailCalloutResult.wrapperMap = new Map<String, BGGCalloutService.BoardGameWrapper>{
+        detailCalloutResult.wrapperMap = new Map<String, BoardGameWrapper>{
             '12345' => wrapper1,
             '67890' => wrapper2
         };

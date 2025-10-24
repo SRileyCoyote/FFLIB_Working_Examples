@@ -23,17 +23,21 @@ public without sharing class BoardGamesService extends BaseService implements IB
     private BGGCalloutService bggHttpService;
     private BoardGameSelector bgSelector;
     private BGLibraryEntrySelector bgleSelector;
+    private BGLibraryEntryService bgleService;
 
     //Set Final Strings for Return Messages
     //Use Final Strings so that exact text can be used in the Test Class without worrying about text changes
     @TestVisible private final String SERVICE_NOT_ENABLED_MSG = 'This Service is Not Enabled. Please Contact a System Administrator to Enable';
     @TestVisible private final String SUCCESS_MSG = '{0} New Games Added. {1} Games Updated. {2}';
     @TestVisible private final String UNPROCESSED_FOUND_MSG = '{0} of {1} Board Games Unprocessed.';
-    @TestVisible private final String EVENT_ID_INVALID_MSG = 'Invalid Event ID';
-    @TestVisible private final String COLLECTION_OR_ID_INVALID_MSG = 'Invalid Collection or Geek ID';
+    @TestVisible private final String EVENT_ID_INVALID_MSG = 'Invalid Event. Please Select a Valid Event';
+    @TestVisible private final String MISSING_COLLECTION_NAME = 'Collection Name Required';
+    @TestVisible private final String MISSING_GEEK_ID = 'Geek List ID Required';
     @TestVisible private final String NO_RECORD_IDS_PROVIDED_MSG = 'No Record IDs or BGG IDs Found';
     @TestVisible private final String UPDATE_RECORD_SUCCESS_MSG = 'The Following Board Games have been Refreshed: {0}. {1}';
     @TestVisible private final String NO_RECORDS_UPDATED_ERR_MSG = 'BGG Game ID Not Found in BoardGameGeek. Please Check the BGG ID and Try Again';
+    @TestVisible private final String COLLECTION = 'Collection';
+    @TestVisible private final String GEEKLIST = 'GeekList';
 
     //Initialize Service Class
     public static IBoardGamesService newInstance(){
@@ -56,155 +60,259 @@ public without sharing class BoardGamesService extends BaseService implements IB
         //Initialize Serivces and Selectors through Application Layer 
         //so they can be Mocked and Stubbed from the Test Class
         bggHttpService = (BGGCalloutService) BGGCalloutService.newInstance();
-        bgSelector = (BoardGameSelector) Application.Selector.newInstance(Board_Games__c.SObjectType);
-        bgleSelector = (BGLibraryEntrySelector) Application.Selector.newInstance(BG_Library_Entry__c.sObjectType);
+        bgleService = (BGLibraryEntryService) BGLibraryEntryService.newInstance();
+        bgSelector = (BoardGameSelector) BoardGameSelector.newInstance();
+        bgleSelector = (BGLibraryEntrySelector) BGLibraryEntrySelector.newInstance();
     }
 
-    public String getBoardGameDetailsFromBGG(fflib_SObjectUnitOfWork uow,
-                                            ID eventId, 
-                                            String collectionNameOrGeekListId, 
-                                            Boolean isGeekList, 
-                                            Boolean updateExisiting){
+    /**
+     * Makes callout to BGG API to get all of the BGG IDs for a given collection or geeklist. 
+     * For Each Returned ID, determines if that ID is a new Board Game to be added or if the Board Game should be updated.
+     * Also determines if a new Library Entry needs to be added or updated for the given Event.
+     * Finally, if the Board Game is no longer in the given collection, removes the Library Entry from Event if requested 
+     * @param uow is the UnitOfWork Object that holds the DML transactions to be commited
+     * @param params is a map of generic objects passes to the method using the key of the map as the attribute name
+     * @return a custom Object that holds multiple lists of records that were created or updated. Object contatins the following information
+         * - List of Games Created 
+         * - List of Games Updated 
+         *      - Map of Values Updated
+         * - List of BGLEs Created 
+         * - List of BGLEs Updated 
+         *      - Map of Values Updated
+         * - List of BGLEs Removed 
+         * - If Error Occured
+         *      - List of Error Messages
+         *      - Number of BGG IDs Unprocessed
+     */
+    public BoardGameServiceResults getBoardGameDetailsFromBGG(fflib_SObjectUnitOfWork uow, Map<String, Object> params){
+        
+        //If Service NOT enabled, Throw Error
+        if(!this.serviceEnabled('getBoardGameDetailsFromBGG')){ //Check if this Service Method is Enabled from Parent
+            throw new BGServiceException(SERVICE_NOT_ENABLED_MSG);
+        }
+        
+        //Validate Inputs
+        Id eventId = params.containsKey('eventId') ? (Id) params.get('eventId') : null;
+        if(eventId == null || eventId.getSObjectType().getDescribe().getName() != 'Event__c'){
+            throw new BGServiceException(EVENT_ID_INVALID_MSG);
+        }
 
-            //If Service NOT enabled, Throw Error
-            if(!this.serviceEnabled('getBoardGameDetailsFromBGG')){ //Check if this Service Method is Enabled from Parent
-                throw new BGServiceException(SERVICE_NOT_ENABLED_MSG);
+        Boolean isGeekList = params.containsKey('isGeekList') ? (Boolean) params.get('isGeekList') : false;
+        if(!params.containsKey('collectionNameOrGeekListId')){
+            throw new BGServiceException( isGeekList ? MISSING_GEEK_ID : MISSING_COLLECTION_NAME);
+        }
+
+        //Set Return Value
+        BoardGameServiceResults rtv = new BoardGameServiceResults();
+        rtv.eventId = eventId;
+        rtv.sourceType = isGeekList ? GEEKLIST : COLLECTION;
+        rtv.sourceName = (String) params.get('collectionNameOrGeekListId');
+
+        //Get All BGG IDs for Collection or Geek List
+        BGGCalloutService.CalloutResult calloutResult = bggHttpService.getIDsFromBoardGameGeek((String) params.get('collectionNameOrGeekListId'), isGeekList);
+        checkForErrors(calloutResult, rtv);
+
+        Set<String> bggIds = calloutResult.wrapperMap.keySet();
+
+        //Get All Exisiting Board Games Based on BGG IDs
+        //Create Map Based on BGG Id
+        Map<String, Board_Games__c> mapBoardGames = new Map<String, Board_Games__c>();
+        for(Board_Games__c thisBG : bgSelector.selectByBGGIDs(bggIds)){
+            mapBoardGames.put(thisBG.BGG_ID__c, thisBG);
+        }
+
+        //Get All Existing BGLEs for Event and Given Source
+        //Create Map Based on BBG ID
+        Map<String, BG_Library_Entry__c> mapBGLEs = new Map<String, BG_Library_Entry__c>();
+        //Get All BGLEs for Given Source and Given Evnet
+        for(BG_Library_Entry__c bgle : bgleSelector.selectByEventIDsAndSources(new Set<Id>{eventId}, new Set<String>{rtv.sourceName})){
+            mapBGLEs.put(bgle.Board_Game__r.BGG_ID__c, bgle);
+        }
+      
+        // Seperate New and Exisiting BBG IDs for both Board Games and BGLEs
+        Set<String> newBGGIdsForBG = new Set<String>();
+        Map<String, Board_Games__c> newBGGIdsForBGLE = new Map<String, Board_Games__c>();
+        Map<String, Board_Games__c> existingBoardGames = new Map<String, Board_Games__c>();
+        Map<String, BG_Library_Entry__c> existingBGLEs = new Map<String, BG_Library_Entry__c>();
+
+        for(String bggId : bggIds){
+            // Seperate New and Exisiting Board Games
+            if(!mapBoardGames.containsKey(bggId)){
+                newBGGIdsForBG.add(bggId);
+            }
+            else{
+                existingBoardGames.put(bggId, mapBoardGames.get(bggId));
             }
 
-            //Validate Inputs
-            if(eventId == null || eventId.getSObjectType().getDescribe().getName() != 'Event__c'){
-                throw new BGServiceException(EVENT_ID_INVALID_MSG);
+            // Seperate New and Exisiting BGLEs
+            if(!mapBGLEs.containsKey(bggId)){
+                newBGGIdsForBGLE.put(bggId, mapBoardGames.get(bggId));// Add Existing Board Game, if one Exists
             }
-
-            if(collectionNameOrGeekListId == null){
-                throw new BGServiceException(COLLECTION_OR_ID_INVALID_MSG);
+            else{
+                existingBGLEs.put(bggId, mapBGLEs.get(bggId));
             }
+        }
+        
+        //If Brand New Game to System, Create board game Record
+        addNewBoardGames(uow, rtv, newBGGIdsForBG);
+        //If New BGLE for Event, Create BGLE for Event
+        bgleService.createNewBGLEs(uow, rtv, calloutResult.wrapperMap, newBGGIdsForBGLE);        
 
-            //Call HttpService to Get IDs
-            BGGCalloutService.CalloutResult result = bggHttpService.getIDsFromBoardGameGeek(collectionNameOrGeekListId, isGeekList);
-            
-            //If Result Message exists then an error occured
-            //Return Result message back to User
-            if(result.resultMessage != null){
-                throw new BGServiceException(result.resultMessage);
-            }
+        //If Update Existing Option was Checked, Update Existing Board Games and BGLEs
+        if(params.containsKey('updateExisting') && (Boolean) params.get('updateExisting')){
+            updateExistingBoardGames(uow, rtv, existingBoardGames);
+            bgleService.updateBGLEs(uow, rtv, calloutResult.wrapperMap, existingBGLEs);
+        }
 
-            //If No Message, keep going
-            //Get all BGG IDs from the Map in the Result
-            Set<String> bggIDs = result.wrapperMap.keySet();
+        //If Update Removed Option was Checked, Update Existing BGLEs to be removed
+        if(params.containsKey('updateRemoved') && (Boolean) params.get('updateRemoved')){
+            Boolean perserveLogs = params.containsKey('perserveLogs') ? (Boolean) params.get('perserveLogs') : true;
+            bgleService.deleteRemovedBoardGamesFromBGLEs(uow, rtv, mapBGLEs, bggIds, perserveLogs);
+        }
 
-            //Get All Exisiting Board Games Based on BGGIDs
-            List<Board_Games__c> existingBoardGames = bgSelector.selectByBGGIDs(bggIDs);
+        /**
+         * Return: 
+         * - List of Games Created 
+         *      - Show List As New
+         * - List of Games Updated 
+         *      - Show Values Updated
+         * - List of BGLEs Created 
+         *      - Show List As New
+         * - List of BGLEs Updated 
+         *      - Show Values Updated
+         * - List of BGLEs Removed 
+         *      - Show List As Removed
+         * - Count of Unprocessed Ids
+         * - If Error Occured
+         *      - List of Error Messages
+         *      - Number of BGG IDs Unprocessed
+         */
+        return rtv;
+    }    
 
-            //If NOT Update Exisiting, Only get Board Game Details for NEW Board Games
-            If(!updateExisiting){
-                //So Remove exisiting Board Games from Wrapper Map
-                for(Board_Games__c thisBG : existingBoardGames){
-                    if(result.wrapperMap.containsKey(thisBG.BGG_ID__c)){
-                        result.wrapperMap.remove(thisBG.BGG_ID__c);
-                    }
-                }
-            }
+    /**
+     * 
+     */
+    private void addNewBoardGames(fflib_SObjectUnitOfWork uow, BoardGameServiceResults results, Set<String> newBGGIds){
 
-            //Make Callout to get Board Game Details
-            result = bggHttpService.getBoardGameDetailsFromBGG(result);
+        //Make Callout to get Board Game Details for New Board Games
+        BGGCalloutService.CalloutResult detailsResult = bggHttpService.getBoardGameDetailFromBGGIds(newBGGIds);
+        System.debug('detailsResult: '+ detailsResult);
+        //Initialize Values
+        results.newBoardGames = results.newBoardGames == null ? new List<Board_Games__c>() : results.newBoardGames;
 
-            //Once Again, If Result Message exists from an error
-            // And NOT from unprocessed IDs
-            // Return Result message back to User
-            if(result.resultMessage != null 
-                && result.unprocessedIDs.size() == 0){
-                    throw new BGServiceException(result.resultMessage);
-            }
+        //Check for Errors
+        checkForErrors(detailsResult, results);
 
-            //Creating Seperate List for Updates to count number of updates
-            List<Board_Games__c> bgToUpdate = new List<Board_Games__c>();
+        //For Each New Board Game returned, 
+        // Create Board Game Record and add BG Library Entry for Event for Board 
+        for(BoardGameWrapper wrapper : detailsResult.wrapperMap.values()){
+            uow.registerNew(wrapper.boardGame);
+            results.newBoardGames.add(wrapper.boardGame);
+        }
+    }
 
-            //Get All Related Library Entries for Event
-            Map<String, BG_Library_Entry__c> bglEntries = new Map<String, BG_Library_Entry__c>();
-            //Load Map with all Related Board Game Library Entires for Event
-            For(BG_Library_Entry__c entry : bgleSelector.selectByEventIDs(new Set<Id>{eventId})){
-                bglEntries.put(entry.Board_Game__r.BGG_ID__c, entry);
-            } 
-
-            For(Board_Games__c thisBG : existingBoardGames){
-                //If Match Found in wrapper Map AND Update Exisitng Records                    
-                BGGCalloutService.BoardGameWrapper wrapper = result.wrapperMap.get(thisBG.BGG_ID__c);
-                if(updateExisiting){
-                    //Get Matching Board Game Record from Wrapper
-                    Board_Games__c bg = wrapper.boardGame;
-                    bg.Id = thisBG.Id; //Set ID to Existing BG ID
-                    bg.Is_New__c = false; //Uncheck the Is New Flag
-                    bgToUpdate.add(bg); //Add to Update List
-
-                    //Get Matching Library Entry Record and Update Comments and Owner Name
-                    if(bglEntries.containsKey(thisBG.BGG_ID__c)){
-                        BG_Library_Entry__c bge = bglEntries.get(thisBG.BGG_ID__c);
-                        bge.Comments__c = wrapper.comment;
-                        bge.BGG_Owner__c = wrapper.ownerName;
-                        bge.Source__c = result.sourceName;
-                        bge.Source_Type__c = result.sourceType;
-                        uow.registerDirty(bge); //Register Board Game Library Entry for Update 
-                    }
-                } 
-                //If NOT Update Exisiting,
-                else {                
-                    //Check if IS NEW is Checked, and set it to false if it is
-                    if (thisBG.Is_New__c) {
-                        thisBG.Is_New__c = false;
-                        uow.registerDirty(thisBG); //Register Update without list, dont need to track this number of updates
-                    }
-                }
+    /**
+     * 
+     */
+    private void updateExistingBoardGames(fflib_SObjectUnitOfWork uow, BoardGameServiceResults results, Map<String, Board_Games__c> existingBoardGames){
                 
-                //If Matching Library Entry NOT found for Record, Add New Library Entry for Event
-                if(!bglEntries.containsKey(thisBG.BGG_ID__c)){
-                    BG_Library_Entry__c bge = new BG_Library_Entry__c();
-                    bge.Event__c = eventId;
-                    bge.Comments__c = wrapper?.comment;
-                    bge.BGG_Owner__c = wrapper?.ownerName;
-                    bge.Board_Game__c = thisBG.Id;
-                    bge.Source__c = result.sourceName;
-                    bge.Source_Type__c = result.sourceType;
-                    uow.registerNew(bge);
-                }
+        //Make Callout to get Board Game Details for Existing Board Games
+        BGGCalloutService.CalloutResult detailsResult = bggHttpService.getBoardGameDetailFromBGGIds(existingBoardGames.keySet());
+        
+        //Initialize Values
+        results.boardGameChanges = new Map<Id,Map<String,Map<Object,Object>>>();
+        
+        //Check for Errors
+        checkForErrors(detailsResult, results);
 
-                result.wrapperMap.remove(thisBG.BGG_ID__c); //Remove Updated Record From Wrapper
-            }   
-            
-            uow.registerDirty(bgToUpdate); //Register Games for Update  
+        //Get CSV List of Fields queired from Selector
+        String queriedFieldList = bgSelector.getFieldListString();
 
-            //Any Remaining Board Games in Wrapper Map are new Board Games
-            For(BGGCalloutService.BoardGameWrapper wrapper : result.wrapperMap.values()){
-                uow.registerNew(wrapper.boardGame);
-                //Create Board Game Library Entry for New Board Game
-                BG_Library_Entry__c bge = new BG_Library_Entry__c();
-                bge.Event__c = eventId;
-                bge.Comments__c = wrapper.comment;
-                bge.BGG_Owner__c = wrapper.ownerName;
-                bge.Source__c = result.sourceName;
-                bge.Source_Type__c = result.sourceType;
-                //Register new Board Game Library Entry with Relationship to new Board Game
-                uow.registerNew(bge, BG_Library_Entry__c.Board_Game__c, wrapper.boardGame); 
-            }
-
-            //Using String Format to use Final Strings with Alterations based on result numbers
-            String unprocessedMsg ='';
-            if(result.unprocessedIDs.size() > 0){
-                unprocessedMsg = String.format(UNPROCESSED_FOUND_MSG, 
-                                        new Integer[]{
-                                            result.unprocessedIDs.size(), 
-                                            bggIDs.size()
-                                        } );
-            }
-            
-            return String.format(SUCCESS_MSG, 
-                                    new String[]{
-                                        result.wrapperMap.size().toString(), 
-                                        bgToUpdate.size().toString(),
-                                        unprocessedMsg
-                                    } );
+        for(String bggId : detailsResult.wrapperMap.keySet()){
+            Board_Games__c oldValue = existingBoardGames.get(bggId);
+            Board_Games__c newValue = detailsResult.wrapperMap.get(bggId).boardGame;
+            newValue.Id = oldValue.Id;
+            results.boardGameChanges.put(newValue.Id, compareValues(oldValue, newValue, queriedFieldList));
+            uow.registerDirty(newValue);
+            results.updatedBoardGames.add(newValue);
+        }
     }
 
+    /**
+     * Checks the given Callout Result Object for Errors and Appends them to the Result Object
+     * @param calloutResult is the Returned CallOutResult Object Given from the Callout Made
+     * @param results is the current ServiceResults Object to Append Error Messages to.
+     */
+    private void checkForErrors(BGGCalloutService.CalloutResult calloutResult, BoardGameServiceResults results){
+        
+        results.unprocessedIds = results.unprocessedIds == null ? new Set<String>() : results.unprocessedIds;
+
+        System.debug('Callout Result from Check Errors: '+ calloutResult);
+        if(calloutResult.hasError){
+            results.errorOccured = true;
+            results.errorMessages.add(calloutResult.resultMessage);
+            results.unprocessedIds.addAll(calloutResult.unprocessedIDs);
+        }
+    }
+
+    /**
+     * Compares all Field Values on the given Board Game Library Entry Objects
+     * @param oldGame is the Old BGLE Values
+     * @param newGame is the New BGLE Values
+     * @param queriedFieldList is the String CSV list of the fields to compare
+     * @return Nested Map with First Key is Field Name, Second Key is Old Value, Value is New Value. 
+     */
+    private Map<String, Map<Object, Object>> compareValues(Board_Games__c oldGame, Board_Games__c newGame, String queriedFieldList){
+        //Initialize Change Map, if not already Initialized
+        Map<String, Map<Object, Object>> changeMap = new Map<String, Map<Object, Object>>();
+        
+        //List of Changes
+        Map<String, Map<Object, Object>> changes = new Map<String, Map<Object, Object>>();
+
+        //Split Queried Field List into List
+        for(String fieldName : queriedFieldList.split(',')){
+            // Get Label of Field
+            String fieldLabel = Board_Games__c.SObjectType.getDescribe().fields.getMap().get(fieldName).getDescribe().getLabel();
+
+            // Convert Object to String and set value to null if empty for comparison
+            String oldValue = String.isBlank(String.valueOf(oldGame.get(fieldName))) ? null : String.valueOf(oldGame.get(fieldName));
+            String newValue = String.isBlank(String.valueOf(newGame.get(fieldName))) ? null : String.valueOf(newGame.get(fieldName));
+
+            // Check if Values are Numeric
+            If(isNumber(oldValue) && isNumber(newValue)){
+                //Convert Strings to Numbers for comparison
+                Decimal oldNum = Decimal.valueOf(oldValue);
+                Decimal newNum = Decimal.valueOf(newValue);
+                if(oldNum != newNum){
+                    changeMap.put(fieldLabel, new Map<Object, Object>{oldNum => newNum});
+                }
+          
+            // != won't detect differences between different instances of equal values (e.g., same text), 
+            // while equals() ensures accurate comparison
+            } else if((oldValue == null && newValue != null) || (oldValue != null && !oldValue.equals(newValue))){
+                changeMap.put(fieldLabel, new Map<Object, Object>{(oldValue == null ? '(Blank)' : oldValue) => (newValue == null ? '(Blank)' : newValue)});
+            }
+        }
+        return changeMap;    
+    }
+
+    private Boolean isNumber(String val){
+        if (String.isBlank(val)) return false;
+        try {
+            Decimal test = Decimal.valueOf(val);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }    
+    }
+
+    /**
+     * Updates Board Game Information from BGG for Individual Games
+     * @param uow is the UnitOfWork Object that will record all of the DML Transactions
+     * @param recordIdToBGGIdMap Map of Board Game IDs to Update. Key is the Board Game Record ID and Value is the BGG ID
+     * @return Returns String Message of Results
+     */
     public String updateBoardGameDetailsFromBGG(fflib_SObjectUnitOfWork uow, Map<ID, String> recordIdToBGGIdMap){
         //If Service NOT enabled, Throw Error
         if(!this.serviceEnabled('updateBoardGameDetailsFromBGG')){ //Check if this Service Method is Enabled from Parent
@@ -228,7 +336,7 @@ public without sharing class BoardGamesService extends BaseService implements IB
 
         //Otherwise, Update Board Game Records in Map
         List<String> updatedGameNames = new List<String>();
-        For(BGGCalloutService.BoardGameWrapper wrapper : result.wrapperMap.values()){
+        For(BoardGameWrapper wrapper : result.wrapperMap.values()){
             //IF BGG ID is Not included in  Unprocessed IDs, 
             // AND Board Game Name on Board Game is NOT NULL 
             // Update Board Game

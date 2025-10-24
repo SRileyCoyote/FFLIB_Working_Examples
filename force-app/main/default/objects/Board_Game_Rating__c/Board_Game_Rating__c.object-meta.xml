@@ -171,11 +171,12 @@
         <excludedStandardButtons>OpenListInQuip</excludedStandardButtons>
         <excludedStandardButtons>NewFromDocument</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
         <excludedStandardButtons>Import</excludedStandardButtons>
         <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
-        <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <searchResultsAdditionalFields>NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Board_Game__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Attendee_Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Rating__c</searchResultsAdditionalFields>

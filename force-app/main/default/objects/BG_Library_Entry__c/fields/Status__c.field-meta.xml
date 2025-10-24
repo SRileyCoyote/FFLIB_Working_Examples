@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Status__c</fullName>
     <externalId>false</externalId>
-    <formula>IF(Total_Available__c &gt; 0, &quot;Available&quot;, &quot;Checked Out&quot;)</formula>
+    <formula>IF(Num_of_Copies__c &gt; 0, IF(Total_Available__c &gt; 0, &quot;Available&quot;, &quot;Checked Out&quot;), &quot;No Longer Available&quot;)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Status</label>
     <required>false</required>

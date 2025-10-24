@@ -22,9 +22,11 @@ public class BGGCalloutService implements IBGGCalloutService {
     @TestVisible private static final String ERROR_GEEKLIST_MSG = 'An Error Occured Getting GeekList: ';
     @TestVisible private static final String ERROR_DETAILS_MSG = 'An Error Occured Getting Details: ';
     @TestVisible private static final String NO_IDS_PROVIDED_MSG = 'No New Games Found';
+    @TestVisible private static final String ERROR_CALLOUT_LIMIT_REACHED = 'Callout Limit Reached: {0} out of {1}';
     @TestVisible private static final String ERROR_TOO_MANY_CALLOUTS = 'Too Many Games. Details for {0} out of {1} returned';
     @TestVisible private static final String ERROR_COLLECTION_NOT_RETRIEVED = '{0} {1} not Retrieved.';
     @TestVisible private static final String ERROR_SOURCE_ID_MISSING = 'Source ID Not Found.';
+    @TestVisible private static final String ERROR_NO_ITEMS_IN_COLLECTION = 'No Games In Collection';
     @TestVisible private static final String COLLECTION = 'Collection:';
     @TestVisible private static final String GEEKLIST = 'GeekList ID:';
 
@@ -48,6 +50,7 @@ public class BGGCalloutService implements IBGGCalloutService {
         //Add Check to ensure Callout limit is not reached
         if(totalCallouts < maxCalloutLimit){
             if(nameOrId == null || nameOrId == ''){
+                rtv.hasError = true;
                 rtv.resultMessage = ERROR_SOURCE_ID_MISSING;
             } else {
                 if(isGeekList){
@@ -58,6 +61,7 @@ public class BGGCalloutService implements IBGGCalloutService {
                 }
             }
         } else {
+            rtv.hasError = true;
             rtv.resultMessage = String.format(ERROR_COLLECTION_NOT_RETRIEVED,
                                                 new List<String>{
                                                     isGeekList ? GEEKLIST : COLLECTION,
@@ -137,6 +141,34 @@ public class BGGCalloutService implements IBGGCalloutService {
         return getBoardGameDetailsFromBGG(result);
     }
 
+    /**
+     * 
+     */
+    public CalloutResult getBoardGameDetailFromBGGIds(Set<String> bggIds){
+        
+        //Initialize new CalloutResult to Return with new Wrapper Map
+        CalloutResult result = new CalloutResult();
+        result.wrapperMap = new Map<String, BoardGameWrapper>();
+
+        //For Each RecordId and BGG ID key/value pair
+        for(String bggId : bggIds){
+            BoardGameWrapper wrapper = new BoardGameWrapper(); //Initialize New Wrapper
+            wrapper.boardGame = new Board_Games__c(     //Add Values to Board Game in Wrapper
+                                                        BGG_ID__c = bggId
+                                                    );
+            //Put Wrapper into Result Wrapper Map
+            result.wrapperMap.put(bggId, wrapper);
+        }
+        //Make Callout and Get Board Game Details and return the result
+        return getBoardGameDetailsFromBGG(result);
+    }
+
+
+    /**
+     * This is my Description
+     * @param result Callout Result
+     *  TODO 
+     */
     public CalloutResult getBoardGameDetailsFromBGG(CalloutResult result){
 
         if(result.wrapperMap.size() > 0){ //If no BGG Ids provided, do nothing
@@ -161,6 +193,7 @@ public class BGGCalloutService implements IBGGCalloutService {
                 if(result.unprocessedIDs.size() > 0){
                     Integer totalProcessed = result.wrapperMap.size() - result.unprocessedIDs.size();
                     // Return Message as opposed to Throw Error, as we dont want to stop processing the records we already retrieved
+                    result.hasError = true;
                     result.resultMessage = String.format(ERROR_TOO_MANY_CALLOUTS, 
                                                         new Integer[]{totalProcessed, result.wrapperMap.size()});
                 }
@@ -281,6 +314,10 @@ public class BGGCalloutService implements IBGGCalloutService {
 
     private List<Dom.XmlNode> makeCallout(string endpoint){
         
+        if(totalCallouts >= maxCalloutLimit){
+            throw new HttpServiceException(String.format(ERROR_CALLOUT_LIMIT_REACHED, new List<String>{totalCallouts.toString(), maxCalloutLimit.toString()}));
+        }
+
         Http http = new Http();
         HttpRequest request = new HttpRequest();
         request.setEndpoint(endpoint);
@@ -288,12 +325,20 @@ public class BGGCalloutService implements IBGGCalloutService {
         HttpResponse response = http.send(request);
         totalCallouts++;
         If(response.getStatusCode()==200){
+            //If Invalid Collection name is given, still returns Status Code 200 but with an error message
+            if(response.getBodyDocument().getRootElement().getName()=='errors'){
+                throw new HttpServiceException(response.getBodyDocument().getRootElement().getChildElement('error', null).getChildElement('message', null).getText());
+            }
+            //Collection has no items, throw error
+            if(response.getBodyDocument().getRootElement().getAttribute('totalitems', null) == '0'){
+                throw new HttpServiceException(ERROR_NO_ITEMS_IN_COLLECTION);
+            }
             return response.getBodyDocument().getRootElement().getChildElements();
         } else if(response.getStatusCode()==202){
             //Response Code 202 from BGG is common for the first time a Geeklist or Collection is called
             // Parse given XML for Message and throw custom Message.
             throw new HttpServiceException(
-                response.getBodyDocument().getRootElement().getText()
+                    response.getBodyDocument().getRootElement().getText()
                 );
         }
         else {
@@ -303,16 +348,12 @@ public class BGGCalloutService implements IBGGCalloutService {
 
     public class CalloutResult{
         public Map<String, BoardGameWrapper> wrapperMap = new Map<String, BoardGameWrapper>();
+        public Set<String> idsToProcess = new Set<String>();
         public Set<String> unprocessedIDs = new Set<String>();
-        public string sourceType {get; set;}
-        public string sourceName {get; set;}
+        public String sourceType {get; set;}
+        public String sourceName {get; set;}
+        public Boolean hasError = false;
         public String resultMessage {get; set;}
-    }
-
-    public class BoardGameWrapper{
-        public Board_Games__c boardGame = new Board_Games__c();
-        public string ownerName {get;set;}
-        public string comment {get;set;}
     }
 
     public class HttpServiceException extends Exception {}

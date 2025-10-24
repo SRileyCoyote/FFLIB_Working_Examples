@@ -179,6 +179,7 @@
         <excludedStandardButtons>PrintableListView</excludedStandardButtons>
         <excludedStandardButtons>MassAssignRecordLabel</excludedStandardButtons>
         <listViewButtons>Update_BG_Library_Entry_From_BGG</listViewButtons>
+        <searchResultsAdditionalFields>NAME</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Event__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Game_Thumbnail__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Board_Game__c</searchResultsAdditionalFields>

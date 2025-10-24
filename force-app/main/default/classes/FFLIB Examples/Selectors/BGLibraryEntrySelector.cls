@@ -37,7 +37,12 @@ public without sharing class BGLibraryEntrySelector extends fflib_SObjectSelecto
             BG_Library_Entry__c.Status__c,
             BG_Library_Entry__c.Event_Name__c,
             BG_Library_Entry__c.Event_Logo_URL__c,
-            BG_Library_Entry__c.Board_Game_Image_URL__c
+            BG_Library_Entry__c.Board_Game_Image_URL__c,
+            BG_Library_Entry__c.Source__c,
+            BG_Library_Entry__c.BGG_Owner__c,
+            BG_Library_Entry__c.Num_of_Copies__c,
+            BG_Library_Entry__c.Source_Type__c, 
+            BG_Library_Entry__c.Comments__c
         };
     }
     
@@ -58,10 +63,16 @@ public without sharing class BGLibraryEntrySelector extends fflib_SObjectSelecto
     //Return Value should always be a List of the Selector's Object
     //Input Parameters should always be Sets of the value type for bulkificationa and resuability
     public List<BG_Library_Entry__c> selectByEventIDs(Set<Id> eventIds){
-
         fflib_QueryFactory query = newQueryFactory();
         query.selectField('Board_Game__r.BGG_ID__c'); //Add Field here in order to retrieve From Related Object
         query.setCondition('Event__c = :eventIds');
+        return (List<BG_Library_Entry__c>) Database.query(query.toSOQL());
+    }
+    
+    public List<BG_Library_Entry__c> selectByEventIDsAndSources(Set<Id> eventIds, Set<String> sources){
+        fflib_QueryFactory query = newQueryFactory();
+        query.selectField('Board_Game__r.BGG_ID__c'); //Add Field here in order to retrieve From Related Object
+        query.setCondition('Event__c = :eventIds AND Source__c = :sources');
         return (List<BG_Library_Entry__c>) Database.query(query.toSOQL());
     }
 
@@ -70,4 +81,12 @@ public without sharing class BGLibraryEntrySelector extends fflib_SObjectSelecto
         query.setCondition('Board_Game__c = :boardGameIds');
         return (List<BG_Library_Entry__c>) Database.query(query.toSOQL());
     }
+
+    public List<BG_Library_Entry__c> selectBySources(Set<String> sources){
+        fflib_QueryFactory query = newQueryFactory();
+        query.selectField('Board_Game__r.BGG_ID__c'); //Add Field here in order to retrieve From Related Object
+        query.setCondition('Source__c = :sources');
+        return (List<BG_Library_Entry__c>) Database.query(query.toSOQL());
+    }
+
 }

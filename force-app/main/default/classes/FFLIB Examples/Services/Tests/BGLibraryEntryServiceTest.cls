@@ -448,7 +448,7 @@ public with sharing class BGLibraryEntryServiceTest {
                                                                  .toSObject();
 
         BGGCalloutService.CalloutResult geekListResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.comment = 'This is my Comment';
         wrapper.ownerName = 'My Name';
         geekListResult.wrapperMap.put(bggId, wrapper);
@@ -513,7 +513,7 @@ public with sharing class BGLibraryEntryServiceTest {
                                                                  .toSObject();
 
         BGGCalloutService.CalloutResult collectionResult = new BGGCalloutService.CalloutResult();
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.comment = 'This is my Comment';
         wrapper.ownerName = 'My Name';
         collectionResult.wrapperMap.put(bggId, wrapper);
@@ -586,7 +586,7 @@ public with sharing class BGLibraryEntryServiceTest {
         BGGCalloutService.CalloutResult collectionResult = new BGGCalloutService.CalloutResult();
         BGGCalloutService.CalloutResult geekListResult = new BGGCalloutService.CalloutResult();
 
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.comment = 'This is my Comment';
         wrapper.ownerName = 'My Name';
         collectionResult.wrapperMap.put('67890', wrapper);
@@ -673,7 +673,7 @@ public with sharing class BGLibraryEntryServiceTest {
         BGGCalloutService.CalloutResult collectionResult = new BGGCalloutService.CalloutResult();
         BGGCalloutService.CalloutResult geekListResult = new BGGCalloutService.CalloutResult();
 
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.comment = 'This is my Comment';
         wrapper.ownerName = 'My Name';
         collectionResult.wrapperMap.put('67890', wrapper);
@@ -762,7 +762,7 @@ public with sharing class BGLibraryEntryServiceTest {
         BGGCalloutService.CalloutResult collectionResult = new BGGCalloutService.CalloutResult();
         BGGCalloutService.CalloutResult geekListResult = new BGGCalloutService.CalloutResult();
 
-        BGGCalloutService.BoardGameWrapper wrapper = new BGGCalloutService.BoardGameWrapper();
+        BoardGameWrapper wrapper = new BoardGameWrapper();
         wrapper.comment = 'This is my Comment';
         wrapper.ownerName = 'My Name';
         collectionResult.wrapperMap.put('98765', wrapper);

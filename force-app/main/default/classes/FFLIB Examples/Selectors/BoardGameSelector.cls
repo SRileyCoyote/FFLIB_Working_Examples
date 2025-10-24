@@ -32,7 +32,20 @@ public without sharing class BoardGameSelector extends fflib_SObjectSelector imp
         return new List<Schema.SObjectField> {
             Board_Games__c.Name,
             Board_Games__c.BGG_ID__c,
-            Board_Games__c.Is_New__c
+            Board_Games__c.Is_New__c,
+            //Need to add fields in order to compare values
+            Board_Games__c.Avg_Rating__c,
+            Board_Games__c.Avg_Weight__c,
+            Board_Games__c.Image_URL__c,
+            Board_Games__c.Thumbnail_URL__c,
+            Board_Games__c.Max_Players__c,
+            Board_Games__c.Min_Players__c,
+            Board_Games__c.Min_Age__c,
+            Board_Games__c.Playing_Time__c,
+            Board_Games__c.Year_Published__c,
+            Board_Games__c.Publisher__c,
+            Board_Games__c.Categories__c,
+            Board_Games__c.Mechanics__c
         };
     }
     
