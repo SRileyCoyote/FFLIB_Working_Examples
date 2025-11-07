@@ -12,6 +12,8 @@ In light of that, my next step is **NOT** to dial back on the complexities and u
 
 (For those interested, dont worry, I will be sure to link the two together so you can still see the different FFLIB and other design pieces in action!)
 
+This Change Should Not be allowed
+
 ## CONTENTS
 
 This Repo contains metadata for a working Salesforce Instance intended to be deployed as a Scratch Org or to a Developer Edition Environment. Included in this repo are also examples on how to do addtional things like I normally need to look up like:
