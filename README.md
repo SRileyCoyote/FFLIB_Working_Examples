@@ -8,7 +8,9 @@ This Repo holds a working example of how to use and implement FFLIB as well as e
 
 So admittedly, this was supposed to be a *simple* example of FFLIB for those to use as a referenece for how to setup and understand the complexities of this architecture, however, in typical *me* fasion, I just couldn't leave things well enough alone and kept adding cool features and functionality to the examples until I had added multiple use cases and complexities because, well, it was fun to do so. 
 
-In light of that, my next step is **NOT** to dial back on the complexities and use cases **BUT** I will be probably either making a new repo with *JUST* the simple how-to information for FFLIB or move the entire Board Game Library Example into its own repo. (For those interested, dont worry, I will be sure to link the two together so you can still see the different FFLIB and other design pieces in action!)
+In light of that, my next step is **NOT** to dial back on the complexities and use cases **BUT** I will be probably either making a new repo with *JUST* the simple how-to information for FFLIB or move the entire Board Game Library Example into its own repo. 
+
+(For those interested, dont worry, I will be sure to link the two together so you can still see the different FFLIB and other design pieces in action!)
 
 ## CONTENTS
 
