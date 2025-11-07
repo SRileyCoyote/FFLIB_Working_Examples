@@ -1,10 +1,16 @@
 # FFLIB Working Examples
 
-## Overview
+## OVERVIEW
 
 This Repo holds a working example of how to use and implement FFLIB as well as examples of other patterns I picked up over my long career in Salesforce. It is intended mostly for my own personal use to refer back to and use the [templates](/documentation/Template-Quick-Links.md) for future projects as well as to be shared to other developers that might find it useful.
 
-## Contents
+## WORK IN PROGRESS
+
+So admittedly, this was supposed to be a *simple* example of FFLIB for those to use as a referenece for how to setup and understand the complexities of this architecture, however, in typical *me* fasion, I just couldn't leave things well enough alone and kept adding cool features and functionality to the examples until I had added multiple use cases and complexities because, well, it was fun to do so. 
+
+In light of that, my next step is **NOT** to dial back on the complexities and use cases **BUT** I will be probably either making a new repo with *JUST* the simple how-to information for FFLIB or move the entire Board Game Library Example into its own repo. (For those interested, dont worry, I will be sure to link the two together so you can still see the different FFLIB and other design pieces in action!)
+
+## CONTENTS
 
 This Repo contains metadata for a working Salesforce Instance intended to be deployed as a Scratch Org or to a Developer Edition Environment. Included in this repo are also examples on how to do addtional things like I normally need to look up like:
 - [Utilizing the FFLIB Architechure Design Patterns](/documentation/FFLIB.md)
@@ -40,7 +46,7 @@ I consider this Example Repo as still a Work In Progress and would love to hear 
 
 Please feel free to leave a comment in the [Discussions Tab](https://github.com/SRileyCoyote/FFLIB_Working_Examples/discussions). 
 
-## Links for More Information 
+## LINKS FOR MORE INFORMATION 
 
 [SObjects and Custom Metadata Types](/documentation/SObject-Schema.md)
 
