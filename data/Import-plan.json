@@ -16,11 +16,11 @@
         ]
     },
     {
-        "sobject": "Board_Games__c",
+        "sobject": "Board_Game__c",
         "saveRefs": true,
         "resolveRefs": false,
         "files": [
-            "Board_Games__c.json"
+            "Board_Game__c.json"
         ]
     },
     {

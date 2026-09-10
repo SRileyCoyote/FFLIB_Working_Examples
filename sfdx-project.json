@@ -1,8 +1,12 @@
 {
   "packageDirectories": [
     {
-      "path": "force-app",
-      "default": true,
+      "path": "sfdx-source/fflib-working-examples",
+      "package": "fflib-working-examples",
+      "versionName": "fflib-working-examples v2.0.0",
+      "versionNumber": "2.0.NEXT",
+      "default": false,
+      "definitionFile": "config/project-scratch-def.json",
       "dependencies": [
         {
             "package": "FlowActionsBasePack@2.1.0-0"
@@ -11,12 +15,24 @@
             "package": "FlowScreenComponentsBasePack@2.1.0-0"
         }
       ] 
+    },
+    {
+        "path": "sfdx-source/default",
+        "default": true
+    },
+    {
+        "path": "sfdx-source",
+        "default": false
+    },
+    {
+        "path": "sfdx-source/dependancies",
+        "default": false
     }
   ],
-  "name": "FFLIB_Working_Examples",
+  "name": "fflib-working-examples",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
-  "sourceApiVersion": "57.0",
+  "sourceApiVersion": "66.0",
   "packageAliases": {
     "FlowScreenComponentsBasePack@2.1.0-0": "04t5G000004PuTgQAK",
     "FlowActionsBasePack@2.1.0-0": "04t4W000002vXUCQA2"
