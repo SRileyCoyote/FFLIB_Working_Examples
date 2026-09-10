@@ -1,0 +1,73 @@
+Suggested Folder Structure:
+
+- analytics
+    - dashboards
+    - reports
+    - reportTypes
+- classes
+    - applications
+    - actions
+    - controllers
+    - criteria
+    - domains (domains, domain actions, domain criteria, etc)
+    - factories
+    - invocables
+    - interfaces (generic interfaces that don't belong in other folders)
+    - selectors
+    - services
+    - utilities
+- documents
+- email
+- comminities
+    - experiences
+    - networks
+    - navigationMenus
+    - networkBranding
+    - sharingSets
+    - siteDotComSites
+    - userCriteria
+- flows
+- remote
+    - cspTrustedSites
+    - externalCredentials
+    - namedCredentials
+    - remoteSiteSettings
+- schema
+    - customMetadata
+        - applicationFactoryBindings
+            - domainBindings
+            - selectorBindings
+            - serviceBindings
+            - uowBindings
+        - domainProcessBindings
+        - platformEventSubscriptions
+    - globalValueSets
+    - objects
+    - objectTranslations
+    - skills
+    - standardValueSets
+    - topicsForObjects
+    - triggers
+    - workflows
+- ui
+    - applications
+    - aura
+    - contentAssets
+    - flexipages
+    - labels
+    - layouts
+    - lwc
+    - notifications
+    - pages (visualforce pages)
+    - quickActions
+    - staticResources
+    - tabs
+- user
+    - customPermissions
+    - groups
+    - permissionSetGroups
+    - permissionSets
+    - profiles
+    - queues
+    - roles
+    - sharingRules

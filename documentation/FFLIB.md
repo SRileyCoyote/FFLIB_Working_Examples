@@ -16,6 +16,9 @@ The "Why" of using this pattern can be better described by people smarter than m
 
 # Deployment Order
 Because of the Dependancies Injected in this Style, Classes and Class Folders needed to be deployed in the following order
+UPDATE: This now out of date. The Application class from the at4dx package should be the Application class that should be used. 
+The correct bindings Metadata should be created used to manage the Domains, Selectors, Services, and Trigger Handlers used should 
+reduce or completely eliminate the issue that is being addressed below. 
 
 | Class Type        | Dependancies 
 | ----------------- | ----------------------------------

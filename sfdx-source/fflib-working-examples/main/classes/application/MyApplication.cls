@@ -1,0 +1,83 @@
+/**
+ * UPDATE: This design and style is now out of date and replaced with the Application Class of the at4dx and force-di packages.
+ * The New Application Class from that package effecitivly does the same thing however it uses custom metadata bindings to retrieve the correct classes which also
+ * removes the dependancies that came along with this style and .
+ */
+
+/**
+ * FFLIB Application Layer
+ * Used to quickly generate the Factories for the Service, Selector, UnitOfWork, and Domain Layers.
+ * Another benefit of using the Application Layer is that it can be used during mocking and stubbing to replace these Layers
+ * when called by the Apex classes during testing so that to allow for pure Unit Testing of the function being tested without 
+ * dependancies from other methods or validation of data not needed for the test.
+ */
+public class MyApplication {
+    /** Configure and create the ServiceFactory for this Application 
+     * Service Layer: This layer handles all of the business logic for a method, usually passing in a 
+     *  UnitOfWork object as a parameter so that all DML transactions are handled once the action completes 
+     *  usually in the TriggerHandler or Implementation Layer.  
+     *  The benefit is that the method can be unit tested without actually performing any DML and instead inspecting the 
+     *  UnitOfWork object to see if it contains the expected records that were inserted, updated or deleted.
+     * Recommended Naming Convention for the Service Class is [SObjectName]sService so it is clear it is the Service Class for that SObject
+    */
+    // public static final fflib_Application.ServiceFactory Service = new fflib_Application.ServiceFactory(
+    //     new Map<Type, Type>{
+    //         //Mapped By Interface as Key
+    //         //Addtional SObject Service Classes Go Here 
+    //         IBoardGameRatingsService.class => BoardGameRatingsService.class,
+    //         IBoardGamesService.class => BoardGamesService.class,
+    //         IBGGCalloutService.class => BGGCalloutService.class,
+    //         IBGLibraryEntryService.class => BGLibraryEntryService.class,
+    //         IBGCheckOutLogService.class => BGCheckOutLogService.class
+    //     }
+    // );
+
+    /** Configure and create the SelectorFactory for this Application
+     * Selector Layer: This layer handles all of the SOQL Calls for an object. 
+     *  The benefit is that during testing the Selector can be mocked and stubbed out so that the unit tests can focus on the method 
+     *  without creating a bunch of Test Data with prerequisites and validations first.
+     * Recommended Naming Convention for the Selector Class in [SObjectName]Selector so it is clear it is the Selector Class for that SObject
+    */
+    // public static final fflib_Application.SelectorFactory Selector = new fflib_Application.SelectorFactory(
+    //     new Map<SObjectType, Type>{
+    //         // Map SObjectType to Selector Class
+    //         //Additional SObject Selectors Go Here
+    //         Board_Game_Rating__c.SObjectType => BoardGameRatingSelector.class,
+    //         Event__c.SObjectType => EventSelector.class,
+    //         Board_Game__c.SObjectType => BoardGameSelector.class,
+    //         BG_Library_Entry__c.SObjectType => BGLibraryEntrySelector.class,
+    //         Event_Attendee__c.SObjectType => EventAttendeeSelector.class,
+    //         BG_Checkout_Log__c.SObjectType => BGCheckOutLogSelector.class
+    //     }
+    // );
+
+    /** Configure and create the DomainFactory for this Application
+    *  Domain Layer: This layer handles all of the record specific actions for the SObject such as validation and filtering methods
+    *  Recommended Naming Convention for the Domain Class in [SOBjectName]sDomain so it is clear it is the Domain Class for that SObject  
+    */
+    // public static final fflib_Application.DomainFactory Domain = new fflib_Application.DomainFactory(
+    //     Application.Selector,
+    //     // Map SObjectType to Domain Class Constructors
+    //     new Map<SObjectType, Type>{
+    //         //Additional SObject Domains Go Here
+    //         Board_Game_Rating__c.SObjectType => BoardGameRatingsDomain.Constructor.class,
+    //         BG_Checkout_Log__c.SObjectType => BGCheckOutLogDomain.Constructor.class
+    //     }
+    // );
+
+    /** Configure and create the UnitOfWorkFactory for this Application
+    *  UnitOfWork Layer: This layer handles all of the DML transactions for the Methods and commits all changes 
+    *   to SObjects at the same time using minimal DML Calls
+    *  NOTE: SObjects will be inserted and updated in the order in which they appear in this list so Child Objects must be below the Parent Object 
+    *  Example: Since Account is the Parent Object to Contact, Account must be listed above Contact.
+    */ 
+    // public static final fflib_Application.UnitOfWorkFactory UnitOfWork = new fflib_Application.UnitOfWorkFactory(
+    //     new List<SObjectType>{
+    //         //Additional SObjectTypes for Unit Of Work Go Here with Parent Objects Above Child
+    //         Board_Game_Rating__c.SObjectType,
+    //         Board_Game__c.SObjectType,
+    //         BG_Library_Entry__c.SObjectType,
+    //         BG_Checkout_Log__c.SObjectType
+    //     }
+    // );
+}

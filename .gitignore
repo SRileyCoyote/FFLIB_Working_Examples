@@ -1,3 +1,12 @@
+# Project Related Directories
+**/default/main/
+# **/dependancies/
+
+# Salesforce cache 
 .sfdx/*
 .sf/*
 .forceignore
+
+# LWC VSCode autocomplete
+**/lwc/jsconfig.json
+

@@ -1,0 +1,15 @@
+[submodule "sfdx-source/dependancies/fflib-apex-common"]
+	path = sfdx-source/dependancies/fflib-apex-common
+	url = https://github.com/SRileyCoyote/fflib-apex-common.git
+[submodule "sfdx-source/dependancies/fflib-apex-mocks"]
+	path = sfdx-source/dependancies/fflib-apex-mocks
+	url = https://github.com/SRileyCoyote/fflib-apex-mocks
+[submodule "sfdx-source/dependancies/at4dx"]
+	path = sfdx-source/dependancies/at4dx
+	url = https://github.com/SRileyCoyote/at4dx
+[submodule "sfdx-source/dependancies/force-di"]
+	path = sfdx-source/dependancies/force-di
+	url = https://github.com/SRileyCoyote/force-di
+[submodule "sfdx-source/dependancies/SObjectFabricator"]
+	path = sfdx-source/dependancies/SObjectFabricator
+	url = https://github.com/SRileyCoyote/SObjectFabricator
