@@ -24,7 +24,7 @@ public without sharing class BoardGamesService implements IBoardGamesService {
     private BoardGameSelector bgSelector = (BoardGameSelector) BoardGameSelector.newInstance();
     private BGLibraryEntrySelector bgleSelector = (BGLibraryEntrySelector) BGLibraryEntrySelector.newInstance();
     private BGLibraryEntryService bgleService = (BGLibraryEntryService) Application.Service.newInstance(IBGLibraryEntryService.class);
-    
+
     //Set Final Strings for Return Messages
     //Use Final Strings so that exact text can be used in the Test Class without worrying about text changes
     @TestVisible private final String SUCCESS_MSG = '{0} New Games Added. {1} Games Updated. {2}';

@@ -55,7 +55,7 @@ Steps might differ slightly for Endpoint Connections to other Systems.
 
 If your endpoint is just a URL, a related Remote Site Settings Record will need to be created to allow Salesforce to send the connection
 
-[Remote Site Setting Example](/force-app/main/default/remoteSiteSettings/BoardGameGeek.remoteSite-meta.xml)
+[Remote Site Setting Example](sfdx-source\fflib-working-examples\main\remote\remoteSiteSettings\BoardGameGeek.remoteSite-meta.xml)
 
 ### HttpCallout
 ```

@@ -117,7 +117,7 @@ public class checkOutLogController {
         try {
             //Input Validation Handled in Service
             fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
-            BGCheckOutLogService service = (BGCheckOutLogService) BGCheckOutLogService.newInstance();
+            BGCheckOutLogService service = (BGCheckOutLogService) Application.Service.newInstance(IBGCheckOutLogService.class);
             service.createCheckOutLog(uow, bgleId, attendeeId, checkoutDate);
             uow.commitWork();
         } catch (Exception e) {
@@ -133,7 +133,7 @@ public class checkOutLogController {
         try {
             //Input Validation Handled in Service
             fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
-            BGCheckOutLogService service = (BGCheckOutLogService) BGCheckOutLogService.newInstance();
+            BGCheckOutLogService service = (BGCheckOutLogService) Application.Service.newInstance(IBGCheckOutLogService.class);
             service.updateCheckOutLog(uow, log, checkInDate);
             uow.commitWork();
         } catch (Exception e) {

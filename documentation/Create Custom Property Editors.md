@@ -66,23 +66,16 @@ While CPEs require add a few more extra steps to development, they greatly incre
 
 If able, you can Install these Unmanaged Packages containing some Base LWC Components already put together specifically to be used on CPEs. However, I found the [Documentation](https://unofficialsf.com/flow-action-and-screen-component-basepacks/) to be a little lacking on how to use and implement the Base Components and found it easier to create the CPE from scratch.
 
-**NOTE**: These packages have also been added as dependancies in the `project-scratch-def.json` file but can be installed in your org using the `sf` or `sfdx` commands below or by following the install links provided.
+**NOTE**: These packages have also been added as dependancies in the `project-scratch-def.json` file but can be installed in your org using the `sf` commands below or by following the install links provided.
 
 #### Flow Actions Base Pack
 Install into: [Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t8b00000170r5AAA) or [Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t8b00000170r5AAA)
-```
-sfdx force:package:install -p 04t8b00000170r5AAA -w 30 -o MyScratchOrg
-```
-or 
 ```
 sf package install -p 04t8b00000170r5AAA -w 30 -o MyScratchOrg
 ```
 
 #### Flow Screen Component Base Pack
 Install into: [Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t5G000004fzAgQAI) or [Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t5G000004fzAgQAI)
-```
-sfdx force:package:install -p 04t5G000004fzAgQAI -w 30 -o MyScratchOrg
-```
 or 
 ```
 sf package install -p 04t5G000004fzAgQAI -w 30 -o MyScratchOrg

@@ -27,7 +27,7 @@ public with sharing class FlowUpdateBoardGameFromBGGController {
         //Initializing Unit of Work here and Passing as variable to Service
         //Done this way so that all DMLs are performed in this method
         fflib_SObjectUnitOfWork uow = (fflib_SObjectUnitOfWork) Application.UnitOfWork.newInstance();
-        BoardGamesService service = (BoardGamesService) BoardGamesService.newInstance();
+        BoardGamesService service = (BoardGamesService) Application.Service.newInstance(IBoardGamesService.class);
 
         //Convert Input Values into Map
         Map<ID, String> boardGameIdMap = new Map<ID, String>();
