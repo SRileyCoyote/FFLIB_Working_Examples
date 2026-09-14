@@ -1,4 +1,6 @@
-# Overview
+# Lightning Web Component Setup
+
+## Overview
 
 1. [HTML](#html)
 1. [Javascript](#common-javascript-methods)
@@ -14,8 +16,8 @@
         - [Standard Properties](#standard-property-types)
         - [Flow Specific Properties](#additional-flow-property-types)
 1. [@AuraEnabled Apex Method](#auraenabled-apex-method)
-
-# HTML
+---
+## HTML
 The HTML for a LWC is going to be too hyper-specific to what you need to be able to provide a basic template and there are WAY too many [LWC Components](https://developer.salesforce.com/docs/component-library/overview/components) to provide examples of each one here especially when [This Library](https://developer.salesforce.com/docs/component-library/overview/components) exists.
 
 ```
@@ -26,9 +28,10 @@ The HTML for a LWC is going to be too hyper-specific to what you need to be able
 
 [Back to Top](#overview)
 
-# Common JavaScript Methods
-## Get Record
-### Import
+---
+## Common JavaScript Methods
+### Get Record
+#### Import
 ```
 import { LightningElement, api, wire } from 'lwc';
 import { getRecord } from 'lightning/uiRecordApi';
@@ -39,7 +42,7 @@ const FIELDS = [
                 'MySObject__c.Source__c'
             ];
 ```
-### Method
+#### Method
 ```
 @api recordId; // Automatically provided from Salesforce
 recordData;
@@ -69,12 +72,13 @@ wiredRecord({error, data}){
 
 [Back to Top](#overview)
 
-## Show Toast
-### Import
+---
+### Show Toast
+#### Import
 ```
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 ```
-### Method
+#### Method
 ```
 showToast(title, message, variant) {
         const toastEvent = new ShowToastEvent({
@@ -85,7 +89,7 @@ showToast(title, message, variant) {
         this.dispatchEvent(toastEvent);
     }
 ```
-### Usage
+#### Usage
 ```
 this.showToast('Import Successful', result, 'success');
 ```
@@ -95,13 +99,14 @@ this.showToast('Error Occured', errormessage, 'error');
 
 [Back to Top](#overview)
 
-## Wire Method
-### Import
+---
+### Wire Method
+#### Import
 ```
 import { LightningElement, wire } from 'lwc';
 import myMethod from '@salesforce/apex/myController.myMethod';
 ```
-### Method
+#### Method
 ```
 @wire(myMethod, {myRecordId: '$recordId', strMyParam: '$strSObjectType'})
     wireMyMethod({error, data}){
@@ -117,12 +122,13 @@ import myMethod from '@salesforce/apex/myController.myMethod';
 
 [Back to Top](#overview)
 
-## Promise Method
-### Import
+---
+### Promise Method
+#### Import
 ```
 import myMethod from '@salesforce/apex/myController.myMethod';
 ```
-### Method
+#### Method
 ```
 handleClickMethod(){
 
@@ -148,9 +154,10 @@ handleClickMethod(){
 
 [Back to Top](#overview)
 
-# JS-Meta.xml
+---
+## JS-Meta.xml
 [JS-Meta.xml Config Documentation](https://developer.salesforce.com/docs/platform/lwc/guide/reference-configuration-tags.html)
-## Header
+### Header
 ```
 <apiVersion>62.0</apiVersion> <!-- Update API version as needed -->
 <description>This is My Lightning Web Component</description>
@@ -160,7 +167,8 @@ handleClickMethod(){
 
 [Back to Top](#overview)
 
-## Targets
+---
+### Targets
 [Full List of Targets](https://developer.salesforce.com/docs/platform/lwc/guide/reference-configuration-tags.html#target)
 ```
 <targets> 
@@ -179,8 +187,9 @@ handleClickMethod(){
 
 [Back to Top](#overview)
 
-## Target Configs
-### App Page
+---
+### Target Configs
+#### App Page
 ```
 <targetConfigs>
     <targetConfig targets="lightning__AppPage, lightning__HomePage, lightning__RecordPage">
@@ -188,7 +197,7 @@ handleClickMethod(){
     <targetConfig>
 </targetConfigs>
 ```
-### Flow Screen
+#### Flow Screen
 ```
 <targetConfigs>
     <targetConfig targets="lightning__FlowScreen" configurationEditor="c-cpe-config">
@@ -197,7 +206,7 @@ handleClickMethod(){
 </targetConfigs>
 ```
 **NOTE**: [More Information about Configuration Editors](/documentation/Custom-Property-Editors.md)
-### Record Action
+#### Record Action
 ```
 <targetConfigs>
     <targetConfig targets="lightning__FlowScreen">
@@ -212,45 +221,47 @@ handleClickMethod(){
 
 [Back to Top](#overview)
 
-## Properties
-### Standard Property Types
+---
+### Properties
+#### Standard Property Types
 [Full List of Standard Property Options](https://developer.salesforce.com/docs/platform/lwc/guide/targets-lightning-record-page.html#property)
-#### String
+##### String
 ```
 <property name="strInput" type="String" label="My String Name" description="This is My String's Description" default="My Name" placeholder="String Placeholder" required="true"/>
 ```
-#### Boolean
+##### Boolean
 ```
 <property name="boolInput" type="Boolean" label="My Boolean Name" description="This is My Boolean's Description" default="false" />
 ```
-#### Integer
+##### Integer
 ```
 <property name="intInput" type="Integer" label="My Integer Name" description="This is My Integer's Description" default="10" min="1" max="100" required="true"/>
 ```
 
-#### Picklist
+##### Picklist
 ```
 <property name="strPickList" type="String" label="My Picklist" description="This is My Picklist's Description" default="value1" datasource="value1,value2,value3" required="true"/>
 ```
 
 [Back to Top](#overview)
 
-### Additional Flow Property Types
+---
+#### Additional Flow Property Types
 **NOTE**: Flows have an addition attribute of `role` which can be set to `inputOnly` or `outputOnly`. If not set, the default is both input and output.
-#### Date
+##### Date
 ```
 <property name="dateInput" type="Date" label="My Date" description="This is My Date's Description." required="false" role="inputOnly"/>
 ```
-#### DateTime
+##### DateTime
 ```
 <property name="dateInput" type="Datetime" label="My Datetime" description="This is My Datetime's Description." required="false" role="inputOnly"/>
 ```
-#### Specific SObject Type
+##### Specific SObject Type
 ```
 <property name="objInput" type="@salesforce/schema/MySObject__c" label="My Custom Object Record" description="My Custom Object Record Description." role="inputOnly"/>   
 ```
 
-#### Select SObject Type
+##### Select SObject Type
 If you want the Admin User to Select a specific SObject Type for a Property, you can add a Property Type
 
 ```
@@ -261,7 +272,8 @@ If you want the Admin User to Select a specific SObject Type for a Property, you
 
 [Back to Top](#overview)
 
-# @AuraEnabled Apex Method
+---
+## @AuraEnabled Apex Method
 **NOTE**: Regardless of the message given, the message on the AuraHandledException is "Script-thrown exception". Setting the message as indicated below passes along the correct message recieved when testing.
 
 ```
@@ -280,3 +292,5 @@ public static String myAuraEnabledMethod(ID recordId){
 ```
 
 [Back to Top](#overview)
+
+---

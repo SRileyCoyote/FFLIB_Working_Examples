@@ -1,4 +1,4 @@
-## Scratch Org Setup Instructions
+# Scratch Org Setup Instructions
 
 1. Setup VS Code (or Similiar IDE) (If Needed)
      1. [Download VS Code](https://code.visualstudio.com/Download) 
@@ -29,7 +29,11 @@
           - ```-c or --clean ```
           - **Default:** false
 
-[^1]: At first, I had this document list out all of the Salesforce CLI commands that needed to be run in order to setup the scratch org, add the metadata, and seed it will example data. I have since figured out how to create a Bash Shell script that will automate the process. The downside is that, by automating, I lose out on learning / remembering / showing how to use the command line commands. So, to that effect, I will list out the instructions on how to run the script as well as break down each command. 
+---
+
+[^1]: At first, I had this document list out all of the Salesforce CLI commands that needed to be run in order to setup the scratch org, add the metadata, and seed it will example data. I have since figured out how to create a Bash Shell script (with some help) that will automate the process. The downside is that, by automating, I lose out on learning / remembering / showing how to use the command line commands. So, to that effect, I will list out the instructions on how to run the script as well as break down each command. 
+
+---
 
 1. Create Scratch Org from DevHub for 7 Days
 

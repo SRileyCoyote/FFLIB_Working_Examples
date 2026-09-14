@@ -1,6 +1,5 @@
 # Project Related Directories
 **/default/main/
-# **/dependancies/
 
 # Salesforce cache 
 .sfdx/*

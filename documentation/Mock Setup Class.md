@@ -130,8 +130,8 @@ if(throwErrors){
 [Back to Steps](#mocksetup-class) 
 
 ### 7. Replace Classes with Mocks when called from Application
-Finally, we will set the Mocks so that whenever they are created using the [Application Class](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls), they will instead create and use our Mock Class.
-This is why it is important that whenever we call these classes from our Methods, we do so using the [Application Layer](/force-app/main/default/classes/FFLIB%20Examples/Application/Application.cls).
+Finally, we will set the Mocks so that whenever they are created using the [Application Class]() from `at4dx`, they will instead create and use our Mock Class.
+This is why it is important that whenever we call these classes from our Methods, we do so using the [Application Layer]().
 ```
 Application.UnitOfWork.setMock(uowMock);
 Application.Domain.setMock(mockDomain);

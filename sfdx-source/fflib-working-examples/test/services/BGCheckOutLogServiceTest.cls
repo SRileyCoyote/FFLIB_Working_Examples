@@ -44,7 +44,6 @@ private class BGCheckOutLogServiceTest {
     class MockSetup {
         public fflib_ApexMocks mocks = new fflib_ApexMocks();
         public ApplicationSObjectUnitOfWork uowMock;
-        public Services_Config__mdt mockConfig;
 
         private MockSetup(Map<MockParams, Object> params) {
             //Loop through Map of ParamTypes
@@ -60,12 +59,6 @@ private class BGCheckOutLogServiceTest {
             mocks = new fflib_ApexMocks();
             uowMock = (ApplicationSObjectUnitOfWork) mocks.mock(ApplicationSObjectUnitOfWork.class);
             // IBGCheckOutLogs mockBGCheckOutLogDomain = (IBGCheckOutLogs) mocks.mock(BGCheckOutLog.class);
-
-            mockConfig = new Services_Config__mdt(
-                                        Domain_Config__r = new Domain_Config__mdt(
-                                            DeveloperName = 'BGCheckOutLogs'),
-                                        Service_Enabled__c = true
-                                    );
             
             mocks.startStubbing();
             //Stubbing the BG Check Out Log Domain
